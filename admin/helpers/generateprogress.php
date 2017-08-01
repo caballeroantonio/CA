@@ -480,7 +480,7 @@ class ComponentArchitectGenerateProgressHelper
 		if (!is_dir($log_path))
 		{
 			$config = &JFactory::getConfig();
-			$log_path = $config->getValue('config.log_path');			
+			$log_path = $config->get('log_path');			
 		}
 		
 		$options['text_file_path'] = $log_path;

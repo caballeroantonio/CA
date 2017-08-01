@@ -57,8 +57,8 @@ class ComponentArchitectModelLogs extends JModelLegacy
 		if (!is_dir($logdir))
 		{
 			// Default path used for log.  Store this to display at end.
-			$config = &JFactory::getConfig();
-			$logdir = $config->getValue('config.log_path');
+			$config = JFactory::getConfig();
+			$logdir = $config->get('log_path');
 		}
 		$dir = opendir($logdir);
 		// retrieve all test data generation log files
@@ -71,7 +71,7 @@ class ComponentArchitectModelLogs extends JModelLegacy
 					$ret[] = $file;
 				}			
 			}
-			
+
 		}
 		closedir($dir);		
 

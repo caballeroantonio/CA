@@ -78,8 +78,7 @@ class JFormRulecodetemplatename extends JFormRule
 			{
 				// Set and query the database.
 				$db->setQuery($query);
-				$duplicate = (bool) $db->loadResult();			
-				$title = $db->loadResult();
+				$duplicate = (bool) $db->loadResult();
 			}			
 			catch (RuntimeException $e)
 			{
