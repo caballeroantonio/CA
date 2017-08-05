@@ -10,7 +10,7 @@
  * 
  * The following Component Architect header section must remain in any distribution of this file
  * 
- * @version			Id: architectcomp_install.php 48 2012-06-26 14:16:25Z BrianWade $
+ * @version			Id: architectcomp_install.php 48 20170806 caballeroantonio $
  * @CAauthor		Component Architect (www.componentarchitect.com)
  * @CApackage		architectcomp
  * @CAsubpackage	architectcomp.install
@@ -1060,56 +1060,63 @@ class [%%com_architectcomp%%]InstallerScript
 		$content_type['router'] = '[%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route';
 
 		[%%IF INCLUDE_VERSIONS%%]
-		$content_type['content_history_options'] = '{"formFile":"administrator\/components\/[%%architectcomp%%]\/models\/forms\/[%%compobject%%].xml",';
-		$content_type['content_history_options'] .= '"hideFields":[';
+		$content_type['content_history_options']['formFile'] = 'administrator/components/[%%architectcomp%%]/models/forms/[%%compobject%%].xml';
 			[%%IF INCLUDE_ASSETACL%%]
 				[%%IF INCLUDE_ASSETACL_RECORD%%]
-		$content_type['content_history_options'] .= '"asset_id",';
+		$content_type['content_history_options']['hideFields'][] = 'asset_id';
 				[%%ENDIF INCLUDE_ASSETACL_RECORD%%]
 			[%%ENDIF INCLUDE_ASSETACL%%]
 			[%%IF INCLUDE_CHECKOUT%%]
-		$content_type['content_history_options'] .= '"checked_out","checked_out_time",';
+		$content_type['content_history_options']['hideFields'][] = 'checked_out';
+                $content_type['content_history_options']['hideFields'][] = 'checked_out_time';
 			[%%ENDIF INCLUDE_CHECKOUT%%]		
-		$content_type['content_history_options'] .= '"version"],"ignoreChanges":[';
+                $content_type['content_history_options']['hideFields'][] = 'version';
 			[%%IF INCLUDE_MODIFIED%%]
-		$content_type['content_history_options'] .= '"modified_by", "modified", ';
+		$content_type['content_history_options']['ignoreChanges'][] = 'modified_by';
+                $content_type['content_history_options']['ignoreChanges'][] = 'modified';
 			[%%ENDIF INCLUDE_MODIFIED%%]		
 			[%%IF INCLUDE_CHECKOUT%%]
-		$content_type['content_history_options'] .= '"checked_out", "checked_out_time", ';
+                $content_type['content_history_options']['ignoreChanges'][] = 'checked_out';
+                $content_type['content_history_options']['ignoreChanges'][] = 'checked_out_time';
 			[%%ENDIF INCLUDE_CHECKOUT%%]		
 			[%%IF INCLUDE_HITS%%]
-		$content_type['content_history_options'] .= '"hits", ';
+		$content_type['content_history_options']['ignoreChanges'][] = 'hits';
 			[%%ENDIF INCLUDE_HITS%%]		
-		$content_type['content_history_options'] .= '"version"],"convertToInt":[';
+		$content_type['content_history_options']['ignoreChanges'][] = 'version';
 			[%%IF INCLUDE_PUBLISHED_DATES%%]
-		$content_type['content_history_options'] .= '"publish_up", "publish_down", ';
+		$content_type['content_history_options']['convertToInt'][] = 'publish_up';
+                $content_type['content_history_options']['convertToInt'][] = 'publish_down';
 			[%%ENDIF INCLUDE_PUBLISHED_DATES%%]		
 			[%%IF INCLUDE_FEATURED%%];
-		$content_type['content_history_options'] .= '"featured", ';
+		$content_type['content_history_options']['convertToInt'][] = 'featured';
 			[%%ENDIF INCLUDE_FEATURED%%]
 			[%%IF INCLUDE_ORDERING%%]
-		$content_type['content_history_options'] .= '"ordering"],';
+		$content_type['content_history_options']['convertToInt'][] = 'ordering';
 			[%%ELSE INCLUDE_ORDERING%%]
-		$content_type['content_history_options'] .= '],';
 			[%%ENDIF INCLUDE_ORDERING%%]
-		$content_type['content_history_options'] .= '"displayLookup":[{';
 			[%%IF GENERATE_CATEGORIES%%]
-		$content_type['content_history_options'] .= '"sourceColumn":"catid","targetTable":"#__categories","targetColumn":"id","displayColumn":"name"},';
+		$content_type['content_history_options']['displayLookup'][] =  array('sourceColumn'=>'catid','targetTable'=>'#__categories','targetColumn'=>'id','displayColumn'=>'name');
 			[%%ENDIF GENERATE_CATEGORIES%%]		
 			[%%IF INCLUDE_CREATED%%]
-		$content_type['content_history_options'] .= '{"sourceColumn":"created_by","targetTable":"#__users","targetColumn":"id","displayColumn":"name"},';
+		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'created_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name');
 			[%%ENDIF INCLUDE_CREATED%%]		
 			[%%IF INCLUDE_ACCESS%%]
-		$content_type['content_history_options'] .= '{"sourceColumn":"access","targetTable":"#__viewlevels","targetColumn":"id","displayColumn":"title"},';
+		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'access','targetTable'=>'#__viewlevels','targetColumn'=>'id','displayColumn'=>'title');
 			[%%ENDIF INCLUDE_ACCESS%%]		
 			[%%IF INCLUDE_MODIFIED%%]
-		$content_type['content_history_options'] .= '{"sourceColumn":"modified_by","targetTable":"#__users","targetColumn":"id","displayColumn":"name"} ';
+		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'modified_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name');
 			[%%ENDIF INCLUDE_MODIFIED%%]		
-		$content_type['content_history_options'] .= ']}';	
 		[%%ELSE INCLUDE_VERSIONS%%]
-		$content_type['content_history_options'] = '';	
 		[%%ENDIF INCLUDE_VERSIONS%%]
-
+                
+		[%%FOREACH OBJECT_FIELDSET%%]
+			[%%FOREACH OBJECT_FIELD%%]
+                if('[%%FIELD_UCM_CHO%%]' != '')            
+                    $content_type['content_history_options'] = array_merge_recursive($content_type['content_history_options'], json_decode('[%%FIELD_UCM_CHO%%]', TRUE));
+			[%%ENDFOR OBJECT_FIELD%%]
+		[%%ENDFOR OBJECT_FIELDSET%%]  
+				
+                $content_type['content_history_options'] = json_encode($content_type['content_history_options']);
 		$db->setQuery('INSERT INTO '.$db->quoteName('#__content_types')
 						.' ('
 							.$db->quoteName('type_title').', '

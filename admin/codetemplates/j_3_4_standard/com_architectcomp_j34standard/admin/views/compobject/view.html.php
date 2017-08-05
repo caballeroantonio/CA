@@ -116,7 +116,7 @@ class [%%ArchitectComp%%]View[%%CompObject%%] extends JViewLegacy
 		[%%ENDIF INCLUDE_CHECKOUT%%]
 
 		JToolbarHelper::title(
-				JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_' . ($checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
+				JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_' . (isset($checkedOut) && $checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
 				'[%%compobjectplural%%].png'
 		);
 

@@ -1,0 +1,70 @@
+<project name="com_tsjdf_libros2" default="dist" basedir=".">
+    <property name="link_dir" description="vinculo simbolico" value="/media/caballeroantonio/Docs/www/htdocs/jpruebas" />
+    
+    <target name="clean" description="clean up directories">
+
+    </target>
+    
+    <target name="init" depends="clean" description="create directories">
+
+    </target>
+    
+    <target name="dist" depends="init">
+        <echo message="No te olvides de el paquete instalador"/>
+        <echo message="No te olvides de generar las fuentes"/>
+        <echo message="No te olvides de php_docs"/>
+        <echo message="No te olvides del unidiff"/>
+    </target>
+    
+    <target name="copy-symlinks" description="copy symlynks to joomla to test directy on development directory">
+        <symlink link="${link_dir}/administrator/components/${ant.project.name}/" resource="${basedir}\admin\"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.${ant.project.name}.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.${ant.project.name}.sys.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.sys.ini"/>
+        
+        <symlink link="${link_dir}/components/${ant.project.name}/" resource="${basedir}\site\"/>
+        <symlink link="${link_dir}/language/en-GB/en-GB.${ant.project.name}.ini" resource="${basedir}\languages\site\en-GB\en-GB.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/language/es-ES/es-ES.${ant.project.name}.ini" resource="${basedir}\languages\site\es-ES\es-ES.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/media/${ant.project.name}/" resource="${basedir}\media\"/>
+        
+        <!--plugins: plugins/cacodetemplates plugins/componentarchitect-->
+        <symlink link="${link_dir}/plugins/cacodetemplates/" resource="${basedir}\plugins\cacodetemplates\"/>
+        <symlink link="${link_dir}/plugins/componentarchitect/" resource="${basedir}\plugins\componentarchitect\"/>
+        
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_cacodetemplates_j33standard.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_cacodetemplates_j33standard.sys.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.sys.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_cacodetemplates_j34standard.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_cacodetemplates_j34standard.sys.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.sys.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_componentarchitect_events.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.ini"/>
+        <symlink link="${link_dir}/administrator/language/en-GB/en-GB.plg_componentarchitect_events.sys.ini" resource="${basedir}\admin\language\en-GB\en-GB.${ant.project.name}.sys.ini"/>
+    </target>
+    
+<!--    <target name="remove-symlinks" description="remove test symlinks">
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/administrator/components/${ant.project.name}"' />
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/components/${ant.project.name}"' />
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/media/${ant.project.name}"' />
+        </exec>
+        
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.${ant.project.name}.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.${ant.project.name}.sys.ini" />
+        <delete file="${link_dir}/language/en-GB/en-GB.${ant.project.name}.ini" />
+        <delete file="${link_dir}/language/en-GB/en-GB.${ant.project.name}.sys.ini" />
+        <delete file="${link_dir}/libraries/joomla/database/query.php" />
+    </target>-->
+    
+    <target name="remove-package" description="Remove directories added on Joomla installation, it follow symlinks! Has risk of loose code if you run the copy symlinks target.">
+        <delete dir="${link_dir}/administrator/components/${ant.project.name}" />
+        <delete dir="${link_dir}/components/${ant.project.name}" />
+        <delete dir="${link_dir}/media/${ant.project.name}" />
+        <delete dir="${link_dir}/libraries/joomla/database/query.php" />
+        
+        <delete>
+            <fileset dir="${link_dir}/language/" includes="**/*.${ant.project.name}.*" />
+            <fileset dir="${link_dir}/administrator/language/" includes="**/*.${ant.project.name}.*" />
+        </delete>
+    </target>
+</project>

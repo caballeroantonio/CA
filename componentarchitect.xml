@@ -90,6 +90,7 @@
             <filename>componentarchitect_uninstall.html</filename>
             <filename>gpl-3.0.txt</filename>
             <filename>index.html</filename>
+			<filename>access.xml</filename>
             <!-- [%%START_CUSTOM_CODE%%] -->
             <folder>codetemplates</folder>
             <!-- [%%END_CUSTOM_CODE%%] -->

@@ -1,5 +1,8 @@
 <project name="com_componentarchitect" default="dist" basedir=".">
     <property name="link_dir" description="vinculo simbolico" value="D:/www/htdocs/jpruebas" />
+<!--    <property name="base_j34" description="src template j34" value="D:/projects/my_joomla/com_componentarchitect/plugins/cacodetemplates/plg_cacodetemplates_j34standard/com_architectcomp_j34standard" />
+    <property name="dest_j34" description="dest template j34" value="D:/www/htdocs/JPruebasUbnt/plugins/cacodetemplates/j34standard/com_architectcomp_j34standard.zip" />-->
+    
     
     <target name="clean" description="clean up directories">
 
@@ -118,4 +121,9 @@
             <fileset dir="${link_dir}/administrator/language/" includes="**/*componentarchitect*" />
         </delete>
     </target>
+    
+<!--    <target name="get_j34" >
+        <zip basedir="${base_j34}" destfile="${base_j34}.zip" update="true" />
+        <copy file="${base_j34}.zip" tofile="${dest_j34}" overwrite="true" />
+    </target>-->
 </project>

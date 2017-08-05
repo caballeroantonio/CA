@@ -897,6 +897,7 @@ class ComponentArchitectGenerateHelper
 				// Initialise field variables
 				$type = '';
 				$parameters = '';
+				$content_history_options = null;
 				$values_array = array();
 				$options = '';			
 				$language_vars = '';						
@@ -1486,6 +1487,24 @@ class ComponentArchitectGenerateHelper
 					default:
 						break;			
 				}
+                                
+                                /**
+                                 * UCM content_history_options
+                                 */
+                                if ($type == 'sql'){
+                                    $displayLookup = array(
+                                        'sourceColumn'=>$field->code_name,
+                                        'targetTable'=>$field->sql_query,
+                                        'targetColumn'=>$field->sql_key_field,
+                                        'displayColumn'=>$field->sql_value_field,
+                                    );
+                                    preg_match('/(?<=FROM )\S+/i', $displayLookup['targetTable'], $match);
+                                    $displayLookup['targetTable'] = $match[0];
+                                    $content_history_options = array();
+                                    $content_history_options['displayLookup'][] = $displayLookup;
+                                    $content_history_options = json_encode($content_history_options);
+                                }
+                                
 				$field_admin_list_value = str_replace('$this->item->', '$item->', $field_site_value);
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_ADMIN_LIST_VALUE'), 'replace' => $field_admin_list_value));
 				$field_child_admin_list_value = str_replace('$this->item->', '$child->', $field_site_value);
@@ -1551,6 +1570,7 @@ class ComponentArchitectGenerateHelper
 				}	
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_OPTIONS_LANGUAGE_VARS'), 'replace' => isset($language_vars) ? $language_vars : ''));
 
+				//@tx El FIELD_SQL_QUERY debe ser en una sola línea porque los saltos aparecen como \r\n y marcan error en el query por $db->escape
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_QUERY'), 'replace' => isset($field->sql_query) ? $db->escape($field->sql_query) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_KEY_FIELD'), 'replace' => isset($field->sql_key_field) ? $db->escape($field->sql_key_field) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_VALUE_FIELD'), 'replace' => isset($field->sql_value_field) ? $db->escape($field->sql_value_field) : ''));
@@ -1580,6 +1600,7 @@ class ComponentArchitectGenerateHelper
 				{
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_PARAMETERS'), 'replace' => ''));			
 				}
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_UCM_CHO'), 'replace' => $content_history_options));
 				
 				switch (JString::strtoupper($db_field_type))
 				{
