@@ -222,6 +222,7 @@ class [%%ArchitectComp%%]View[%%CompObjectPlural%%] extends JViewLegacy
 		[%%ELSE INCLUDE_ASSETACL%%]
 		JToolbarHelper::preferences('[%%com_architectcomp%%]');
 		[%%ENDIF INCLUDE_ASSETACL%%]
+		JToolbarHelper::help('JHELP_COMPONENTS_[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]', true, null, '[%%com_architectcomp%%]');
 	}
 	/**
 	 * Add the page sidebar.

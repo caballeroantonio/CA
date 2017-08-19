@@ -477,5 +477,6 @@ $empty = $component->params->get('default_empty_field', '');
 			<?php echo JHtml::_('[%%compobject%%]icon.create', $this->params); ?>
 			[%%ENDIF INCLUDE_ASSETACL%%]
 		<?php endif; ?>		
+                <?php echo '<button>export</button>'//JHtml::_('[%%compobject%%]icon.create', $this->params); ?>
 	</form>
 </div>

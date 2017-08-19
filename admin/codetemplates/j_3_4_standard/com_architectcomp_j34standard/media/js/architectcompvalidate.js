@@ -24,7 +24,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
  
-window.addEvent('domready', function() {
+jQuery(function() {
 	document.formvalidator.setHandler('webaddress',
 		function (value) {
 			regex=/.*/;

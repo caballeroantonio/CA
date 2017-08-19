@@ -882,6 +882,9 @@ class ComponentArchitectGenerateHelper
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UCFIRST'), 'replace' => JString::ucfirst(str_replace('-','',JString::trim(JApplication::stringURLSafe($field->code_name)))))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION'), 'replace' => $field->description));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  str_replace('"', '"_QQ_"', $field->description))); 
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT'), 'replace' => 
+                                    $db->escape(strip_tags($field->description)) 
+                                ));
 				
 				if (isset($field->intro) AND $field->intro != '')
 				{

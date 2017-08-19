@@ -94,7 +94,7 @@ class [%%ArchitectComp%%]View[%%CompObject%%] extends JViewLegacy
 			$this->form->setFieldAttribute('catid', 'readonly', 'true');
 			[%%ENDIF GENERATE_CATEGORIES%%]	
 		}
-		
+		JToolbarHelper::help('JHELP_COMPONENTS_[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]_EDIT', true, null, '[%%com_architectcomp%%]');
 		$this->addToolbar();
 		$this->prepareDocument();		
 		parent::display($tpl);
