@@ -183,7 +183,9 @@ class ComponentArchitectModelFieldTypes extends JModelList
 			)
 		);
 		$query->from($db->quoteName('#__componentarchitect_fieldtypes').' AS a');
-
+                //@ToDo implement throw state buttons
+                //tx need use published fields, this hidde on generate and admin
+                $query->where('a.state');
 		
 		// Join over the users for the checked out user.
 		$query->select($db->quoteName('uc.name').' AS editor');

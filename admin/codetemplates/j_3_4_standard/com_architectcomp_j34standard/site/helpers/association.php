@@ -60,7 +60,7 @@ abstract class [%%ArchitectComp%%]HelperAssociation extends CategoryHelperAssoci
 		{
 			if ($id)
 			{
-				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $id);
+				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $id);
 
 				$return = array();
 

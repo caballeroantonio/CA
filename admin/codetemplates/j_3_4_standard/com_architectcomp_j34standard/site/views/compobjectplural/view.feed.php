@@ -56,7 +56,7 @@ class [%%ArchitectComp%%]View[%%CompObjectPlural%%] extends JViewLegacy
 		$app->input->set('limit', $app->get('feed_limit'));
 		[%%IF GENERATE_CATEGORIES%%]
 		$options['countItems'] = false;
-		$options['table'] = '#__[%%architectcomp%%]_[%%compobjectplural%%]';				
+		$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';				
 		$categories = JCategories::getInstance('[%%ArchitectComp%%]', $options);
 		[%%ENDIF GENERATE_CATEGORIES%%]		
 		$rows		= $this->get('Items');

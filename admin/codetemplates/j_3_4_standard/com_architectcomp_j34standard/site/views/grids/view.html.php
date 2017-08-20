@@ -10,7 +10,7 @@
  * 
  * The following Component Architect header section must remain in any distribution of this file
  *
- * @version			$Id: category.php 571 2016-01-04 15:03:02Z BrianWade $
+ * @version			$Id: view.html.php 571 2016-01-04 15:03:02Z BrianWade $
  * @CAauthor		Component Architect (www.componentarchitect.com)
  * @CApackage		architectcomp
  * @CAsubpackage	architectcomp.site
@@ -27,23 +27,37 @@
  */
 
 defined('_JEXEC') or die;
-/**
- * [%%ArchitectComp_name%%] Category Tree
- *
- */
-class [%%ArchitectComp%%]Categories extends JCategories
-{
-	public function __construct($options = array())
-	{
 
-		[%%FOREACH COMPONENT_OBJECT%%]
-			[%%IF GENERATE_CATEGORIES%%]
-		$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';	
-			[%%ENDIF GENERATE_CATEGORIES%%]
-		[%%ENDFOR COMPONENT_OBJECT%%]
-		$options['extension'] = '[%%com_architectcomp%%]';
-		$options['statefield'] = 'state';
-		parent::__construct($options);
+class [%%ArchitectComp%%]ViewGrids extends JViewLegacy
+{
+	protected $item;
+	protected $params;
+	protected $print;
+	protected $state;
+	protected $user;
+	protected $return_page;
+	protected $form;
+
+	/**
+	 * Execute and display a template script.
+	 *
+	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+	 *
+	 * @return  mixed  A string if successful, otherwise a Error object.
+	 */	
+	public function display($tpl = null)
+	{
+		echo '<div id="extjs-content"></div>';
+		$this->prepareDocument();
+
+		parent::display($tpl);
 	}
 
+	/**
+	 * Prepares the document
+	 */
+	protected function prepareDocument()
+	{
+		
+	}
 }

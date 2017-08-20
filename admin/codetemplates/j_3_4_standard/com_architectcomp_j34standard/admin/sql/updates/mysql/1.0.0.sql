@@ -24,6 +24,6 @@
 -- --------------------------------------------------------
 [%%FOREACH COMPONENT_OBJECT%%]
 --
--- Updates to table `#__[%%architectcomp%%]_[%%compobjectplural%%]`
+-- Updates to table `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`
 --
 [%%ENDFOR COMPONENT_OBJECT%%]

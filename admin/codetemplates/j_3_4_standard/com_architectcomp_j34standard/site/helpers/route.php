@@ -75,7 +75,7 @@ abstract class [%%ArchitectComp%%]HelperRoute
 		if ($cat_id > 1)
 		{
 			$options['countItems'] = false;
-			$options['table'] = '#__[%%architectcomp%%]_[%%compobjectplural%%]';		
+			$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';		
 			$categories = JCategories::getInstance('[%%ArchitectComp%%]', $options);
 		
 			$category = $categories->get($cat_id);

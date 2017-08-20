@@ -26,7 +26,7 @@
 -- Uninstall of `#__[%%architectcomp%%]` tables
 --
 [%%FOREACH COMPONENT_OBJECT%%]
-DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
+DROP TABLE IF EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`;
 [%%ENDFOR COMPONENT_OBJECT%%]
 
 [%%IF GENERATE_PLUGINS_VOTE%%] 

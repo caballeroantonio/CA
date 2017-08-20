@@ -288,7 +288,7 @@ class PlgSearch[%%CompObjectPlural%%] extends JPlugin
 						[%%ENDIF GENERATE_CATEGORIES%%]
 						$slug_select.
 						'"2" AS browsernav');
-			$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+			$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 			[%%IF GENERATE_CATEGORIES%%]
 			$query->join('INNER', $db->quoteName('#__categories').' AS c ON '.$db->quoteName('c.id').' = '.$db->quoteName('a.catid'));
 			[%%ENDIF GENERATE_CATEGORIES%%]			
@@ -420,7 +420,7 @@ class PlgSearch[%%CompObjectPlural%%] extends JPlugin
 						[%%ENDIF GENERATE_CATEGORIES%%]
 						$slug_select.
 						'"2" AS browsernav');
-			$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+			$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 			[%%IF GENERATE_CATEGORIES%%]
 			$join = $db->quoteName('#__categories').' AS c ON '.$db->quoteName('c.id').' = '.$db->quoteName('a.catid');
 			[%%IF INCLUDE_ACCESS%%]

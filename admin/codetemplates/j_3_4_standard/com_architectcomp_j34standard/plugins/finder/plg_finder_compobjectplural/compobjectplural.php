@@ -67,7 +67,7 @@ class PlgFinder[%%CompObjectPlural%%] extends FinderIndexerAdapter
 	/**
 	 * @var    $table	string	The table name.
 	 */
-	protected $table = '#__[%%architectcomp%%]_[%%compobjectplural%%]';
+	protected $table = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';
 	
 	/**
 	 * @var    $autoloadLanguage boolean	Load the language file on instantiation
@@ -486,7 +486,7 @@ class PlgFinder[%%CompObjectPlural%%] extends FinderIndexerAdapter
 		$query->select($case_when_category_alias);
 		[%%ENDIF GENERATE_CATEGORIES%%]
 
-		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 		[%%IF GENERATE_CATEGORIES%%]
 		$query->join('LEFT', $db->quoteName('#__categories').' AS c ON '.$db->quoteName('c.id').' = '.$db->quoteName('a.catid'));
 		[%%ENDIF GENERATE_CATEGORIES%%]

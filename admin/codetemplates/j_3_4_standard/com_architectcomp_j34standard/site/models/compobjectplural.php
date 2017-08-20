@@ -331,7 +331,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 				);
 
 
-		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 		[%%IF GENERATE_CATEGORIES%%]
 		// Join over the categories.
 		$query->select($db->quoteName('c.title').' AS category_title, '.
@@ -1279,7 +1279,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 		// Construct the query
 		$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id').' AS value, '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' AS text');
 		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%FIELD_FOREIGN_OBJECT_PLURAL%%]').' AS [%%FIELD_FOREIGN_OBJECT_ACRONYM%%]');
-		$query->join('INNER', $db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a ON '.$db->quoteName('a.[%%FIELD_CODE_NAME%%]').' = '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id'));
+		$query->join('INNER', $db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a ON '.$db->quoteName('a.[%%FIELD_CODE_NAME%%]').' = '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id'));
 		$query->where($db->quoteName('a.[%%FIELD_CODE_NAME%%]').' != 0 AND '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' != \'\'');
 		[%%IF INCLUDE_LANGUAGE%%]
 		// Filter by language

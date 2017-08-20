@@ -1894,7 +1894,8 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => '<!-- @tempversion', 'replace' =>'<!-- @version'." \t\t\t\$Id:\$"));
 		array_push($search_replace_pairs,array('search' => ' @tempversion', 'replace' =>' @version'." \t\t\$Id:\$"));
 
-
+                //@ToDo implement compobjectprefix with comp object
+                array_push($search_replace_pairs,array('search' => $this->_markupText('compobjectprefix'), 'replace' => ''));
 
 		array_push($search_replace_pairs,array('search' => $this->_markupText('COMPONENTAUTHOR'), 'replace' =>JString::trim($component->author)));
 		array_push($search_replace_pairs,array('search' => $this->_markupText('COMPONENTWEBSITE'), 'replace' =>JString::trim($component->web_address)));

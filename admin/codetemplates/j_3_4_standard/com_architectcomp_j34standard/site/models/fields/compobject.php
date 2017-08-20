@@ -60,16 +60,16 @@ class JFormField[%%CompObject%%] extends JFormFieldList
 
 		[%%IF INCLUDE_NAME%%]
 		$query->select($db->quoteName('id').' AS value, '.$db->quoteName('name').' AS text');
-		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 		$query->order($db->quoteName('a.name'));
 		[%%ELSE INCLUDE_NAME%%]
 			[%%IF INCLUDE_ORDERING%%]
 		$query->select($db->quoteName('id').' AS value, '.$db->quoteName('name').' AS text');
-		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 		$query->order('a.ordering');
 			[%%ELSE INCLUDE_ORDERING%%]
 		$query->select($db->quoteName('id').' AS value, '.$db->quoteName('name').' AS text');
-		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 		$query->order($db->quoteName('a.id'));
 			[%%ENDIF INCLUDE_ORDERING%%]
 		[%%ENDIF INCLUDE_NAME%%]

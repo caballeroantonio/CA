@@ -52,15 +52,15 @@ abstract class JHtml[%%CompObject%%]Administrator
 		// Get the associations
 		[%%IF INCLUDE_ALIAS%%]
 			[%%IF GENERATE_CATEGORIES%%]
-		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', 'alias', 'catid'))
+		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', 'alias', 'catid'))
 			[%%ELSE GENERATE_CATEGORIES%%]
-		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', 'alias', null))
+		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', 'alias', null))
 			[%%ENDIF GENERATE_CATEGORIES%%]
 		[%%ELSE INCLUDE_ALIAS%%]
 			[%%IF GENERATE_CATEGORIES%%]
-		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', null, 'catid'))
+		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', null, 'catid'))
 			[%%ELSE GENERATE_CATEGORIES%%]
-		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', null, null))
+		if ($associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item',  $[%%compobject%%]_id, 'id', null, null))
 			[%%ENDIF GENERATE_CATEGORIES%%]
 		[%%ENDIF INCLUDE_ALIAS%%]
 		{		
@@ -73,7 +73,7 @@ abstract class JHtml[%%CompObject%%]Administrator
 			$db = JFactory::getDbo();
 			$query = $db->getQuery(true);
 			$query->select('a.*');
-			$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' as a');
+			$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' as a');
 			[%%IF GENERATE_CATEGORIES%%]
 			$query->select($db->quoteName('c.title').' as category_title');
 			$query->join('LEFT', $db->quoteName('#__categories').' as c ON '.$db->quoteName('c.id').' = '.$db->quoteName('a.catid'));

@@ -140,7 +140,7 @@
 			label="JFIELD_ORDERING_LABEL"
 			description="JFIELD_ORDERING_DESC"
 			type="[%%architectcomp%%]ordering"
-			table="#__[%%architectcomp%%]_[%%compobjectplural%%]"
+			table="[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]"
 		/>
         [%%ENDIF INCLUDE_ORDERING%%]
         [%%IF INCLUDE_DESCRIPTION%%]

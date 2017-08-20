@@ -4,13 +4,13 @@
  * @name			[%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%])
  * @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%])
  * @package			[%%com_architectcomp%%]
- * @subpackage		[%%com_architectcomp%%].site
+ * @subpackage		[%%com_architectcomp%%].admin
  * @copyright		[%%COMPONENTCOPYRIGHT%%]
  * @license			GNU General Public License version 3 or later; See http://www.gnu.org/copyleft/gpl.html 
  * 
  * The following Component Architect header section must remain in any distribution of this file
  *
- * @version			$Id: category.php 571 2016-01-04 15:03:02Z BrianWade $
+ * @version			$Id: default.php 571 2016-01-04 15:03:02Z BrianWade $
  * @CAauthor		Component Architect (www.componentarchitect.com)
  * @CApackage		architectcomp
  * @CAsubpackage	architectcomp.site
@@ -27,23 +27,47 @@
  */
 
 defined('_JEXEC') or die;
-/**
- * [%%ArchitectComp_name%%] Category Tree
- *
- */
-class [%%ArchitectComp%%]Categories extends JCategories
-{
-	public function __construct($options = array())
-	{
 
-		[%%FOREACH COMPONENT_OBJECT%%]
-			[%%IF GENERATE_CATEGORIES%%]
-		$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';	
-			[%%ENDIF GENERATE_CATEGORIES%%]
-		[%%ENDFOR COMPONENT_OBJECT%%]
-		$options['extension'] = '[%%com_architectcomp%%]';
-		$options['statefield'] = 'state';
-		parent::__construct($options);
-	}
+?>
+    <link rel="stylesheet" type="text/css" href="http://localhost/Sencha/ExtJS/ext-4.2.1.883/resources/css/ext-all.css"/>
 
-}
+    <!-- GC -->
+
+    <script type="text/javascript" src="http://localhost/Sencha/ExtJS/ext-4.2.1.883/ext-all.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+        Ext.require('Ext.data.proxy.Rest');
+
+        Ext.onReady(function() {
+Ext.create('Ext.data.Store', {
+    storeId:'simpsonsStore',
+    fields:['name', 'email', 'phone'],
+    data:{'items':[
+        { 'name': 'Lisa',  "email":"lisa@simpsons.com",  "phone":"555-111-1224"  },
+        { 'name': 'Bart',  "email":"bart@simpsons.com",  "phone":"555-222-1234" },
+        { 'name': 'Homer', "email":"home@simpsons.com",  "phone":"555-222-1244"  },
+        { 'name': 'Marge', "email":"marge@simpsons.com", "phone":"555-222-1254"  }
+    ]},
+    proxy: {
+        type: 'memory',
+        reader: {
+            type: 'json',
+            root: 'items'
+        }
+    }
+});
+
+Ext.create('Ext.grid.Panel', {
+    title: 'Simpsons',
+    store: Ext.data.StoreManager.lookup('simpsonsStore'),
+    columns: [
+        { text: 'Name',  dataIndex: 'name' },
+        { text: 'Email', dataIndex: 'email', flex: 1 },
+        { text: 'Phone', dataIndex: 'phone' }
+    ],
+    height: 200,
+    width: 400,
+    renderTo: 'extjs-content',
+});
+        });
+    </script>
