@@ -1,8 +1,8 @@
 <?php
 /**
- * @version			$Id: generate.php 577 2016-01-04 15:44:19Z BrianWade $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version			$Id: generate.php 20170828 caballeroantonio
+ * @name			Component Architect 
+ * @author			Component Architect & caballeroantonio
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -875,16 +875,25 @@ class ComponentArchitectGenerateHelper
 				}
 				
 				$search_replace_pairs = array();
+                                //@ToDo implement \r\n sustitution by \break 
+                                $lyx_forbiidden = array('\r\n', '~', '^', '\\', '&', '%', '$', '#', '_', '{', '}',);
+                                $lyx_replacement = array(
+                                            '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
+                                            '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
+                                        );
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UPPER'), 'replace' => JString::strtoupper(JString::trim($field->code_name)))); 
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME'), 'replace' => JString::trim($field->code_name)));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME'), 'replace' => JString::trim($field->code_name)     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, JString::trim($field->code_name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_ALIAS_NAME'), 'replace' => str_replace('_','-',JString::trim($field->code_name))));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME'), 'replace' => JString::trim($field->name))); 
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, JString::trim($field->name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UCFIRST'), 'replace' => JString::ucfirst(str_replace('-','',JString::trim(JApplication::stringURLSafe($field->code_name)))))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION'), 'replace' => $field->description));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  str_replace('"', '"_QQ_"', $field->description))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT'), 'replace' => 
                                     $db->escape(strip_tags($field->description)) 
                                 ));
+                                array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, $db->escape(strip_tags(utf8_decode($field->description))))     ));
 				
 				if (isset($field->intro) AND $field->intro != '')
 				{
@@ -1573,7 +1582,7 @@ class ComponentArchitectGenerateHelper
 				}	
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_OPTIONS_LANGUAGE_VARS'), 'replace' => isset($language_vars) ? $language_vars : ''));
 
-				//@tx El FIELD_SQL_QUERY debe ser en una sola línea porque los saltos aparecen como \r\n y marcan error en el query por $db->escape
+				//@tx El FIELD_SQL_QUERY debe ser en una sola lÃ­nea porque los saltos aparecen como \r\n y marcan error en el query por $db->escape
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_QUERY'), 'replace' => isset($field->sql_query) ? $db->escape($field->sql_query) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_KEY_FIELD'), 'replace' => isset($field->sql_key_field) ? $db->escape($field->sql_key_field) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_VALUE_FIELD'), 'replace' => isset($field->sql_value_field) ? $db->escape($field->sql_value_field) : ''));
