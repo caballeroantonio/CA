@@ -156,7 +156,11 @@
 			class="inputbox"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
-			filter="user_utc"			
+			filter="user_utc"		
+            [%%IF OBJECT_READONLY%%]
+			readonly="true"
+			disabled="true"
+            [%%ENDIF OBJECT_READONLY%%]	
 		/>
         <field
 			id="created_by"
@@ -165,6 +169,7 @@
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_CREATED_BY_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CREATED_BY_DESC"
 		/>
+		[%%IF INCLUDE_ALIAS%%]
         <field
 			id="created_by_alias"
 			name="created_by_alias"
@@ -174,6 +179,7 @@
             class="inputbox"
             size="20"
 		/>
+		[%%ENDIF INCLUDE_ALIAS%%]
         [%%ENDIF INCLUDE_CREATED%%]
         [%%IF INCLUDE_MODIFIED%%]
         <field

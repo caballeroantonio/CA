@@ -1,3 +1,4 @@
+#one [%%IF per line
 Titulo=[%%ArchitectComp_name%%]=TSJ CDMX Libros CompArch
 Nombre del paquete com_architectcomp=[%%com_architectcomp%%]=com_jt
 Descripción [%%Architectcomp_description_ini%%]=<p>voy a comenzar con un libro de ejemplo y de allí iré avanzando.</p>

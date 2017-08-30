@@ -487,6 +487,7 @@
 			disabled="true"
             [%%ENDIF OBJECT_READONLY%%]
 		/>
+		[%%IF INCLUDE_ALIAS%%]
         <field
 			id="created_by_alias"
 			name="created_by_alias"
@@ -495,6 +496,7 @@
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CREATED_BY_ALIAS_DESC"
             size="20"
 		/>
+		[%%ENDIF INCLUDE_ALIAS%%]
         [%%ENDIF INCLUDE_CREATED%%]
         [%%IF INCLUDE_MODIFIED%%]
         <field

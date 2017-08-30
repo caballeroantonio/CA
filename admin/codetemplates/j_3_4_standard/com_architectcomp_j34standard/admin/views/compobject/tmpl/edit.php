@@ -127,7 +127,9 @@ $input = $app->input;
 						<?php endif; ?>
 						[%%ENDIF INCLUDE_HITS%%]
 						[%%IF INCLUDE_VERSIONS%%]
-						<?php if ($this->item->version AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
+						<?php
+						$user  = JFactory::getUser();
+						if ($user->authorise('core.version.note', '[%%com_architectcomp%%]') AND $this->item->version AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
 							<?php echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); ?>
 						<?php endif; ?>
 						[%%ENDIF INCLUDE_VERSIONS%%]

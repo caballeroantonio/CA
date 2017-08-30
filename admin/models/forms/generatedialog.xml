@@ -31,7 +31,7 @@
         description="COM_COMPONENTARCHITECT_GENERATE_CODE_TEMPLATE_DESC"
         class="modal"
         required="true"
-        default="2"
+        default="3"
 	/>
     <field
         name="output_path"

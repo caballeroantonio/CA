@@ -99,18 +99,18 @@ CREATE TABLE IF NOT EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobj
 [%%ENDIF INCLUDE_LANGUAGE%%] 
 [%%IF INCLUDE_ASSETACL%%]  
     [%%IF INCLUDE_ASSETACL_RECORD%%]  
-  `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to the #__assets table.',
+  `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to the #__assets table',
     [%%ENDIF INCLUDE_ASSETACL_RECORD%%]
 [%%ENDIF INCLUDE_ASSETACL%%]  
 [%%IF INCLUDE_ACCESS%%] 
-  `access` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `access` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Manage the access level group',
 [%%ENDIF INCLUDE_ACCESS%%] 
 [%%IF INCLUDE_METADATA%%]  
   `metakey` TEXT NOT NULL,
   `metadesc` TEXT NOT NULL,
   `robots` VARCHAR(50) NOT NULL DEFAULT '',
   `author` VARCHAR(20) NOT NULL DEFAULT '',
-  `xreference` VARCHAR(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `xreference` VARCHAR(50) NOT NULL COMMENT 'A reference to enable linkages to external data sets',
 [%%ENDIF INCLUDE_METADATA%%] 
 [%%IF INCLUDE_ACCESS%%]   
   KEY `idx_access` (`access`),

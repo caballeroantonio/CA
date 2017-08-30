@@ -176,9 +176,11 @@ $params = $this->state->get('params');
 					<?php echo $this->form->renderField('tags', null, null, array('group_id' => 'field_tags')); ?>
 					[%%ENDIF INCLUDE_TAGS%%]
 					[%%IF INCLUDE_VERSIONS%%]
-					<?php if ($params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
-						<?php echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); ?>
-					<?php endif; ?>	
+					<?php 
+						$user  = JFactory::getUser();
+						if ($user->authorise('core.version.note', '[%%com_architectcomp%%]') AND $params->get('save_history') AND $params->get('general_save_history')) : 
+					 	echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
+					 endif; ?>	
 					[%%ENDIF INCLUDE_VERSIONS%%]
 					[%%FOREACH OBJECT_FIELDSET%%]	
 						[%%IF FIELDSET_BASIC_DETAILS%%]
@@ -332,8 +334,9 @@ $params = $this->state->get('params');
 						<?php endif; ?>
 
 						<?php echo $this->form->renderField('created_by', null, null, array('group_id' => 'created_by', 'user' => $user)); ?>						
-						
-						<?php echo $this->form->renderField('created_by_alias', null, null, array('group_id' => 'created_by_alias')); ?>						
+						[%%IF INCLUDE_ALIAS%%]
+						<?php echo $this->form->renderField('created_by_alias', null, null, array('group_id' => 'created_by_alias')); ?>	
+                        [%%ENDIF INCLUDE_ALIAS%%]					
 						<?php echo $this->form->renderField('created', null, null, array('group_id' => 'created')); ?>						
 						[%%ENDIF INCLUDE_CREATED%%]						
 						[%%IF INCLUDE_MODIFIED%%]

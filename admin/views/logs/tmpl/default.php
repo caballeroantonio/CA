@@ -20,7 +20,7 @@
 defined('_JEXEC') or die('Restricted access');
 if(empty($this->tag)) $this->tag = null;
 ?>
-<form name="adminForm" action="index.php" method="post">
+<form name="adminForm" action="index.php" method="post" id="adminForm">
 	<?php if (!empty( $this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>
@@ -45,7 +45,11 @@ if(empty($this->tag)) $this->tag = null;
 						</label>
 					</div>
 					<div class="controls">
-						<?php echo JHtml::_('select.genericlist', $this->getLogList($this->logs), 'tag', array('onchange' => 'submitform();', 'style' => 'width: auto;'), 'value', 'text', $this->tag, 'tag') ?>
+						<?php echo JHtml::_('select.genericlist', $this->getLogList($this->logs), 'tag', 
+                                                    array(
+                                                        //@ToDo no funciona: 'onchange' => 'submitform();', 
+                                                        'onchange' => "document.getElementsByName('adminForm')[0].submit();", 
+                                                        'style' => 'width: auto;'), 'value', 'text', $this->tag, 'tag') ?>
 						
 						<?php if(!empty($this->tag)): ?>
 							<button class="btn btn-small btn-primary" onclick="window.location='<?php echo JUri::base(); ?>index.php?option=com_componentarchitect&view=logs&task=logs.download&tag=<?php echo urlencode($this->tag); ?>'; return false;"><?php echo JText::_('COM_COMPONENTARCHITECT_VIEW_LOGS_DOWNLOAD_LABEL'); ?></button>

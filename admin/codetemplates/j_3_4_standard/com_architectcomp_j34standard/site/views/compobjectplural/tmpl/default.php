@@ -310,7 +310,9 @@ $empty = $component->params->get('default_empty_field', '');
 							<?php 
 								$created_by =  $item->created_by;
 								$created_by = ($item->created_by_name ? $item->created_by_name : $created_by);
+								[%%IF INCLUDE_ALIAS%%]
 								$created_by = ($item->created_by_alias ? $item->created_by_alias : $created_by);
+								[%%ENDIF INCLUDE_ALIAS%%]
 								$created_by = '<span itemprop="name">' . $created_by . '</span>';
 								if (!empty($item->created_by )) :
 									if ($this->params->get('link_[%%compobject%%]_created_by') == 1) :
@@ -331,7 +333,9 @@ $empty = $component->params->get('default_empty_field', '');
 							<?php 
 								$created_by =  $item->created_by;
 								$created_by = ($item->created_by_name ? $item->created_by_name : $created_by);
+								[%%IF INCLUDE_ALIAS%%]
 								$created_by = ($item->created_by_alias ? $item->created_by_alias : $created_by);
+								[%%ENDIF INCLUDE_ALIAS%%]
 								if (!empty($item->created_by )) :
 									if ($this->params->get('link_[%%compobject%%]_created_by') == 1) :
 										$created_by = JHtml::_('link', JRoute::_('index.php?option=com_users&view=profile&id='.$item->created_by), $created_by); 

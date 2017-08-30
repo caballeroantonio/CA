@@ -382,7 +382,11 @@ class [%%ArchitectComp%%]View[%%CompObject%%] extends JViewLegacy
 		if ($app->get('MetaAuthor') == '1')
 		{
 			[%%IF INCLUDE_CREATED%%]
-			$author = $this->item->created_by_alias ? $this->item->created_by_alias : $this->item->author;
+			$author = 
+				[%%IF INCLUDE_ALIAS%%]
+				$this->item->created_by_alias ? $this->item->created_by_alias : 
+				[%%ENDIF INCLUDE_ALIAS%%]
+				$this->item->author;
 			$this->document->setMetaData('author', $author);
 			[%%ELSE INCLUDE_CREATED%%]			
 			$this->document->setMetaData('author', $this->item->author);
@@ -404,10 +408,12 @@ class [%%ArchitectComp%%]View[%%CompObject%%] extends JViewLegacy
 			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}	
 			[%%IF INCLUDE_CREATED%%]
+			[%%IF INCLUDE_ALIAS%%]
 		if ($app->get('MetaAuthor') == '1')
 		{
 			$this->document->setMetaData('author', $this->item->created_by_alias);
 		}		
+			[%%ENDIF INCLUDE_ALIAS%%]
 			[%%ENDIF INCLUDE_CREATED%%]			
 		[%%ENDIF INCLUDE_METADATA%%]
 

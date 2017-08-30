@@ -358,21 +358,25 @@ $assoc	= JLanguageAssociations::isEnabled();
 					[%%ENDIF INCLUDE_STATUS%%]
 					[%%IF INCLUDE_CREATED%%]
 					<td class="small hidden-phone">
+                    [%%IF INCLUDE_ALIAS%%]
 						<?php if ($item->created_by_alias) : ?>
 							<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.(int) $item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
 								<?php echo $this->escape($item->created_by_name); ?>
 							</a>
 							<p class="small"> <?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->created_by_alias)); ?></p>
 						<?php else : ?>
+					[%%ENDIF INCLUDE_ALIAS%%]
 							<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.(int) $item->created_by); ?>" title="<?php echo JText::_('JAUTHOR'); ?>">
 								<?php echo $this->escape($item->created_by_name); ?>
 							</a>
+                    [%%IF INCLUDE_ALIAS%%]
 						<?php endif; ?>
+					[%%ENDIF INCLUDE_ALIAS%%]
 					</td>
 					<td class="nowrap small hidden-phone">
 						<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
 					</td>	
-					[%%ENDIF INCLUDE_CREATED%%]									
+                    [%%ENDIF INCLUDE_CREATED%%]									
 					[%%IF INCLUDE_LANGUAGE%%]
 					<?php if ($assoc) : ?>
 						<td class="small hidden-phone">

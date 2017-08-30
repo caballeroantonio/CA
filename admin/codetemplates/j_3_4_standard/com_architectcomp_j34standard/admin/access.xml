@@ -40,6 +40,9 @@
             [%%IF INCLUDE_CREATED%%]
         <action name="core.delete.own" title="[%%COM_ARCHITECTCOMP%%]_ACTION_DELETEOWN" description="[%%COM_ARCHITECTCOMP%%]_ACTION_DELETEOWN_COMPONENT_DESC" />
             [%%ENDIF INCLUDE_CREATED%%]
+			[%%IF INCLUDE_VERSIONS%%]
+        <action name="core.version.note" title="[%%COM_ARCHITECTCOMP%%]_ACTION_VERSION_NOTE" description="[%%COM_ARCHITECTCOMP%%]_ACTION_VERSION_NOTE_COMPONENT_DESC" />
+			[%%ENDIF INCLUDE_VERSIONS%%]
     </section>
     [%%ENDIF INCLUDE_ASSETACL%%]
     [%%IF GENERATE_CATEGORIES%%]
