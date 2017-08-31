@@ -72,24 +72,8 @@
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Be careful with Component Architect terms, the following ten characters
- have special meanings in (La)TeX:
-\end_layout
-
-\begin_layout Plain Layout
-& % $ # _ { } ~ ^ 
-\backslash
- 
-\end_layout
-
-\end_inset
-
-
+\begin_layout Part
+[%%ArchitectComp_name%%]
 \end_layout
 
 \begin_layout Title
@@ -109,7 +93,9 @@ status open
 
 
 \backslash
-today
+today 
+\backslash
+currenttime
 \end_layout
 
 \end_inset
@@ -137,23 +123,526 @@ Descripción
 [%%Architectcomp_description_ini%%]
 \end_layout
 
-\begin_layout Part
+\begin_layout Chapter
 Manual de administración
 \end_layout
 
-\begin_layout Chapter
-Tablas
+\begin_layout Section
+Instalación
+\end_layout
+
+\begin_layout Itemize
+Ingresar a {SITE}/ADMINISTRATOR
+\end_layout
+
+\begin_layout Itemize
+Navegar en el menú Extensions\SpecialChar menuseparator
+Manage\SpecialChar menuseparator
+Install
+\end_layout
+
+\begin_layout Itemize
+Seleccionar la ubicación del paquete instalador
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_installer.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GUI de instalación
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Completar el proceso de instalación
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_installer&view=install.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GUI de instalación
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuración
+\end_layout
+
+\begin_layout Itemize
+Ingresar a {SITE}/ADMINISTRATOR
+\end_layout
+
+\begin_layout Itemize
+Navegar en el menú System\SpecialChar menuseparator
+Global Configuration\SpecialChar menuseparator
+[%%ArchitectComp_name%%]
+\end_layout
+
+\begin_layout Itemize
+Colocar el puntero sobre cada campo para obtener descripciones mediante
+ mensajes de ayuda contextual
+\end_layout
+
+\begin_layout Itemize
+En la esquina superior derecha se encuentra un botón para obtener ayuda
+ que despliega el presente menú en el capítulo correspondiente 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+@ToDo implementar el botón HELP en cada vista y en las configuraciones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="20text%">
+<column alignment="center" valignment="top" width="60text%">
+<row endhead="true">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Nombre
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Descripción
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/config_lyx.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Lista de configuraciones}
+\backslash
+
+\backslash
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%IF INCLUDE_VERSIONS%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_versioncontrol.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del control de versiones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF INCLUDE_VERSIONS%%]
 \end_layout
 
 \begin_layout Standard
 [%%FOREACH COMPONENT_OBJECT%%]
 \end_layout
 
+\begin_layout Standard
+[%%IF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF INCLUDE_PARAMS_GLOBAL%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobject_display.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del despliegue de [%%CompObject_name%%]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobjectplural_list_display.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF INCLUDE_PARAMS_GLOBAL%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDFOR COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_CATEGORIES%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_categories.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opciones de categorías
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_category.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Opciones de categoría
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_CATEGORIES%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF INCLUDE_ASSETACL%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_global_permissions.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuración de permisos globales
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF INCLUDE_ASSETACL%%]
+\end_layout
+
 \begin_layout Section
+Modelo de datos (tablas)
+\end_layout
+
+\begin_layout Standard
+[%%FOREACH COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Subsection
 [%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subparagraph
 Descripción
 \end_layout
 
@@ -161,24 +650,18 @@ Descripción
 [%%Compobject_description_ini%%]
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Diccionario de datos tx
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="3">
+<lyxtabular version="3" rows="3" columns="3">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="center" valignment="top" width="20text%">
 <column alignment="center" valignment="top" width="20text%">
-<column alignment="center" valignment="top" width="60text%">
+<column alignment="center" valignment="top" width="40text%">
 <row endhead="true" endfirsthead="true">
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -209,7 +692,7 @@ Descripción
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -225,7 +708,7 @@ filename "[%%compobject%%]_admin.tex"
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -234,10 +717,75 @@ filename "[%%compobject%%]_admin.tex"
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Lista de campos}
+\backslash
+
+\backslash
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -251,41 +799,11 @@ filename "[%%compobject%%]_admin.tex"
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Lista de campos
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -320,39 +838,19 @@ Diagrama entidad relación
 [%%ENDFOR COMPONENT_OBJECT%%]
 \end_layout
 
-\begin_layout Part
-Manual de usuario
-\end_layout
-
-\begin_layout Chapter
-Interfaces
-\end_layout
-
 \begin_layout Standard
-[%%FOREACH COMPONENT_OBJECT%%]
+[%%IF GENERATE_CATEGORIES%%]
 \end_layout
 
-\begin_layout Section
-[%%Compobject_name%%]
-\end_layout
-
-\begin_layout Paragraph
-Descripción
-\end_layout
-
-\begin_layout Standard
-[%%Compobject_description_ini%%]
-\end_layout
-
-\begin_layout Subsection
-Vista de lista
+\begin_layout Subsubsection
+Vista de categoría
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -370,7 +868,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vista de lista
+DER categorías
 \end_layout
 
 \end_inset
@@ -381,31 +879,55 @@ Vista de lista
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Vista de formulario 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float table
-wide false
-sideways false
-status open
+[%%ENDIF GENERATE_CATEGORIES%%]
+\end_layout
 
-\begin_layout Plain Layout
+\begin_layout Chapter
+Manual de usuario
+\end_layout
+
+\begin_layout Subsection
+Interfaces
+\end_layout
+
+\begin_layout Standard
+[%%FOREACH COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Subsubsection
+[%%Compobject_name%%]
+\end_layout
+
+\begin_layout Subparagraph
+Descripción
+\end_layout
+
+\begin_layout Standard
+[%%Compobject_description_ini%%]
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
+<lyxtabular version="3" rows="3" columns="2">
 <features islongtable="true" longtabularalignment="center">
-<column alignment="center" valignment="top" width="40text%">
+<column alignment="center" valignment="top" width="20text%">
 <column alignment="center" valignment="top" width="60text%">
-<row endhead="true" endfirsthead="true">
+<row endhead="true">
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-Nombre 
+
+\series bold
+Nombre
 \end_layout
 
 \end_inset
@@ -414,6 +936,8 @@ Nombre
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Descripción
 \end_layout
 
@@ -421,7 +945,7 @@ Descripción
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -436,10 +960,56 @@ filename "[%%compobject%%]_user.tex"
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Lista de campos en [%%Compobject_name%%]}
+\backslash
+
+\backslash
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -453,17 +1023,160 @@ filename "[%%compobject%%]_user.tex"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+@ToDo vistas grid
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Default List Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+option=com_architectcomp&view=compsgrid&layout=article
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+&id=1
+\end_layout
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+option=com_architectcomp&view=grids
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Lista de campos
+
 \end_layout
 
 \end_inset
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Blog Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layout=blog"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural&layout=blog.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Default List Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
 
 \end_inset
 
@@ -475,6 +1188,237 @@ Lista de campos
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Default List Layout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Blog Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layout=blog"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural&layout=blog.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Blog Layout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Single [%%CompObject_name%%] Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&id=1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobject&id=1.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Single [%%CompObject_name%%] Layout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Single [%%CompObject_name%%] Article Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&layout=article&id=1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobject&layout=article&id=1.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Single [%%CompObject_name%%] Article Layout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Create [%%CompObject_name%%]"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]form&layout=edit&id=1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectform&layout=edit&id=1.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Create [%%CompObject_name%%]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+@ToDo terminar las vistas para Grids
+\end_layout
+
+\begin_layout Paragraph
+Vista compsgrid - no se que es, tal vez corresponda con categoria
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -492,7 +1436,51 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vista de formulario
+category
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Vista grids - no se que es, tal vez corresponda con categoria
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+category
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -506,7 +1494,148 @@ Vista de formulario
 \end_layout
 
 \begin_layout Standard
+[%%ENDIF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
 [%%ENDFOR COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_CATEGORIES%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%ArchitectComp_name%%] Categories List"
+target "SERVER?option=[%%com_architectcomp%%]&view=categories"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=categories.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lista de categorías
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%ArchitectComp_name%%] Category - Details and items"
+target "SERVER?option=[%%com_architectcomp%%]&view=category"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+@Bug Notice: Trying to get property of non-object in D:
+\backslash
+www
+\backslash
+htdocs
+\backslash
+JPruebas
+\backslash
+tmp
+\backslash
+com_t396_j34standard
+\backslash
+site
+\backslash
+models
+\backslash
+category.php on line 353
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectform&layout=edit&id=1.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detalle de la categoría
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_CATEGORIES%%]
 \end_layout
 
 \end_body

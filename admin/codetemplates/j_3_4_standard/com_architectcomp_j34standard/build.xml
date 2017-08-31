@@ -7,6 +7,7 @@
         <delete file="${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].sys.ini" />
         <delete dir="${link_dir}/components/[%%com_architectcomp%%]"  />
         <delete file="${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini" />
+		<delete file="${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini" />
         <delete dir="${link_dir}/media/[%%com_architectcomp%%]" />
         
 
@@ -89,6 +90,9 @@
         </exec>
         <exec executable="cmd" >
             <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini" "${basedir}\site\language\en-GB\en-GB.[%%com_architectcomp%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini" "${basedir}\site\language\es-ES\es-ES.[%%com_architectcomp%%].ini"'/>
         </exec>
         <exec executable="cmd" >
             <arg value='/c mklink /d "${link_dir}/media/[%%com_architectcomp%%]" "${basedir}\media"'/>
@@ -228,6 +232,7 @@
             <arg value='/c rmdir "${link_dir}/components/[%%com_architectcomp%%]"'/>
         </exec>
         <delete file="${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini"/>
         <exec executable="cmd" >
             <arg value='/c rmdir "${link_dir}/media/[%%com_architectcomp%%]"'/>
         </exec>

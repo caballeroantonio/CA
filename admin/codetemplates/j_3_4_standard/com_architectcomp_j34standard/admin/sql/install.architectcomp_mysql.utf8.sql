@@ -55,7 +55,9 @@ CREATE TABLE IF NOT EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobj
   `urls` TEXT NOT NULL,
 [%%ENDIF INCLUDE_URLS%%]
 [%%IF GENERATE_CATEGORIES%%]        
-  `catid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `catid` INT(10) UNSIGNED DEFAULT NULL COMMENT 'FK to categories in #__categories', # NOT NULL DEFAULT '0'
+  KEY `idx_catid` (`catid`),
+  CONSTRAINT `[%%architectcomp%%]_[%%compobject%%]_catid` FOREIGN KEY (`catid`) REFERENCES `#__categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 [%%ENDIF GENERATE_CATEGORIES%%]  
 [%%IF INCLUDE_STATUS%%]
   `state` TINYINT(1) NOT NULL DEFAULT '0',
@@ -66,7 +68,9 @@ CREATE TABLE IF NOT EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobj
 [%%ENDIF INCLUDE_PUBLISHED_DATES%%] 
 [%%IF INCLUDE_CREATED%%]  
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
+  KEY `idx_createdby` (`created_by`),
+  CONSTRAINT `[%%architectcomp%%]_[%%compobject%%]_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     [%%IF INCLUDE_ALIAS%%]  
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
     [%%ENDIF INCLUDE_ALIAS%%]
@@ -121,11 +125,7 @@ CREATE TABLE IF NOT EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobj
 [%%IF INCLUDE_STATUS%%]   
   KEY `idx_state` (`state`),
 [%%ENDIF INCLUDE_STATUS%%]  
-[%%IF INCLUDE_CREATED%%]  
-  KEY `idx_createdby` (`created_by`),
-[%%ENDIF INCLUDE_CREATED%%]  
 [%%IF GENERATE_CATEGORIES%%] 
-  KEY `idx_catid` (`catid`),
 [%%IF INCLUDE_FEATURED%%]       
   KEY `idx_featured_catid` (`featured`,`catid`),
 [%%ENDIF INCLUDE_FEATURED%%]     

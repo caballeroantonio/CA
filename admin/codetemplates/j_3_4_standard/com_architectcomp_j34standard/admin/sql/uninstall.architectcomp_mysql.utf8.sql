@@ -27,6 +27,8 @@
 --
 [%%FOREACH COMPONENT_OBJECT%%]
 DROP TABLE IF EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`;
+DELETE FROM #__content_types WHERE `type_alias` = '[%%com_architectcomp%%].[%%compobject%%]';
+DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]' AND `type`='component';
 [%%ENDFOR COMPONENT_OBJECT%%]
 
 [%%IF GENERATE_PLUGINS_VOTE%%] 
@@ -34,9 +36,11 @@ DROP TABLE IF EXISTS `#__[%%architectcomp%%]_rating`;
 [%%ENDIF GENERATE_PLUGINS_VOTE%%] 
 
 DELETE FROM `#__assets` WHERE `name` LIKE '%[%%com_architectcomp%%]%';
-
 DELETE FROM `#__extensions` WHERE `name`='[%%com_architectcomp%%]' AND `type`='component';
+DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]' AND `type`='component';
 
 [%%IF GENERATE_CATEGORIES%%] 
 DELETE FROM `#__categories` WHERE `extension`='[%%com_architectcomp%%]';
+DELETE FROM #__content_types WHERE `type_alias` = '[%%com_architectcomp%%].category';
+DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]_CATEGORIES' AND `type`='component';
 [%%ENDIF GENERATE_CATEGORIES%%]

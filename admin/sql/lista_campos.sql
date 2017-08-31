@@ -1,15 +1,14 @@
 #UPDATE
 #/*
 SELECT 
-co.name 'co.name', fs.code_name 'fs.codename' , f.name 'f.name'
-, co.description
+c.id, c.code_name 'c.name', co.code_name 'co.name', fs.code_name 'fs.name', f.code_name 'f.name'
 FROM 
 #*/
-jpruebas.jos_componentarchitect_fields f
-INNER JOIN jos_componentarchitect_fieldsets fs ON fs.id = f.fieldset_id
-INNER JOIN jos_componentarchitect_componentobjects co ON co.id = fs.component_object_id AND co.id = f.component_object_id
-INNER JOIN jos_componentarchitect_components c ON c.id = co.component_id AND c.id = fs.component_id AND c.id = f.component_id
+jos_componentarchitect_components c
+LEFT JOIN jos_componentarchitect_componentobjects co ON co.component_id = c.id
+LEFT JOIN jos_componentarchitect_fieldsets fs ON 		fs.component_id = c.id AND fs.component_object_id = co.id
+LEFT JOIN jos_componentarchitect_fields f ON 			 f.component_id = c.id AND  f.component_object_id = co.id AND f.fieldset_id = fs.id 
 #SET co.state = 1, co.default_fieldset_id = f.fieldset_id
 WHERE 1
-GROUP BY co.id
-#ORDER BY f.id 
+GROUP BY c.id
+ORDER BY c.id, co.id, f.id 
