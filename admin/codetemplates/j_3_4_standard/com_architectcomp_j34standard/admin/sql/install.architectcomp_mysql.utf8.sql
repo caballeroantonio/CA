@@ -24,11 +24,11 @@
 -- --------------------------------------------------------
 [%%FOREACH COMPONENT_OBJECT%%]
 --
--- Table structure for table `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`
+-- Table structure for table `#__[%%architectcomp%%]_[%%compobjectplural%%]`
 --
 
-DROP TABLE IF EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`;
-CREATE TABLE IF NOT EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]` (
+DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
+CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 [%%IF INCLUDE_NAME%%]  
   `name` VARCHAR(255) NOT NULL DEFAULT '',

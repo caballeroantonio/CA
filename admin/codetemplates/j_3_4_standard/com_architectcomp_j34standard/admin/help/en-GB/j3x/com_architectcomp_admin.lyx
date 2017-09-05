@@ -639,7 +639,7 @@ Modelo de datos (tablas)
 \end_layout
 
 \begin_layout Subsection
-[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]
+#__[%%architectcomp%%]_[%%compobjectplural%%]
 \end_layout
 
 \begin_layout Subparagraph

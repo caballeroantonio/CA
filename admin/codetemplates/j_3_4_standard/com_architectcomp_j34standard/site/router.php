@@ -225,7 +225,7 @@ class [%%ArchitectComp%%]Router extends JComponentRouterBase
 						{
 							$dbQuery = $db->getQuery(true)
 								->select($db->quoteName('alias'))
-								->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]'))
+								->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]'))
 								->where($db->quoteName('id'). '=' . (int) $query['id']);
 							$db->setQuery($dbQuery);
 							$alias = $db->loadResult();
@@ -380,7 +380,7 @@ class [%%ArchitectComp%%]Router extends JComponentRouterBase
 							
 						$query = $db->getQuery(true);
 						$query->select($db->quoteName('id'));
-						$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]'));
+						$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]'));
 						[%%IF GENERATE_CATEGORIES%%]
 						$query->where($db->quoteName('catid') . ' = ' . (int) $vars['catid']);
 						[%%ENDIF GENERATE_CATEGORIES%%]

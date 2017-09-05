@@ -306,7 +306,7 @@ class [%%ArchitectComp%%]View[%%CompObject%%] extends JViewLegacy
 			if ( $this->params->get('show_[%%compobject%%]_category_breadcrumb', '0'))
 			{			
 				$options['countItems'] = false;
-				$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';					
+				$options['table'] = '#__[%%architectcomp%%]_[%%compobjectplural%%]';					
 				$category = JCategories::getInstance('[%%ArchitectComp%%]', $options)->get($this->item->catid);
 				while ($category AND ($menu->query['option'] != '[%%com_architectcomp%%]' OR $menu->query['view'] == '[%%compobject%%]' OR $id != $category->id) AND $category->id > 1)
 				{

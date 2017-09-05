@@ -301,7 +301,7 @@ class [%%ArchitectComp%%]Model[%%CompObject%%] extends JModelItem
 
 					)
 				);
-				$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+				$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 				[%%IF GENERATE_CATEGORIES%%]
 				
 				// Join on category table.

@@ -42,7 +42,7 @@
 			onchange="this.form.submit();"
 			query="SELECT `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`id` AS `value`, `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]` AS `text`
 		            FROM `#__[%%architectcomp%%]_[%%FIELD_FOREIGN_OBJECT_PLURAL%%]` AS `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`
-		            INNER JOIN `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]` AS `a` ON `a`.`[%%FIELD_CODE_NAME%%]`  =  `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`id`
+		            INNER JOIN `#__[%%architectcomp%%]_[%%compobjectplural%%]` AS `a` ON `a`.`[%%FIELD_CODE_NAME%%]`  =  `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`id`
 		            GROUP BY `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`id`, `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]`
 		            ORDER BY `[%%FIELD_FOREIGN_OBJECT_ACRONYM%%]`.`[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]`"
 			key_field="value"
@@ -87,7 +87,7 @@
 			description="[%%COM_ARCHITECTCOMP%%]_FILTER_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
 			onchange="this.form.submit();"
 			query="SELECT DISTINCT `a`.`[%%FIELD_CODE_NAME_UPPER%%]` AS `value`, `a`.`[%%FIELD_CODE_NAME_UPPER%%]` AS `text`
-		            FROM `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]` AS `a` 
+		            FROM `#__[%%architectcomp%%]_[%%compobjectplural%%]` AS `a` 
 		            ORDER BY `a`.`[%%FIELD_CODE_NAME_UPPER%%]`"
 			key_field="value"
 			value_field="text"
@@ -130,7 +130,7 @@
 			onchange="this.form.submit();"
 			query="SELECT `u`.`id` AS `value`, `u`.`name` AS `text`
 			        FROM `#__users` AS `u`
-			        INNER JOIN `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]` AS `a` ON `a`.`created_by` = `u`.`id`
+			        INNER JOIN `#__[%%architectcomp%%]_[%%compobjectplural%%]` AS `a` ON `a`.`created_by` = `u`.`id`
 			        GROUP BY `u`.`id`, `u`.`name`
 			        ORDER BY `u`.`name`"
 			key_field="value"

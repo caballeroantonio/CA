@@ -586,13 +586,13 @@ filename "D:/www/Google Drive caballeroantonio/Proyecto libros/Torti Manuales/sc
 \begin_inset Note Note
 status open
 
-\begin_layout Plain Layout
-Archivo generado para cada componente
+\begin_layout LyX-Code
+Para cada componente
 \end_layout
 
 \begin_layout Plain Layout
 @ToDo generar config_lyx.tex manualmente usando config_lyx.php y agregando
- las tareas ACL que se hubieran generado específicamente para cada componente
+ las tareas ACL que se hubieran generado específicamente
 \begin_inset CommandInset include
 LatexCommand include
 filename "D:/projects/my_joomla/com_componentarchitect/admin/codetemplates/j_3_4_standard/com_architectcomp_j34standard/admin/help/en-GB/j3x/com_architectcomp_admin.lyx"
@@ -610,6 +610,103 @@ filename "D:/projects/my_joomla/com_componentarchitect/admin/codetemplates/j_3_4
 \begin_layout Standard
 \begin_inset Note Note
 status open
+
+\begin_layout LyX-Code
+Catálogo General
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+sed -i 's/#__tsjcgeneral_generals/jtc_general/' $(find -type f -not -name
+ "*.png" | grep -v .git)
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Cambio de nombre de tablas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "D:/www/htdocs/JPruebas/tmp/com_t396_j34standard/admin/help/en-GB/j3x/com_t396_admin.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout LyX-Code
+Catálogo de materias
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+sed -i 's/#__tsjcmaterias_jtcmateria/jtc_materia/' $(find -type f -not -name
+ "*.png" | grep -v .git)
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Cambio de nombre de tablas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset CommandInset include

@@ -137,7 +137,7 @@ class Plg[%%ArchitectComp%%]Itemnavigation extends JPlugin
 				$db->quoteName('a.catid').', '.
 				[%%ENDIF GENERATE_CATEGORIES%%]
 				$db->quoteName('a.id'));
-			$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+			$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 			[%%IF GENERATE_CATEGORIES%%]
 			$query->join('LEFT', $db->quoteName('#__categories').' AS cc ON '.$db->quoteName('cc.id').' = '.$db->quoteName('a.catid'));
 			[%%ENDIF GENERATE_CATEGORIES%%]

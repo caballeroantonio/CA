@@ -26,7 +26,7 @@
 -- Uninstall of `#__[%%architectcomp%%]` tables
 --
 [%%FOREACH COMPONENT_OBJECT%%]
-DROP TABLE IF EXISTS `[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]`;
+DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
 DELETE FROM #__content_types WHERE `type_alias` = '[%%com_architectcomp%%].[%%compobject%%]';
 DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]' AND `type`='component';
 [%%ENDFOR COMPONENT_OBJECT%%]

@@ -257,7 +257,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 					'a.*'
 			)
 		);
-		$query->from($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
+		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a');
 
 		[%%IF INCLUDE_LANGUAGE%%]
 		// Join over the language

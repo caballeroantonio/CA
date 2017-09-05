@@ -52,7 +52,7 @@ class [%%ArchitectComp%%]Table[%%CompObjectPlural%%] extends JTable
 	public function __construct(&$db)
 	{
 		
-		parent::__construct('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', 'id', $db);
+		parent::__construct('#__[%%architectcomp%%]_[%%compobjectplural%%]', 'id', $db);
 		
 		$date	= JFactory::getDate();		
 		$user = JFactory::getUser();	

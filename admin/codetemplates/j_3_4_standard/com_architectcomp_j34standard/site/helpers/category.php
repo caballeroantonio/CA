@@ -38,7 +38,7 @@ class [%%ArchitectComp%%]Categories extends JCategories
 
 		[%%FOREACH COMPONENT_OBJECT%%]
 			[%%IF GENERATE_CATEGORIES%%]
-		$options['table'] = '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]';	
+		$options['table'] = '#__[%%architectcomp%%]_[%%compobjectplural%%]';	
 			[%%ENDIF GENERATE_CATEGORIES%%]
 		[%%ENDFOR COMPONENT_OBJECT%%]
 		$options['extension'] = '[%%com_architectcomp%%]';

@@ -15,9 +15,6 @@ ARCHITECTCOMP=[%%ARCHITECTCOMP%%]=JT
 ArchitectComp=[%%ArchitectComp%%]=¿?
 architectcomp[%%architectcomp%%]=jt
 
-[%%compobjectprefix%%]=#__
-
-
 [%%FOREACH COMPONENT_OBJECT%%]{1.0}
 	{COMPONENT_OBJECT}
     Compobject_name=[%%Compobject_name%%]=Libro de ejemplo

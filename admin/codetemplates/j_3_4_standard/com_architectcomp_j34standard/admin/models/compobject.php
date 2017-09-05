@@ -302,15 +302,15 @@ class [%%ArchitectComp%%]Model[%%CompObject%%] extends JModelAdmin
 			{
 				[%%IF INCLUDE_ALIAS%%]
 					[%%IF GENERATE_CATEGORIES%%]
-				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', 'alias', 'catid');
+				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', 'alias', 'catid');
 					[%%ELSE GENERATE_CATEGORIES%%]
-				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', 'alias', null);
+				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', 'alias', null);
 					[%%ENDIF GENERATE_CATEGORIES%%]
 				[%%ELSE INCLUDE_ALIAS%%]
 					[%%IF GENERATE_CATEGORIES%%]
-				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', null, 'catid');
+				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', null, 'catid');
 					[%%ELSE GENERATE_CATEGORIES%%]
-				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', null, null);
+				$associations = JLanguageAssociations::getAssociations('[%%com_architectcomp%%]', '#__[%%architectcomp%%]_[%%compobjectplural%%]', '[%%com_architectcomp%%].[%%compobject%%].item', $item->id, 'id', null, null);
 					[%%ENDIF GENERATE_CATEGORIES%%]
 				[%%ENDIF INCLUDE_ALIAS%%]
 
@@ -787,7 +787,7 @@ class [%%ArchitectComp%%]Model[%%CompObject%%] extends JModelAdmin
 			$db = $this->getDbo();
 
 			$query = $db->getQuery(true);
-			$query->update($db->quoteName('[%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]'));
+			$query->update($db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]'));
 			$query->set($db->quoteName('featured').' = ' . (int) $value);
 			$query->where($db->quoteName('id').' IN (' . implode(',', $pks) . ')');
 			

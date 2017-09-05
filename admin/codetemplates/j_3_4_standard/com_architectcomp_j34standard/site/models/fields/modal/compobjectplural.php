@@ -74,7 +74,7 @@ class JFormFieldModal_[%%CompObjectPlural%%] extends JFormField
 		$db = JFactory::getDbo();
 		$db->setQuery(
 			'SELECT name' .
-			' FROM [%%compobjectprefix%%][%%architectcomp%%]_[%%compobjectplural%%]' .
+			' FROM #__[%%architectcomp%%]_[%%compobjectplural%%]' .
 			' WHERE id = '.(int) $this->value
 		);
 		
