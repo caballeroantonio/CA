@@ -1144,7 +1144,9 @@ class ComponentArchitectGenerateHelper
 					// Temporary overrider as the Joomla Calendar field seems to only work with the full format date as below.
 					if ($type == 'calendar' AND $attribute == 'format')
 					{
-						$optional_parameters .= "\t\t\tformat=".'"%Y-%m-%d %H:%M:%S"'."\n";
+                                            $optional_parameters .= "\t\t\tformat=\"{$field->format}\"\n";
+                                            if(strpos($field->format, ':'))
+                                            $optional_parameters .= ' singleheader="true" showtime="true" timeformat="24" todaybutton="true" weeknumbers="true" filltable="true" minyear="-5" maxyear="1" ';
 					}
 					else
 					{
