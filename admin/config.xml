@@ -25,6 +25,31 @@
 <!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. -->
 
 <config>
+    <fieldset
+        name="versioncontrol"
+        label="ANY_COMP_FIELDSET_VERSION_CONTROL_LABEL"
+		description="ANY_COMP_FIELDSET_VERSION_CONTROL_DESC"
+	>
+        <field
+			name="history_limit"
+			type="text"
+			label="JGLOBAL_HISTORY_LIMIT_OPTIONS_LABEL"
+			description="JGLOBAL_HISTORY_LIMIT_OPTIONS_DESC"
+			default="10"
+			filter="integer"
+		/>
+        <field
+			name="save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="JGLOBAL_SAVE_HISTORY_OPTIONS_LABEL"
+			description="ANY_COMP_SAVE_HISTORY_OPTIONS_DESC"
+		>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>		
+    </fieldset>
     <!--[%%START_CUSTOM_CODE%%]-->
     <fieldset
         name="component_generate"

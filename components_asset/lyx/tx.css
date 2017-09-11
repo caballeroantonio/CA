@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+
+a.Link{
+  color: black;
+  text-decoration:none;
+}
+div.Paragraph{
+  color: #274e13;
+  line-height: 115%;
+    font-weight: bold;
+}
+
+
+img{
+    max-width: 600px !important; 
+    max-height: 357px !important;
+}
+
+h1, h2, h3, h4{
+    color: #274e13;
+    line-height: 115%;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+/*
+elementos centrados:
+    rótulos
+    figuras
+    tablas
+*/
+div.listing div table,
+div.listing div.caption,
+div.float,
+.center {
+    margin: auto;
+    text-align: center;
+    width: -moz-fit-content;
+}
+
+
+/*código fuente*/
+div.listing pre.listing {
+    font: 12px/15px "Menlo","Consolas","Monaco",monospace;
+    margin-top: 0px;
+    background: rgba(71, 87, 120, 0.08) none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #000;
+    display: block;
+    overflow: auto;
+    padding: 12px;
+}
+
+/*
+primer renglón tabla
+*/
+table tbody tr:first-child
+{
+    background: #d9ead3 none repeat scroll 0 0;
+    border: 1pt solid black;
+    padding: 5pt;
+}
+
+/*tablas empujadas como codigo fuente externo
+div.listing pre.listing table{
+    all: initial;
+    * {
+        all: unset;
+    }
+    margin: auto;
+    text-align: center;
+    width: -moz-fit-content;
+}
+*/
+
+/*
+
+p:nth-child(3n+0) {
+    background: red;
+}
+*/

@@ -40,7 +40,16 @@ class ComponentArchitectGenerateHelper
 	protected $_progress;
 	protected $_token = '';
 	protected $_name_regex = '/[^a-zA-Z0-9\s\\/\-_+&()]/';
-	/**
+        //@ToDo implement \r\n sustitution by \break 
+        protected $_lyx_forbidden = array('\r\n', '~', '^', '\\', '&', '%', '$', '#', '_', '{', '}',);
+        protected $_lyx_replacement = array(
+                    '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
+                    '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
+                );
+        protected $_ini_forbidden = array('"', "\r\n");
+        protected $_ini_replacement = array('&quot;','<br/>');
+        
+        /**
 	* Constructor function. Sets up the required classes and objects.
 	* 
 	*  
@@ -785,17 +794,17 @@ class ComponentArchitectGenerateHelper
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_ALIAS_NAME'), 'replace' => str_replace('_','-',str_replace(' ','',$fieldset->code_name))));
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_NAME'), 'replace' => $fieldset->name));
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION'), 'replace' => $fieldset->description));
-			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION_INI'), 'replace' => str_replace('"', '"_QQ_"', $fieldset->description)));
+			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION_INI'), 'replace' => $this->_prettifyIniText( $fieldset->description)));
 
 			if (isset($fieldset->intro) AND $fieldset->intro != '')
 			{
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO'), 'replace' => $fieldset->intro));			
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO_INI'), 'replace' => str_replace('"', '"_QQ_"', $fieldset->intro)));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO_INI'), 'replace' => $this->_prettifyIniText( $fieldset->intro)));
 			}
 			else
 			{
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO'), 'replace' => $fieldset->description));		
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO_INI'), 'replace' => str_replace('"', '"_QQ_"', $fieldset->description)));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_INTRO_INI'), 'replace' => $this->_prettifyIniText( $fieldset->description)));
 			}			
 			
 			$fieldset->search_replace = 	$search_replace_pairs;
@@ -875,34 +884,29 @@ class ComponentArchitectGenerateHelper
 				}
 				
 				$search_replace_pairs = array();
-                                //@ToDo implement \r\n sustitution by \break 
-                                $lyx_forbiidden = array('\r\n', '~', '^', '\\', '&', '%', '$', '#', '_', '{', '}',);
-                                $lyx_replacement = array(
-                                            '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
-                                            '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
-                                        );
+
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UPPER'), 'replace' => JString::strtoupper(JString::trim($field->code_name)))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME'), 'replace' => JString::trim($field->code_name)     ));
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, JString::trim($field->code_name))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, JString::trim($field->code_name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_ALIAS_NAME'), 'replace' => str_replace('_','-',JString::trim($field->code_name))));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME'), 'replace' => JString::trim($field->name))); 
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, JString::trim($field->name))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, JString::trim($field->name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UCFIRST'), 'replace' => JString::ucfirst(str_replace('-','',JString::trim(JApplication::stringURLSafe($field->code_name)))))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION'), 'replace' => $field->description));
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  str_replace('"', '"_QQ_"', $field->description))); 
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  $this->_prettifyIniText( $field->description))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT'), 'replace' => 
                                     $db->escape(strip_tags($field->description)) 
                                 ));
-                                array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LYX'),'replace' => str_replace( $lyx_forbiidden, $lyx_replacement, $db->escape(strip_tags(utf8_decode($field->description))))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, $db->escape(strip_tags(utf8_decode($field->description))))     ));
 				
 				if (isset($field->intro) AND $field->intro != '')
 				{
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $field->intro));
-					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO_INI'), 'replace' => str_replace('"', '"_QQ_"', $field->intro)));
+					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO_INI'), 'replace' => $this->_prettifyIniText( $field->intro)));
 				}
 				else
 				{
-					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => str_replace('"', '"_QQ_"', $field->description)));
+					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $this->_prettifyIniText( $field->description)));
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $field->description));
 				}
 				
@@ -1934,13 +1938,13 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description'), 'replace' => $component_description));
 
 		// e.g. 'search' => '[%%Architectcomp_description_ini%%]', 'replace' => 'Focus groups description'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description_ini'), 'replace' => str_replace('"', '"_QQ_"', $component_description)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description_ini'), 'replace' => $this->_prettifyIniText( $component_description)));
 
 		// e.g. 'search' => '[%%Architectcomp_intro%%]', 'replace' => 'Focus groups intro'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_intro'), 'replace' => $component_intro));
 
 		// e.g. 'search' => '[%%Architectcomp_intro_ini%%]', 'replace' => 'Focus groups intro'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_intro_ini'), 'replace' => str_replace('"', '"_QQ_"', $component_intro)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_intro_ini'), 'replace' => $this->_prettifyIniText( $component_intro)));
 
 		// e.g. 'search' => '[%%architectcomp%%]', 'replace' => 'focusgroups'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtolower($template_component_name))), 'replace' =>str_replace ("_", "", str_replace (" ", "", JString::strtolower($component_code_name)))));
@@ -2044,7 +2048,7 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description'), 'replace' => $object_description));
 
 		// e.g. 'search' => '[%%Compobject_description_ini%%]', 'replace' => 'free text'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_ini'), 'replace' => str_replace('"', '"_QQ_"', $object_description)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_ini'), 'replace' => $this->_prettifyIniText( $object_description)));
 
 		// e.g. 'search' => '[%%Compobject_description_escaped%%]', 'replace' => 'free text'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_escaped'), 'replace' => $db->escape($object_description)));
@@ -2053,7 +2057,7 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_intro'), 'replace' => $object_intro));
 
 		// e.g. 'search' => '[%%Compobject_intro_ini%%]', 'replace' => 'free text'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_intro_ini'), 'replace' => str_replace('"', '"_QQ_"', $object_intro)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_intro_ini'), 'replace' => $this->_prettifyIniText( $object_intro)));
 
 		// e.g. 'search' => '[%%Compobject_intro_escaped%%]', 'replace' => 'free text'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_intro_escaped'), 'replace' => $db->escape($object_intro)));
@@ -2790,7 +2794,20 @@ class ComponentArchitectGenerateHelper
 	protected function _markupText($text)
 	{ 
 		return $this->_code_template->template_markup_prefix.$text.$this->_code_template->template_markup_suffix;
-	}											
+	}		
+        
+	/**
+	* Prettifica los textos i18n, htmlentities no es la mejor opción porque 
+        * algunas descripciones ya vienen en HTML y se desvirtúa
+	* 
+	* @param		string	 Text to markup
+	* 
+	* @return		string	Text prettified
+	*/ 	
+	protected function _prettifyIniText($text)
+	{ 
+		return  str_replace( $this->_ini_forbidden, $this->_ini_replacement, $text);
+	}
 }
 //[%%END_CUSTOM_CODE%%]
 ?>

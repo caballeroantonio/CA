@@ -80,20 +80,31 @@
             <arg value='/c mklink /d "${link_dir}/administrator/components/[%%com_architectcomp%%]" "${basedir}\admin"'/>
         </exec>
         <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/components/[%%com_architectcomp%%]" "${basedir}\site"'/>
+        </exec>
+        
+		<!--admin language-->
+		<exec executable="cmd" >
             <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].ini" "${basedir}\admin\language\en-GB\en-GB.[%%com_architectcomp%%].ini"'/>
         </exec>
         <exec executable="cmd" >
             <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].sys.ini" "${basedir}\admin\language\en-GB\en-GB.[%%com_architectcomp%%].sys.ini"'/>
         </exec>
-        <exec executable="cmd" >
-            <arg value='/c mklink /d "${link_dir}/components/[%%com_architectcomp%%]" "${basedir}\site"'/>
+		
+		<exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].ini" "${basedir}\admin\language\es-ES\es-ES.[%%com_architectcomp%%].ini"'/>
         </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].sys.ini" "${basedir}\admin\language\es-ES\es-ES.[%%com_architectcomp%%].sys.ini"'/>
+        </exec>
+		<!--site language-->
         <exec executable="cmd" >
             <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini" "${basedir}\site\language\en-GB\en-GB.[%%com_architectcomp%%].ini"'/>
         </exec>
         <exec executable="cmd" >
             <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini" "${basedir}\site\language\es-ES\es-ES.[%%com_architectcomp%%].ini"'/>
         </exec>
+		
         <exec executable="cmd" >
             <arg value='/c mklink /d "${link_dir}/media/[%%com_architectcomp%%]" "${basedir}\media"'/>
         </exec>

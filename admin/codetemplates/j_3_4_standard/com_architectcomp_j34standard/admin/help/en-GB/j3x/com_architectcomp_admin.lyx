@@ -149,7 +149,7 @@ Seleccionar la ubicación del paquete instalador
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -188,7 +188,7 @@ Completar el proceso de instalación
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -244,8 +244,26 @@ En la esquina superior derecha se encuentra un botón para obtener ayuda
 \begin_inset Note Note
 status open
 
-\begin_layout Plain Layout
+\begin_layout Itemize
 @ToDo implementar el botón HELP en cada vista y en las configuraciones
+\end_layout
+
+\begin_layout Itemize
+El archivo config_lyx.tex es de ComponentArchitect y no del proyecto hay
+ que generarlo para el proyecto
+\end_layout
+
+\begin_layout Itemize
+@ToDo generar config_lyx.tex manualmente usando config_lyx.php
+\end_layout
+
+\begin_layout Itemize
+@ToDo documentar las tareas ACL que se hubieran generado específicamente
+\end_layout
+
+\begin_layout Itemize
+http://localhost/JPruebas/administrator/index.php?option=com_componentarchitect&v
+iew=dashboard&layout=make_config_lyx
 \end_layout
 
 \end_inset
@@ -292,7 +310,7 @@ Descripción
 \begin_inset CommandInset include
 LatexCommand input
 preview true
-filename "D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/config_lyx.tex"
+filename "config_lyx.tex"
 
 \end_inset
 
@@ -317,7 +335,7 @@ filename "D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/conf
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -342,7 +360,7 @@ caption{Lista de configuraciones}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -366,6 +384,10 @@ status collapsed
 
 \begin_layout Standard
 [%%IF INCLUDE_VERSIONS%%]
+\end_layout
+
+\begin_layout Subsection
+Control de cambios
 \end_layout
 
 \begin_layout Standard
@@ -423,7 +445,7 @@ Configuraciones del control de versiones
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -458,7 +480,7 @@ Configuraciones del despliegue de [%%CompObject_name%%]
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -513,7 +535,7 @@ Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -548,7 +570,7 @@ Opciones de categorías
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -595,7 +617,7 @@ Opciones de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -803,7 +825,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -850,7 +872,7 @@ Vista de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1404,7 +1426,7 @@ Create [%%CompObject_name%%]
 
 \begin_layout Paragraph
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 @ToDo terminar las vistas para Grids
@@ -1418,7 +1440,7 @@ Vista compsgrid - no se que es, tal vez corresponda con categoria
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1457,7 +1479,7 @@ Vista grids - no se que es, tal vez corresponda con categoria
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
