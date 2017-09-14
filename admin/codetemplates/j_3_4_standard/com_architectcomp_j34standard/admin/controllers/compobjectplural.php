@@ -160,4 +160,14 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerAdm
 	protected function postDeleteHook(JModelLegacy $model, $ids = null)
 	{
 	}	
+                
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function export(){
+            $model = $this->getModel('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
+            $query = $model->getListQuery4Export();
+            echo($query);
+        }
 }

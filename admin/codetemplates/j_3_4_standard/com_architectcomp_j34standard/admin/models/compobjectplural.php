@@ -295,17 +295,18 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 			{
 				$query->where($db->quoteName('a.id').' = '.(int) JString::substr($search, 3));
 			}
+                    [%%IF INCLUDE_NAME%%]
 			else
 			{
-				$search = $db->quote('%'.$db->escape(JString::trim($search), true).'%', false);
-				[%%IF INCLUDE_NAME%%]
-				$where = $db->quoteName('a.name').' LIKE '.$search;
-					[%%IF INCLUDE_ALIAS%%]
-				$where .= ' OR '.$db->quoteName('a.alias').' LIKE '.$search;
-					[%%ENDIF INCLUDE_ALIAS%%]
-				[%%ENDIF INCLUDE_NAME%%]				
-				$query->where('('.$where.')');
+                            $search = $db->quote('%'.$db->escape(JString::trim($search), true).'%', false);
+                            $query->where('( '.
+                            "{$db->quoteName('a.name')} LIKE {$search} "
+                            [%%IF INCLUDE_ALIAS%%]
+                            . " OR {$db->quoteName('a.alias')} LIKE {$search} "
+                            [%%ENDIF INCLUDE_ALIAS%%]
+                            .' )');
 			}
+                    [%%ENDIF INCLUDE_NAME%%]				
 		}
 		[%%IF INCLUDE_LANGUAGE%%]
 		// Filter on the language.
@@ -672,4 +673,13 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 
 		return $items;
 	}
+        
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function getListQuery4Export(){
+            $this->getDbo()->setQuery($this->getListQuery(), $this->getStart(), $this->getState('list.limit'));
+            return $this->getDbo()->getQuery();
+        }
 }

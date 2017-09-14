@@ -212,6 +212,8 @@ class [%%ArchitectComp%%]View[%%CompObjectPlural%%] extends JViewLegacy
 		JToolbarHelper::deleteList('', '[%%compobjectplural%%].delete','JTOOLBAR_DELETE');
 			[%%ENDIF INCLUDE_ASSETACL%%]						
 		[%%ENDIF INCLUDE_STATUS%%]
+                        
+                JToolbarHelper::custom('ls01s.export', 'download','download', 'JTOOLBAR_EXPORT', FALSE);
 
 				
 		[%%IF INCLUDE_ASSETACL%%]

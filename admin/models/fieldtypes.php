@@ -163,12 +163,6 @@ class ComponentArchitectModelFieldTypes extends JModelList
 		$id	.= ':'.$this->getState('filter.created_by');	
 		return parent::getStoreId($id);
 	}	
-	
-	public function borrame(){
-		return $this->getListQuery();
-	}
-	
-	
 	/**
 	 * Build an SQL query to load the list data.
 	 * 

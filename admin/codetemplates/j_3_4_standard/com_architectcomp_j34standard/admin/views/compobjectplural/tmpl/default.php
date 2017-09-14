@@ -100,9 +100,20 @@ $assoc	= JLanguageAssociations::isEnabled();
 	<?php endif;?>
 
 	<?php
-		// Search tools bar
-		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-	?>	
+		// Search tools bar,@ToDo evaluar si existen campos de busqueda global
+		echo JLayoutHelper::render('joomla.searchtools.default', array(
+                        'view' => $this,
+                        'options' => array(
+                            'searchButton' => 
+                        [%%IF INCLUDE_NAME%%]
+                            TRUE
+                        [%%ELSE INCLUDE_NAME%%]
+                            FALSE
+                        [%%ENDIF INCLUDE_NAME%%]
+                        ),
+                    )
+                );
+?>	
 	
 	<div class="clearfix"> </div>
 	<?php if (empty($this->items)) : ?>

@@ -106,7 +106,7 @@ Be careful with Component Architect terms, the following ten characters
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -559,6 +559,11 @@ status open
 
 \begin_layout Section
 Para cada componente
+\end_layout
+
+\begin_layout Itemize
+Al liberar un componente recuerda exportar el contenido de la base de datos
+ para conservarlo como código fuente e incrementar el progresivo de la versión.
 \end_layout
 
 \begin_layout Plain Layout
