@@ -220,9 +220,10 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 		$user = JFactory::getUser();
 
 		$table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
-					
-
-
+		
+		// Increment the code templates version number.
+		$table->version++;
+		
 		if (empty($table->id) OR $table->id == 0)
 		{
 			// Set ordering to the last item if not set

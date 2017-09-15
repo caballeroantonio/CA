@@ -95,6 +95,15 @@ class ComponentArchitectViewFieldType extends JViewLegacy
 		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_FIELDTYPES_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_FIELDTYPES_EDIT_HEADER'), 'fieldtypes.png');
 
 
+		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('fieldtype_save_history', 1)
+			AND !$is_new  
+			)
+		{
+			$item_id = $this->item->id;
+			$type_alias = 'com_componentarchitect.fieldtype';
+			JToolbarHelper::versions($type_alias, $item_id);
+		}
+				
 		if ($is_new)
 		{
 			JToolbarHelper::cancel('fieldtype.cancel','JTOOLBAR_CANCEL');

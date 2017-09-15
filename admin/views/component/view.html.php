@@ -105,6 +105,15 @@ class ComponentArchitectViewComponent extends JViewLegacy
 			JToolbarHelper::custom('component.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		}
 
+		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('component_save_history', 1)
+			AND !$is_new  
+			)
+		{
+			$item_id = $this->item->id;
+			$type_alias = 'com_componentarchitect.component';
+			JToolbarHelper::versions($type_alias, $item_id);
+		}
+				
 		if ($is_new)
 		{
 			JToolbarHelper::cancel('component.cancel','JTOOLBAR_CANCEL');

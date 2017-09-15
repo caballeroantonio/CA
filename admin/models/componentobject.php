@@ -244,7 +244,9 @@ class ComponentArchitectModelComponentObject extends JModelAdmin
 		$user = JFactory::getUser();
 
 		$table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
-
+		
+		// Increment the objects/tables version number.
+		$table->version++;
 		//[%%START_CUSTOM_CODE%%]
 		require_once JPATH_COMPONENT.'/helpers/pluralise.php';
 		

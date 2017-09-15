@@ -28,7 +28,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.filesystem.folder');
-jimport('joomla.filesystem.file');
+jimport('joomla.filesystem.file'); 
 /**
  * Script file of ArchitectComp_name component
  */
@@ -129,8 +129,8 @@ class com_componentarchitectInstallerScript
 				$attributes = $plugin->attributes();
 				$plg = $source.'/'.$attributes['folder'].'/'.$attributes['plugin'];
 
-				$installer = new JInstaller();
-				 
+		        $installer = new JInstaller();
+		        
 				if (!$installer->install($plg))
 				{
 					$error_msg = '';
@@ -194,9 +194,9 @@ class com_componentarchitectInstallerScript
 				$error_msg = '';
 				$attributes = $module->attributes();
 				$mod = $source.'/'.$attributes['folder'].'/'.$attributes['module'];
-		
-		        $installer = new JInstaller(); 
 	            
+		        $installer = new JInstaller();
+		        
 				if (!$installer->install($mod))
 				{
 					while ($error = JError::getError(true))
@@ -243,7 +243,7 @@ class com_componentarchitectInstallerScript
 						<td colspan="3" text-align="center">
 							<?php echo JText::_('COM_COMPONENTARCHITECT_JOOMLA_LOGO_DISCLAIMER'); ?>	
 						</td>				
-					</tr>
+					</tr>					
 				</tfoot>
 			</table>					
 		</div>
@@ -350,8 +350,8 @@ class com_componentarchitectInstallerScript
 				$plg_id = $db->loadResult(); 
 				if ($plg_id) 
 				{
-					$installer = new JInstaller(); 
-				
+			        $installer = new JInstaller();
+			        
 					if (!$installer->uninstall('plugin', $plg_id))
 					{
 						$error_msg = '';
@@ -407,8 +407,8 @@ class com_componentarchitectInstallerScript
 				$mod_id = $db->loadResult(); 
 				if ($mod_id) 
 				{
-					$installer = new JInstaller(); 
-				
+			        $installer = new JInstaller();
+			        
 					if (!$installer->uninstall('module', $mod_id))
 					{
 						$error_msg = '';
@@ -428,7 +428,6 @@ class com_componentarchitectInstallerScript
 				}
 			}    
 		}  
-
 		//  Ensure all folders are deleted
 		JFolder::delete(JPATH_SITE.'/images/componentarchitect'); 
 		JFolder::delete(JPATH_SITE.'/plugins/componentarchitect'); 
@@ -468,20 +467,21 @@ class com_componentarchitectInstallerScript
 						 );
 
 			$db->execute(); 
-			$db->setQuery(
-							'DELETE FROM '.$db->quoteName('#__content_types')
-							.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('com_componentarchitect.codetemplate')
-						 );
+		$db->setQuery(
+						'DELETE FROM '.$db->quoteName('#__content_types')
+						.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('com_componentarchitect.codetemplate')
+					 );
 
-			$db->execute(); 
-			
+		$db->execute(); 
+		
 
-			$db->setQuery(
-							'DELETE FROM '.$db->quoteName('#__content_types')
-							.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('com_componentarchitect.category')
-						 );
+		$db->setQuery(
+						'DELETE FROM '.$db->quoteName('#__content_types')
+						.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('com_componentarchitect.category')
+					 );
 
-			$db->execute(); 
+		$db->execute(); 
+					
 		}			
         // Closing HTML
 			ob_start();
@@ -600,7 +600,7 @@ class com_componentarchitectInstallerScript
 				$attributes = $plugin->attributes();
 				$plg = $source.'/'.$attributes['folder'].'/'.$attributes['plugin'];
 	            
-				// check if the plugin is a new version for this extension or a new plugin and either update or install
+				// check if the plugin is a new version for this externsion or a new plugin and either update or install
  				$query->clear();
 				$query->select($db->quoteName('extension_id'));
 				$query->from($db->quoteName('#__extensions'));
@@ -618,8 +618,8 @@ class com_componentarchitectInstallerScript
 					$plg_type = 'install';
 				}
 
-				$installer = new JInstaller();
-				
+			    $installer = new JInstaller();
+			    
 				if (!$installer->$plg_type($plg))
 				{
 					$error_msg = '';
@@ -723,7 +723,8 @@ class com_componentarchitectInstallerScript
 				}  
 			}
 		}  
-		   
+
+    
         // Closing HTML
 			ob_start();
 		?>
@@ -1172,7 +1173,7 @@ class com_componentarchitectInstallerScript
 		$content_type['field_mappings'] .= '"core_language":"null",';
 		$content_type['field_mappings'] .= '"core_images":"null",';
 		$content_type['field_mappings'] .= '"core_urls":"null",';
-		$content_type['field_mappings'] .= '"core_version":"null",';
+		$content_type['field_mappings'] .= '"core_version":"version",';
 		$content_type['field_mappings'] .= '"core_ordering":"ordering",';
 		$content_type['field_mappings'] .= '"core_metakey":"null",';
 		$content_type['field_mappings'] .= '"core_metadesc":"null",';

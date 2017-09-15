@@ -213,7 +213,10 @@ class ComponentArchitectModelField extends JModelAdmin
 		$user = JFactory::getUser();
 
 		$table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
-
+		
+		// Increment the fields version number.
+		$table->version++;
+		
 		//[%%START_CUSTOM_CODE%%]
 		$table->code_name = str_replace('-', '_', JApplication::stringURLSafe($table->code_name));
 		if (empty($table->code_name))

@@ -51,6 +51,14 @@
 			required="true"
    		/>
         <field
+            name="version_note"
+            type="text"
+            label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
+			description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
+			class="span12"
+			size="45"
+		/>
+        <field
             name="code_name"
             type="text"
             label="COM_COMPONENTARCHITECT_COMPONENTS_FIELD_CODE_NAME_LABEL"
@@ -840,6 +848,16 @@
 		    class="readonly"
 		    readonly="true"
 		    filter="unset"
+		/>
+        <field
+            name="version"
+            type="text"
+			label="COM_COMPONENTARCHITECT_FIELD_VERSION_LABEL"
+            description="COM_COMPONENTARCHITECT_COMPONENTS_FIELD_VERSION_DESC"
+			class="readonly"
+			size="6"
+			readonly="true"
+			filter="unset"
 		/>
         <field
             name="checked_out"

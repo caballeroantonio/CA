@@ -171,10 +171,11 @@ class [%%ArchitectComp%%]Model[%%CompObject%%] extends JModelAdmin
 	 * Method to get a single record.
 	 *
 	 * @param	integer	The id of the primary key.
+	 * @param	boolean		Get recursively item children - true or false
 	 *
 	 * @return	mixed	Object on success, false on failure.
 	 */
-	public function getItem($pk = null)
+	public function getItem($pk = null, $recursive = false)
 	{
 		if ($item = parent::getItem($pk))
 		{

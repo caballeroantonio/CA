@@ -94,7 +94,15 @@ class ComponentArchitectViewCodeTemplate extends JViewLegacy
 
 		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_CODETEMPLATES_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_CODETEMPLATES_EDIT_HEADER'), 'codetemplates.png');
 
-
+		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('codetemplate_save_history', 1)
+			AND !$is_new  
+			)
+		{
+			$item_id = $this->item->id;
+			$type_alias = 'com_componentarchitect.codetemplate';
+			JToolbarHelper::versions($type_alias, $item_id);
+		}
+				
 		if ($is_new)
 		{
 			JToolbarHelper::cancel('codetemplate.cancel','JTOOLBAR_CANCEL');

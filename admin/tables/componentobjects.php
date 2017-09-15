@@ -58,6 +58,9 @@ class ComponentArchitectTableComponentObjects extends JTable
 
 		$this->modified = $date->toSQL();
 		$this->modified_by = $user->id;	
+
+
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_componentarchitect.componentobject'));
 	}
 
 	/**

@@ -25,10 +25,11 @@
 <!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. -->
 
 <config>
+
     <fieldset
         name="versioncontrol"
-        label="ANY_COMP_FIELDSET_VERSION_CONTROL_LABEL"
-		description="ANY_COMP_FIELDSET_VERSION_CONTROL_DESC"
+        label="COM_COMPONENTARCHITECT_FIELDSET_VERSION_CONTROL_LABEL"
+		description="COM_COMPONENTARCHITECT_FIELDSET_VERSION_CONTROL_DESC"
 	>
         <field
 			name="history_limit"
@@ -44,11 +45,77 @@
 			class="btn-group btn-group-yesno"
 			default="1"
 			label="JGLOBAL_SAVE_HISTORY_OPTIONS_LABEL"
-			description="ANY_COMP_SAVE_HISTORY_OPTIONS_DESC"
+			description="COM_COMPONENTARCHITECT_SAVE_HISTORY_OPTIONS_DESC"
 		>
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>		
+        <field
+			name="component_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_COMPONENTS_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_COMPONENTS_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>
+        <field
+			name="componentobject_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_COMPONENTOBJECTS_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_COMPONENTOBJECTS_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>
+        <field
+			name="fieldset_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_FIELDSETS_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_FIELDSETS_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>
+        <field
+			name="field_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_FIELDS_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_FIELDS_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>
+        <field
+			name="fieldtype_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>
+        <field
+			name="codetemplate_save_history"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_COMPONENTARCHITECT_CODETEMPLATES_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_COMPONENTARCHITECT_CODETEMPLATES_FIELD_SAVE_HISTORY_DESC"
+			>
+            <option	value="1">JYES</option>
+            <option	value="0">JNO</option>
+        </field>	
     </fieldset>
     <!--[%%START_CUSTOM_CODE%%]-->
     <fieldset

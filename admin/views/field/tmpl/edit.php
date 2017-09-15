@@ -401,6 +401,11 @@ function removeOption(e) {
 								<?php echo $this->form->getInput('hidden'); ?>
 							</div>
 						</div>
+						<?php
+						$user  = JFactory::getUser();
+						if ($user->authorise('core.version.note', 'com_componentarchitect') AND $this->item->version AND $params->get('save_history') AND $params->get('field_save_history')) : ?>
+							<?php echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); ?>
+						<?php endif; ?>
 						<div class="control-group" id="field_ordering">
 							<div class="control-label">
 								<?php echo $this->form->getLabel('ordering'); ?>
