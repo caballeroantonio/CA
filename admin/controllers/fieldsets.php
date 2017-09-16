@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 		$Id: fieldsets.php 577 2016-01-04 15:44:19Z BrianWade $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-17 22:36:44 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -125,4 +125,14 @@ class ComponentArchitectControllerFieldsets extends JControllerAdmin
 	protected function postDeleteHook(JModelLegacy $model, $ids = null)
 	{
 	}
+                
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function export(){
+            $model = $this->getModel('Fieldsets','ComponentArchitectModel',array('ignore_request' => FALSE));
+            $query = $model->getListQuery4Export();
+            echo($query);
+        }
 }

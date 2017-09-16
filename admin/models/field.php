@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: field.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -69,6 +69,10 @@ class ComponentArchitectModelField extends JModelAdmin
 	 * @var    string	The event to trigger after deleting the data.
 	 */
 	protected $event_after_delete = 'onFieldAfterDelete';	
+	/**
+	 * @var    string	The event to trigger after changing the data's state field.
+	 */
+	protected $event_change_state = 'onFieldChangeState';	
 
 
 	/**
@@ -282,11 +286,27 @@ class ComponentArchitectModelField extends JModelAdmin
 		return false;
 	}	
 	/**
+	 * Method to change the published state of one or more records.
+	 *
+	 * @param   array    &$pks   A list of the primary keys to change.
+	 * @param	integer  $value  The value of the published state.
+	 *
+	 * @return  boolean  True on success.
+	 */
+	public function publish(&$pks, $value = 1)
+	{	
+		// Include the componentarchitect plugins for the change of state event.
+		JPluginHelper::importPlugin('componentarchitect');	
+		
+		return parent::publish($pks, $value);
+	}
+	/**
 	 * Method to delete one or more records.
 	 *
 	 * @param   array  &$pks  An array of record primary keys.
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
+	 *
 	 */
 	public function delete(&$pks)
 	{
@@ -451,6 +471,7 @@ class ComponentArchitectModelField extends JModelAdmin
 		$condition[] = $db->quoteName('component_object_id').' = '.(int) $table->component_object_id;	
 		$condition[] = $db->quoteName('fieldset_id').' = '.(int) $table->fieldset_id;	
 		$condition[] = $db->quoteName('foreign_object_id').' = '.(int) $table->foreign_object_id;	
+		$condition[] = $db->quoteName('state').' >= 0';
 		return $condition;
 	}
 

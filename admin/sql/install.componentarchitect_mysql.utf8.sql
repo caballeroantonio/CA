@@ -1,4 +1,4 @@
--- @version 		$Id: install.componentarchitect_mysql.utf8.sql 20170901 BrianWade & caballeroantonio $
+-- @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
 -- @name			Component Architect
 -- @author			Component Architect
 -- @package			com_componentarchitect
@@ -122,6 +122,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldsets` (
   `component_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `component_object_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `predefined_fieldset` TINYINT(1) NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '1',
   `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
@@ -210,6 +211,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `mysql_datatype` VARCHAR(15) NOT NULL DEFAULT '',
   `mysql_size` VARCHAR(5) NOT NULL DEFAULT '',
   `mysql_default` VARCHAR(50) NOT NULL DEFAULT '',
+  `state` TINYINT(1) NOT NULL DEFAULT '1',
   `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',

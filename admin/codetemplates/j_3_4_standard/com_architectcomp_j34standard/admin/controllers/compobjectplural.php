@@ -166,7 +166,14 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerAdm
          * @ToDo implementar generación de código
          */
         public function export(){
+			//$model = JModelLegacy::getInstance('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
             $model = $this->getModel('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
+//			$model->setState('list.ordering', 'a.ordering');
+//			$model->setState('list.direction', 'ASC');
+//			$model->setState('list.select', 'a.*');	
+[%%IF INCLUDE_STATUS%%]
+			$model->setState('filter.state', 1);
+[%%ENDIF INCLUDE_STATUS%%]
             $query = $model->getListQuery4Export();
             echo($query);
         }

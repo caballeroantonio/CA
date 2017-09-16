@@ -557,6 +557,76 @@ LatexCommand tableofcontents
 \begin_inset Note Note
 status open
 
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#Para documentar la version CA en ingenieria inversa
+\end_layout
+
+\begin_layout Plain Layout
+
+sed --in-place --regexp-extended 's/@version 
+\backslash
+t
+\backslash
+t
+\backslash
+$Id:.*/@version 
+\backslash
+t
+\backslash
+t
+\backslash
+$Id:2017-09-17 20:14:05 caballeroantonio 
+\backslash
+$/' $(find -type f -name "*.php")
+\end_layout
+
+\begin_layout Plain Layout
+
+sed --in-place --regexp-extended 's/@version 
+\backslash
+t
+\backslash
+t
+\backslash
+t
+\backslash
+$Id:.*/@version 
+\backslash
+t
+\backslash
+t
+\backslash
+t
+\backslash
+$Id:2017-09-17 20:14:05 caballeroantonio 
+\backslash
+$-->/' $(find -type f -name "*.xml")
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+@version
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Para cada componente
 \end_layout

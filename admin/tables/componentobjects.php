@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: componentobjects.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -39,6 +39,11 @@ if (version_compare(JVERSION, '3.0', 'lt'))
  */
 class ComponentArchitectTableComponentObjects extends JTable
 {
+
+	/**
+	 * @var    $state	Integer	Variable to hold state.
+	 */
+	var $state				= 1;
 	/**
 	 * Constructor
 	 *

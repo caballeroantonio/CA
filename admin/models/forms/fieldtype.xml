@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- @version 			$Id: fieldtype.xml 577 2016-01-04 15:44:19Z BrianWade $ -->
+<!-- @version 			$Id:2017-09-17 20:14:05 caballeroantonio $-->
 <!-- @name			    Component Architect (Release 1.2.0) -->
 <!-- @author			Component Architect (www.componentarchitect.com) -->
 <!-- @package			com_componentarchitect -->
@@ -60,6 +60,20 @@
 			class="span12"
 			size="45"
 		/>
+        <field
+		    name="state"
+    		type="list"
+			label="JSTATUS"
+			description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_STATUS_DESC"
+			class="chzn-color-state"
+			size="1"
+			default="1"
+		>
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASH</option>
+        </field>
         <field
             name="catid"
             type="categoryedit"

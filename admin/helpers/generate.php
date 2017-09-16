@@ -407,7 +407,8 @@ class ComponentArchitectGenerateHelper
 		$component_objects_model->setState('filter.component_id', $component_id);
 		$component_objects_model->setState('list.ordering', 'a.ordering');
 		$component_objects_model->setState('list.direction', 'ASC');
-		$component_objects_model->setState('list.select', 'a.*');		
+		$component_objects_model->setState('list.select', 'a.*');
+		$component_objects_model->setState('filter.state', 1);
 		
 		$component_objects = $component_objects_model->getItems();
 
@@ -499,6 +500,7 @@ class ComponentArchitectGenerateHelper
 		$fields_model->setState('list.ordering', 'a.ordering');
 		$fields_model->setState('list.direction', 'ASC');
 		$fields_model->setState('list.select', 'a.*');	
+		$fields_model->setState('filter.state', 1);
 		
 		$cascade_fields = $fields_model->getItems();
 		
@@ -758,6 +760,7 @@ class ComponentArchitectGenerateHelper
 		$fieldsets_model->setState('list.ordering', 'a.ordering');
 		$fieldsets_model->setState('list.direction', 'ASC');
 		$fieldsets_model->setState('list.select', 'a.*');		
+		$fieldsets_model->setState('filter.state', 1);
 		
 		$fieldsets = $fieldsets_model->getItems();
 
@@ -847,8 +850,7 @@ class ComponentArchitectGenerateHelper
 		$fields_model->setState('list.ordering', 'a.ordering');
 		$fields_model->setState('list.direction', 'ASC');
 		$fields_model->setState('list.select', 'a.*');
-
-		
+		$fields_model->setState('filter.state', 1);
 		
 		$fields = $fields_model->getItems();
 
@@ -1859,7 +1861,8 @@ class ComponentArchitectGenerateHelper
 		$field_types_model = JModelLegacy::getInstance('fieldtypes', 'ComponentArchitectModel', array('ignore_request' => true));
 		$field_types_model->setState('list.ordering', 'a.name');
 		$field_types_model->setState('list.direction', 'ASC');
-		$field_types_model->setState('list.select', 'a.*');		
+		$field_types_model->setState('list.select', 'a.*');	
+		$field_types_model->setState('filter.state', 1);
 		
 		$this->_fieldtypes = $field_types_model->getItems();
 
@@ -1906,10 +1909,9 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => '<!-- @version'."\t\t\t$", 'replace' =>'<!-- @CAversion'."\t\t\t"));
 		array_push($search_replace_pairs,array('search' => '<!-- @version'."\t\t$", 'replace' =>'<!-- @CAversion'."\t\t"));
 		array_push($search_replace_pairs,array('search' => ' @version'."\t\t\t$", 'replace' =>' @CAversion'."\t\t"));
-		array_push($search_replace_pairs,array('search' => '<!-- @tempversion', 'replace' =>'<!-- @version'." \t\t\t\$Id: "
-//											   .date('Y-m-d H:i:s'). ' caballeroantonio '
-											   ." \$"));
-		array_push($search_replace_pairs,array('search' => ' @tempversion', 'replace' =>' @version'." \t\t\$Id:\$"));
+		$tempversion = date('Y-m-d H:i:s'). ' caballeroantonio ';
+		array_push($search_replace_pairs,array('search' => '<!-- @tempversion', 'replace' =>'<!-- @version'." \t\t\t\$Id:{$tempversion}\$"));
+		array_push($search_replace_pairs,array('search' => ' @tempversion', 'replace' =>' @version'." \t\t\$Id:{$tempversion}\$"));
 
 
 

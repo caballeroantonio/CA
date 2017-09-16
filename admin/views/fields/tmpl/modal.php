@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: modal.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -40,11 +40,7 @@ $empty = $component->params->get('default_empty_field', '');
 ?>
 <h3><?php echo JText::_('COM_COMPONENTARCHITECT_FIELDS_SELECT_ITEM_LABEL'); ?></h3>
 <form action="<?php echo JRoute::_('index.php?option=com_componentarchitect&view=fields&layout=modal&tmpl=component&function='.$function.'&'.JSession::getFormToken().'=1');?>" method="post" name="adminForm" id="adminForm">
-	<?php if (version_compare(JVERSION, '3.2', 'ge')) : ?>
-		<div class="js-stools clearfix">
-	<?php else : ?>
-		<fieldset id="filter-bar" class="btn-toolbar">
-	<?php endif; ?>	
+	<fieldset class="filter clearfix">
 			<?php if (version_compare(JVERSION, '3.2', 'ge')) : ?>
 				<div class="clearfix"></div>
 				<div class="js-stools-container-bar">
@@ -158,11 +154,20 @@ $empty = $component->params->get('default_empty_field', '');
 					<?php endif; ?>	
 					
 					</div>
-	<?php if (version_compare(JVERSION, '3.2', 'ge')) : ?>
+		<hr class="hr-condensed">
+		<div class="filters pull-left">
+
+			<select name="filter_state" class="input-medium" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('COM_COMPONENTARCHITECT_SELECT_STATUS');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
+			</select>
+			
+			<select name="filter_created_by" class="input-medium" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('COM_COMPONENTARCHITECT_SELECT_CREATED_BY');?></option>
+				<?php echo JHtml::_('select.options', $this->creators, 'value', 'text', $this->state->get('filter.created_by'));?>
+			</select>
 		</div>
-	<?php else : ?>
-		</fieldset/>
-	<?php endif; ?>		
+	</fieldset>
 	<div class="clearfix clr"> </div>
 	<?php if (empty($this->items)) : ?>
 		<div class="alert alert-no-items">
@@ -193,14 +198,17 @@ $empty = $component->params->get('default_empty_field', '');
 					<th width="10%" class="center nowrap">
 						<?php echo JHtml::_('grid.sort', 'COM_COMPONENTARCHITECT_FIELDS_HEADING_FOREIGN_OBJECT_ID', 'o1_component_object_name', $list_dirn, $list_order); ?>
 					</th>	
-						
-					<th width="1%" class="center nowrap">
-						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $list_dirn, $list_order); ?>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php foreach ($this->items as $i => $item) : ?>
+				<th width="5%" class="center nowrap">
+					<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $list_dirn, $list_order); ?>
+				</th>
+					
+				<th width="1%" class="center nowrap">
+					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $list_dirn, $list_order); ?>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($this->items as $i => $item) : ?>
 				<tr class="row<?php echo $i % 2; if($item->id == $this->state->get('list.current_id')) echo ' selected';?>" >
 					<td>
 						<a class="pointer" href="javascript:void(0)" onclick="if (window.parent) window.parent.<?php echo $this->escape($function);?>('<?php echo $item->id; ?>', '<?php echo $this->escape(addslashes($item->name)); ?>');">

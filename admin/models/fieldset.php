@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: fieldset.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -69,6 +69,10 @@ class ComponentArchitectModelFieldset extends JModelAdmin
 	 * @var    string	The event to trigger after deleting the data.
 	 */
 	protected $event_after_delete = 'onFieldsetAfterDelete';	
+	/**
+	 * @var    string	The event to trigger after changing the data's state field.
+	 */
+	protected $event_change_state = 'onFieldsetChangeState';	
 
 
 	/**

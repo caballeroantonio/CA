@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: edit.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -113,6 +113,7 @@ $input = $app->input;
 				</div>
 				<div class="span3">
 					<fieldset class="form-vertical">
+						<?php echo $this->form->renderField('state', null, null, array('group_id' => 'field_state')); ?>
 						<div class="control-group" id="field_component_id">
 							<div class="control-label">
 								<?php echo $this->form->getLabel('component_id'); ?>

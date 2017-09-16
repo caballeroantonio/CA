@@ -213,7 +213,7 @@ class [%%ArchitectComp%%]View[%%CompObjectPlural%%] extends JViewLegacy
 			[%%ENDIF INCLUDE_ASSETACL%%]						
 		[%%ENDIF INCLUDE_STATUS%%]
                         
-                JToolbarHelper::custom('ls01s.export', 'download','download', 'JTOOLBAR_EXPORT', FALSE);
+                JToolbarHelper::custom('[%%compobjectplural%%].export', 'download','download', 'JTOOLBAR_EXPORT', FALSE);
 
 				
 		[%%IF INCLUDE_ASSETACL%%]

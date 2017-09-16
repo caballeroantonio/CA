@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: view.html.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -104,7 +104,34 @@ class ComponentArchitectViewFieldTypes extends JViewLegacy
 		JToolbarHelper::preferences('com_componentarchitect');
 		
 		JToolbarHelper::help('JHELP_COMPONENTS_COMPONENTARCHITECT_FIELDTYPES', true, null, 'com_componentarchitect');
-		
+			if ($this->state->get('filter.state') != 2)
+			{
+				JToolbarHelper::custom('fieldtypes.publish', 'publish.png', 'publish_f2.png','JTOOLBAR_PUBLISH', true);
+				JToolbarHelper::custom('fieldtypes.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			if ($this->state->get('filter.state') != -1 ) 
+			{
+				if ($this->state->get('filter.state') != 2) 
+				{
+					JToolbarHelper::archiveList('fieldtypes.archive','JTOOLBAR_ARCHIVE');
+				}
+				else 
+				{
+					if ($this->state->get('filter.state') == 2) 
+					{
+						JToolbarHelper::unarchiveList('fieldtypes.publish', 'JTOOLBAR_UNARCHIVE');
+					}
+				}
+			}
+		if ($this->state->get('filter.state') == -2)
+		{
+			JToolbarHelper::deleteList('', 'fieldtypes.delete','JTOOLBAR_EMPTY_TRASH');
+		}
+		else 
+		{
+			JToolbarHelper::trash('fieldtypes.trash','JTOOLBAR_TRASH');
+		}
 		// Add a dashboard button.
 		$bar = JToolbar::getInstance('toolbar');
 		$bar->appendButton('Link', 'dashboard', JText::_('COM_COMPONENTARCHITECT_DASHBOARD'), 'index.php?option=com_componentarchitect&view=dashboard');		
@@ -115,11 +142,11 @@ class ComponentArchitectViewFieldTypes extends JViewLegacy
 	 */
 	protected function addSidebar()
 	{	
-			
 		JHtmlSidebar::setAction('index.php?option=com_componentarchitect&view=fieldtypes');
 				
 		$this->sidebar = JHtmlSidebar::render();			
 	}	
+	
 	/**
 	 * Prepares the document
 	 */

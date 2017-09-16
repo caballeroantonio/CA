@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: fieldsets.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -71,6 +71,7 @@ class ComponentArchitectModelFieldsets extends JModelList
 				'predefined_fieldset', 'a.predefined_fieldset',
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',
+				'state', 'a.state',
 				'created', 'a.created',
 				'created_by', 'a.created_by',
 				'ordering', 'a.ordering',				
@@ -128,6 +129,8 @@ class ComponentArchitectModelFieldsets extends JModelList
 		$this->setState('filter.predefined_fieldset', $predefined_fieldset);
 		
 		
+		$state = $app->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+		$this->setState('filter.state', $state);
 	
 		
 		$created_by = $this->getUserStateFromRequest($this->context.'.filter.created_by', 'filter_created_by', 0, 'int');
@@ -167,6 +170,7 @@ class ComponentArchitectModelFieldsets extends JModelList
 	{
 		// Compile the store id.
 		$id	.= ':'.$this->getState('filter.search');
+		$id	.= ':'.$this->getState('filter.state');
 		$id	.= ':'.$this->getState('filter.created_by');	
 		$id	.= ':'.$this->getState('filter.component_id');	
 		$id	.= ':'.$this->getState('filter.component_object_id');	
@@ -193,9 +197,6 @@ class ComponentArchitectModelFieldsets extends JModelList
 			)
 		);
 		$query->from($db->quoteName('#__componentarchitect_fieldsets').' AS a');
-                //@ToDo implement throw state buttons
-                //tx need use published fields, this hidde on generate and admin
-                $query->where('a.state');
 		
 		// Join over the users for the checked out user.
 		$query->select($db->quoteName('uc.name').' AS editor');
@@ -223,6 +224,20 @@ class ComponentArchitectModelFieldsets extends JModelList
 
 
 		
+		// Filter by state e.g. published
+		$state = $this->getState('filter.state');
+		if (is_numeric($state))
+		{
+			$query->where($db->quoteName('a.state').' = '.(int) $state);
+		}
+		else
+		{
+			if ($state === '')
+			{
+				$query->where('('.$db->quoteName('a.state').' IN (0, 1))');
+			}
+		}
+			
 		
 		
 		// Filter by access level.
@@ -476,4 +491,12 @@ class ComponentArchitectModelFieldsets extends JModelList
 		return $values;
 
 	}				
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function getListQuery4Export(){
+            $this->getDbo()->setQuery($this->getListQuery(), $this->getStart(), $this->getState('list.limit'));
+            return $this->getDbo()->getQuery();
+        }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: view.html.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -124,13 +124,42 @@ class ComponentArchitectViewComponents extends JViewLegacy
 		JToolbarHelper::custom('components.copy', 'copy.png', 'copy_f2.png','COM_COMPONENTARCHITECT_COPY', true);		
 
 		JToolbarHelper::divider();
-		
+			if ($this->state->get('filter.state') != 2)
+			{
+				JToolbarHelper::custom('components.publish', 'publish.png', 'publish_f2.png','JTOOLBAR_PUBLISH', true);
+				JToolbarHelper::custom('components.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			if ($this->state->get('filter.state') != -1 ) 
+			{
+				if ($this->state->get('filter.state') != 2) 
+				{
+					JToolbarHelper::archiveList('components.archive','JTOOLBAR_ARCHIVE');
+				}
+				else 
+				{
+					if ($this->state->get('filter.state') == 2) 
+					{
+						JToolbarHelper::unarchiveList('components.publish', 'JTOOLBAR_UNARCHIVE');
+					}
+				}
+			}
 		
 		JToolbarHelper::custom('components.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
 
-		JToolbarHelper::deleteList('', 'components.delete','JTOOLBAR_DELETE');
-		JToolbarHelper::divider();
+	
+		if ($this->state->get('filter.state') == -2)
+		{
+			JToolbarHelper::deleteList('', 'components.delete','JTOOLBAR_EMPTY_TRASH');
+		}
+		else 
+		{
+			JToolbarHelper::trash('components.trash','JTOOLBAR_TRASH');
+		}
+                        
+                JToolbarHelper::custom('components.export', 'download','download', 'JTOOLBAR_EXPORT', FALSE);
 
+				
 		JToolbarHelper::preferences('com_componentarchitect');
 		JToolbarHelper::help('JHELP_COMPONENTS_COMPONENTARCHITECT_COMPONENTS', true, null, 'com_componentarchitect');
 		

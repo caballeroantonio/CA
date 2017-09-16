@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: default.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -30,17 +30,20 @@ defined('_JEXEC') or die;
 
 $app		= JFactory::getApplication();
 $user		= JFactory::getUser();
-$user_id		= $user->get('id');
+$user_id	= $user->get('id');
 $list_order	= $this->state->get('list.ordering');
 $list_dirn	= $this->state->get('list.direction');
-$search		= $this->escape($this->state->get('filter.search',''));
+$archived	= $this->state->get('filter.state') == 2 ? true : false;
+$trashed	= $this->state->get('filter.state') == -2 ? true : false;
+$search		= $this->state->get('filter.search','');
+
 // Get from global settings the text to use for an empty field
 $component = JComponentHelper::getComponent( 'com_componentarchitect' );
 $empty = $component->params->get('default_empty_field', '');
 
 $save_order	= ($list_order=='ordering' OR $list_order=='a.ordering');
 
-if ($save_order AND version_compare(JVERSION, '3.0', 'ge'))
+if ($save_order)
 {
 	$save_ordering_url = 'index.php?option=com_componentarchitect&task=components.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'component-list', 'adminForm', strtolower($list_dirn), $save_ordering_url);
@@ -208,6 +211,9 @@ $sort_fields = $this->getSortFields();
 								<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
 						<?php endif; ?>
 					</th>
+					<th width="1%" style="min-width:55px" class="nowrap center">
+						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $list_dirn, $list_order); ?>
+					</th>
 					<th>
 						<?php echo JHtml::_('grid.sort',  'COM_COMPONENTARCHITECT_HEADING_NAME', 'a.name', $list_dirn, $list_order); ?>
 					</th>
@@ -247,39 +253,57 @@ $sort_fields = $this->getSortFields();
 				$item->max_ordering = 0; //??
 				$ordering	= ($list_order=='ordering' OR $list_order=='a.ordering');
 				$can_change = true;
-				$can_checkin	= $item->checked_out == $user_id OR $item->checked_out == 0;
+					$can_checkin	= $item->checked_out == $user_id OR $item->checked_out == 0;
 							
 				?>
 				<tr class="row<?php echo $i % 2; ?>">
-					<?php if (version_compare(JVERSION, '3.0', 'ge')) : ?>
-						<td class="order nowrap center hidden-phone">
-							<?php if ($can_change) :
-								$disable_class_name = '';
-								$disabled_label	  = '';
+					<td class="order nowrap center hidden-phone">
+						<?php if ($can_change) :
+							$disable_class_name = '';
+							$disabled_label	  = '';
 
-								if (!$save_order) :
-									$disabled_label    = JText::_('JORDERINGDISABLED');
-									$disable_class_name = 'inactive tip-top';
-								endif; ?>
-								<span class="sortable-handler hasTooltip <?php echo $disable_class_name; ?>" title="<?php echo $disabled_label; ?>">
-									<i class="icon-menu"></i>
-								</span>
-								<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
-							<?php else : ?>
-								<span class="sortable-handler inactive" >
-									<i class="icon-menu"></i>
-								</span>
-							<?php endif; ?>
-						</td>
-					<?php endif; ?>
+							if (!$save_order) :
+								$disabled_label    = JText::_('JORDERINGDISABLED');
+								$disable_class_name = 'inactive tip-top';
+							endif; ?>
+							<span class="sortable-handler hasTooltip <?php echo $disable_class_name; ?>" title="<?php echo $disabled_label; ?>">
+								<i class="icon-menu"></i>
+							</span>
+							<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering; ?>" class="width-20 text-area-order " />
+						<?php else : ?>
+							<span class="sortable-handler inactive" >
+								<i class="icon-menu"></i>
+							</span>
+						<?php endif; ?>
+					</td>
 					<td class="center">
 						<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 					</td>
+					<td class="center">
+						<div class="btn-group">
+							<?php echo JHtml::_('jgrid.published', $item->state, $i, 'components.', $can_change); ?>
+							<?php
+								if ($archived) :
+									JHtml::_('actionsdropdown.unarchive', 'cb' . $i, 'components');
+								else :
+									JHtml::_('actionsdropdown.archive', 'cb' . $i, 'components');
+								endif;
+								if ($trashed) :
+									JHtml::_('actionsdropdown.untrash', 'cb' . $i, 'components');
+								else :
+									JHtml::_('actionsdropdown.trash', 'cb' . $i, 'components');
+								endif;
+
+								// Render dropdown list
+								echo JHtml::_('actionsdropdown.render', $this->escape($item->name));
+							?>
+						</div>
+					</td>	
 					<td class="nowrap has-context">
-						<div class="pull-left fltlft">
-						<?php if ($item->checked_out) : ?>
-							<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'components.', $can_checkin); ?>
-						<?php endif; ?>
+						<div class="pull-left break-word">
+							<?php if ($item->checked_out) : ?>
+								<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'components.', $can_checkin); ?>
+							<?php endif; ?>	
 
 							<a href="<?php echo JRoute::_('index.php?option=com_componentarchitect&task=component.edit&id='.(int) $item->id); ?>">
 							<?php echo $this->escape($item->name); ?></a>

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 		$Id: component.php 577 2016-01-04 15:44:19Z BrianWade $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -46,12 +46,10 @@ class ComponentArchitectModelComponent extends JModelAdmin
 	 * @var      string	The type alias for this object (for example, 'com_componentarchitect.component')
 	 */
 	public $typeAlias = 'com_componentarchitect.component';	
-
 	/**
 	 * @var		string	The context for the app call.
 	 */
-	protected $context = 'com_componentarchitect.components';
-	
+	protected $context = 'com_componentarchitect.components';	
 	/**
 	 * @var		string	The event to trigger after before the data.
 	 */
@@ -69,7 +67,10 @@ class ComponentArchitectModelComponent extends JModelAdmin
 	 * @var    string	The event to trigger after deleting the data.
 	 */
 	protected $event_after_delete = 'onComponentAfterDelete';	
-
+	/**
+	 * @var    string	The event to trigger after changing the data's state field.
+	 */
+	protected $event_change_state = 'onComponentChangeState';	
 
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -77,13 +78,12 @@ class ComponentArchitectModelComponent extends JModelAdmin
 	 * @param	type	The table type to instantiate
 	 * @param	string	A prefix for the table class name. Optional.
 	 * @param	array	Configuration array for model. Optional.
-	 * 
 	 * @return	JTable	A database object
 	 */
 	public function getTable($type = 'Components', $prefix = 'ComponentArchitectTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
-	}
+	}	
 	/**
 	 * Extension to the core method to auto-populate the model state.
 	 *
@@ -309,6 +309,21 @@ class ComponentArchitectModelComponent extends JModelAdmin
 		}
 
 		return false;
+	}	
+	/**
+	 * Method to change the published state of one or more records.
+	 *
+	 * @param   array    &$pks   A list of the primary keys to change.
+	 * @param	integer  $value  The value of the published state.
+	 *
+	 * @return  boolean  True on success.
+	 */
+	public function publish(&$pks, $value = 1)
+	{	
+		// Include the componentarchitect plugins for the change of state event.
+		JPluginHelper::importPlugin('componentarchitect');	
+		
+		return parent::publish($pks, $value);
 	}
 	/**
 	 * Method to delete one or more records.
@@ -316,6 +331,7 @@ class ComponentArchitectModelComponent extends JModelAdmin
 	 * @param   array  &$pks  An array of record primary keys.
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
+	 *
 	 */
 	public function delete(&$pks)
 	{
@@ -497,8 +513,11 @@ class ComponentArchitectModelComponent extends JModelAdmin
 		$db = JFactory::getDbo();
 	
 		$condition = array();
+		$condition[] = $db->quoteName('state').' >= 0';
 		return $condition;
 	}
+
+
 	/**
 	 * Custom clean the cache of com_componentarchitect and componentarchitect modules
 	 *

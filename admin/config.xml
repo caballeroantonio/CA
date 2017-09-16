@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- @version 			$Id: config.xml 577 2016-01-04 15:44:19Z BrianWade $ -->
-<!-- @name			    Component Architect (Release 1.2.0) -->
-<!-- @author			Component Architect (http://www.componentarchitect.com) -->
+<!-- @version 			$Id:2017-09-17 20:14:05 caballeroantonio $-->
+<!-- @name			    Component Architect Manager (Release 1.2.0tx) -->
+<!-- @author			caballeroantonio (caballeroantonio.com) -->
 <!-- @package			com_componentarchitect -->
 <!-- @subpackage		com_componentarchitect.admin -->
 <!-- @copyright		    Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved -->

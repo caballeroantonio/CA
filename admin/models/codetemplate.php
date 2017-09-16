@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 		$Id: codetemplate.php 577 2016-01-04 15:44:19Z BrianWade $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -46,12 +46,10 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 	 * @var      string	The type alias for this object (for example, 'com_componentarchitect.codetemplate')
 	 */
 	public $typeAlias = 'com_componentarchitect.codetemplate';	
-
 	/**
 	 * @var		string	The context for the app call.
 	 */
-	protected $context = 'com_componentarchitect.codetemplates';
-	
+	protected $context = 'com_componentarchitect.codetemplates';	
 	/**
 	 * @var		string	The event to trigger after before the data.
 	 */
@@ -69,7 +67,10 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 	 * @var    string	The event to trigger after deleting the data.
 	 */
 	protected $event_after_delete = 'onCodeTemplateAfterDelete';	
-
+	/**
+	 * @var    string	The event to trigger after changing the data's state field.
+	 */
+	protected $event_change_state = 'onCodeTemplateChangeState';	
 
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -77,13 +78,12 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 	 * @param	type	The table type to instantiate
 	 * @param	string	A prefix for the table class name. Optional.
 	 * @param	array	Configuration array for model. Optional.
-	 * 
 	 * @return	JTable	A database object
 	 */
 	public function getTable($type = 'CodeTemplates', $prefix = 'ComponentArchitectTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
-	}
+	}	
 	/**
 	 * Extension to the core method to auto-populate the model state.
 	 *
@@ -129,10 +129,10 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 			
 			}				
 		}
+		
 				
 		return $item;
 	}
-
 	/**
 	 * Method to get the record form.
 	 *
@@ -218,7 +218,7 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 		$db = $this->getDbo();		
 		$date = JFactory::getDate();
 		$user = JFactory::getUser();
-
+		
 		$table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
 		
 		// Increment the code templates version number.
@@ -242,6 +242,7 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 	 * @param   array  $data  The form data.
 	 *
 	 * @return  boolean  True on success, False on error.
+	 *
 	 */
 	public function save($data)
 	{
@@ -281,11 +282,27 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 		return false;
 	}	
 	/**
+	 * Method to change the published state of one or more records.
+	 *
+	 * @param   array    &$pks   A list of the primary keys to change.
+	 * @param	integer  $value  The value of the published state.
+	 *
+	 * @return  boolean  True on success.
+	 */
+	public function publish(&$pks, $value = 1)
+	{	
+		// Include the componentarchitect plugins for the change of state event.
+		JPluginHelper::importPlugin('componentarchitect');	
+		
+		return parent::publish($pks, $value);
+	}
+	/**
 	 * Method to delete one or more records.
 	 *
 	 * @param   array  &$pks  An array of record primary keys.
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
+	 *
 	 */
 	public function delete(&$pks)
 	{
@@ -443,6 +460,7 @@ class ComponentArchitectModelCodeTemplate extends JModelAdmin
 	
 		$condition = array();
 		$condition[] = $db->quoteName('catid').' = '.(int) $table->catid;	
+		$condition[] = $db->quoteName('state').' >= 0';
 		return $condition;
 	}
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: view.html.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -104,6 +104,34 @@ class ComponentArchitectViewCodeTemplates extends JViewLegacy
 		JToolbarHelper::editList('codetemplate.edit','COM_COMPONENTARCHITECT_VIEW');
 		JToolbarHelper::divider();
 
+			if ($this->state->get('filter.state') != 2)
+			{
+				JToolbarHelper::custom('codetemplates.publish', 'publish.png', 'publish_f2.png','JTOOLBAR_PUBLISH', true);
+				JToolbarHelper::custom('codetemplates.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			if ($this->state->get('filter.state') != -1 ) 
+			{
+				if ($this->state->get('filter.state') != 2) 
+				{
+					JToolbarHelper::archiveList('codetemplates.archive','JTOOLBAR_ARCHIVE');
+				}
+				else 
+				{
+					if ($this->state->get('filter.state') == 2) 
+					{
+						JToolbarHelper::unarchiveList('codetemplates.publish', 'JTOOLBAR_UNARCHIVE');
+					}
+				}
+			}
+		if ($this->state->get('filter.state') == -2)
+		{
+			JToolbarHelper::deleteList('', 'codetemplates.delete','JTOOLBAR_EMPTY_TRASH');
+		}
+		else 
+		{
+			JToolbarHelper::trash('codetemplates.trash','JTOOLBAR_TRASH');
+		}
 		JToolbarHelper::preferences('com_componentarchitect');
 		JToolbarHelper::help('JHELP_COMPONENTS_COMPONENTARCHITECT_CODETEMPLATES', true, null, 'com_componentarchitect');
 		// Add a dashboard button.

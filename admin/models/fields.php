@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 		$Id: fields.php 577 2016-01-04 15:44:19Z BrianWade $
+ * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
  * @name			Component Architect (Release 1.2.0)
  * @author			Component Architect (www.componentarchitect.com)
  * @package			com_componentarchitect
@@ -77,6 +77,7 @@ class ComponentArchitectModelFields extends JModelList
 				'o1_component_object_name', 'o1.name',				
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',
+				'state', 'a.state',
 				'created', 'a.created',
 				'created_by', 'a.created_by',
 				'ordering', 'a.ordering',				
@@ -140,6 +141,8 @@ class ComponentArchitectModelFields extends JModelList
 		$this->setState('filter.foreign_object_id', $foreign_object_id);
 		
 		
+		$state = $app->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+		$this->setState('filter.state', $state);
 	
 		
 		$created_by = $this->getUserStateFromRequest($this->context.'.filter.created_by', 'filter_created_by', 0, 'int');
@@ -179,6 +182,7 @@ class ComponentArchitectModelFields extends JModelList
 	{
 		// Compile the store id.
 		$id	.= ':'.$this->getState('filter.search');
+		$id	.= ':'.$this->getState('filter.state');
 		$id	.= ':'.$this->getState('filter.created_by');	
 		$id	.= ':'.$this->getState('filter.component_id');	
 		$id	.= ':'.$this->getState('filter.component_object_id');	
@@ -208,10 +212,6 @@ class ComponentArchitectModelFields extends JModelList
 			)
 		);
 		$query->from($db->quoteName('#__componentarchitect_fields').' AS a');
-                //@ToDo implement throw state buttons
-                //tx need use published fields, this hidde on generate and admin
-                $query->where('a.state');
-
 		
 		// Join over the users for the checked out user.
 		$query->select($db->quoteName('uc.name').' AS editor');
@@ -238,7 +238,20 @@ class ComponentArchitectModelFields extends JModelList
 		}
 
 
-		
+		// Filter by state e.g. published
+		$state = $this->getState('filter.state');
+		if (is_numeric($state))
+		{
+			$query->where($db->quoteName('a.state').' = '.(int) $state);
+		}
+		else
+		{
+			if ($state === '')
+			{
+				$query->where('('.$db->quoteName('a.state').' IN (0, 1))');
+			}
+		}
+			
 		
 		
 		// Filter by access level.
@@ -608,4 +621,8 @@ class ComponentArchitectModelFields extends JModelList
 		// Return the result
 		return $db->loadObjectList();
 	}
+        public function getListQuery4Export(){
+            $this->getDbo()->setQuery($this->getListQuery(), $this->getStart(), $this->getState('list.limit'));
+            return $this->getDbo()->getQuery();
+        }
 }
