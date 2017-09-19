@@ -397,7 +397,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 		$query->join('LEFT', $db->quoteName('#__usergroups').' AS [%%FIELD_CODE_NAME%%] ON '.$db->quoteName('[%%FIELD_CODE_NAME%%].id').' = '.$db->quoteName('a.[%%FIELD_CODE_NAME%%]'));		
 			[%%ENDIF FIELD_USERGROUP%%]					
 			[%%IF FIELD_LINK%%]
-		// Filter by and return name for [%%FIELD_CODE_NAME%%] level.
+		// Filter by and return name for [%%FIELD_CODE_NAME%%] level. %@ToDo fix, if NOT INCLUDE_NAME then OBJECT_LABEL_FIELD = OBJECT_ORDERING_FIELD, then SELECT  is repeated, e.id AS e_expediente_id x 2
 		$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' AS [%%FIELD_FOREIGN_OBJECT_ACRONYM%%]_[%%FIELD_FOREIGN_OBJECT_CODE_NAME%%]_[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]');
 		$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_ORDERING_FIELD%%]').' AS [%%FIELD_FOREIGN_OBJECT_ACRONYM%%]_[%%FIELD_FOREIGN_OBJECT_CODE_NAME%%]_[%%FIELD_FOREIGN_OBJECT_ORDERING_FIELD%%]');
 

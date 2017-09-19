@@ -557,7 +557,7 @@ LatexCommand tableofcontents
 \begin_inset Note Note
 status open
 
-\begin_layout Itemize
+\begin_layout Plain Layout
 \begin_inset listings
 inline false
 status open
@@ -614,7 +614,44 @@ $-->/' $(find -type f -name "*.xml")
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-@version
+codetemplate @version
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#ejecutarlo varias veces
+\end_layout
+
+\begin_layout Plain Layout
+
+sed --in-place 's/),(/),
+\backslash
+r
+\backslash
+n(/' src.sql
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+separar líneas de respaldos sql
 \end_layout
 
 \end_inset

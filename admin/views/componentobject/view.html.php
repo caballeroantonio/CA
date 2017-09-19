@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-20 08:05:19 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -78,21 +78,17 @@ class ComponentArchitectViewComponentObject extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		if (version_compare(JVERSION, '3.0', 'lt'))
-		{
-			JRequest::setVar('hidemainmenu', true);
-		}
-		else
-		{
-			JFactory::getApplication()->input->set('hidemainmenu', true);
-		}
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 		
 		$user		= JFactory::getUser();
 		$user_id		= $user->get('id');
 		$is_new		= ($this->item->id == 0);
 		$checkedOut	= !($this->item->checked_out == 0 OR $this->item->checked_out == $user_id);
 
-		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_COMPONENTOBJECTS_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_COMPONENTOBJECTS_EDIT_HEADER'), 'componentobjects.png');
+		JToolbarHelper::title(
+				JText::_('COM_COMPONENTARCHITECT_COMPONENTOBJECTS_' . (isset($checkedOut) && $checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
+				'componentobjects.png'
+		);
 
 
 		JToolbarHelper::apply('componentobject.apply', 'JTOOLBAR_APPLY');
@@ -104,6 +100,7 @@ class ComponentArchitectViewComponentObject extends JViewLegacy
 		{
 			JToolbarHelper::custom('componentobject.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		}
+
 		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('componentobject_save_history', 1)
 			AND !$is_new  
 			)
@@ -113,7 +110,7 @@ class ComponentArchitectViewComponentObject extends JViewLegacy
 			JToolbarHelper::versions($type_alias, $item_id);
 		}
 				
-		if ($is_new)
+		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('componentobject.cancel','JTOOLBAR_CANCEL');
 		}

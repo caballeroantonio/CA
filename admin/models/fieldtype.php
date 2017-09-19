@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-20 08:05:19 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -256,7 +256,7 @@ class ComponentArchitectModelFieldType extends JModelAdmin
 		// Include the component architect plugins for the onSave events.
 		JPluginHelper::importPlugin('componentarchitect');	
 		
-		$app = JFactory::getApplication();
+		$input = JFactory::getApplication()->input;
 		$table = $this->getTable();
 
 		$key = $table->getKeyName();
@@ -264,17 +264,18 @@ class ComponentArchitectModelFieldType extends JModelAdmin
 
 
 
-		// Alter values for save as copy
-		if ($app->input->get('task') == 'save2copy')
+		// Alter the name for save as copy
+		if ($input->get('task') == 'save2copy')
 		{
 			$data['name'] = $this->generateUniqueName($data);
+			$data['state'] = 0;
 		}
 
 		if (parent::save($data))
 		{
 			$new_pk = (int) $this->getState($this->getName() . '.id');
 
-			if ($app->input->get('task') == 'save2copy')
+			if ($input->get('task') == 'save2copy')
 			{
 				// Reorder table so that new record has a unique ordering value
 				$table->load($new_pk);
@@ -466,14 +467,15 @@ class ComponentArchitectModelFieldType extends JModelAdmin
 	* @param   array   $data	The data where the original name is stored
 	*
 	* @return	string  $name	The modified name.
+	*
 	*/
 	protected function generateUniqueName($data)
 	{
+		$table = $this->getTable();		
 		
 		$key_array = array('name' => $data['name']);
 
 		// Alter the name
-		$table = $this->getTable();
 		while ($table->load($key_array))
 		{
 			$key_array['name'] = JString::increment($key_array['name']);

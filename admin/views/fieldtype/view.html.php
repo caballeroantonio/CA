@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-20 08:05:19 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -45,7 +45,11 @@ class ComponentArchitectViewFieldType extends JViewLegacy
 	protected $can_do;
 	
 	/**
-	 * Display the view
+	 * Execute and display a template script.
+	 *
+	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+	 *
+	 * @return  mixed  A string if successful, otherwise a Error object.
 	 */
 	public function display($tpl = null)
 	{
@@ -78,22 +82,28 @@ class ComponentArchitectViewFieldType extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		if (version_compare(JVERSION, '3.0', 'lt'))
-		{
-			JRequest::setVar('hidemainmenu', true);
-		}
-		else
-		{
-			JFactory::getApplication()->input->set('hidemainmenu', true);
-		}
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 		
 		$user		= JFactory::getUser();
 		$user_id		= $user->get('id');
 		$is_new		= ($this->item->id == 0);
 		$checkedOut	= !($this->item->checked_out == 0 OR $this->item->checked_out == $user_id);
 
-		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_FIELDTYPES_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_FIELDTYPES_EDIT_HEADER'), 'fieldtypes.png');
+		JToolbarHelper::title(
+				JText::_('COM_COMPONENTARCHITECT_FIELDTYPES_' . (isset($checkedOut) && $checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
+				'fieldtypes.png'
+		);
 
+
+		JToolbarHelper::apply('fieldtype.apply', 'JTOOLBAR_APPLY');
+		JToolbarHelper::save('fieldtype.save', 'JTOOLBAR_SAVE');
+
+		JToolbarHelper::custom('fieldtype.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
+		// If an existing item, can save to a copy.
+		if (!$is_new )
+		{
+			JToolbarHelper::custom('fieldtype.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+		}
 
 		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('fieldtype_save_history', 1)
 			AND !$is_new  
@@ -104,7 +114,7 @@ class ComponentArchitectViewFieldType extends JViewLegacy
 			JToolbarHelper::versions($type_alias, $item_id);
 		}
 				
-		if ($is_new)
+		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('fieldtype.cancel','JTOOLBAR_CANCEL');
 		}

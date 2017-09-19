@@ -1909,7 +1909,8 @@ class ComponentArchitectGenerateHelper
 		array_push($search_replace_pairs,array('search' => '<!-- @version'."\t\t\t$", 'replace' =>'<!-- @CAversion'."\t\t\t"));
 		array_push($search_replace_pairs,array('search' => '<!-- @version'."\t\t$", 'replace' =>'<!-- @CAversion'."\t\t"));
 		array_push($search_replace_pairs,array('search' => ' @version'."\t\t\t$", 'replace' =>' @CAversion'."\t\t"));
-		$tempversion = date('Y-m-d H:i:s'). ' caballeroantonio ';
+		$tempversion = '';
+//		$tempversion .= date('Y-m-d H:i:s'). ' caballeroantonio ';
 		array_push($search_replace_pairs,array('search' => '<!-- @tempversion', 'replace' =>'<!-- @version'." \t\t\t\$Id:{$tempversion}\$"));
 		array_push($search_replace_pairs,array('search' => ' @tempversion', 'replace' =>' @version'." \t\t\$Id:{$tempversion}\$"));
 

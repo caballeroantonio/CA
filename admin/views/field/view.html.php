@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-20 08:05:19 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -90,14 +90,7 @@ class ComponentArchitectViewField extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		if (version_compare(JVERSION, '3.0', 'lt'))
-		{
-			JRequest::setVar('hidemainmenu', true);
-		}
-		else
-		{
-			JFactory::getApplication()->input->set('hidemainmenu', true);
-		}
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 		
 		$user		= JFactory::getUser();
 		$user_id		= $user->get('id');
@@ -107,9 +100,12 @@ class ComponentArchitectViewField extends JViewLegacy
 		$is_predefined = ($this->item->predefined_field == '1');
 		//[%%END_CUSTOM_CODE%%]
 		
-		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_FIELDS_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_FIELDS_EDIT_HEADER'), 'fields.png');
+		JToolbarHelper::title(
+				JText::_('COM_COMPONENTARCHITECT_FIELDS_' . (isset($checkedOut) && $checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
+				'fields.png'
+		);
 
-		//[%%START_CUSTOM_CODE%%]
+
 		// Pre-defined fields cannot be changed from the edit form
 		if (!$is_predefined)	
 		{
@@ -132,6 +128,7 @@ class ComponentArchitectViewField extends JViewLegacy
 		{
 			JToolbarHelper::custom('field.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		}
+
 		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('field_save_history', 1)
 			AND !$is_new  
 			)
@@ -141,7 +138,7 @@ class ComponentArchitectViewField extends JViewLegacy
 			JToolbarHelper::versions($type_alias, $item_id);
 		}
 				
-		if ($is_new)
+		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('field.cancel','JTOOLBAR_CANCEL');
 		}

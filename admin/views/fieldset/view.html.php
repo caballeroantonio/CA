@@ -1,8 +1,8 @@
 <?php
 /**
- * @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
- * @name			Component Architect (Release 1.2.0)
- * @author			Component Architect (www.componentarchitect.com)
+ * @version 		$Id:2017-09-20 08:05:19 caballeroantonio $
+ * @name			Component Architect Manager (Release 1.2.0tx)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_componentarchitect
  * @subpackage		com_componentarchitect.admin
  * @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -120,6 +120,7 @@ class ComponentArchitectViewFieldset extends JViewLegacy
 		{
 			JToolbarHelper::custom('fieldset.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		}
+
 		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('fieldset_save_history', 1)
 			AND !$is_new  
 			)
@@ -129,7 +130,7 @@ class ComponentArchitectViewFieldset extends JViewLegacy
 			JToolbarHelper::versions($type_alias, $item_id);
 		}
 				
-		if ($is_new)
+		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('fieldset.cancel','JTOOLBAR_CANCEL');
 		}

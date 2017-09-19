@@ -71,6 +71,8 @@ class JFormFieldModal_[%%CompObjectPlural%%] extends JFormField
 		$script[] = '		document.getElementById("'.$this->id.'_id").value = id;';
 		[%%IF INCLUDE_NAME%%]
 		$script[] = '		document.getElementById("'.$this->id.'_name").value = name;';
+		[%%ELSE INCLUDE_NAME%%]
+		$script[] = '		document.getElementById("'.$this->id.'_name").value = "objeto modal";';
 		[%%ENDIF INCLUDE_NAME%%]
 		if ($allow_edit)
 		{

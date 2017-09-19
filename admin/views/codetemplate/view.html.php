@@ -78,21 +78,28 @@ class ComponentArchitectViewCodeTemplate extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		if (version_compare(JVERSION, '3.0', 'lt'))
-		{
-			JRequest::setVar('hidemainmenu', true);
-		}
-		else
-		{
-			JFactory::getApplication()->input->set('hidemainmenu', true);
-		}
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 		
 		$user		= JFactory::getUser();
 		$user_id		= $user->get('id');
 		$is_new		= ($this->item->id == 0);
 		$checkedOut	= !($this->item->checked_out == 0 OR $this->item->checked_out == $user_id);
 
-		JToolbarHelper::title($is_new ? JText::_('COM_COMPONENTARCHITECT_CODETEMPLATES_NEW_HEADER') : JText::_('COM_COMPONENTARCHITECT_CODETEMPLATES_EDIT_HEADER'), 'codetemplates.png');
+		JToolbarHelper::title(
+				JText::_('COM_COMPONENTARCHITECT_CODETEMPLATES_' . (isset($checkedOut) && $checkedOut ? 'VIEW_HEADER' : ($is_new ? 'NEW_HEADER' : 'EDIT_HEADER'))), 
+				'codetemplates.png'
+		);
+
+
+		JToolbarHelper::apply('codetemplate.apply', 'JTOOLBAR_APPLY');
+		JToolbarHelper::save('codetemplate.save', 'JTOOLBAR_SAVE');
+
+		JToolbarHelper::custom('codetemplate.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
+		// If an existing item, can save to a copy.
+		if (!$is_new )
+		{
+			JToolbarHelper::custom('codetemplate.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+		}
 
 		if ($this->state->params->get('save_history', 1) AND $this->state->params->get('codetemplate_save_history', 1)
 			AND !$is_new  
@@ -103,7 +110,7 @@ class ComponentArchitectViewCodeTemplate extends JViewLegacy
 			JToolbarHelper::versions($type_alias, $item_id);
 		}
 				
-		if ($is_new)
+		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('codetemplate.cancel','JTOOLBAR_CANCEL');
 		}
