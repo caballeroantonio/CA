@@ -49,8 +49,6 @@
 		    class="inputbox"
 			size="50"
 			required="true"
-			readonly="true"
-			disabled="true"
    		/>
         <field
             name="version_note"
@@ -83,8 +81,6 @@
 			class="inputbox"
 			required="true"
             addfieldpath="/administrator/components/com_categories/models/fields"
-			readonly="true"
-			disabled="true"
 		>
         </field>
         <field
@@ -94,8 +90,6 @@
 			type="componentarchitectordering"
 			class="inputbox"
 			table="#__componentarchitect_fieldtypes"
-			readonly="true"
-			disabled="true"
 		/>
         <field
 		    name="description"
@@ -106,16 +100,12 @@
             filter="JComponentHelper::filterText"
             buttons="false"
             hide="article"
-			readonly="true"
-			disabled="true"
         />
         <field
             name="code_name"
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CODE_NAME_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CODE_NAME_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox validate-fieldtypecodename"
 			size="50"
 			maxlength="50"
@@ -133,8 +123,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLASS_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLASS_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -143,8 +131,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SIZE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SIZE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -153,8 +139,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_WIDTH_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_WIDTH_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -163,8 +147,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAXLENGTH_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAXLENGTH_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -173,8 +155,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HEIGHT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HEIGHT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -183,8 +163,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_COLS_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_COLS_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -193,8 +171,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ROWS_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ROWS_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -203,8 +179,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_VALUE_SOURCE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_VALUE_SOURCE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -213,8 +187,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_OPTION_VALUES_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_OPTION_VALUES_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -223,8 +195,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MULTIPLE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MULTIPLE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -233,8 +203,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FORMAT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FORMAT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -243,8 +211,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIRST_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIRST_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -253,8 +219,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_LAST_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_LAST_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -263,8 +227,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_STEP_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_STEP_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -273,8 +235,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_NONE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_NONE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -283,8 +243,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -293,8 +251,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_BUTTONS_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_BUTTONS_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -303,8 +259,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_BUTTONS_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_BUTTONS_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -313,8 +267,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FOREIGN_OBJECT_ID_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FOREIGN_OBJECT_ID_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -323,8 +275,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIELD_FILTER_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIELD_FILTER_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -333,8 +283,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAX_FILE_SIZE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAX_FILE_SIZE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -343,8 +291,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_EXCLUDE_FILES_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_EXCLUDE_FILES_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -353,8 +299,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ACCEPT_FILE_TYPES_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ACCEPT_FILE_TYPES_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -363,8 +307,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DIRECTORY_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DIRECTORY_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -373,8 +315,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_LINK_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_LINK_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -383,8 +323,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_QUERY_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_QUERY_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -393,8 +331,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_KEY_FIELD_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_KEY_FIELD_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -403,8 +339,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_VALUE_FIELD_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SQL_VALUE_FIELD_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -413,8 +347,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_TRANSLATE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_TRANSLATE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -423,8 +355,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLIENT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLIENT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -433,8 +363,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_STRIPEXT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_STRIPEXT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -443,8 +371,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_PREVIEW_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_PREVIEW_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -453,8 +379,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_AUTOCOMPLETE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_AUTOCOMPLETE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -463,8 +387,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ONCLICK_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ONCLICK_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -473,8 +395,6 @@
             type="checkbox"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ONCHANGE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ONCHANGE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			value="1"
 		/>
@@ -489,8 +409,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DEFAULT_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DEFAULT_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="50"
@@ -500,8 +418,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLASS_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_CLASS_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="50"
@@ -511,8 +427,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAXLENGTH_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAXLENGTH_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox validate-numeric"
 			size="15"
 			maxlength="5"
@@ -522,8 +436,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SIZE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_SIZE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox validate-numeric"
 			size="15"
 			maxlength="5"
@@ -533,8 +445,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ALLOWED_INPUT_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ALLOWED_INPUT_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="100"
@@ -544,8 +454,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FORMAT_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FORMAT_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="25"
@@ -555,8 +463,6 @@
             type="list"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_PHP_VARIABLE_TYPE_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_PHP_VARIABLE_TYPE_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="1"
 			required="true"
@@ -574,8 +480,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_COLS_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_COLS_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox validate-numeric"
 			size="15"
 			maxlength="5"
@@ -585,8 +489,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ROWS_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ROWS_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="15"
 			maxlength="5"
@@ -596,8 +498,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_WIDTH_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_WIDTH_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="15"
 			maxlength="5"
@@ -607,8 +507,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HEIGHT_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HEIGHT_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="15"
 			maxlength="5"
@@ -618,8 +516,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_BUTTONS_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_BUTTONS_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="50"
@@ -629,8 +525,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_BUTTONS_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_HIDE_BUTTONS_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="50"
@@ -640,8 +534,6 @@
             type="list"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_VALIDATION_TYPE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_VALIDATION_TYPE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="1"
 		>
@@ -656,14 +548,13 @@
 			<option	value="options">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_OPTIONS</option>
 			<option	value="color">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_COLOR</option>
 			<option	value="boolean">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_BOOLEAN</option>
+			<option	value="date">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_DATE</option>
 		</field>
         <field
             name="field_filter_default"
             type="list"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIELD_FILTER_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_FIELD_FILTER_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="1"
 		>
@@ -694,8 +585,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAX_FILE_SIZE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MAX_FILE_SIZE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="15"
 			maxlength="10"
@@ -705,8 +594,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_EXCLUDE_FILES_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_EXCLUDE_FILES_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="100"
@@ -716,8 +603,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DIRECTORY_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_DIRECTORY_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="100"
 			maxlength="255"
@@ -727,8 +612,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ACCEPT_FILE_TYPES_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_ACCEPT_FILE_TYPES_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="50"
 			maxlength="100"
@@ -744,8 +627,6 @@
             type="list"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_DATATYPE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_DATATYPE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="1"
 		>
@@ -780,8 +661,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_SIZE_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_SIZE_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox"
 			size="15"
 			maxlength="5"
@@ -791,8 +670,6 @@
             type="text"
             label="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_DEFAULT_DEFAULT_LABEL"
             description="COM_COMPONENTARCHITECT_FIELDTYPES_FIELD_MYSQL_DEFAULT_DEFAULT_DESC"
-			readonly="true"
-			disabled="true"
 			class="inputbox validate-fieldtypemysqldefaultdefault"
 			size="50"
 			maxlength="50"

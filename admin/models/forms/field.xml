@@ -135,7 +135,6 @@
             description="COM_COMPONENTARCHITECT_FIELDS_FIELD_PREDEFINED_FIELD_DESC"
             class="inputbox"
 			size="1"
-			readonly="true"
 			default="'0'"
 		>
             <option	value="0">JNO</option>
@@ -240,6 +239,7 @@
 			<option	value="options">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_OPTIONS</option>
 			<option	value="color">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_COLOR</option>
 			<option	value="boolean">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_BOOLEAN</option>
+			<option	value="date">COM_COMPONENTARCHITECT_FIELD_VALIDATION_TYPE_VALUE_DATE</option>
 		</field>
         <field
             name="allowed_input"
@@ -370,8 +370,6 @@
             description="COM_COMPONENTARCHITECT_FIELDS_FIELD_VALUE_SOURCE_DESC"
             class="inputbox"
 			size="1"
-			readonly="true"
-			disabled="true"
 			default="Option Values"
 		>
 			<option	value="Option Values">COM_COMPONENTARCHITECT_FIELDS_VALUE_SOURCE_VALUE_OPTION_VALUES</option>

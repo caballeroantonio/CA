@@ -30,6 +30,11 @@ jQuery(function() {
 			regex=/.*/;
 			return regex.test(value);
 	});
+	document.formvalidator.setHandler('date',
+		function (value) {
+			regex=/^(|\d{4}-\d{2}-\d{2}|\d{4}-\d{2}-\d{2} (\d{2}:){0,2}\d{2})$/;//empty|%Y-%m-%d|%Y-%m-%d %H:%M
+			return regex.test(value);
+	});
 [%%FOREACH COMPONENT_OBJECT%%]
 [%%FOREACH VALIDATE_FIELD%%]
 	document.formvalidator.setHandler('[%%FIELD_VALIDATE_NAME%%]',

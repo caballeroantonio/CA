@@ -897,7 +897,7 @@ class ComponentArchitectGenerateHelper
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION'), 'replace' => $field->description));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  $this->_prettifyIniText( $field->description))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT'), 'replace' => 
-                                    $db->escape(strip_tags($field->description)) 
+                                    $db->escape(strip_tags($field->name)) 
                                 ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, $db->escape(strip_tags(utf8_decode($field->description))))     ));
 				

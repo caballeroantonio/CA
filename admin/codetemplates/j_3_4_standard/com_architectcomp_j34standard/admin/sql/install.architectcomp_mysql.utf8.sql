@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
   `publish_down` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00', 
 [%%ENDIF INCLUDE_PUBLISHED_DATES%%] 
 [%%IF INCLUDE_CREATED%%]  
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   KEY `idx_createdby` (`created_by`),
   CONSTRAINT `[%%architectcomp%%]_[%%compobject%%]_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

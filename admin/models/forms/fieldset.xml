@@ -126,7 +126,6 @@
             description="COM_COMPONENTARCHITECT_FIELDSETS_FIELD_PREDEFINED_FIELDSET_DESC"
 			class="inputbox"
 			size="1"
-			readonly="true"
 			default="'0'"
 		>
             <option	value="0">JNO</option>
