@@ -4,18 +4,18 @@
  * @name			[%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%])
  * @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%])
  * @package			[%%com_architectcomp%%]
- * @subpackage		[%%com_architectcomp%%].install
+ * @subpackage		[%%com_architectcomp%%].admin
  * @copyright		[%%COMPONENTCOPYRIGHT%%]
  * @license			GNU General Public License version 3 or later; See http://www.gnu.org/copyleft/gpl.html 
  * 
  * The following Component Architect header section must remain in any distribution of this file
- * 
- * @CAversion		Id: view.html.php 147 2014-05-07 14:53:41Z BrianWade $
+ *
+ * @version			$Id: view.html.php 571 2016-01-04 15:03:02Z BrianWade $
  * @CAauthor		Component Architect (www.componentarchitect.com)
  * @CApackage		architectcomp
- * @CAsubpackage	architectcomp.install
+ * @CAsubpackage	architectcomp.admin
  * @CAtemplate		joomla_3_4_standard (Release 1.0.1)
- * @CAcopyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
+ * @CAcopyright		Copyright (c)2013 - 2016  Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
  * @Joomlacopyright Copyright (c)2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @CAlicense		GNU General Public License version 3 or later; See http://www.gnu.org/copyleft/gpl.html
  * 
@@ -26,17 +26,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
 
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die;
 
-if (version_compare(JVERSION, '3.0', 'lt'))
-{
-	jimport('joomla.application.component.view');
-}	
 /**
  * MVC View for Dashboard
  *
  */
-class [%%ArchitectComp%%]ViewDashboard extends JViewLegacy
+class [%%ArchitectComp%%]View[%%ArchitectComp%%]_Dashboard extends JViewLegacy
 {
 	protected $params;
 	
@@ -73,7 +69,7 @@ class [%%ArchitectComp%%]ViewDashboard extends JViewLegacy
 		JToolbarHelper::title(JText::_('[%%COM_ARCHITECTCOMP%%]_VIEW_DASHBOARD_HEADER'), 'componentarchitect.png');
 		
 		JToolbarHelper::preferences('[%%com_architectcomp%%]');
-		JToolbarHelper::help('JHELP_COMPONENTS_[%%COM_ARCHITECTCOMP%%]_DASHBOARD', true, null, '[%%com_architectcomp%%]');
+		JToolbarHelper::help('JHELP_COMPONENTS_COMPONENTARCHITECT_DASHBOARD', true, null, '[%%com_architectcomp%%]');
 	}
 	
 	/**
@@ -82,17 +78,14 @@ class [%%ArchitectComp%%]ViewDashboard extends JViewLegacy
 	protected function prepareButtons()
 	{
 		$buttons = array();
-
-		//[ % % START_CUSTOM_CODE % % ]
-		//[ % % END_CUSTOM_CODE % % ]
-		//no hace la recursión
-		[%%FOREACH COMPONENT_OBJECT%%]
+[%%FOREACH COMPONENT_OBJECT%%]
 		$buttons[] = array('link'=>'index.php?option=[%%com_architectcomp%%]&view=[%%compobjectplural%%]',
-						   'object'=>'[%%compobjectplural%%]',
-						   'text'=>JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]'),
-						   'desc'=>JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]_DESCRIPTION')//_DASHBOARD
-						   );
-		[%%ENDFOR COMPONENT_OBJECT%%]
+			'object'=>'[%%compobjectplural%%]',
+			'text'=>'[%%CompObject_plural_name%%]',//JText::_('[%%ARCHITECTCOMP%%]_COMPONENT_WIZARD'),
+			'desc'=>JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]_DESCRIPTION')
+			);
+[%%ENDFOR COMPONENT_OBJECT%%]
+
 		return $buttons;
 	}	
 	/**
@@ -104,7 +97,6 @@ class [%%ArchitectComp%%]ViewDashboard extends JViewLegacy
 
 		// Include custom admin css
 		$this->document->addStyleSheet(JUri::root().'media/[%%com_architectcomp%%]/css/admin.css');
-		$this->document->addStyleSheet(JURI::root()."media/[%%com_architectcomp%%]/css/categories.css");		
 
 		// Add Javscript functions for field display
 		JHtml::_('behavior.tooltip');

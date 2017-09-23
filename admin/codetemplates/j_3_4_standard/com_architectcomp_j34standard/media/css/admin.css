@@ -23,7 +23,7 @@
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
-/*[%%IF INCLUDE_BATCH%%]*/
+[%%IF INCLUDE_BATCH%%]
 /********************************** Batch Copy layout *****************************************/
  label#batch-access-lbl, label#batch-language-lbl,
 label#batch-category-lbl, label#batch-copy-items-lbl
@@ -37,15 +37,15 @@ select#batch-category-id
     margin-right: 5px !important;
     margin-top: 5px !important;
 } 
-    /*[%%IF INCLUDE_COPY%%]*/
+    [%%IF INCLUDE_COPY%%]
 input#batch-copy-items
 {
     margin-right: 5px !important;
     margin-top: 10px !important;
 }
-    /*[%%ENDIF INCLUDE_COPY%%]*/
-/*[%%ENDIF INCLUDE_BATCH%%]*/
-/*[%%IF INCLUDE_ORDERING%%]*/
+    [%%ENDIF INCLUDE_COPY%%]
+[%%ENDIF INCLUDE_BATCH%%]
+[%%IF INCLUDE_ORDERING%%]
 .order-column
 {
     text-align: center;
@@ -57,7 +57,60 @@ input.order-input
     width: 20% !important;
     text-align: right;
 }
-/*[%%ENDIF INCLUDE_ORDERING%%]*/
+[%%ENDIF INCLUDE_ORDERING%%]
+
+[%%IF GENERATE_ADMIN_DASHBOARD%%]
+  /********************************** Dashboard layout *****************************************/
+#dashboard .links div.icon
+{
+	border:1px solid #F0F0F0;
+	color:#666666;
+	display:block;
+	float:left;
+	text-decoration:none;
+	vertical-align:middle;
+	width:100%;
+	float:left;
+	margin-bottom:5px;
+	margin-right:5px;
+	text-align:center;
+	width: 100%;
+}
+#dashboard .links ul
+{
+	padding-left:10px;
+}
+#dashboard .links div.icon:hover
+{
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:#F9F9F9 none repeat scroll 0 0;
+	border-color:#EEEEEE #CCCCCC #CCCCCC #EEEEEE;
+	border-style:solid;
+	border-width:1px;
+	color:#0B55C4;
+	cursor:pointer;
+}
+#dashboard .links span
+{
+	display:block;
+	text-align:center;
+}
+#dashboard .links img
+{
+	margin:0 auto;
+	padding:10px 0;
+}
+#dashboard .description
+{
+}
+#dashboard .copyright, #dashboard .release
+{
+    text-align: center;
+}
+[%%ENDIF GENERATE_ADMIN_DASHBOARD%%]
+
  /********************************** Component Icons *****************************************/
 .icon-16-[%%architectcomp%%]
 {
@@ -67,7 +120,7 @@ input.order-input
 {
       background-image: url(../images/icon-48-[%%architectcomp%%].png);
 }
-/*[%%IF GENERATE_CATEGORIES%%]*/
+[%%IF GENERATE_CATEGORIES%%]
 .icon-16-categories
 {
       background-image: url(../images/icon-16-categories.png);
@@ -76,9 +129,9 @@ input.order-input
 {
       background-image: url(../images/icon-48-categories.png);
 }
-/*[%%ENDIF GENERATE_CATEGORIES%%]*/
+[%%ENDIF GENERATE_CATEGORIES%%]
 
-/*[%%FOREACH COMPONENT_OBJECT%%]*/
+[%%FOREACH COMPONENT_OBJECT%%]
 .icon-16-[%%compobject%%]
 {
       background-image: url(../images/icon-16-[%%compobjectplural%%].png);
@@ -95,4 +148,4 @@ input.order-input
 {
       background-image: url(../images/icon-48-[%%compobjectplural%%].png);
 }
-/*[%%ENDFOR COMPONENT_OBJECT%%]*/
+[%%ENDFOR COMPONENT_OBJECT%%]

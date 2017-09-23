@@ -480,7 +480,7 @@ class ComponentArchitectSearchReplaceHelper
 				}			
 				
 				if (((isset($this->component_conditions['generate_categories']) AND $this->component_conditions['generate_categories']) OR JString::strpos(JString::strtolower($file),'categor') === False)
-					AND ((isset($this->component_conditions['generate_admin_dashboard']) AND $this->component_conditions['generate_admin_dashboard']) OR JString::strpos(JString::strtolower($file),'dashboard') === False) || true)
+					AND ((isset($this->component_conditions['generate_admin_dashboard']) AND $this->component_conditions['generate_admin_dashboard']) OR JString::strpos(JString::strtolower($file),'dashboard') === False))
 				{				
 					if ($this->template_object_name != '' AND JString::strpos($file,$this->template_object_name) !== False)
 					{

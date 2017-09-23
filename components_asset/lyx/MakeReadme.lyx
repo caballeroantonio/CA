@@ -634,16 +634,11 @@ status open
 
 \begin_layout Plain Layout
 
-#ejecutarlo varias veces
-\end_layout
-
-\begin_layout Plain Layout
-
 sed --in-place 's/),(/),
 \backslash
 r
 \backslash
-n(/' src.sql
+n(/g' src.sql
 \end_layout
 
 \begin_layout Plain Layout

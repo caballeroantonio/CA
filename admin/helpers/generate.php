@@ -675,9 +675,11 @@ class ComponentArchitectGenerateHelper
 				$component_object->conditions['generate_categories'] = 1;
 			}
 			$component_object->default_object = true;
+			
 			// Search/Replace set here as in not known earlier for _getComponentSearchPairs
 			// e.g. 'search' => '[%%architectcomp_default_admin_view%%]', 'replace' => 'groups'
 			array_push($this->_component->search_replace_pairs,array('search' => $this->_markupText(JString::strtolower(str_replace (" ", "",$template_component_name)).'_default_admin_view'), 'replace' => JString::strtolower(str_replace ("_", "", $component_object->plural_code_name))));
+			
 			// e.g. 'search' => '[%%architectcomp_default_view%%]', 'replace' => 'groups'
 			array_push($this->_component->search_replace_pairs,array('search' => $this->_markupText(JString::strtolower(str_replace (" ", "",$template_component_name)).'_default_view'), 'replace' => JString::strtolower(str_replace ("_", "", $component_object->plural_code_name))));
 			

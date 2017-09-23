@@ -274,6 +274,19 @@
 			    <option	value="0">COM_COMPONENTARCHITECT_OBJECT_GENERATES_GENERIC_VALUE_DO_NOT_GENERATE</option>
 		    </field>
             <field
+                name="generate_admin_dashboard"
+                type="radio"
+                label="COM_COMPONENTARCHITECT_COMPONENTOBJECTS_FIELD_GENERATE_ADMIN_DASHBOARD_LABEL"
+                description="COM_COMPONENTARCHITECT_COMPONENTOBJECTS_FIELD_GENERATE_ADMIN_DASHBOARD_DESC"
+			    class="btn-group"
+			    size="1"
+			    required="true"
+			    default="1"
+		    >
+			    <option	value="1">COM_COMPONENTARCHITECT_OBJECT_GENERATES_GENERIC_VALUE_GENERATE</option>
+			    <option	value="0">COM_COMPONENTARCHITECT_OBJECT_GENERATES_GENERIC_VALUE_DO_NOT_GENERATE</option>
+		    </field>
+            <field
                 name="generate_categories"
                 type="radio"
                 label="COM_COMPONENTARCHITECT_COMPONENTOBJECTS_FIELD_GENERATE_CATEGORIES_LABEL"

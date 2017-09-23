@@ -4,18 +4,18 @@
  * @name			[%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%])
  * @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%])
  * @package			[%%com_architectcomp%%]
- * @subpackage		[%%com_architectcomp%%].install
+ * @subpackage		[%%com_architectcomp%%].admin
  * @copyright		[%%COMPONENTCOPYRIGHT%%]
  * @license			GNU General Public License version 3 or later; See http://www.gnu.org/copyleft/gpl.html 
  * 
  * The following Component Architect header section must remain in any distribution of this file
- * 
- * @CAversion		Id: default.php 94 2014-04-22 14:38:56Z BrianWade $
+ *
+ * @version			$Id: edit.php 571 2016-01-04 15:03:02Z BrianWade $
  * @CAauthor		Component Architect (www.componentarchitect.com)
  * @CApackage		architectcomp
- * @CAsubpackage	architectcomp.install
+ * @CAsubpackage	architectcomp.admin
  * @CAtemplate		joomla_3_4_standard (Release 1.0.1)
- * @CAcopyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
+ * @CAcopyright		Copyright (c)2013 - 2016  Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
  * @Joomlacopyright Copyright (c)2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @CAlicense		GNU General Public License version 3 or later; See http://www.gnu.org/copyleft/gpl.html
  * 
@@ -25,14 +25,10 @@
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
-
-defined('_JEXEC') or die('Restricted access');
+ 
+defined('_JEXEC') or die;
 
 ?>
-[%%FOREACH COMPONENT_OBJECT%%]
-x,
-[%%ENDFOR COMPONENT_OBJECT%%]
-</style>
 <div id="dashboard" style="width: 100%">
 	<div style="clear:both;"></div>
 	<div style="width: 50%; display:block; float:left">
@@ -57,7 +53,7 @@ x,
 			?>
 		</div>
 	</div>
-	<?php /*?><div style="width: 45%; display:block; float:left; margin-left: 10px;">
+	<div style="width: 45%; display:block; float:left; margin-left: 10px;">
 		<h2 align="center">
 			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]'); ?>
 		</h2>
@@ -79,13 +75,13 @@ x,
 			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_COPYRIGHT_HEADER'); ?>
 		</h3>		
 		<div class="copyright">
-			<?php echo JText::_('[%%COMPONENTCOPYRIGHT%%]'); ?><br/>
-			<?php //echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_LICENSE'); ?>
+			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_COPYRIGHT'); ?><br/>
+			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_LICENSE'); ?>
 			<br/><br/>
 		</div>
 		<div class="copyright">
 			<br /><br />
 			<em><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_JOOMLA_LOGO_DISCLAIMER'); ?></em>
 		</div>	
-	</div><?php */?>
+	</div>
 </div>
