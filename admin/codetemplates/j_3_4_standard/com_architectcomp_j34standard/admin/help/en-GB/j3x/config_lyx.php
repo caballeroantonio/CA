@@ -15,11 +15,20 @@
  */
 class Foo {
 	
-    protected $_lyx_forbidden = array('\r\n', '~', '^', '\\', '&', '%', '$', '#', '_', '{', '}',);
-    protected $_lyx_replacement = array(
-                '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
-                '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
-            );
+    protected $_latex_forbidden = array(
+        '\u00e1', '\u00e9', '\u00ed', '\u00f3', '\u00fa', '\u00c1', '\u00c9', '\u00cd', '\u00d3', '\u00da', '\u00f1', '\u00d1',
+        '\r\n', '~', '^', '\\', 
+        '&', '%', '$', '#', '_', '{', '}',
+        'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ',
+     );
+    //http://www.aq.upm.es/Departamentos/Fisica/agmartin/webpublico/latex/FAQ-CervanTeX/FAQ-CervanTeX-6.html
+    //"\'a", "\'e", "\'i{}", "\'o", "\'u", "\'A", "\'E", "\'I", "\'O", "\'U", "\~n", "\~N",
+    protected $_latex_replacement = array(
+        'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ',
+        '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
+        '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
+        '\\\'a', '\\\'e', '\\\'i{}', '\\\'o', '\\\'u', '\\\'A', '\\\'E', '\\\'I', '\\\'O', '\\\'U', '\\~n', '\\~N',
+    );
 	
     /**
      * Obtiene el valor una constante i18n definida en un archivo .ini
@@ -27,7 +36,7 @@ class Foo {
      * @return string valor equivalente
      */
     function jtext2lyx($label){
-        return str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, JText::_($label));
+        return str_replace( $this->_latex_forbidden, $this->_latex_replacement, JText::_($label));
     }
 
     function printConfigs(){

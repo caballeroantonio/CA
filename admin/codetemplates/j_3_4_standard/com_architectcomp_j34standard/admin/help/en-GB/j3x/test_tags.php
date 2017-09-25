@@ -1,55 +1,56 @@
 #one [%%IF per line
-Titulo=[%%ArchitectComp_name%%]=TSJ CDMX Libros CompArch
-Nombre del paquete com_architectcomp=[%%com_architectcomp%%]=com_jt
+Titulo=[%%ArchitectComp_name%%]
+Nombre del paquete com_architectcomp=[%%com_architectcomp%%]
 Descripción [%%Architectcomp_description_ini%%] [%%Architectcomp_description%%]
 Release [%%COMPONENTSTARTVERSION%%]
-Copyright [%%COMPONENTCOPYRIGHT%%]=Copyright (c)2013 - 3000. All Rights Reserved
-COMPONENTSTARTVERSION=[%%COMPONENTSTARTVERSION%%]=1.0.0
-COMPONENTAUTHOR=[%%COMPONENTAUTHOR%%]=caballeroantonio
-COMPONENTWEBSITE=[%%COMPONENTWEBSITE%%]=caballeroantonio.com
+Copyright [%%COMPONENTCOPYRIGHT%%]
+COMPONENTSTARTVERSION=[%%COMPONENTSTARTVERSION%%]
+COMPONENTAUTHOR=[%%COMPONENTAUTHOR%%]
+COMPONENTWEBSITE=[%%COMPONENTWEBSITE%%]
 
 
-architectcomp_name=[%%architectcomp_name%%]=tsj cdmx libros comparch
-COM_ARCHITECTCOMP=[%%COM_ARCHITECTCOMP%%]=COM_JT
-ARCHITECTCOMP=[%%ARCHITECTCOMP%%]=JT
-ArchitectComp=[%%ArchitectComp%%]=¿?
-architectcomp[%%architectcomp%%]=jt
+architectcomp_name=[%%architectcomp_name%%]
+COM_ARCHITECTCOMP=[%%COM_ARCHITECTCOMP%%]
+ARCHITECTCOMP=[%%ARCHITECTCOMP%%]
+ArchitectComp=[%%ArchitectComp%%]
+architectcomp[%%architectcomp%%]
 
 [%%FOREACH COMPONENT_OBJECT%%]{1.0}
 	{COMPONENT_OBJECT}
-    Compobject_name=[%%Compobject_name%%]=Libro de ejemplo
-    Compobject_description_ini=[%%Compobject_description_ini%%]=<p>el libro de ejeplo sliver para ......</p>
+    Compobject_name=[%%Compobject_name%%]
+    Compobject_description_ini=[%%Compobject_description_ini%%]
 	
-    COMPOBJECT=[%%COMPOBJECT%%]=JTLEJEMPLO
-    compobject=[%%compobject%%]=jtlejemplo
+    COMPOBJECT=[%%COMPOBJECT%%]
+    compobject=[%%compobject%%]
     
-    compobject_name=[%%compobject_name%%]=libro de ejemplo
-    CompObject_short_name=[%%CompObject_short_name%%]=Jtlejemplo
-    Compobject_short_name=[%%Compobject_short_name%%]=Jtlejemplo
-    compobject_short_name=[%%compobject_short_name%%]=jtlejemplo
+    compobject_name=[%%compobject_name%%]
+    CompObject_short_name=[%%CompObject_short_name%%]
+    Compobject_short_name=[%%Compobject_short_name%%]
+    compobject_short_name=[%%compobject_short_name%%]
     
-    COMPOBJECTPLURAL=[%%COMPOBJECTPLURAL%%]=LEJEMPLO
-    compobjectplural=[%%compobjectplural%%]=lejemplo
-    compobject_plural_name=[%%compobject_plural_name%%]=ejemplos
-    CompObject_plural_name=[%%CompObject_plural_name%%]=Ejemplos
-    compobject_short_plural_name=[%%compobject_short_plural_name%%]=jtlejemploes
-    CompObject_short_plural_name=[%%CompObject_short_plural_name%%]=Jtlejemploes
+    COMPOBJECTPLURAL=[%%COMPOBJECTPLURAL%%]
+    compobjectplural=[%%compobjectplural%%]
+    compobject_plural_name=[%%compobject_plural_name%%]
+    CompObject_plural_name=[%%CompObject_plural_name%%]
+    compobject_short_plural_name=[%%compobject_short_plural_name%%]
+    CompObject_short_plural_name=[%%CompObject_short_plural_name%%]
     
     
     [%%FOREACH OBJECT_FIELDSET%%]
         {OBJECT_FIELDSET}
-    	FIELDSET_CODE_NAME_UPPER=[%%FIELDSET_CODE_NAME_UPPER%%]=JTLEJEMPLOFS
-        FIELDSET_NAME=[%%FIELDSET_NAME%%]=jtl_ejemplo_fs
-        FIELDSET_CODE_NAME_UPPER=[%%FIELDSET_CODE_NAME_UPPER%%]=JTLEJEMPLOFS
-        FIELDSET_DESCRIPTION=[%%FIELDSET_DESCRIPTION%%]=""¿4?
+    	FIELDSET_CODE_NAME_UPPER=[%%FIELDSET_CODE_NAME_UPPER%%]
+        FIELDSET_NAME=[%%FIELDSET_NAME%%]
+        FIELDSET_CODE_NAME_UPPER=[%%FIELDSET_CODE_NAME_UPPER%%]
+        FIELDSET_DESCRIPTION=[%%FIELDSET_DESCRIPTION%%]
         
         [%%FOREACH OBJECT_FIELD%%]{1.1}
             {OBJECT_FIELD}
-            FIELD_OPTIONS_LANGUAGE_VARS=[%%FIELD_OPTIONS_LANGUAGE_VARS%%]=¿?
-            FIELD_CODE_NAME_UPPER=[%%FIELD_CODE_NAME_UPPER%%]=¿?
+            FIELD_OPTIONS_LANGUAGE_VARS=[%%FIELD_OPTIONS_LANGUAGE_VARS%%]
+            FIELD_CODE_NAME_UPPER=[%%FIELD_CODE_NAME_UPPER%%]
                         
-            FIELD_INTRO=[%%FIELD_INTRO%%]=¿?
-            FIELD_DESCRIPTION_INI=[%%FIELD_DESCRIPTION_INI%%]=¿?
+            FIELD_INTRO=[%%FIELD_INTRO%%] 
+            FIELD_DESCRIPTION_INI=[%%FIELD_DESCRIPTION_INI%%]
+            FIELD_DESCRIPTION=[%%FIELD_DESCRIPTION%%] 
             
             `[%%FIELD_CODE_NAME%%]` [%%FIELD_DBTYPEANDSIZE%%] [%%FIELD_DBDEFAULT%%] 
             COMMENT '[%%FIELD_DBCOMMENT%%]',
@@ -57,8 +58,8 @@ architectcomp[%%architectcomp%%]=jt
             
             [%%IF FIELD_LINK%%]
                 {FIELD_LINK}
-                FIELD_FOREIGN_OBJECT_ACRONYM_UPPER=[%%FIELD_FOREIGN_OBJECT_ACRONYM_UPPER%%]=¿?
-                FIELD_FOREIGN_OBJECT_UPPER=[%%FIELD_FOREIGN_OBJECT_UPPER%%]=¿?
+                FIELD_FOREIGN_OBJECT_ACRONYM_UPPER=[%%FIELD_FOREIGN_OBJECT_ACRONYM_UPPER%%]
+                FIELD_FOREIGN_OBJECT_UPPER=[%%FIELD_FOREIGN_OBJECT_UPPER%%]
             [%%ENDIF FIELD_LINK%%]
 
             [%%FOREACH VALIDATE_FIELD%%]
@@ -81,11 +82,11 @@ architectcomp[%%architectcomp%%]=jt
 [%%ENDFOR OBJECT_FIELD%%]{-1.1}
         {1.1a}[%%FOREACH OBJECT_FIELD%%]
             FIELD_NAME=[%%FIELD_NAME%%]
-            FIELD_NAME_LYX=[%%FIELD_NAME_LYX%%]
+            FIELD_NAME_LATEX=[%%FIELD_NAME_LATEX%%]
             FIELD_CODE_NAME=[%%FIELD_CODE_NAME%%]
-            FIELD_CODE_NAME_LYX=[%%FIELD_CODE_NAME_LYX%%]
+            FIELD_CODE_NAME_LATEX=[%%FIELD_CODE_NAME_LATEX%%]
             FIELD_DBCOMMENT=[%%FIELD_DBCOMMENT%%]
-            FIELD_DBCOMMENT_LYX=[%%FIELD_DBCOMMENT_LYX%%]
+            FIELD_DBCOMMENT_LATEX=[%%FIELD_DBCOMMENT_LATEX%%]
             
             
 		{-1.1a}[%%ENDFOR OBJECT_FIELD%%]

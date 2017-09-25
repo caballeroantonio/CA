@@ -6,6 +6,8 @@
 \origin unavailable
 \textclass book
 \begin_preamble
+%\' (acute accent): á
+
 %%preferencias de PDF%%
 \usepackage{hyperref}
 
@@ -135,7 +137,7 @@ lipsum[1-5]
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -260,7 +262,7 @@ hypersetup{
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -659,6 +661,102 @@ separar líneas de respaldos sql
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Cuando no hay más remedio, los caracteres extendidos se escriben así:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    á  ==>  
+\backslash
+'a        Á  ==>  
+\backslash
+'A     ñ  ==>  
+\backslash
+~n   ¿  ==>  ?`
+\end_layout
+
+\begin_layout Plain Layout
+
+    é  ==>  
+\backslash
+'e        É  ==>  
+\backslash
+'E     Ñ  ==>  
+\backslash
+~N   ¡  ==>  !`
+\end_layout
+
+\begin_layout Plain Layout
+
+    í  ==>  
+\backslash
+'
+\backslash
+i{}     Í  ==>  
+\backslash
+'I     ü  ==>  
+\backslash
+"u
+\end_layout
+
+\begin_layout Plain Layout
+
+    ó  ==>  
+\backslash
+'o        Ó  ==>  
+\backslash
+'O     Ü  ==>  
+\backslash
+"U
+\end_layout
+
+\begin_layout Plain Layout
+
+    ú  ==>  
+\backslash
+'u        Ú  ==>  
+\backslash
+'U
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#pasarlo a los archivos *.tex
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+codificación de acentos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Para cada componente
 \end_layout
@@ -803,6 +901,26 @@ filename "D:/www/Google Drive caballeroantonio/Proyecto libros/Torti Manuales/sc
 
 \end_layout
 
+\begin_layout Part
+Apéndices
+\end_layout
+
+\begin_layout Chapter
+Requerimiento para Salas
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset External
+	template PDFPages
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/Levantamiento salas civiles.pdf
+	lyxscale 40
+	extra LaTeX "pages=-"
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -811,7 +929,7 @@ filename "D:/www/Google Drive caballeroantonio/Proyecto libros/Torti Manuales/sc
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34standard/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
+filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34test/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
 
 \end_inset
 

@@ -1,45 +1,45 @@
-ï»¿id & INT(10) & no description \tabularnewline\hline 
+id & INT(10) & PK \tabularnewline\hline 
 
-[%%IF INCLUDE_NAME%%]  
+[%%IF INCLUDE_NAME%%]
 	name & VARCHAR(255) & no description \tabularnewline\hline 
-    [%%IF INCLUDE_ALIAS%%]  
+    [%%IF INCLUDE_ALIAS%%]
 		alias & VARCHAR(255) & no description \tabularnewline\hline 
     [%%ENDIF INCLUDE_ALIAS%%]
-[%%ENDIF INCLUDE_NAME%%]   
+[%%ENDIF INCLUDE_NAME%%] 
 
 [%%IF INCLUDE_DESCRIPTION%%]
 	description & MEDIUMTEXT & no description \tabularnewline\hline 
-[%%ENDIF INCLUDE_DESCRIPTION%%]  
+[%%ENDIF INCLUDE_DESCRIPTION%%]
 
-[%%IF INCLUDE_INTRO%%]  
+[%%IF INCLUDE_INTRO%%]
 	intro & MEDIUMTEXT & no description \tabularnewline\hline 
-[%%ENDIF INCLUDE_INTRO%%]  
+[%%ENDIF INCLUDE_INTRO%%]
 
 [%%IF INCLUDE_IMAGE%%]
   images & TEXT & no description \tabularnewline\hline
-[%%ENDIF INCLUDE_IMAGE%%]  
+[%%ENDIF INCLUDE_IMAGE%%]
 
 [%%IF INCLUDE_URLS%%]
   urls & TEXT & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_URLS%%]
 
-[%%IF GENERATE_CATEGORIES%%]  
+[%%IF GENERATE_CATEGORIES%%]
   catid & INT(10) & no description \tabularnewline\hline
-[%%ENDIF GENERATE_CATEGORIES%%]  
+[%%ENDIF GENERATE_CATEGORIES%%]
 
 [%%IF INCLUDE_STATUS%%]
   state & TINYINT(1) & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_STATUS%%]
 
-[%%IF INCLUDE_PUBLISHED_DATES%%]  
+[%%IF INCLUDE_PUBLISHED_DATES%%]
   publish\_up & DATETIME & no description \tabularnewline\hline
   publish\_down & DATETIME & no description \tabularnewline\hline 
 [%%ENDIF INCLUDE_PUBLISHED_DATES%%] 
 
-[%%IF INCLUDE_CREATED%%]  
-  created & DATETIME & no description \tabularnewline\hline
-  created\_by & INT(10) & no description \tabularnewline\hline
-  [%%IF INCLUDE_ALIAS%%]  
+[%%IF INCLUDE_CREATED%%]
+  created & DATETIME & Fecha de creación \tabularnewline\hline
+  created\_by & INT(10) & FK - creado por \tabularnewline\hline
+  [%%IF INCLUDE_ALIAS%%]
   created\_by\_alias & VARCHAR(255) & no description \tabularnewline\hline  
   [%%ENDIF INCLUDE_ALIAS%%]
 [%%ENDIF INCLUDE_CREATED%%] 
@@ -49,26 +49,26 @@
   modified\_by & INT(10) & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_MODIFIED%%] 
 
-[%%IF INCLUDE_CHECKOUT%%]  
+[%%IF INCLUDE_CHECKOUT%%]
   checked\_out & INT(10) & no description \tabularnewline\hline
   checked\_out\_time & DATETIME & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_CHECKOUT%%]
 
-[%%IF INCLUDE_VERSIONS%%]  
+[%%IF INCLUDE_VERSIONS%%]
   version & int(10) & no description \tabularnewline\hline
-[%%ENDIF INCLUDE_VERSIONS%%]  
+[%%ENDIF INCLUDE_VERSIONS%%]
 
-[%%IF INCLUDE_ORDERING%%]  
+[%%IF INCLUDE_ORDERING%%]
   ordering & INT(11) & no description \tabularnewline\hline
-[%%ENDIF INCLUDE_ORDERING%%]  
+[%%ENDIF INCLUDE_ORDERING%%]
 
 [%%IF INCLUDE_PARAMS_RECORD%%]
   params & VARCHAR(5120) & no description \tabularnewline\hline
-[%%ENDIF INCLUDE_PARAMS_RECORD%%]  
+[%%ENDIF INCLUDE_PARAMS_RECORD%%]
 
 [%%IF INCLUDE_HITS%%]
   hits & INT(10) & no description \tabularnewline\hline
-[%%ENDIF INCLUDE_HITS%%]  
+[%%ENDIF INCLUDE_HITS%%]
 
 [%%IF INCLUDE_FEATURED%%]
   featured & TINYINT(3) & no description \tabularnewline\hline
@@ -78,17 +78,17 @@
   language & CHAR(7) & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_LANGUAGE%%] 
 
-[%%IF INCLUDE_ASSETACL%%]  
-  [%%IF INCLUDE_ASSETACL_RECORD%%]  
+[%%IF INCLUDE_ASSETACL%%]
+  [%%IF INCLUDE_ASSETACL_RECORD%%]
   asset\_id & INT(10) & no description \tabularnewline\hline 
   [%%ENDIF INCLUDE_ASSETACL_RECORD%%]
-[%%ENDIF INCLUDE_ASSETACL%%]  
+[%%ENDIF INCLUDE_ASSETACL%%]
 
 [%%IF INCLUDE_ACCESS%%] 
   access & INT(10) & no description \tabularnewline\hline
 [%%ENDIF INCLUDE_ACCESS%%] 
 
-[%%IF INCLUDE_METADATA%%]  
+[%%IF INCLUDE_METADATA%%]
   metakey & TEXT & no description \tabularnewline\hline
   metadesc & TEXT & no description \tabularnewline\hline
   robots & VARCHAR(50) & no description \tabularnewline\hline
@@ -98,5 +98,5 @@
 
 %each field
 [%%FOREACH OBJECT_FIELD%%]
-	[%%FIELD_CODE_NAME_LYX%%] & [%%FIELD_DBTYPEANDSIZE%%] & [%%FIELD_DBCOMMENT_LYX%%] \tabularnewline\hline 
+	[%%FIELD_CODE_NAME_LATEX%%] & [%%FIELD_DBTYPEANDSIZE%%] & [%%FIELD_DBCOMMENT_LATEX%%] \tabularnewline\hline 
 [%%ENDFOR OBJECT_FIELD%%]

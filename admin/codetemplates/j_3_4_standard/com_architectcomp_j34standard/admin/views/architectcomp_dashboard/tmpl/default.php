@@ -66,11 +66,9 @@ defined('_JEXEC') or die;
 		<div class="updated">
 			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_USE_JOOMLA_UPDATES'); ?>
 		</div>	
-		<!-- //[%%START_CUSTOM_CODE%%] -->
 		<div class="alert alert-message" style="width: 50%; margin-left: auto; margin-right: auto;">
 			<p style="font-weight: bold; text-align: center; margin-bottom: 0px;"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_CURRENT_RELEASE'); ?></p>
 		</div>
-		<!-- //[%%END_CUSTOM_CODE%%] -->		
 		<h3 align="center" style="margin-top: 30px;">
 			<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_DASHBOARD_COPYRIGHT_HEADER'); ?>
 		</h3>		

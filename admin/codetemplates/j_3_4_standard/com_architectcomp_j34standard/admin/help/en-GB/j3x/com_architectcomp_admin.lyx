@@ -93,7 +93,26 @@ status open
 
 
 \backslash
+longdate 
+\backslash
 today 
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset space ~
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+settimeformat{xxivtime} 
 \backslash
 currenttime
 \end_layout
@@ -120,29 +139,94 @@ Descripción
 \end_layout
 
 \begin_layout Standard
-[%%Architectcomp_description_ini%%]
+[%%Architectcomp_description_lyx%%]
 \end_layout
 
 \begin_layout Chapter
 Manual de administración
 \end_layout
 
-\begin_layout Section
-Instalación
+\begin_layout Itemize
+El componente se instala siguiendo las instrucciones indicadas en la sección
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Instalación"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
-Ingresar a {SITE}/ADMINISTRATOR
+El componente ha sido desarrollado siguiendo el patrón de arquitectura Modelo–Vi
+sta–Controlador (MVC).
+ La descripción de los modelos se encuentran descritas en la sección 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Modelo-de-datos"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Instalación
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Instalación"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ingresar al portal de administración en {SITE}/administrator e identifíquese
+ con credenciales de administrador
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Portal de administración
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Navegar en el menú Extensions\SpecialChar menuseparator
 Manage\SpecialChar menuseparator
-Install
-\end_layout
-
-\begin_layout Itemize
-Seleccionar la ubicación del paquete instalador
+Install y seleccionar la ubicación del
+ paquete instalador
 \end_layout
 
 \begin_layout Standard
@@ -224,13 +308,84 @@ Configuración
 \end_layout
 
 \begin_layout Itemize
-Ingresar a {SITE}/ADMINISTRATOR
+Ingresar al portal de administración en {SITE}/administrator e identifíquese
+ con credenciales de administrador
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Portal de administración
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Navegar en el menú System\SpecialChar menuseparator
 Global Configuration\SpecialChar menuseparator
 [%%ArchitectComp_name%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_versioncontrol.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interfaz de configuraciones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -391,6 +546,43 @@ Control de cambios
 \end_layout
 
 \begin_layout Standard
+El 20170720 la Comisión del Sistema de Control de Información y Registros
+ solicitó 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Mostrar la bitácora de cambios que se realizan en los registros de los libros
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se incorporó un control de versiones 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+llamado UCM (Unified Content Model )
+\end_layout
+
+\end_inset
+
+ que se habilita para cada componente.
+ 
+\end_layout
+
+\begin_layout Itemize
+Se configura el número máximo de versiones que se debe almacenar para cada
+ registro, con el valor a cero se almacenan todas las versiones.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -425,12 +617,215 @@ Configuraciones del control de versiones
 
 \end_layout
 
+\begin_layout Itemize
+Al ingresar en el modo de edición de un registro aparece el botón 
+\begin_inset Quotes eld
+\end_inset
+
+Versions
+\begin_inset Quotes erd
+\end_inset
+
+ y al presionarlo se visualiza el histórico del registro
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_index.phpoption=com_contenthistory&view=history&layout=modal&tmpl=component&item_id=1.jpg
+	lyxscale 40
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histórico de un registro
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+En el registro se pueden realizar las siguientes acciones:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Restore
+\end_layout
+
+\begin_layout Itemize
+Preview
+\end_layout
+
+\begin_layout Itemize
+Compare
+\end_layout
+
+\begin_layout Itemize
+Keep On/Off
+\end_layout
+
+\begin_layout Itemize
+Delete
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+@ToDo Generar las etiquetas adecuadas para el preview del control de versiones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=preview&layout=preview&tmpl=component&version_id=1.jpg
+	lyxscale 40
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Preview de un registro
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+SELECT 
+\end_layout
+
+\begin_layout Plain Layout
+
+t.type_title, h.version_note #l.*,
+\end_layout
+
+\begin_layout Plain Layout
+
+FROM jpruebas.jos_ucm_history h
+\end_layout
+
+\begin_layout Plain Layout
+
+INNER JOIN jpruebas.jos_content_types t ON t.type_id = h.ucm_type_id
+\end_layout
+
+\begin_layout Plain Layout
+
+#INNER JOIN jos_jtsca_ls01s l ON l.id = h.ucm_item_id #variable dependiente
+ de t.table
+\end_layout
+
+\begin_layout Plain Layout
+
+WHERE 1
+\end_layout
+
+\begin_layout Plain Layout
+
+AND t.type_id = 10100
+\end_layout
+
+\begin_layout Plain Layout
+
+ORDER BY h.version_id desc;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama entidad relación
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 [%%ENDIF INCLUDE_VERSIONS%%]
 \end_layout
 
 \begin_layout Standard
 [%%FOREACH COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Subsection
+Configuración de [%%CompObject_name%%]
 \end_layout
 
 \begin_layout Standard
@@ -654,6 +1049,13 @@ Configuración de permisos globales
 
 \begin_layout Section
 Modelo de datos (tablas)
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Modelo-de-datos"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -669,7 +1071,11 @@ Descripción
 \end_layout
 
 \begin_layout Standard
-[%%Compobject_description_ini%%]
+Es la tabla para almacenar [%%CompObject_plural_name%%]
+\end_layout
+
+\begin_layout Standard
+[%%Compobject_description_lyx%%]
 \end_layout
 
 \begin_layout Subsubsection
@@ -832,7 +1238,6 @@ status open
 \begin_inset Graphics
 	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
 	lyxscale 30
-	width 80col%
 
 \end_inset
 
@@ -879,7 +1284,6 @@ status open
 \begin_inset Graphics
 	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
 	lyxscale 30
-	width 80col%
 
 \end_inset
 
@@ -907,6 +1311,14 @@ DER categorías
 [%%ENDIF GENERATE_CATEGORIES%%]
 \end_layout
 
+\begin_layout Subsection
+Dashboard
+\end_layout
+
+\begin_layout Subsection
+Administración de empleados
+\end_layout
+
 \begin_layout Chapter
 Manual de usuario
 \end_layout
@@ -932,7 +1344,7 @@ Descripción
 \end_layout
 
 \begin_layout Standard
-[%%Compobject_description_ini%%]
+[%%Compobject_description_lyx%%]
 \end_layout
 
 \begin_layout Standard

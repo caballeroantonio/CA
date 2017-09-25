@@ -40,11 +40,31 @@ class ComponentArchitectGenerateHelper
 	protected $_progress;
 	protected $_token = '';
 	protected $_name_regex = '/[^a-zA-Z0-9\s\\/\-_+&()]/';
-        //@ToDo implement \r\n sustitution by \break 
-        protected $_lyx_forbidden = array('\r\n', '~', '^', '\\', '&', '%', '$', '#', '_', '{', '}',);
+        protected $_latex_forbidden = array(
+            '\r\n', '~', '^', '\\',
+            '&', '%', '$', '#', '_', '{', '}',
+            'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ',
+        );
+        protected $_latex_replacement = array(
+            '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
+            '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
+            '\\\'a', '\\\'e', '\\\'i{}', '\\\'o', '\\\'u', '\\\'A', '\\\'E', '\\\'I', '\\\'O', '\\\'U', '\\~n', '\\~N',
+        );
+        protected $_lyx_forbidden = array(
+            '\r\n', '\\',
+//            '<br/>',
+            '<div class="standard">',
+            '</div>',
+            '<p>',
+            '</p>'
+            );
         protected $_lyx_replacement = array(
-                    '', '\textasciitilde ', '\textasciicircum ', '\textbackslash ',
-                    '\&', '\%', '\$', '\#', '\_', '\{', '\}', 
+            '', '\backslash ',
+//            'buscame',
+            "\\begin_layout Standard\r\n",
+            "\r\n\\end_layout",
+            "\\begin_layout Standard\r\n",
+            "\r\n\\end_layout",
                 );
         protected $_ini_forbidden = array('"', "\r\n");
         protected $_ini_replacement = array('&quot;','<br/>');
@@ -523,6 +543,7 @@ class ComponentArchitectGenerateHelper
 
 				
 				$child_component_object = $child_component_object_model->getItem($cascade_field->component_object_id);	
+//@debug codification//file_put_contents('getChildComponentObjects1.txt', var_export($child_component_object, TRUE), FILE_APPEND);
 						
 				if ($child_component_object === false) 
 				{
@@ -538,6 +559,7 @@ class ComponentArchitectGenerateHelper
 				}
 				
 				$child_search_replace = $this->_getComponentObjectSearchPairs($template_object_name,$child_component_object, true);
+//@debug codification//file_put_contents('getChildComponentObjects2.txt', var_export($component_object, TRUE), FILE_APPEND);
 				
 				$child_component_object->search_replace = $child_search_replace;
 				
@@ -561,6 +583,7 @@ class ComponentArchitectGenerateHelper
 	protected function _populateComponentObject(&$component_object, $default_object_id, $template_component_name, $template_object_name)		
 	{
 		
+//@debug codification//file_put_contents('populateComponentObject.txt', var_export($component_object, TRUE), FILE_APPEND);
 		// Double check that only limited punctuation is present in name as this may cause php code or sql problems
 		$component_object->name = preg_replace($this->_name_regex, '',$component_object->name);
 		
@@ -733,6 +756,7 @@ class ComponentArchitectGenerateHelper
 		
 		
 		$component_object->search_replace = $this->_getComponentObjectSearchPairs($template_object_name,$component_object);
+//@debug codification//file_put_contents('_populateComponentObject1.txt', var_export($component_object, TRUE), FILE_APPEND);
 		
 		if ($this->_getFieldsets($component_object) === false)
 		{
@@ -800,6 +824,7 @@ class ComponentArchitectGenerateHelper
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_NAME'), 'replace' => $fieldset->name));
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION'), 'replace' => $fieldset->description));
 			array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION_INI'), 'replace' => $this->_prettifyIniText( $fieldset->description)));
+			//array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDSET_DESCRIPTION_LYX'), 'replace' => $this->_prettifyLyx( $fieldset->description)));
 
 			if (isset($fieldset->intro) AND $fieldset->intro != '')
 			{
@@ -891,27 +916,28 @@ class ComponentArchitectGenerateHelper
 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UPPER'), 'replace' => JString::strtoupper(JString::trim($field->code_name)))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME'), 'replace' => JString::trim($field->code_name)     ));
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, JString::trim($field->code_name))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_LATEX'),'replace' => $this->_prettifyLaTex( JString::trim($field->code_name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_ALIAS_NAME'), 'replace' => str_replace('_','-',JString::trim($field->code_name))));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME'), 'replace' => JString::trim($field->name))); 
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, JString::trim($field->name))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_NAME_LATEX'),'replace' => $this->_prettifyLaTex( JString::trim($field->name))     ));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_CODE_NAME_UCFIRST'), 'replace' => JString::ucfirst(str_replace('-','',JString::trim(JApplication::stringURLSafe($field->code_name)))))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION'), 'replace' => $field->description));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_INI'), 'replace' =>  $this->_prettifyIniText( $field->description))); 
+				//array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DESCRIPTION_LYX'), 'replace' =>  $this->_prettifyLyx( $field->description))); 
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT'), 'replace' => 
                                     $db->escape(strip_tags($field->name)) 
                                 ));
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LYX'),'replace' => str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, $db->escape(strip_tags(utf8_decode($field->description))))     ));
+				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBCOMMENT_LATEX'),'replace' => $this->_prettifyLaTex( $db->escape(strip_tags($field->description)))     ));
 				
 				if (isset($field->intro) AND $field->intro != '')
 				{
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $field->intro));
-					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO_INI'), 'replace' => $this->_prettifyIniText( $field->intro)));
+					//array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO_INI'), 'replace' => $this->_prettifyIniText( $field->intro)));
 				}
 				else
 				{
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $this->_prettifyIniText( $field->description)));
-					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO'), 'replace' => $field->description));
+					//array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_INTRO_INI'), 'replace' => $this->_prettifyIniText( $field->description) ));
 				}
 				
 				// Initialise field variables
@@ -1592,7 +1618,7 @@ class ComponentArchitectGenerateHelper
 				}	
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_OPTIONS_LANGUAGE_VARS'), 'replace' => isset($language_vars) ? $language_vars : ''));
 
-				//@tx El FIELD_SQL_QUERY debe ser en una sola lÃ­nea porque los saltos aparecen como \r\n y marcan error en el query por $db->escape
+				//@tx El FIELD_SQL_QUERY debe ser en una sola línea porque los saltos aparecen como \r\n y marcan error en el query por $db->escape
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_QUERY'), 'replace' => isset($field->sql_query) ? $db->escape($field->sql_query) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_KEY_FIELD'), 'replace' => isset($field->sql_key_field) ? $db->escape($field->sql_key_field) : ''));
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_SQL_VALUE_FIELD'), 'replace' => isset($field->sql_value_field) ? $db->escape($field->sql_value_field) : ''));
@@ -1946,6 +1972,7 @@ class ComponentArchitectGenerateHelper
 
 		// e.g. 'search' => '[%%Architectcomp_description_ini%%]', 'replace' => 'Focus groups description'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description_ini'), 'replace' => $this->_prettifyIniText( $component_description)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description_lyx'), 'replace' => $this->_prettifyLyx( $component_description)));
 
 		// e.g. 'search' => '[%%Architectcomp_intro%%]', 'replace' => 'Focus groups intro'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_intro'), 'replace' => $component_intro));
@@ -1983,6 +2010,7 @@ class ComponentArchitectGenerateHelper
 	{
 		$db		= JFactory::getDbo();
 
+//@debug codification//file_put_contents('getComponentObjectSearchPairs.txt', var_export($component_object, TRUE), FILE_APPEND);
 		$object_name = $component_object->name;	
 		$object_description = $component_object->description;
 		if(isset($component_object->intro))
@@ -2021,7 +2049,7 @@ class ComponentArchitectGenerateHelper
 
 		// e.g. 'search' => '[%%compobject_name%%]', 'replace' => 'discussion group'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtolower($template_object_name)).'_name'), 'replace' =>JString::strtolower($object_name)));
-
+                
 		// e.g. 'search' => '[%%compobject_plural_name%%]', 'replace' => 'discussion groups'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtolower($template_object_name)).'_plural_name'), 'replace' =>JString::strtolower($object_plural_name)));
 
@@ -2056,6 +2084,7 @@ class ComponentArchitectGenerateHelper
 
 		// e.g. 'search' => '[%%Compobject_description_ini%%]', 'replace' => 'free text'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_ini'), 'replace' => $this->_prettifyIniText( $object_description)));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_lyx'), 'replace' => $this->_prettifyLyx( $object_description)));
 
 		// e.g. 'search' => '[%%Compobject_description_escaped%%]', 'replace' => 'free text'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_object_name))).'_description_escaped'), 'replace' => $db->escape($object_description)));
@@ -2800,6 +2829,8 @@ class ComponentArchitectGenerateHelper
 	*/ 	
 	protected function _markupText($text)
 	{ 
+            //@bug la copia de archivos se está produciendo en codificación Windows 1252 y no en UTF-8
+            //$text = utf8_decode($text);
 		return $this->_code_template->template_markup_prefix.$text.$this->_code_template->template_markup_suffix;
 	}		
         
@@ -2808,12 +2839,37 @@ class ComponentArchitectGenerateHelper
         * algunas descripciones ya vienen en HTML y se desvirtúa
 	* 
 	* @param		string	 Text to markup
-	* 
 	* @return		string	Text prettified
 	*/ 	
 	protected function _prettifyIniText($text)
 	{ 
 		return  str_replace( $this->_ini_forbidden, $this->_ini_replacement, $text);
+	}
+        
+	/**
+	* Prettifica los textos para lyx
+	* 
+	* @param		string	 Text to markup
+	* @return		string	Text prettified
+	*/ 	
+	protected function _prettifyLyx($text)
+	{ 
+		return  str_replace( $this->_lyx_forbidden, $this->_lyx_replacement, $text);
+	}
+	
+	/**
+	* Prettifica los textos para LaTex
+        * @bug copy() no está respetando la codificación de la maqueta de origen
+        * la maqueta tiene Windows1252 y el archivo UTF8
+        * En latex, cuando se utilizan documentos anidados con acentos, sólo funciona Windows1252
+	* por lo que voy a reemplazar los carácteres extendidos por su presentación latex
+        * 
+	* @param		string	 Text to markup
+	* @return		string	Text prettified
+	*/ 	
+	protected function _prettifyLaTex($text)
+	{ 
+		return  str_replace( $this->_latex_forbidden, $this->_latex_replacement, $text);
 	}
 }
 //[%%END_CUSTOM_CODE%%]
