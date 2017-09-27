@@ -83,6 +83,17 @@ class [%%ArchitectComp%%]Controller extends JControllerLegacy
 		$this->input->set('view', $view_name);
 
 		$user = JFactory::getUser();
+//[%%START_CUSTOM_CODE%%]
+/*
+@ToDo cambiarlo en ACL core.view pero en cada controlador, y encontrar la forma de parametrizar el Itemid
+edité el menú login para que hiciera redirect a este componente
+  "login_redirect_menuitem": "544",
+*/
+        if($user->guest){
+            $this->setRedirect('index.php?option=com_users&view=login&Itemid=233',JText::_('[%%COM_ARCHITECTCOMP%%]_LOGIN_REQUIRED'));
+            return;
+        }
+//[%%END_CUSTOM_CODE%%]
 
 		$safe_url_params = array(
 			[%%IF GENERATE_CATEGORIES%%]		

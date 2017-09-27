@@ -34,10 +34,10 @@ defined('_JEXEC') or die;
  */
 class [%%ArchitectComp%%]View[%%CompObjectPlural%%] extends JViewLegacy
 {
-	protected $state = null;
-	protected $item = null;
-	protected $items = null;
-	protected $pagination = null;
+	protected $items;
+	protected $pagination;
+	protected $state;
+	protected $item;
 
 	protected $lead_items = array();
 	protected $intro_items = array();

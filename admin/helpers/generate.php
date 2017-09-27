@@ -1538,6 +1538,8 @@ class ComponentArchitectGenerateHelper
                                 
                                 /**
                                  * UCM content_history_options
+								 * @ToDo mover aquí la lógica de $content_type['content_history_options'] en architectcomp_install.php
+								 * para obtener una cadena más limpia que me permita leerla para hacer UPDATES
                                  */
                                 if ($type == 'sql'){
                                     $displayLookup = array(

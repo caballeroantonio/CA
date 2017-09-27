@@ -756,7 +756,7 @@ SELECT
 
 \begin_layout Plain Layout
 
-t.type_title, h.version_note #l.*,
+t.type_title, t.content_history_options, h.version_note #, l.*
 \end_layout
 
 \begin_layout Plain Layout

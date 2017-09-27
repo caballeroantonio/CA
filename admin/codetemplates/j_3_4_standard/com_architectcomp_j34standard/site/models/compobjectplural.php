@@ -1309,4 +1309,13 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 	}				
 		[%%ENDIF FIELD_LINK%%]
 	[%%ENDFOR FILTER_FIELD%%]	
+	
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function getListQuery4Export(){
+            $this->getDbo()->setQuery($this->getListQuery(), $this->getStart(), $this->getState('list.limit'));
+            return $this->getDbo()->getQuery();
+        }
 }

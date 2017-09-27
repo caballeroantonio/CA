@@ -109,7 +109,12 @@ $params = $this->state->get('params');
 				</button>
 			</div>
 			[%%IF INCLUDE_VERSIONS%%]
-			<?php if ($params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
+			<?php if (
+				  $this->item->version 
+				  //AND $user->authorise('core.version.tasks', '[%%com_architectcomp%%]') 
+				  AND $params->get('save_history') 
+				  AND $params->get('[%%compobject%%]_save_history')
+			) : ?>
 				<div class="btn-group">
 					<?php echo $this->form->getInput('contenthistory'); ?>
 				</div>
@@ -175,12 +180,17 @@ $params = $this->state->get('params');
 					[%%IF INCLUDE_TAGS%%]
 					<?php echo $this->form->renderField('tags', null, null, array('group_id' => 'field_tags')); ?>
 					[%%ENDIF INCLUDE_TAGS%%]
-					[%%IF INCLUDE_VERSIONS%%]
-					<?php 
+                    [%%IF INCLUDE_VERSIONS%%]
+                    <?php
 						$user  = JFactory::getUser();
-						if ($user->authorise('core.version.note', '[%%com_architectcomp%%]') AND $params->get('save_history') AND $params->get('general_save_history')) : 
-					 	echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
-					 endif; ?>	
+						if (
+							$this->item->version 
+							AND $user->authorise('core.version.note', '[%%com_architectcomp%%]') 
+							AND $params->get('save_history') 
+							AND $params->get('[%%compobject%%]_save_history')
+						)
+                        echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
+					 ?>
 					[%%ENDIF INCLUDE_VERSIONS%%]
 					[%%FOREACH OBJECT_FIELDSET%%]	
 						[%%IF FIELDSET_BASIC_DETAILS%%]

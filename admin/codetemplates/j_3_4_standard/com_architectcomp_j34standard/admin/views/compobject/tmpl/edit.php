@@ -126,13 +126,18 @@ $input = $app->input;
 							<?php echo $this->form->renderField('hits', null, null, array('group_id' => 'field_hits')); ?>
 						<?php endif; ?>
 						[%%ENDIF INCLUDE_HITS%%]
-						[%%IF INCLUDE_VERSIONS%%]
-						<?php
+                    [%%IF INCLUDE_VERSIONS%%]
+                    <?php
 						$user  = JFactory::getUser();
-						if ($user->authorise('core.version.note', '[%%com_architectcomp%%]') AND $this->item->version AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
-							<?php echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); ?>
-						<?php endif; ?>
-						[%%ENDIF INCLUDE_VERSIONS%%]
+						if (
+							$this->item->version 
+							AND $user->authorise('core.version.note', '[%%com_architectcomp%%]') 
+							AND $params->get('save_history') 
+							AND $params->get('[%%compobject%%]_save_history')
+						)
+                        echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
+					 ?>
+					[%%ENDIF INCLUDE_VERSIONS%%]
 						[%%IF INCLUDE_ORDERING%%]
 						<?php echo $this->form->renderField('ordering', null, null, array('group_id' => 'field_ordering')); ?>
 						[%%ENDIF INCLUDE_ORDERING%%]										
@@ -172,11 +177,18 @@ $input = $app->input;
 					<?php echo $this->form->renderField('modified', null, null, array('group_id' => 'field_modified')); ?>
 				<?php endif; ?>
 				[%%ENDIF INCLUDE_MODIFIED%%]
-				[%%IF INCLUDE_VERSIONS%%]
-				<?php if ($this->item->version AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
-					<?php echo $this->form->renderField('version', null, null, array('group_id' => 'field_version')); ?>
-				<?php endif; ?>	
-				[%%ENDIF INCLUDE_VERSIONS%%]	
+                    [%%IF INCLUDE_VERSIONS%%]
+                    <?php
+						$user  = JFactory::getUser();
+						if (
+							$this->item->version 
+							AND $user->authorise('core.version.note', '[%%com_architectcomp%%]') 
+							AND $params->get('save_history') 
+							AND $params->get('[%%compobject%%]_save_history')
+						)
+                        echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
+					 ?>
+					[%%ENDIF INCLUDE_VERSIONS%%]
 			[%%IF INCLUDE_CREATED%%]
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 			[%%ELSE INCLUDE_CREATED%%]

@@ -70,5 +70,25 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerLeg
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
+                
+        /*
+         * Function that allows download database information
+         * @ToDo implementar generación de código
+         */
+        public function export(){
+			//from outside:
+			//$model = JModelLegacy::getInstance('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
+			
+            $model = $this->getModel('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
+			
+			//states
+//			$model->setState('list.ordering', 'a.ordering');//override
+//			$model->setState('list.direction', 'ASC');//override
+//			$model->setState('list.select', 'a.*');//override
+[%%IF INCLUDE_STATUS%%]
+			$model->setState('filter.state', 1);
+[%%ENDIF INCLUDE_STATUS%%]
+            $query = $model->getListQuery4Export();
+            echo($query);
+        }
 }
- ?>

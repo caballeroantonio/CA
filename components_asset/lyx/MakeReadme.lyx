@@ -878,23 +878,19 @@ filename "D:/www/htdocs/JPruebas/tmp/com_t396_j34standard/admin/help/en-GB/j3x/c
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
-filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/observaciones_salas.lyx"
+filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/observaciones_salas civiles.lyx"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "D:/www/Google Drive caballeroantonio/Proyecto libros/Torti Manuales/scripts para manual/T20170807_documentALL/reglas20170822.lyx"
+filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/reglas20170822/reglas20170822.lyx"
 
 \end_inset
 
@@ -909,7 +905,7 @@ Apéndices
 Requerimiento para Salas
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset External
 	template PDFPages
 	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/Levantamiento salas civiles.pdf
@@ -921,15 +917,40 @@ Requerimiento para Salas
 
 \end_layout
 
+\begin_layout Chapter
+Organigrama del TSJ
+\end_layout
+
+\begin_layout Standard
+El requerimiento servirá de apoyo para estructurar la información, indices
+ y tomos en el proyecto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/www.poderjudicialcdmx.gob.mx/Organigrama_TSJCDMX.pdf
+	lyxscale 40
+	extra LaTeX "pages=-"
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
 filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34test/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

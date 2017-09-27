@@ -13,7 +13,7 @@ architectcomp_name=[%%architectcomp_name%%]
 COM_ARCHITECTCOMP=[%%COM_ARCHITECTCOMP%%]
 ARCHITECTCOMP=[%%ARCHITECTCOMP%%]
 ArchitectComp=[%%ArchitectComp%%]
-architectcomp[%%architectcomp%%]
+architectcomp=[%%architectcomp%%]
 
 [%%FOREACH COMPONENT_OBJECT%%]{1.0}
 	{COMPONENT_OBJECT}
@@ -48,7 +48,7 @@ architectcomp[%%architectcomp%%]
             FIELD_OPTIONS_LANGUAGE_VARS=[%%FIELD_OPTIONS_LANGUAGE_VARS%%]
             FIELD_CODE_NAME_UPPER=[%%FIELD_CODE_NAME_UPPER%%]
                         
-            FIELD_INTRO=[%%FIELD_INTRO%%] 
+            FIELD_INTRO=[%%FIELD_INTRO%%]
             FIELD_DESCRIPTION_INI=[%%FIELD_DESCRIPTION_INI%%]
             FIELD_DESCRIPTION=[%%FIELD_DESCRIPTION%%] 
             

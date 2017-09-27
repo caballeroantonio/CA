@@ -1060,7 +1060,7 @@ class [%%com_architectcomp%%]InstallerScript
 		$content_type['router'] = '[%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route';
 
 		[%%IF INCLUDE_VERSIONS%%]
-		$content_type['content_history_options']['formFile'] = 'administrator/components/[%%architectcomp%%]/models/forms/[%%compobject%%].xml';
+		$content_type['content_history_options']['formFile'] = 'administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml';
 			[%%IF INCLUDE_ASSETACL%%]
 				[%%IF INCLUDE_ASSETACL_RECORD%%]
 		$content_type['content_history_options']['hideFields'][] = 'asset_id';

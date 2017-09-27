@@ -139,10 +139,10 @@ class [%%ArchitectComp%%]Model[%%CompObject%%]Form extends [%%ArchitectComp%%]Mo
 	 * Method to get [%%compobject_name%%] data.
 	 *
 	 * @param	integer	$item_id	The id of the [%%compobject_name%%].
-	 *
+	 * @param	boolean		Get recursively item children - true or false
 	 * @return	mixed	[%%CompObject_name%%] item data object on success, false on failure.
 	 */
-	public function getItem($item_id = null)
+	public function getItem($item_id = null, $recursive = false)
 	{
 		
 		$item_id = (int) (!empty($item_id)) ? $item_id : $this->getState('[%%compobject%%].id');
