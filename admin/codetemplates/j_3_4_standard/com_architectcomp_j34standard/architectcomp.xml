@@ -50,7 +50,9 @@
         <folder>helpers</folder>
         <folder>language</folder>
         <folder>models</folder>
+		[%%IF GENERATE_SITE_VIEWS%%]
         <folder>views</folder>
+		[%%ENDIF GENERATE_SITE_VIEWS%%]
     </files>
     <languages folder="site/language">
 			<language tag="en-GB">en-GB/en-GB.[%%com_architectcomp%%].ini</language>

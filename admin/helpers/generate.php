@@ -1676,8 +1676,11 @@ class ComponentArchitectGenerateHelper
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBTYPEANDSIZE'), 'replace' => $db_field_type));
 				
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_DBDEFAULT'), 'replace' => $db_field_default));
+                                
+                                array_push($search_replace_pairs,array('search' => $this->_markupText('FIELDTYPE_ID'), 'replace' => $field->fieldtype_id));
+                                
 				$field->search_replace = 	$search_replace_pairs;	
-
+				
 				if ($field->validate == 1 )
 				{
 					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_VALIDATION_TYPE'), 'replace' => (string) ' - '.$field->validation_type));				

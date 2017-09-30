@@ -122,46 +122,8 @@ $params = $this->state->get('params');
 			[%%ENDIF INCLUDE_VERSIONS%%]		
 		</div>		
 		<div style="clear:both;padding-top: 10px;"></div>
-		<fieldset>
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#basic-details" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_DETAILS_LABEL');?></a></li>
-				[%%FOREACH OBJECT_FIELDSET%%]	
-					[%%IF FIELDSET_NOT_BASIC_DETAILS%%]
-				<li><a href="#fieldset-[%%FIELDSET_CODE_NAME%%]" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_[%%FIELDSET_CODE_NAME_UPPER%%]_LABEL');?></a></li>
-					[%%ENDIF FIELDSET_NOT_BASIC_DETAILS%%]
-				[%%ENDFOR OBJECT_FIELDSET%%]
-				[%%FOREACH REGISTRY_FIELD%%]
-				<li><a href="#[%%FIELD_CODE_NAME%%]" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL');?></a></li>
-				[%%ENDFOR REGISTRY_FIELD%%]
-				[%%IF INCLUDE_IMAGE%%]
-					[%%IF INCLUDE_URLS%%]
-				<li><a href="#imageslinks" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_IMAGES_URLS_LABEL');?></a></li>
-					[%%ELSE INCLUDE_URLS%%]
-				<li><a href="#images" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_IMAGES_LABEL');?></a></li>
-					[%%ENDIF INCLUDE_URLS%%]
-				[%%ELSE INCLUDE_IMAGE%%]
-					[%%IF INCLUDE_URLS%%]
-				<li><a href="#links" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_URLS_LABEL');?></a></li>
-					[%%ENDIF INCLUDE_URLS%%]
-				[%%ENDIF INCLUDE_IMAGE%%]
-				[%%IF INCLUDE_ASSETACL%%]
-				<?php if ($this->item->params->get('access-change')): ?>
-				[%%ENDIF INCLUDE_ASSETACL%%]									
-				<li><a href="#publishing" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_PUBLISHING_LABEL');?></a></li>
-				[%%IF INCLUDE_METADATA%%]
-				<li><a href="#metadata" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_METADATA_LABEL');?></a></li>
-				[%%ENDIF INCLUDE_METADATA%%]
-				[%%IF INCLUDE_LANGUAGE%%]
-				<li><a href="#language" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_LANGUAGE_LABEL');?></a></li>
-				[%%ENDIF INCLUDE_LANGUAGE%%]
-				[%%IF INCLUDE_ASSETACL%%]
-				<?php endif; ?>				
-				[%%ENDIF INCLUDE_ASSETACL%%]									
-			</ul>		
-		
-		
-			<div class="tab-content">
-				<div class="tab-pane active" id="basic-details">
+        <!--begin all fields-->
+        			<!-- begin fields basic-details-->
 					[%%IF INCLUDE_NAME%%]
 					<?php echo $this->form->renderField('name', null, null, array('group_id' => 'field_name')); ?>
 						[%%IF INCLUDE_ALIAS%%]
@@ -180,6 +142,7 @@ $params = $this->state->get('params');
 					[%%IF INCLUDE_TAGS%%]
 					<?php echo $this->form->renderField('tags', null, null, array('group_id' => 'field_tags')); ?>
 					[%%ENDIF INCLUDE_TAGS%%]
+<?php /*?>                    
                     [%%IF INCLUDE_VERSIONS%%]
                     <?php
 						$user  = JFactory::getUser();
@@ -192,6 +155,7 @@ $params = $this->state->get('params');
                         echo $this->form->renderField('version_note', null, null, array('group_id' => 'field_version_note')); 
 					 ?>
 					[%%ENDIF INCLUDE_VERSIONS%%]
+<?php */?>
 					[%%FOREACH OBJECT_FIELDSET%%]	
 						[%%IF FIELDSET_BASIC_DETAILS%%]
 							[%%FOREACH OBJECT_FIELD%%]
@@ -216,10 +180,10 @@ $params = $this->state->get('params');
 					<?php echo $this->form->renderField('description', null, null, array('group_id' => 'description')); ?>
 						[%%ENDIF INCLUDE_INTRO%%]
 					[%%ENDIF INCLUDE_DESCRIPTION%%]	
-				</div>
+        			<!-- end fields basic-details-->
+                    <!-- begin fields fieldset-[%%FIELDSET_CODE_NAME%%]-->
 				[%%FOREACH OBJECT_FIELDSET%%]	
 					[%%IF FIELDSET_NOT_BASIC_DETAILS%%]
-				<div class="tab-pane" id="fieldset-[%%FIELDSET_CODE_NAME%%]">
 					<?php foreach($this->form->getFieldset('fieldset_[%%FIELDSET_CODE_NAME%%]') as $field): ?>
 						<?php if (!$field->hidden) : ?>
 							<?php $fieldname = (string) $field->fieldname; ?>
@@ -231,13 +195,11 @@ $params = $this->state->get('params');
 							<?php endif; ?>	
 						<?php endif; ?>	
 					<?php endforeach; ?>
-				</div>
 					[%%ENDIF FIELDSET_NOT_BASIC_DETAILS%%]
 				[%%ENDFOR OBJECT_FIELDSET%%]			
-
+                    <!-- end fields fieldset-[%%FIELDSET_CODE_NAME%%]-->
+                    <!-- begin fields [%%FIELD_CODE_NAME%%]-->
 				[%%FOREACH REGISTRY_FIELD%%]
-				<div class="tab-pane" id="[%%FIELD_CODE_NAME%%]">
-				
 				<?php $fieldsets = $this->form->getFieldsets('[%%FIELD_CODE_NAME%%]');?>
 					<?php foreach ($fieldsets as $name => $fieldset) :?>
 						<?php
@@ -272,61 +234,27 @@ $params = $this->state->get('params');
 							endif;
 						?>				
 					<?php endforeach; ?>
-				</div>	
 				[%%ENDFOR REGISTRY_FIELD%%] 
-				[%%IF INCLUDE_IMAGE%%]
-					[%%IF INCLUDE_URLS%%]
-				<div class="tab-pane" id="imageslinks">
-					[%%ELSE INCLUDE_URLS%%]
-				<div class="tab-pane" id="images">
-					[%%ENDIF INCLUDE_URLS%%]
-				[%%ELSE INCLUDE_IMAGE%%]
-					[%%IF INCLUDE_URLS%%]
-				<div class="tab-pane" id="links">
-					[%%ENDIF INCLUDE_URLS%%]
-				[%%ENDIF INCLUDE_IMAGE%%]
-				[%%IF INCLUDE_IMAGE%%]
-					<div class="span6">
-						<?php foreach ($this->form->getGroup('images') as $field) : ?>
-							<?php if (!$field->hidden) : ?>
-								<?php $fieldname = (string) $field->fieldname; ?>
-								<?php echo $this->form->renderField($fieldname, 'images', null, array('group_id' => 'field_'.$fieldname)); ?>							
-							<?php endif; ?>
-						<?php endforeach; ?>
-					</div>
-				[%%ENDIF INCLUDE_IMAGE%%]
-
-				[%%IF INCLUDE_URLS%%]
-					<div class="span6">
-						<?php foreach ($this->form->getGroup('urls') as $field) : ?>
-							<?php if (!$field->hidden) : ?>
-								<?php $fieldname = (string) $field->fieldname; ?>
-								<?php echo $this->form->renderField($fieldname, 'urls', null, array('group_id' => 'field_'.$fieldname)); ?>							
-							<?php endif; ?>
-						<?php endforeach; ?>
-					</div>
-				[%%ENDIF INCLUDE_URLS%%]
-				[%%IF INCLUDE_IMAGE%%]
-				</div>
-				[%%ELSE INCLUDE_IMAGE%%]
-					[%%IF INCLUDE_URLS%%]
-				</div>
-					[%%ENDIF INCLUDE_URLS%%]
-				[%%ENDIF INCLUDE_IMAGE%%]	
-				
-				[%%IF INCLUDE_ASSETACL%%]
-				<?php if ($this->item->params->get('access-change')): ?>
-				[%%ENDIF INCLUDE_ASSETACL%%]
-					<div class="tab-pane" id="publishing">
+                    <!-- end fields [%%FIELD_CODE_NAME%%]-->
+                    <!-- begin fields imageslinks-->
+                    <!-- end fields imageslinks-->
+                    <!-- begin fields images-->
+                    <!-- end fields images-->
+                    <!-- begin fields links-->
+                    <!-- end fields links-->
+                    <!-- begin fields publishing-->
+<?php /*?>                    
 						[%%IF INCLUDE_STATUS%%]
 						<?php echo $this->form->renderField('state', null, null, array('group_id' => 'state')); ?>
 						[%%ENDIF INCLUDE_STATUS%%]
+ <?php */?>                       
 						[%%IF INCLUDE_ACCESS%%]
 						<?php echo $this->form->renderField('access', null, null, array('group_id' => 'access')); ?>
 						[%%ENDIF INCLUDE_ACCESS%%]
 						[%%IF INCLUDE_FEATURED%%]
 						<?php echo $this->form->renderField('featured', null, null, array('group_id' => 'featured')); ?>
 						[%%ENDIF INCLUDE_FEATURED%%]					
+<?php /*?>
 						[%%IF INCLUDE_PUBLISHED_DATES%%]
 						<?php echo $this->form->renderField('publish_up', null, null, array('group_id' => 'publish_up')); ?>
 						<?php echo $this->form->renderField('publish_down', null, null, array('group_id' => 'publish_down')); ?>
@@ -375,7 +303,100 @@ $params = $this->state->get('params');
 							</div>
 						<?php endif; ?>
 						[%%ENDIF INCLUDE_ORDERING%%]												
-					</div>	
+<?php */?>
+                    <!-- end fields publishing-->
+                    <!-- begin fields metadata-->
+                    <!-- end fields metadata-->
+                    <!-- begin fields language-->
+                    <!-- end fields language-->
+        <!--end all fields-->
+		<fieldset>
+<?php /*?>			<ul class="nav nav-tabs">
+				<li class="active"><a href="#basic-details" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_DETAILS_LABEL');?></a></li>
+				[%%FOREACH OBJECT_FIELDSET%%]	
+					[%%IF FIELDSET_NOT_BASIC_DETAILS%%]
+				<li><a href="#fieldset-[%%FIELDSET_CODE_NAME%%]" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_[%%FIELDSET_CODE_NAME_UPPER%%]_LABEL');?></a></li>
+					[%%ENDIF FIELDSET_NOT_BASIC_DETAILS%%]
+				[%%ENDFOR OBJECT_FIELDSET%%]
+				[%%FOREACH REGISTRY_FIELD%%]
+				<li><a href="#[%%FIELD_CODE_NAME%%]" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL');?></a></li>
+				[%%ENDFOR REGISTRY_FIELD%%]
+				[%%IF INCLUDE_IMAGE%%]
+					[%%IF INCLUDE_URLS%%]
+				<li><a href="#imageslinks" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_IMAGES_URLS_LABEL');?></a></li>
+					[%%ELSE INCLUDE_URLS%%]
+				<li><a href="#images" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_IMAGES_LABEL');?></a></li>
+					[%%ENDIF INCLUDE_URLS%%]
+				[%%ELSE INCLUDE_IMAGE%%]
+					[%%IF INCLUDE_URLS%%]
+				<li><a href="#links" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_URLS_LABEL');?></a></li>
+					[%%ENDIF INCLUDE_URLS%%]
+				[%%ENDIF INCLUDE_IMAGE%%]
+				[%%IF INCLUDE_ASSETACL%%]
+				<?php if ($this->item->params->get('access-change')): ?>
+				[%%ENDIF INCLUDE_ASSETACL%%]									
+				<li><a href="#publishing" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_PUBLISHING_LABEL');?></a></li>
+				[%%IF INCLUDE_METADATA%%]
+				<li><a href="#metadata" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_METADATA_LABEL');?></a></li>
+				[%%ENDIF INCLUDE_METADATA%%]
+				[%%IF INCLUDE_LANGUAGE%%]
+				<li><a href="#language" data-toggle="tab"><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_FIELDSET_LANGUAGE_LABEL');?></a></li>
+				[%%ENDIF INCLUDE_LANGUAGE%%]
+				[%%IF INCLUDE_ASSETACL%%]
+				<?php endif; ?>				
+				[%%ENDIF INCLUDE_ASSETACL%%]									
+			</ul>		<?php */?>
+		
+		
+			<div class="tab-content">
+
+
+
+
+				[%%IF INCLUDE_IMAGE%%]
+					[%%IF INCLUDE_URLS%%]
+				<div class="tab-pane" id="imageslinks">
+					[%%ELSE INCLUDE_URLS%%]
+				<div class="tab-pane" id="images">
+					[%%ENDIF INCLUDE_URLS%%]
+				[%%ELSE INCLUDE_IMAGE%%]
+					[%%IF INCLUDE_URLS%%]
+				<div class="tab-pane" id="links">
+					[%%ENDIF INCLUDE_URLS%%]
+				[%%ENDIF INCLUDE_IMAGE%%]
+				[%%IF INCLUDE_IMAGE%%]
+					<div class="span6">
+						<?php foreach ($this->form->getGroup('images') as $field) : ?>
+							<?php if (!$field->hidden) : ?>
+								<?php $fieldname = (string) $field->fieldname; ?>
+								<?php echo $this->form->renderField($fieldname, 'images', null, array('group_id' => 'field_'.$fieldname)); ?>							
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+				[%%ENDIF INCLUDE_IMAGE%%]
+
+				[%%IF INCLUDE_URLS%%]
+					<div class="span6">
+						<?php foreach ($this->form->getGroup('urls') as $field) : ?>
+							<?php if (!$field->hidden) : ?>
+								<?php $fieldname = (string) $field->fieldname; ?>
+								<?php echo $this->form->renderField($fieldname, 'urls', null, array('group_id' => 'field_'.$fieldname)); ?>							
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+				[%%ENDIF INCLUDE_URLS%%]
+				[%%IF INCLUDE_IMAGE%%]
+				</div>
+				[%%ELSE INCLUDE_IMAGE%%]
+					[%%IF INCLUDE_URLS%%]
+				</div>
+					[%%ENDIF INCLUDE_URLS%%]
+				[%%ENDIF INCLUDE_IMAGE%%]	
+				
+				[%%IF INCLUDE_ASSETACL%%]
+				<?php if ($this->item->params->get('access-change')): ?>
+				[%%ENDIF INCLUDE_ASSETACL%%]
+						
 					[%%IF INCLUDE_METADATA%%]
 					<div class="tab-pane" id="metadata">
 						<?php echo $this->form->renderField('metakey', null, null, array('group_id' => 'metakey')); ?>						

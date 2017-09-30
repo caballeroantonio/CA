@@ -66,7 +66,7 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerAdm
 	public function featured()
 	{
 		// Check for request forgeries
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$this->checkToken();
 
 		$user	= JFactory::getUser();
 		$ids	= $this->input->getVar('cid', array(), 'array');
@@ -167,9 +167,9 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerAdm
          */
         public function export(){
 			//from outside:
-			//$model = JModelLegacy::getInstance('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
+			//$model = JModelLegacy::getInstance('[%%CompObjectPlural%%]','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
 			
-            $model = $this->getModel('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
+            $model = $this->getModel('[%%CompObjectPlural%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
 			
 			//states
 //			$model->setState('list.ordering', 'a.ordering');//override

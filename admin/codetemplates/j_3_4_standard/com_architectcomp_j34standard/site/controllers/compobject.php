@@ -330,7 +330,12 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 		// Set the return page.
 		$this->setReturnPage($context);
 
-		$redirect = JRoute::_('index.php?option='.$this->option.'&view='.$this->view_item.'&layout=edit'.$this->getRedirectToItemAppend(), false);
+		$url = 'index.php?option='.$this->option.'&view='.$this->view_item.'&layout=edit'.$this->getRedirectToItemAppend();
+		$tmpl = JFactory::getApplication()->input->get('tmpl');
+		if($tmpl)
+			$url = "{$url}&tmpl={$tmpl}";
+
+		$redirect = JRoute::_($url, false);
 
 		$this->setRedirect($redirect);
 
@@ -426,7 +431,7 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 	public function cancel($key = 'id')
 	{
 		// Check for request forgeries.
-		JSession::checkToken() OR jexit(JText::_('JINVALID_TOKEN'));
+		$this->checkToken();
 		
 		
 		$app		= JFactory::getApplication();
@@ -486,7 +491,7 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 	public function save($key = 'id', $url_var = null)
 	{
 		// Check for request forgeries.
-		JSession::checkToken() OR jexit(JText::_('JINVALID_TOKEN'));
+		$this->checkToken();
 		
 		
 		$app		= JFactory::getApplication();
@@ -699,7 +704,7 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 	public function delete()
 	{
 		// Check for request forgeries
-		(JSession::checkToken('get') OR JSession::checkToken()) OR die(JText::_('JINVALID_TOKEN'));
+		$this->checkToken();
 		
 		$app		= JFactory::getApplication();
 		$context	= "$this->option.delete.$this->context";

@@ -77,9 +77,9 @@ class [%%ArchitectComp%%]Controller[%%CompObjectPlural%%] extends JControllerLeg
          */
         public function export(){
 			//from outside:
-			//$model = JModelLegacy::getInstance('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
+			//$model = JModelLegacy::getInstance('[%%CompObject%%]Form','[%%ArchitectComp%%]Model', array('ignore_request' => FALSE));
 			
-            $model = $this->getModel('[%%CompObject_plural_name%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
+            $model = $this->getModel('[%%CompObjectPlural%%]','[%%ArchitectComp%%]Model',array('ignore_request' => FALSE));
 			
 			//states
 //			$model->setState('list.ordering', 'a.ordering');//override

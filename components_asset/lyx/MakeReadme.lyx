@@ -108,7 +108,7 @@ Be careful with Component Architect terms, the following ten characters
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -137,7 +137,7 @@ lipsum[1-5]
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -262,7 +262,7 @@ hypersetup{
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -872,25 +872,51 @@ filename "D:/www/htdocs/JPruebas/tmp/com_t396_j34standard/admin/help/en-GB/j3x/c
 
 \end_layout
 
+\begin_layout Subsection
+Para el componente jc
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#jc
+\end_layout
+
+\begin_layout Plain Layout
+
+sed -i 's/#__jtjcca_/jtl_/' $(find -type f -not -name "*.png" | grep -v .git)
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cambio de nombre de tablas
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/observaciones_salas civiles.lyx"
-
 \end_inset
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand include
-filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/reglas20170822/reglas20170822.lyx"
 
 \end_inset
 
@@ -901,56 +927,10 @@ filename "D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/
 Apéndices
 \end_layout
 
-\begin_layout Chapter
-Requerimiento para Salas
-\end_layout
-
 \begin_layout Standard
-\begin_inset External
-	template PDFPages
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/Levantamiento salas civiles.pdf
-	lyxscale 40
-	extra LaTeX "pages=-"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Organigrama del TSJ
-\end_layout
-
-\begin_layout Standard
-El requerimiento servirá de apoyo para estructurar la información, indices
- y tomos en el proyecto.
-\end_layout
-
-\begin_layout Standard
-\begin_inset External
-	template PDFPages
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/www.poderjudicialcdmx.gob.mx/Organigrama_TSJCDMX.pdf
-	lyxscale 40
-	extra LaTeX "pages=-"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
-filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34test/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
-
-\end_inset
-
-
-\end_layout
+filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34standard/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
 
 \end_inset
 

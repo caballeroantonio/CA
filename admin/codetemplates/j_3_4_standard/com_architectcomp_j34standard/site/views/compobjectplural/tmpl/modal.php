@@ -186,3 +186,14 @@ $empty = $component->params->get('default_empty_field', '');
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>
+
+toolbar<br/>
+<?php 
+$user		= JFactory::getUser();
+$can_create	= $user->authorise('core.create', '[%%com_architectcomp%%]');
+if ($this->params->get('show_[%%compobject%%]_add_link', 1) AND $can_create)
+	echo JHtml::_('[%%compobject%%]icon.create', $this->params);
+?>
+				<button type="button" class="btn" onclick="Joomla.submitbutton('expediente.cancel')">
+					<span class="icon-cancel"></span>&#160;<?php echo JText::_('JCANCEL') ?>
+				</button>

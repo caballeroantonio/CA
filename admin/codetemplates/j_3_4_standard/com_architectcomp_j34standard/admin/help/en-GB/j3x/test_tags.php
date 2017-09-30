@@ -15,7 +15,8 @@ ARCHITECTCOMP=[%%ARCHITECTCOMP%%]
 ArchitectComp=[%%ArchitectComp%%]
 architectcomp=[%%architectcomp%%]
 
-[%%FOREACH COMPONENT_OBJECT%%]{1.0}
+[%%FOREACH COMPONENT_OBJECT%%]
+{1.0}
 	{COMPONENT_OBJECT}
     Compobject_name=[%%Compobject_name%%]
     Compobject_description_ini=[%%Compobject_description_ini%%]
@@ -42,19 +43,24 @@ architectcomp=[%%architectcomp%%]
         FIELDSET_NAME=[%%FIELDSET_NAME%%]
         FIELDSET_CODE_NAME_UPPER=[%%FIELDSET_CODE_NAME_UPPER%%]
         FIELDSET_DESCRIPTION=[%%FIELDSET_DESCRIPTION%%]
-        
-        [%%FOREACH OBJECT_FIELD%%]{1.1}
+
+{1.1}        
+        [%%FOREACH OBJECT_FIELD%%]
+
             {OBJECT_FIELD}
-            FIELD_OPTIONS_LANGUAGE_VARS=[%%FIELD_OPTIONS_LANGUAGE_VARS%%]
+            FIELD_NAME=[%%FIELD_NAME%%]
             FIELD_CODE_NAME_UPPER=[%%FIELD_CODE_NAME_UPPER%%]
-                        
             FIELD_INTRO=[%%FIELD_INTRO%%]
             FIELD_DESCRIPTION_INI=[%%FIELD_DESCRIPTION_INI%%]
             FIELD_DESCRIPTION=[%%FIELD_DESCRIPTION%%] 
+            FIELDTYPE_ID=[%%FIELDTYPE_ID%%]
+                        
+            FIELD_OPTIONS_LANGUAGE_VARS=[%%FIELD_OPTIONS_LANGUAGE_VARS%%]
+            FIELD_DB=`[%%FIELD_CODE_NAME%%]` [%%FIELD_DBTYPEANDSIZE%%] [%%FIELD_DBDEFAULT%%] [%%FIELD_DBCOMMENT%%]
             
-            `[%%FIELD_CODE_NAME%%]` [%%FIELD_DBTYPEANDSIZE%%] [%%FIELD_DBDEFAULT%%] 
-            COMMENT '[%%FIELD_DBCOMMENT%%]',
-
+            FIELD_NAME_LATEX=[%%FIELD_NAME_LATEX%%]
+            FIELD_CODE_NAME_LATEX=[%%FIELD_CODE_NAME_LATEX%%]
+            FIELD_DBCOMMENT_LATEX=[%%FIELD_DBCOMMENT_LATEX%%]
             
             [%%IF FIELD_LINK%%]
                 {FIELD_LINK}
@@ -68,28 +74,18 @@ architectcomp=[%%architectcomp%%]
             [%%ENDFOR VALIDATE_FIELD%%]        
 
         
-        [%%FOREACH REGISTRY_FIELD%%]{1.2}
+        [%%FOREACH REGISTRY_FIELD%%]
+{1.2}
             {REGISTRY_FIELD}
             `[%%FIELD_CODE_NAME%%]` [%%FIELD_DBTYPEANDSIZE%%] [%%FIELD_DBDEFAULT%%],
             [%%FOREACH REGISTRY_ENTRY%%]
                 {REGISTRY_ENTRY}
             [%%ENDFOR REGISTRY_ENTRY%%]
-        [%%ENDFOR REGISTRY_FIELD%%]{-1.2}
-
-        
-
-        
-[%%ENDFOR OBJECT_FIELD%%]{-1.1}
-        {1.1a}[%%FOREACH OBJECT_FIELD%%]
-            FIELD_NAME=[%%FIELD_NAME%%]
-            FIELD_NAME_LATEX=[%%FIELD_NAME_LATEX%%]
-            FIELD_CODE_NAME=[%%FIELD_CODE_NAME%%]
-            FIELD_CODE_NAME_LATEX=[%%FIELD_CODE_NAME_LATEX%%]
-            FIELD_DBCOMMENT=[%%FIELD_DBCOMMENT%%]
-            FIELD_DBCOMMENT_LATEX=[%%FIELD_DBCOMMENT_LATEX%%]
-            
-            
-		{-1.1a}[%%ENDFOR OBJECT_FIELD%%]
+        [%%ENDFOR REGISTRY_FIELD%%]
+{-1.2}
+[%%ENDFOR OBJECT_FIELD%%]
+{-1.1}
+        {1.1a}
     [%%ENDFOR OBJECT_FIELDSET%%]
 
 =======IF'S==========
@@ -109,19 +105,16 @@ architectcomp=[%%architectcomp%%]
         
 
     
-    [%%IF GENERATE_SITE_LAYOUT_ARTICLE%%]
-	    {GENERATE_SITE_LAYOUT_ARTICLE}
-    [%%ENDIF GENERATE_SITE_LAYOUT_ARTICLE%%]
+
     
-    [%%IF GENERATE_SITE_LAYOUT_BLOG%%]
-    	{GENERATE_SITE_LAYOUT_BLOG}
-    [%%ENDIF GENERATE_SITE_LAYOUT_BLOG%%]
-    
-        [%%FOREACH FILTER_FIELD%%]{1.3}
+        [%%FOREACH FILTER_FIELD%%]
+{1.3}
         	{FILTER_FIELD}
-        [%%ENDFOR FILTER_FIELD%%]{-1.3}
+        [%%ENDFOR FILTER_FIELD%%]
+{-1.3}
     
-[%%ENDFOR COMPONENT_OBJECT%%]{-1.0}
+[%%ENDFOR COMPONENT_OBJECT%%]
+{-1.0}
 
     [%%IF GENERATE_PLUGINS%%]
     	{GENERATE_PLUGINS}        
@@ -164,10 +157,6 @@ architectcomp=[%%architectcomp%%]
     {HAVE GENERATE_CATEGORIES}
 [%%ENDIF GENERATE_CATEGORIES%%]
 
-[%%IF GENERATE_SITE_LAYOUT_BLOG%%]
-    {GENERATE_SITE_LAYOUT_BLOG}
-[%%ENDIF GENERATE_SITE_LAYOUT_BLOG%%]
-
 [%%IF INCLUDE_PARAMS_RECORD%%]
 	{INCLUDE_PARAMS_RECORD}
 [%%ENDIF INCLUDE_PARAMS_RECORD%%]
@@ -200,9 +189,6 @@ architectcomp=[%%architectcomp%%]
 	{INCLUDE_IMAGE}
 [%%ENDIF INCLUDE_IMAGE%%]
 
-[%%IF GENERATE_SITE%%]
-	{GENERATE_SITE}
-[%%ENDIF GENERATE_SITE%%]
 
 [%%IF INCLUDE_PARAMS_GLOBAL%%]
 	{INCLUDE_PARAMS_GLOBAL}
@@ -263,3 +249,21 @@ architectcomp=[%%architectcomp%%]
 [%%IF GENERATE_ADMIN_DASHBOARD%%]
 	{GENERATE_ADMIN_DASHBOARD}
 [%%ENDIF GENERATE_ADMIN_DASHBOARD%%]
+
+[%%IF GENERATE_SITE%%]
+	{GENERATE_SITE}
+    [%%IF GENERATE_SITE_LAYOUT_ARTICLE%%]
+	    {GENERATE_SITE_LAYOUT_ARTICLE}
+    [%%ENDIF GENERATE_SITE_LAYOUT_ARTICLE%%]
+    
+    [%%IF GENERATE_SITE_LAYOUT_BLOG%%]
+    	{GENERATE_SITE_LAYOUT_BLOG}
+    [%%ENDIF GENERATE_SITE_LAYOUT_BLOG%%]
+
+    [%%IF GENERATE_SITE_VIEWS%%]
+    	{GENERATE_SITE_VIEWS}
+	[%%ELSE GENERATE_SITE_VIEWS%%]
+    	{NO-GENERATE_SITE_VIEWS}
+    [%%ENDIF GENERATE_SITE_VIEWS%%]
+
+[%%ENDIF GENERATE_SITE%%]

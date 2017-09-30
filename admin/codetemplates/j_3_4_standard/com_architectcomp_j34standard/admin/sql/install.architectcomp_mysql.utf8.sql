@@ -27,7 +27,7 @@
 -- Table structure for table `#__[%%architectcomp%%]_[%%compobjectplural%%]`
 --
 
-DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
+#DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
 CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 [%%IF INCLUDE_NAME%%]  
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 [%%ENDIF INCLUDE_CHECKOUT%%]
 [%%IF INCLUDE_VERSIONS%%]  
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
 [%%ENDIF INCLUDE_VERSIONS%%]  
 [%%IF INCLUDE_ORDERING%%]  
   `ordering` INT(11) NOT NULL DEFAULT '0',
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
 --
 -- Table structure for table `#__[%%architectcomp%%]_rating`
 --
-DROP TABLE IF EXISTS `#__[%%architectcomp%%]_rating`;
+#DROP TABLE IF EXISTS `#__[%%architectcomp%%]_rating`;
 CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_rating` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `content_type` VARCHAR(50) NOT NULL DEFAULT '',

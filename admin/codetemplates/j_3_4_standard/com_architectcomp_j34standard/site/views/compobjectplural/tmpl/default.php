@@ -86,9 +86,9 @@ $empty = $component->params->get('default_empty_field', '');
 
 	<?php
 		$show_actions = false;
-		if ($this->params->get('show_[%%compobject%%]_icons',-1) >= 0) :
+		if ($this->params->get('show_[%%compobject%%]_icons',1) >= 0) :
 			foreach ($this->items as $i => $item) :
-				if ($item->params->get('access-edit') OR $item->params->get('access-delete')) :
+				if ($item->params->get('access-edit',1) OR $item->params->get('access-delete',1)) :
 					$show_actions = true;
 					continue;
 				endif;

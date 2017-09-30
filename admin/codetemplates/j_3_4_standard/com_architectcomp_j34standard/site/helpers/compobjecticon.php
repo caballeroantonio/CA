@@ -47,7 +47,9 @@ class JHTML[%%CompObject%%]Icon
 		$uri = JUri::getInstance();
 
 		$url = 'index.php?option=[%%com_architectcomp%%]&task=[%%compobject%%].add&layout=edit&return='.base64_encode($uri);
-		
+		$tmpl = JFactory::getApplication()->input->get('tmpl');
+		if($tmpl)
+			$url = "{$url}&tmpl={$tmpl}";
 		if ($params->get('show_[%%compobject%%]_icons'))
 		{
 			if ($legacy)

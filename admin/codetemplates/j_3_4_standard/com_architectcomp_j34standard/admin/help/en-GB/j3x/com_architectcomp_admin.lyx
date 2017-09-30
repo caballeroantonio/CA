@@ -72,6 +72,101 @@
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Estoy pensando en que se puede tropicalizar el consecutivo, dataIndex=consecutiv
+o, columnText=Número de oficio
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+SELECT 
+\end_layout
+
+\begin_layout Plain Layout
+
+co.id 'co.id', co.name 'Libro', co.description 'descripción'
+\end_layout
+
+\begin_layout Plain Layout
+
+FROM 
+\end_layout
+
+\begin_layout Plain Layout
+
+jos_componentarchitect_components c
+\end_layout
+
+\begin_layout Plain Layout
+
+LEFT JOIN jos_componentarchitect_componentobjects co ON co.component_id =
+ c.id
+\end_layout
+
+\begin_layout Plain Layout
+
+LEFT JOIN jos_componentarchitect_fieldsets fs ON 		fs.component_id = c.id
+ AND fs.component_object_id = co.id
+\end_layout
+
+\begin_layout Plain Layout
+
+LEFT JOIN jos_componentarchitect_fields f ON 			 f.component_id = c.id AND
+  f.component_object_id = co.id AND f.fieldset_id = fs.id 
+\end_layout
+
+\begin_layout Plain Layout
+
+WHERE 1
+\end_layout
+
+\begin_layout Plain Layout
+
+AND c.id = 2
+\end_layout
+
+\begin_layout Plain Layout
+
+GROUP BY co.id
+\end_layout
+
+\begin_layout Plain Layout
+
+ORDER BY c.id, co.id, f.id ;
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Query exportar observaciones CA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part
 [%%ArchitectComp_name%%]
 \end_layout
@@ -87,7 +182,7 @@
 \begin_layout Date
 Revisión [%%COMPONENTSTARTVERSION%%] del 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -106,7 +201,7 @@ today
 
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -191,7 +286,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -233,7 +328,7 @@ Install y seleccionar la ubicación del
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -272,7 +367,7 @@ Completar el proceso de instalación
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -316,7 +411,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -357,7 +452,7 @@ Global Configuration\SpecialChar menuseparator
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -397,7 +492,7 @@ Colocar el puntero sobre cada campo para obtener descripciones mediante
 En la esquina superior derecha se encuentra un botón para obtener ayuda
  que despliega el presente menú en el capítulo correspondiente 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 @ToDo implementar el botón HELP en cada vista y en las configuraciones
@@ -490,7 +585,7 @@ filename "config_lyx.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -515,7 +610,7 @@ caption{Lista de configuraciones}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -565,7 +660,7 @@ Mostrar la bitácora de cambios que se realizan en los registros de los libros
 \begin_layout Itemize
 Se incorporó un control de versiones 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 llamado UCM (Unified Content Model )
@@ -578,15 +673,17 @@ llamado UCM (Unified Content Model )
 \end_layout
 
 \begin_layout Itemize
-Se configura el número máximo de versiones que se debe almacenar para cada
- registro, con el valor a cero se almacenan todas las versiones.
+La solución permite configurar el número máximo de versiones que se debe
+ almacenar para cada registro, parametrizable de forma global para todas
+ las interfaces así como de forma individual, con el valor a cero se almacenan
+ todas las versiones.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -633,7 +730,7 @@ Versions
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -692,7 +789,7 @@ Delete
 \end_deeper
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 @ToDo Generar las etiquetas adecuadas para el preview del control de versiones
@@ -707,7 +804,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -742,12 +839,12 @@ Preview de un registro
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -840,7 +937,7 @@ Configuración de [%%CompObject_name%%]
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -875,7 +972,7 @@ Configuraciones del despliegue de [%%CompObject_name%%]
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -930,7 +1027,7 @@ Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -965,7 +1062,7 @@ Opciones de categorías
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1012,7 +1109,7 @@ Opciones de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1161,7 +1258,7 @@ filename "[%%compobject%%]_admin.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1186,7 +1283,7 @@ caption{Lista de campos}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1205,7 +1302,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1231,13 +1328,14 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
+	filename der_[%%compobjectplural%%].svg
 	lyxscale 30
+	width 80text%
 
 \end_inset
 
@@ -1277,7 +1375,7 @@ Vista de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1410,7 +1508,7 @@ filename "[%%compobject%%]_user.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1435,7 +1533,7 @@ caption{Lista de campos en [%%Compobject_name%%]}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1457,79 +1555,27 @@ status open
 
 \end_layout
 
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Grid Panel Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layout=gridpanel"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-@ToDo vistas grid
-\end_layout
-
-\begin_layout Paragraph
-\begin_inset CommandInset href
-LatexCommand href
-name "[%%CompObject_plural_name%%] - Default List Layout"
-target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-option=com_architectcomp&view=compsgrid&layout=article
-\family default
-\series bold
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-&id=1
-\end_layout
-
-\begin_layout Plain Layout
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-option=com_architectcomp&view=grids
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural.jpg
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/img_manual/view_gridpanel/gridpanel_[%%compobjectplural%%].jpg
 	lyxscale 30
 	width 80col%
 
@@ -1542,58 +1588,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-\begin_inset CommandInset href
-LatexCommand href
-name "[%%CompObject_plural_name%%] - Blog Layout"
-target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layout=blog"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/option=com_architectcomp&view=compobjectplural&layout=blog.jpg
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+Grid Panel Layout
 \end_layout
 
 \end_inset
@@ -1621,7 +1616,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1667,7 +1662,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1713,7 +1708,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&id=1"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1759,7 +1754,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&layout=artic
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1805,7 +1800,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]form&layout=e
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1824,97 +1819,6 @@ status open
 
 \begin_layout Plain Layout
 Create [%%CompObject_name%%]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-@ToDo terminar las vistas para Grids
-\end_layout
-
-\begin_layout Paragraph
-Vista compsgrid - no se que es, tal vez corresponda con categoria
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-category
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph
-Vista grids - no se que es, tal vez corresponda con categoria
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/www/htdocs/resources/images/crystal-clear-icons-by-everaldo/png/actions/button_cancel.png
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-category
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1958,7 +1862,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=categories"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2004,11 +1908,11 @@ target "SERVER?option=[%%com_architectcomp%%]&view=category"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 @Bug Notice: Trying to get property of non-object in D:
@@ -2052,6 +1956,52 @@ category.php on line 353
 
 \begin_layout Plain Layout
 Detalle de la categoría
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset href
+LatexCommand href
+name "[%%CompObject_plural_name%%] - Default List Layout"
+target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layout=gridpanel"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/TSJCDMX/img_manual/view_gridpanel/gridpanel_compobjectplural.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Grid Layout
 \end_layout
 
 \end_inset

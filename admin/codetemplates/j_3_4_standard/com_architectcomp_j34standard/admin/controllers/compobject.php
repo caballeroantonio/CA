@@ -189,7 +189,7 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 	 */
 	public function batch($model = null)
 	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$this->checkToken();
 
 		// Set the model
 		$model = $this->getModel('[%%CompObject%%]', '[%%ArchitectComp%%]Model', array());

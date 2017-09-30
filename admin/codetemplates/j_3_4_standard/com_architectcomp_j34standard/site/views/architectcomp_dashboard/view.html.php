@@ -80,11 +80,12 @@ class [%%ArchitectComp%%]View[%%ArchitectComp%%]_Dashboard extends JViewLegacy
 		$buttons = array();
 [%%FOREACH COMPONENT_OBJECT%%]
 	[%%IF GENERATE_ADMIN_DASHBOARD%%]
-		$buttons[] = array('link'=>'index.php?option=[%%com_architectcomp%%]&view=[%%compobjectplural%%]',
-			'object'=>'[%%compobjectplural%%]',
-			'text'=>'[%%CompObject_plural_name%%]',//JText::_('[%%ARCHITECTCOMP%%]_COMPONENT_WIZARD'),
-			'desc'=>JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]_DESCRIPTION')
-			);
+		$buttons[] = array(
+                    'link'=>'index.php?option=[%%com_architectcomp%%]&view=[%%compobjectplural%%]&layout=gridpanel&tmpl=component',
+                    'object'=>'[%%compobjectplural%%]',
+                    'text'=>'[%%CompObject_plural_name%%]',//JText::_('[%%ARCHITECTCOMP%%]_COMPONENT_WIZARD'),
+                    'desc'=>JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECT%%]_DESCRIPTION')
+                );
 	[%%ENDIF GENERATE_ADMIN_DASHBOARD%%]
 [%%ENDFOR COMPONENT_OBJECT%%]
 

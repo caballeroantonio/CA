@@ -1,0 +1,48 @@
+BUSCARMODELSYMODALS
+name="[%%compobject%%]_display"
+name="show_[%%compobject%%]_icons"
+name="show_[%%compobject%%]_print_icon"
+name="show_[%%compobject%%]_email_icon"
+name="keep_[%%compobject%%]_itemid"
+name="show_[%%compobject%%]_navigation"
+name="spacer1"
+name="show_[%%compobject%%]_readmore"
+name="[%%compobject%%]_readmore_limit"
+name="spacer2"
+name="show_[%%compobject%%]_created_by"
+name="link_[%%compobject%%]_created_by"
+name="show_[%%compobject%%]_created_by_alias"
+name="show_[%%compobject%%]_created"
+name="show_[%%compobject%%]_modified"
+name="show_[%%compobject%%]_admin"
+name="show_[%%compobject%%]_anoj"
+name="show_[%%compobject%%]_id_expediente"
+name="show_[%%compobject%%]_field147"
+name="show_[%%compobject%%]_field148"
+
+$this->params->get('list_show_[%%compobject%%]_ordering',0)
+$this->params->get('list_show_[%%compobject%%]_date')
+$this->params->get('list_show_[%%compobject%%]_created_by',0)
+$this->params->get('list_show_[%%compobject%%]_anoj',0)
+$this->params->get('list_show_[%%compobject%%]_id_expediente',0)
+$this->params->get('list_show_[%%compobject%%]_field147',1)
+$this->params->get('list_show_[%%compobject%%]_field148',1)
+
+
+
+$this->params->get('show_[%%compobject%%]_filter_field')-pendiente
+$this->params->get('show_[%%compobject%%]_pagination_limit')
+$this->params->get('[%%compobject%%]_layout', '_:default')
+$this->params->get('[%%compobject%%]_date_format', JText::_('DATE_FORMAT_LC3')) - no entiendo
+$this->params->get('default_empty_field', '') - estudiar
+$this->params->get('pageclass_sfx')-ignorar
+$this->params->get('show_page_heading')
+$this->params->get('page_heading')-no entiendo
+
+$this->params->get('show_no_[%%compobject%%]s',1)
+$this->params->get('show_[%%compobject%%]_headings')
+$this->params->get('show_[%%compobject%%]_pagination')
+$this->params->def('show_[%%compobject%%]_pagination', 2)
+$this->params->def('show_[%%compobject%%]_pagination_results', 0)
+$this->params->get('show_[%%compobject%%]_add_link', 1)
+$item->params->get('access-edit') OR $item->params->get('access-delete')
