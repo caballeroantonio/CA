@@ -792,7 +792,7 @@ class ComponentArchitectGenerateHelper
 
 		if ($fieldsets === false)
 		{
-			$error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0008_CANNOT_LOAD_FIELDSETS', $component_object->name, $fieldsets_model->getError()),'errorcode' => 'gen0008');
+			$error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0008_CANNOT_LOAD_FIELDSETS', $component_object->id, $fieldsets_model->getError()),'errorcode' => 'gen0008');
 			$this->_progress->outputError($this->_token, $error);
 			
 			return false;
@@ -800,7 +800,7 @@ class ComponentArchitectGenerateHelper
 		
 		if (count($fieldsets) <= 0)
 		{
-			$error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0009_NO_FIELDSETS', $component_object->name),'errorcode' => 'gen0009');
+			$error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0009_NO_FIELDSETS', $component_object->id),'errorcode' => 'gen0009');
 			$this->_progress->outputError($this->_token, $error);
 			
 			return false;			

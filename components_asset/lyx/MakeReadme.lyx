@@ -873,7 +873,7 @@ filename "D:/www/htdocs/JPruebas/tmp/com_t396_j34standard/admin/help/en-GB/j3x/c
 \end_layout
 
 \begin_layout Subsection
-Para el componente jc
+Para el componente jtca
 \end_layout
 
 \begin_layout LyX-Code
@@ -897,7 +897,7 @@ status open
 
 \begin_layout Plain Layout
 
-sed -i 's/#__jtjcca_/jtl_/' $(find -type f -not -name "*.png" | grep -v .git)
+sed -i 's/#__jtca_/jt_/' $(find -type f -not -name "*.png" | grep -v .git)
 \end_layout
 
 \begin_layout Plain Layout
@@ -927,10 +927,44 @@ Cambio de nombre de tablas
 Apéndices
 \end_layout
 
+\begin_layout Section
+Cómo respaldar información antes de instalar
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#--host
+\end_layout
+
+\begin_layout Plain Layout
+
+mysqldump -u tsjdflibros -p --all-databases --events --lock-tables --compress
+ > alldb.sql
+\end_layout
+
+\begin_layout Plain Layout
+
+tar -vcf allfiles.tar /san/www/san/www/tsjdf_dev3/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+doc
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
-filename "D:/www/htdocs/JPruebas/tmp/com_jtsca_j34standard/admin/help/en-GB/j3x/com_jtsca_admin.lyx"
+filename "D:/www/htdocs/JPruebas/tmp/com_jtca_j34standard/admin/help/en-GB/j3x/com_jtca_admin.lyx"
 
 \end_inset
 

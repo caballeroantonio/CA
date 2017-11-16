@@ -74,7 +74,7 @@
 
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Itemize
 Estoy pensando en que se puede tropicalizar el consecutivo, dataIndex=consecutiv
@@ -84,7 +84,7 @@ o, columnText=Número de oficio
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -182,7 +182,7 @@ Query exportar observaciones CA
 \begin_layout Date
 Revisión [%%COMPONENTSTARTVERSION%%] del 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -201,7 +201,7 @@ today
 
  
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -286,7 +286,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -328,7 +328,7 @@ Install y seleccionar la ubicación del
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -367,7 +367,7 @@ Completar el proceso de instalación
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -411,7 +411,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -452,7 +452,7 @@ Global Configuration\SpecialChar menuseparator
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -492,7 +492,7 @@ Colocar el puntero sobre cada campo para obtener descripciones mediante
 En la esquina superior derecha se encuentra un botón para obtener ayuda
  que despliega el presente menú en el capítulo correspondiente 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Itemize
 @ToDo implementar el botón HELP en cada vista y en las configuraciones
@@ -585,7 +585,7 @@ filename "config_lyx.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -610,7 +610,7 @@ caption{Lista de configuraciones}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -660,7 +660,7 @@ Mostrar la bitácora de cambios que se realizan en los registros de los libros
 \begin_layout Itemize
 Se incorporó un control de versiones 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 llamado UCM (Unified Content Model )
@@ -683,7 +683,7 @@ La solución permite configurar el número máximo de versiones que se debe
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -714,6 +714,41 @@ Configuraciones del control de versiones
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=_allowHistoryOnSite.png
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Permisos para que usuarios Registrados visualicen los cambios
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Al ingresar en el modo de edición de un registro aparece el botón 
 \begin_inset Quotes eld
@@ -723,19 +758,35 @@ Versions
 \begin_inset Quotes erd
 \end_inset
 
- y al presionarlo se visualiza el histórico del registro
+ y al presionarlo se visualiza el histórico del registro.
+\end_layout
+
+\begin_layout Itemize
+Los botones se ocultan con los cambios ad-hoc realizados en administrator
+\backslash
+components
+\backslash
+com_contenthistory
+\backslash
+views
+\backslash
+history
+\backslash
+tmpl
+\backslash
+modal.php
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_index.phpoption=com_contenthistory&view=history&layout=modal&tmpl=component&item_id=1.jpg
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=history&layout=modal&tmpl=component&item_id=1.jpg
 	lyxscale 40
 	width 80text%
 
@@ -789,7 +840,7 @@ Delete
 \end_deeper
 \begin_layout Standard
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 @ToDo Generar las etiquetas adecuadas para el preview del control de versiones
@@ -804,7 +855,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -839,53 +890,14 @@ Preview de un registro
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset listings
-inline false
-status collapsed
-
-\begin_layout Plain Layout
-
-SELECT 
-\end_layout
-
-\begin_layout Plain Layout
-
-t.type_title, t.content_history_options, h.version_note #, l.*
-\end_layout
-
-\begin_layout Plain Layout
-
-FROM jpruebas.jos_ucm_history h
-\end_layout
-
-\begin_layout Plain Layout
-
-INNER JOIN jpruebas.jos_content_types t ON t.type_id = h.ucm_type_id
-\end_layout
-
-\begin_layout Plain Layout
-
-#INNER JOIN jos_jtsca_ls01s l ON l.id = h.ucm_item_id #variable dependiente
- de t.table
-\end_layout
-
-\begin_layout Plain Layout
-
-WHERE 1
-\end_layout
-
-\begin_layout Plain Layout
-
-AND t.type_id = 10100
-\end_layout
-
-\begin_layout Plain Layout
-
-ORDER BY h.version_id desc;
-\end_layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/DER_UCM.png
+	lyxscale 40
+	width 80text%
 
 \end_inset
 
@@ -937,7 +949,7 @@ Configuración de [%%CompObject_name%%]
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -972,7 +984,7 @@ Configuraciones del despliegue de [%%CompObject_name%%]
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1027,7 +1039,7 @@ Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1062,7 +1074,7 @@ Opciones de categorías
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1109,7 +1121,7 @@ Opciones de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1258,7 +1270,7 @@ filename "[%%compobject%%]_admin.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1283,7 +1295,7 @@ caption{Lista de campos}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1302,7 +1314,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1328,7 +1340,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1375,7 +1387,7 @@ Vista de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1508,7 +1520,7 @@ filename "[%%compobject%%]_user.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1533,7 +1545,7 @@ caption{Lista de campos en [%%Compobject_name%%]}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1570,7 +1582,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1616,7 +1628,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1662,7 +1674,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1708,7 +1720,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&id=1"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1754,7 +1766,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&layout=artic
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1800,7 +1812,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]form&layout=e
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1862,7 +1874,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=categories"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1908,11 +1920,11 @@ target "SERVER?option=[%%com_architectcomp%%]&view=category"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 @Bug Notice: Trying to get property of non-object in D:
@@ -1983,7 +1995,20 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+pidieron un preview de cada libro-grid, qué flojera.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \align center
