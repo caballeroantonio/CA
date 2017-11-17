@@ -444,7 +444,7 @@ class ComponentArchitectModelFieldsets extends JModelList
 		$query->order($db->quoteName('c1.name'));
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();
@@ -473,7 +473,7 @@ class ComponentArchitectModelFieldsets extends JModelList
 		}
 		//[%%END_CUSTOM_CODE%%]
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();

@@ -285,7 +285,7 @@ class [%%ArchitectComp%%]Model[%%CompObject%%]Form extends [%%ArchitectComp%%]Mo
 			$query->from($db->quoteName('#__users'));
 			$query->where($db->quoteName('id').' = '.$item->created_by);
 					// Setup the query
-			$db->setQuery($query->__toString());
+			$db->setQuery($query);
 
 			// Return the result
 			$created_by_user = $db->loadObjectList();					
@@ -297,7 +297,7 @@ class [%%ArchitectComp%%]Model[%%CompObject%%]Form extends [%%ArchitectComp%%]Mo
 			$query->from($db->quoteName('#__users'));
 			$query->where($db->quoteName('id').' = '.$item->modified_by);
 					// Setup the query
-			$db->setQuery($query->__toString());
+			$db->setQuery($query);
 
 			// Return the result
 			$modified_by_user = $db->loadObjectList();			
@@ -324,7 +324,7 @@ class [%%ArchitectComp%%]Model[%%CompObject%%]Form extends [%%ArchitectComp%%]Mo
 			$query->from($db->quoteName('#__users'));
 			$query->where($db->quoteName('id').' = '.$item->modified_by);
 					// Setup the query
-			$db->setQuery($query->__toString());
+			$db->setQuery($query);
 
 			// Return the result
 			$modified_by_user = $db->loadObjectList();		

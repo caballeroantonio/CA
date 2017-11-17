@@ -492,7 +492,7 @@ class ComponentArchitectModelFields extends JModelList
 		$query->order($db->quoteName('c1.name'));
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();
@@ -521,7 +521,7 @@ class ComponentArchitectModelFields extends JModelList
 		}
 		//[%%END_CUSTOM_CODE%%]
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();
@@ -555,7 +555,7 @@ class ComponentArchitectModelFields extends JModelList
 		//[%%END_CUSTOM_CODE%%]
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();
@@ -592,7 +592,7 @@ class ComponentArchitectModelFields extends JModelList
 		$query->order($db->quoteName('ft.name'));
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();
@@ -616,7 +616,7 @@ class ComponentArchitectModelFields extends JModelList
 		$query->order($db->quoteName('o1.name'));
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();

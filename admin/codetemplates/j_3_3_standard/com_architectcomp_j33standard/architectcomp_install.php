@@ -154,7 +154,7 @@ class [%%com_architectcomp%%]InstallerScript
 				$query->set($db->quoteName('enabled').' = 1');
 				$query->where($db->quoteName('name').' = '.$db->quote($attributes['plugin']));
 				$query->where($db->quoteName('type').' = '.$db->quote('plugin'));
-				$db->setQuery($query->__toString());
+				$db->setQuery($query);
 	            try
 	            {
 					$db->execute();
@@ -342,7 +342,7 @@ class [%%com_architectcomp%%]InstallerScript
 				$query->from($db->quoteName('#__extensions'));
 				$query->where($db->quoteName('name').' = '.$db->quote($attributes['plugin']));
 				$query->where($db->quoteName('type').' = '.$db->quote('plugin'));
-				$db->setQuery($query->__toString());
+				$db->setQuery($query);
 							
 				$plg_id = $db->loadResult(); 
 				if ($plg_id) 
@@ -399,7 +399,7 @@ class [%%com_architectcomp%%]InstallerScript
 				$query->from($db->quoteName('#__extensions'));
 				$query->where($db->quoteName('name').' = '.$db->quote($attributes['module']));
 				$query->where($db->quoteName('type').' = '.$db->quote('module'));
-				$db->setQuery($query->__toString());
+				$db->setQuery($query);
 							
 				$mod_id = $db->loadResult(); 
 				if ($mod_id) 
@@ -571,7 +571,7 @@ class [%%com_architectcomp%%]InstallerScript
 				$query->from($db->quoteName('#__extensions'));
 				$query->where($db->quoteName('name').' = '.$db->quote($attributes['plugin']));
 				$query->where($db->quoteName('type').' = '.$db->quote('plugin'));
-				$db->setQuery($query->__toString());
+				$db->setQuery($query);
 							
 				$plg_id = $db->loadResult(); 
 				if ($plg_id) 
@@ -610,7 +610,7 @@ class [%%com_architectcomp%%]InstallerScript
 					$query->set($db->quoteName('enabled').' = 1');
 					$query->where($db->quoteName('name').' = '.$db->quote($attributes['plugin']));
 					$query->where($db->quoteName('type').' = '.$db->quote('plugin'));
-					$db->setQuery($query->__toString());
+					$db->setQuery($query);
 
 					try
 					{
@@ -659,7 +659,7 @@ class [%%com_architectcomp%%]InstallerScript
 				$query->from($db->quoteName('#__extensions'));
 				$query->where($db->quoteName('name').' = '.$db->quote($attributes['module']));
 				$query->where($db->quoteName('type').' = '.$db->quote('module'));
-				$db->setQuery($query->__toString());
+				$db->setQuery($query);
 							
 				$mod_id = $db->loadResult(); 
  				if ($mod_id) 
@@ -817,7 +817,7 @@ class [%%com_architectcomp%%]InstallerScript
 		$query->where($db->quoteName('name').' = '.$db->quote('[%%com_architectcomp%%]'));		
 		$query->where($db->quoteName('type').' = '.$db->quote('component'));
 
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 		
 		$manifest = json_decode( $db->loadResult(), true );
 		return $manifest;
@@ -838,7 +838,7 @@ class [%%com_architectcomp%%]InstallerScript
 		$query->where($db->quoteName('name').' = '.$db->quote('[%%com_architectcomp%%]'));		
 		$query->where($db->quoteName('type').' = '.$db->quote('component'));
 
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 		
 		$params = json_decode( $db->loadResult(), true );
 		return $params;
@@ -869,7 +869,7 @@ class [%%com_architectcomp%%]InstallerScript
 			$query->where($db->quoteName('name').' = '.$db->quote('[%%com_architectcomp%%]'));
 			$query->where($db->quoteName('type').' = '.$db->quote('component'));
 
-			$db->setQuery($query->__toString());
+			$db->setQuery($query);
 			
 			$db->execute();
 		}

@@ -1271,7 +1271,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 		$query->order($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]'));
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		return $db->loadObjectList();

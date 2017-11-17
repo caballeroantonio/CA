@@ -2485,7 +2485,7 @@ class ComponentArchitectGenerateHelper
 				$phpcode .= "\t\t".'$query->where($db->quoteName('."'".$db->escape($field->code_name)."').' != \'\'');"."\n\n";
 				$phpcode .= "\t\t".'$query->order($db->quoteName('."'".$db->escape($field->code_name)."'));"."\n\n";
 				$phpcode .= "\t\t".'// Setup the query'."\n";
-				$phpcode .= "\t\t".'$db->setQuery($query->__toString());'."\n\n";
+				$phpcode .= "\t\t".'$db->setQuery($query);'."\n\n";
 				$phpcode .= "\t\t".'// Get the values'."\n";
 				$phpcode .= "\t\t".'$rows = $db->loadObjectList();'."\n";
 				$phpcode .= "\t\t".'$values = array();'."\n";
@@ -2505,7 +2505,7 @@ class ComponentArchitectGenerateHelper
 				$phpcode .= "\t\t\t".'$query->where($db->quoteName('."'list.".$db->escape($field->sql_key_field)."').' IN ('.".'JString::trim(implode(\',\',$values),\',\')'.".')');"."\n\n";
 				$phpcode .= "\t\t".'}'."\n\n";
 				$phpcode .= "\t\t".'// Setup the query'."\n";
-				$phpcode .= "\t\t".'$db->setQuery($query->__toString());'."\n\n";
+				$phpcode .= "\t\t".'$db->setQuery($query);'."\n\n";
 				$phpcode .= "\t\t".'// Return the result'."\n";
 				$phpcode .= "\t\t".'return $db->loadObjectList();'."\n";			
 				break;
@@ -2522,7 +2522,7 @@ class ComponentArchitectGenerateHelper
 					$phpcode .= "\t\t".'$query->where($db->quoteName('."'".$db->escape($field->code_name)."').' != \'\'');"."\n\n";
 					$phpcode .= "\t\t".'$query->order($db->quoteName('."'".$db->escape($field->code_name)."'));"."\n\n";
 					$phpcode .= "\t\t".'// Setup the query'."\n";
-					$phpcode .= "\t\t".'$db->setQuery($query->__toString());'."\n\n";
+					$phpcode .= "\t\t".'$db->setQuery($query);'."\n\n";
 					$phpcode .= "\t\t".'// Return the result'."\n";
 					$phpcode .= "\t\t".'return $db->loadObjectList();'."\n";
 				}
@@ -2533,7 +2533,7 @@ class ComponentArchitectGenerateHelper
 					$phpcode .= "\t\t".'$query->where($db->quoteName('."'".$db->escape($field->code_name)."').' != \'\'');"."\n\n";
 					$phpcode .= "\t\t".'$query->order($db->quoteName('."'".$db->escape($field->code_name)."'));"."\n\n";
 					$phpcode .= "\t\t".'// Setup the query'."\n";
-					$phpcode .= "\t\t".'$db->setQuery($query->__toString());'."\n\n";
+					$phpcode .= "\t\t".'$db->setQuery($query);'."\n\n";
 					$phpcode .= "\t\t".'// Get the values'."\n";
 					$phpcode .= "\t\t".'$rows = $db->loadObjectList();'."\n";
 					$phpcode .= "\t\t".'$results = array();'."\n";
@@ -2576,7 +2576,7 @@ class ComponentArchitectGenerateHelper
 		$query->where($db->quoteName('component_id').' = '.$component_id);
 
 		// Setup the query
-		$db->setQuery($query->__toString());		
+		$db->setQuery($query);		
 		$component_objects = $db->loadObjectList();		
 		
 		foreach ($component_objects as $component_object)
@@ -2593,7 +2593,7 @@ class ComponentArchitectGenerateHelper
 			try
 			{
 				// Set and query the database.
-				$db->setQuery($query->__toString());		
+				$db->setQuery($query);		
 				$row = $db->loadRow();
 			}			
 			catch (RuntimeException $e)

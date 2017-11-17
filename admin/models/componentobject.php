@@ -667,7 +667,7 @@ class ComponentArchitectModelComponentObject extends JModelAdmin
 		$query->where($db->quoteName('a.id').' = '.$component_object_id);
 
 		// Setup the query
-		$db->setQuery($query->__toString());
+		$db->setQuery($query);
 
 		// Return the result
 		$default_fieldset_id = $db->loadResult();
@@ -685,7 +685,7 @@ class ComponentArchitectModelComponentObject extends JModelAdmin
 			$query->where($db->quoteName('a.component_object_id').' = '.$component_object_id);
 
 			// Setup the query
-			$db->setQuery($query->__toString());
+			$db->setQuery($query);
 
 			// Return the result
 			$current_fields = $db->loadColumn();
@@ -798,7 +798,7 @@ class ComponentArchitectModelComponentObject extends JModelAdmin
 								$query->where($db->quote($field['code_name']).' REGEXP '.$db->quoteName('a.code_name'));
 
 								// Setup the query
-								$db->setQuery($query->__toString());							
+								$db->setQuery($query);							
 
 
 								// Return the result
