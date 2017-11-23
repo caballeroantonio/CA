@@ -385,7 +385,7 @@ elyxer.py"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 %%estilos para esportar a HTML con elyxer
@@ -418,7 +418,7 @@ status open
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -557,12 +557,12 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -632,7 +632,7 @@ codetemplate @version
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -640,7 +640,7 @@ sed --in-place 's/),(/),
 \backslash
 r
 \backslash
-n(/g' src.sql
+n(/g' tx.sql
 \end_layout
 
 \begin_layout Plain Layout
@@ -664,7 +664,7 @@ separar líneas de respaldos sql
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -783,7 +783,7 @@ Para el componente Catálogo General
 \begin_layout LyX-Code
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -831,7 +831,7 @@ Para el componente Catálogo de materias
 \begin_layout LyX-Code
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -879,7 +879,7 @@ Para el componente jtca
 \begin_layout LyX-Code
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -973,7 +973,7 @@ filename "D:/www/htdocs/JPruebas/tmp/com_jtca_j34standard/admin/help/en-GB/j3x/c
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Todos los derechos reservados caballeroantonio@hotmail.com

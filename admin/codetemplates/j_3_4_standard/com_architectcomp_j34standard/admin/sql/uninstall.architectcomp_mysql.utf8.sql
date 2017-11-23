@@ -39,8 +39,8 @@ DELETE FROM `#__assets` WHERE `name` LIKE '%[%%com_architectcomp%%]%';
 DELETE FROM `#__extensions` WHERE `name`='[%%com_architectcomp%%]' AND `type`='component';
 DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]' AND `type`='component';
 
-[%%IF GENERATE_CATEGORIES%%] 
+#[ %%IF GENERATE_CATEGORIES%%] 
 DELETE FROM `#__categories` WHERE `extension`='[%%com_architectcomp%%]';
 DELETE FROM #__content_types WHERE `type_alias` = '[%%com_architectcomp%%].category';
 DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]_CATEGORIES' AND `type`='component';
-[%%ENDIF GENERATE_CATEGORIES%%]
+#[ %%ENDIF GENERATE_CATEGORIES%%]

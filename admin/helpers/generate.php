@@ -21,8 +21,8 @@ defined('_JEXEC') or die;
 jimport( 'joomla.filesystem.archive' );
 jimport( 'joomla.filesystem.archive.zip' );
 
-require_once JPATH_COMPONENT.'/'.'helpers'.'/'.'searchreplace.php';
-require_once JPATH_COMPONENT.'/'.'helpers'.'/'.'generateprogress.php';
+require_once JPATH_COMPONENT.'/helpers/searchreplace.php';
+require_once JPATH_COMPONENT.'/helpers/generateprogress.php';
 
 class ComponentArchitectGenerateHelper
 {
@@ -79,7 +79,32 @@ class ComponentArchitectGenerateHelper
 		$this->_progress = new ComponentArchitectGenerateProgressHelper();
 	}		
 	/**
-	 * Generate component
+generateComponent
+	_countExcludedFiles
+	_countFiles
+	_getFieldTypes
+	_getComponentObjects
+		_populateComponentObject(&$component_object, $default_object_id, $template_component_name, $template_object_name)
+		_getComponentObjectSearchPairs
+		_getChildComponentObjects
+			_populateComponentObject(&$component_object, $default_object_id, $template_component_name, $template_object_name)
+				_getFields(&$component_object,&$fieldset = null)
+				_getComponentObjectSearchPairs
+					_prettifyIniText
+				_getComponentSearchPairs
+				_getFieldsets
+					_markupText
+					_prettifyLyx
+					_getFields(&$component_object,&$fieldset = null)
+						_generateFilterValueArray
+						_generateValueDisplayCode
+						_generateValueLanguageVars
+						_generateValueOptions
+						_generateValuesArray
+						_prettifyLaTex
+						_markupText
+						_prettifyIniText
+						_prettifyLyx
 	 *
 	 * @param	component_id	integer		Id of the component to be generated
 	 * @param	code_template_id	integer	Id of the template to use as source
@@ -279,7 +304,7 @@ class ComponentArchitectGenerateHelper
 		/*
 		* Stage 2 - Create Files
 		*/
-		$this->_code_templates_root = JPATH_COMPONENT_ADMINISTRATOR.'/'.'codetemplates';	
+		$this->_code_templates_root = JPATH_COMPONENT_ADMINISTRATOR.'/codetemplates';	
 		$files_count = $this->_countFiles(JPath::clean($this->_code_templates_root.'/'.$this->_code_template->source_path));
 		
 		$excluded_files_count = $this->_countExcludedFiles(JPath::clean($this->_code_templates_root.'/'.$this->_code_template->source_path));
@@ -369,6 +394,8 @@ class ComponentArchitectGenerateHelper
 				ComponentArchitectHelper::createThumb(JPATH_SITE.'/'.$component_object->icon_48px, $dst_path.'/media/images/icon-24-'.$image_name, 24, 24);
 			}		
 		}
+                
+                $this->_doUcmCho($dst_path);
 		
 		// Update Stage 3 progress as being complete if logging requested this will also create a log record
 		$step = JText::_('COM_COMPONENTARCHITECT_GENERATE_END_STAGE_3');
@@ -943,7 +970,6 @@ class ComponentArchitectGenerateHelper
 				// Initialise field variables
 				$type = '';
 				$parameters = '';
-				$content_history_options = null;
 				$values_array = array();
 				$options = '';			
 				$language_vars = '';						
@@ -1536,25 +1562,6 @@ class ComponentArchitectGenerateHelper
 						break;			
 				}
                                 
-                                /**
-                                 * UCM content_history_options
-								 * @ToDo mover aquí la lógica de $content_type['content_history_options'] en architectcomp_install.php
-								 * para obtener una cadena más limpia que me permita leerla para hacer UPDATES
-                                 */
-                                if ($type == 'sql'){
-                                    $displayLookup = array(
-                                        'sourceColumn'=>$field->code_name,
-                                        'targetTable'=>$field->sql_query,
-                                        'targetColumn'=>$field->sql_key_field,
-                                        'displayColumn'=>$field->sql_value_field,
-                                    );
-                                    preg_match('/(?<=FROM )\S+/i', $displayLookup['targetTable'], $match);
-                                    $displayLookup['targetTable'] = $match[0];
-                                    $content_history_options = array();
-                                    $content_history_options['displayLookup'][] = $displayLookup;
-                                    $content_history_options = json_encode($content_history_options);
-                                }
-                                
 				$field_admin_list_value = str_replace('$this->item->', '$item->', $field_site_value);
 				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_ADMIN_LIST_VALUE'), 'replace' => $field_admin_list_value));
 				$field_child_admin_list_value = str_replace('$this->item->', '$child->', $field_site_value);
@@ -1650,7 +1657,6 @@ class ComponentArchitectGenerateHelper
 				{
 					array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_PARAMETERS'), 'replace' => ''));			
 				}
-				array_push($search_replace_pairs,array('search' => $this->_markupText('FIELD_UCM_CHO'), 'replace' => $content_history_options));
 				
 				switch (JString::strtoupper($db_field_type))
 				{
@@ -2876,6 +2882,227 @@ class ComponentArchitectGenerateHelper
 	{ 
 		return  str_replace( $this->_latex_forbidden, $this->_latex_replacement, $text);
 	}
+	
+		/**
+         * Stage 4 - dump Unified Content Model (UCM) Content History Options (CHO)
+         * no puedo sacarle provecho a los pares search_replace dentro de esta función por lo que
+         * utilizaré las propiedades del objeto, que funcione aun cuando no coincidan las
+         * mayusculas/minusculas de los nombres
+         */
+        protected function _doUcmCho($dst_path){
+//            $db = JFactory::getDbo();	
+//            $query = $db->getQuery(true);
+            
+            $architectcomp = str_replace ("_", "", str_replace (" ", "", JString::strtolower($this->_component->code_name)));
+            $data = [];
+			
+            foreach ($this->_component_objects as $component_object){
+                $data['content_types'][$component_object->code_name]->type_title = $component_object->name;//'[%%CompObject_name%%]';
+		$data['content_types'][$component_object->code_name]->type_alias = "com_{$architectcomp}.{$component_object->code_name}";//'[%%com_architectcomp%%].[%%compobject%%]';
+		$data['content_types'][$component_object->code_name]->rules = '';
+		$data['content_types'][$component_object->code_name]->router = "{$architectcomp}HelperRoute::get{$component_object->code_name}Route";//'[%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route';
+                $data['content_types'][$component_object->code_name]->table = array(
+                    'special'=>array(
+                        'dbtable'=>"{$architectcomp}_{$component_object->plural_code_name}",//'[%%architectcomp%%]_[%%compobjectplural%%]',
+                        'key'=>'id',
+                        'type'=>$component_object->plural_code_name,//[%%CompObjectPlural%%]
+                        'prefix'=>"{$architectcomp}Table",//'[%%ArchitectComp%%]Table',
+                        'config'=>'array()'
+                    ),
+                    'common'=>array(
+                        'dbtable'=>'#__core_content',
+                        'key'=>'ucm_id',
+                        'type'=>'Corecontent',
+                        'prefix'=>'JTable',
+                        'config'=>'array()'
+                    ),
+                );
+                
+                $data['content_types'][$component_object->code_name]->field_mappings = array(
+                    'special'=>array(
+
+                    ),
+                    'common'=>array(
+    'core_content_item_id'=>'id',
+    'core_title'=> $component_object->conditions['include_name']?'name':'null',
+    'core_state'=>$component_object->conditions['include_status']?'state':'null',
+    'core_alias'=>$component_object->conditions['include_alias']?'alias':'null',
+    'core_created_time'=>$component_object->conditions['include_created']?'created':'null',
+    'core_modified_time'=>$component_object->conditions['include_modified']?'modified':'null',
+    'core_body'=>$component_object->conditions['include_description']?'description':'null',
+    'core_hits'=>$component_object->conditions['include_hits']?'hits':'null',
+    'core_publish_up'=>$component_object->conditions['include_published_dates']?'publish_up':'null',
+    'core_publish_down'=>$component_object->conditions['include_published_dates']?'publish_down':'null',
+    'core_access'=>$component_object->conditions['include_access']?'access':'null',
+    'core_params'=>$component_object->conditions['include_params_record']?'params':'null',
+    'core_featured'=>$component_object->conditions['include_featured']?'featured':'null',
+    'core_metadata'=>$component_object->conditions['include_metadata']?'metadata':'null',
+    'core_language'=>$component_object->conditions['include_language']?'language':'null',
+    'core_images'=>$component_object->conditions['include_image']?'images':'null',
+    'core_urls'=>$component_object->conditions['include_urls']?'urls':'null',
+    'core_version'=>$component_object->conditions['include_versions']?'version':'null',
+    'core_ordering'=>$component_object->conditions['include_ordering']?'ordering':'null',
+    'core_metakey'=>$component_object->conditions['include_metadata']?'metakey':'null',
+    'core_metadesc'=>$component_object->conditions['include_metadata']?'metadesc':'null',
+    'core_catid'=>$component_object->conditions['generate_categories']?'catid':'null',
+    'core_xreference'=>$component_object->conditions['include_metadata']?'xreference':'null',
+    'asset_id'=>$component_object->conditions['include_assetacl_record']?'asset_id':'null',
+                    ),
+                );
+
+                $data['content_types'][$component_object->code_name]->content_history_options = array(
+                    'formFile'=>"administrator/components/com_{$architectcomp}/models/forms/{$component_object->code_name}.xml",//'administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml',
+                    'hideFields'=>array('asset_id','checked_out','checked_out_time','version'),
+                    'ignoreChanges'=>array('modified_by','modified','checked_out','checked_out_time','hits','version'),
+                    'convertToInt'=>array('publish_up','publish_down','featured','ordering'),
+                    'displayLookup'=>array(
+                        array('sourceColumn'=>'catid','targetTable'=>'#__categories','targetColumn'=>'id','displayColumn'=>'name'),
+                        array('sourceColumn'=>'created_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name'),
+                        array('sourceColumn'=>'access','targetTable'=>'#__viewlevels','targetColumn'=>'id','displayColumn'=>'title'),
+                        array('sourceColumn'=>'modified_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name'),
+                    ),
+                );
+                
+                foreach ($component_object->fields as $field) {
+                    switch ($field->ft_fieldtype_code_name){
+                        case 'sql':
+                        case 'combo_sql':
+                                    $displayLookup = array(
+                                        'sourceColumn'=>$field->code_name,
+                                        'targetTable'=>$field->sql_query,
+                                        'targetColumn'=>$field->sql_key_field,
+                                        'displayColumn'=>$field->sql_value_field,
+                                    );
+                                    preg_match('/(?<=FROM )\S+/i', $displayLookup['targetTable'], $match);
+                                    $displayLookup['targetTable'] = $match[0];
+                                    $data['content_types'][$component_object->code_name]->content_history_options['displayLookup'][] = $displayLookup;
+                            break;
+                        case 'modal_expedientes':
+                                    $displayLookup = array(
+                                        'sourceColumn'=>$field->code_name,
+                                        'targetTable'=> "#__{$architectcomp}_expedientes",
+                                        'targetColumn'=>'id',
+                                        'displayColumn'=>'name',
+                                    );
+                                    $data['content_types'][$component_object->code_name]->content_history_options['displayLookup'][] = $displayLookup;
+//                            test
+//                            file_put_contents("{$dst_path}/borrame.txt", print_r($field,true),FILE_APPEND);
+                        break;
+                    }
+                }
+                
+                
+                $data['content_types'][$component_object->code_name]->table = json_encode($data['content_types'][$component_object->code_name]->table);
+                $data['content_types'][$component_object->code_name]->field_mappings = json_encode($data['content_types'][$component_object->code_name]->field_mappings);
+                $data['content_types'][$component_object->code_name]->content_history_options = json_encode($data['content_types'][$component_object->code_name]->content_history_options);
+                
+            }
+            
+            if($this->_component->joomla_parts['generate_categories']){
+		$cat_obj = new stdClass();
+		$cat_obj->type_title = "{$this->_component->name} Category";//'[%%ArchitectComp_name%%] Category';
+		$cat_obj->type_alias = "com_{$architectcomp}.category";//'[%%com_architectcomp%%].category';
+		$cat_obj->rules = '';
+		$cat_obj->router = "{$architectcomp}HelperRoute::getCategoryRoute";//'[%%ArchitectComp%%]HelperRoute::getCategoryRoute';
+		$cat_obj->table = array(
+                    'special'=>array(
+                      'dbtable'=>'#__categories',
+                      'key'=>'id',
+                      'type'=>'Category',
+                      'prefix'=>'JTable',
+                      'config'=>'array()'
+                    ),
+                    'common'=>array(
+                      'dbtable'=>'#__core_content',
+                      'key'=>'ucm_id',
+                      'type'=>'Corecontent',
+                      'prefix'=>'JTable',
+                      'config'=>'array()'
+                    )
+                  );
+                $cat_obj->field_mappings = array(
+                    'common'=>array(
+                      'core_content_item_id'=>'id',
+                      'core_title'=>'title',
+                      'core_state'=>'published',
+                      'core_alias'=>'alias',
+                      'core_created_time'=>'created_time',
+                      'core_modified_time'=>'modified_time',
+                      'core_body'=>'description',
+                      'core_hits'=>'hits',
+                      'core_publish_up'=>'null',
+                      'core_publish_down'=>'null',
+                      'core_access'=>'access',
+                      'core_params'=>'params',
+                      'core_featured'=>'null',
+                      'core_metadata'=>'metadata',
+                      'core_language'=>'language',
+                      'core_images'=>'null',
+                      'core_urls'=>'null',
+                      'core_version'=>'version',
+                      'core_ordering'=>'null',
+                      'core_metakey'=>'metakey',
+                      'core_metadesc'=>'metadesc',
+                      'core_catid'=>'parent_id',
+                      'core_xreference'=>'null',
+                      'asset_id'=>'asset_id'
+                    ),
+                    'special'=>array(
+                      'parent_id'=>'parent_id',
+                      'lft'=>'lft',
+                      'rgt'=>'rgt',
+                      'level'=>'level',
+                      'path'=>'path',
+                      'extension'=>'extension',
+                      'note'=>'note'
+                    )
+                  );
+                $data['content_types']['cat'] = $cat_obj;
+            }
+            
+            foreach ($data['content_types'] as $key => $content_type) {
+                $query = "--\r\n"
+                        . "-- Unified Content Model (UCM) Content History Options (CHO) Inserts to table `#__{$architectcomp}_$component_object->plural_code_name`\r\n"
+                        . "--\r\n"
+                        . 'INSERT INTO `#__content_types` (`type_title`,`type_alias`,`table`,`rules`,`field_mappings`,`router`,`content_history_options`) VALUES'
+                        . ' ('
+                        . "'{$content_type->type_title}',\r\n"
+                        . "'{$content_type->type_alias}',\r\n"
+                        . "'{$content_type->table}',\r\n"
+                        . "'{$content_type->rules}',\r\n"
+                        . "'{$content_type->field_mappings}',\r\n"
+                        . "'{$content_type->router}',\r\n"
+                        . "'{$content_type->content_history_options}'\r\n"
+                        . ");\r\n";
+                if (!file_put_contents("{$dst_path}/admin/sql/install.{$architectcomp}_mysql.utf8.sql", $query,FILE_APPEND))
+                {
+                        $error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0013_CANNOT__DOUCMCHO', 'xxx'),'errorcode' => 'gen0013');
+                        $this->_progress->outputError($this->_token, $error);
+                        $this->_progress->completeProgress($this->_token);
+                        return false;
+                }
+                
+                $query = "--\r\n"
+                        . "-- Unified Content Model (UCM) Content History Options (CHO) Updates to table `#__{$architectcomp}_$component_object->plural_code_name`\r\n"
+                        . "--\r\n"
+                        . "UPDATE `#__content_types` SET \r\n"
+                        . "`type_title`='{$content_type->type_title}',\r\n"
+                        . "`table`='{$content_type->table}',\r\n"
+                        . "`rules`='{$content_type->rules}',\r\n"
+                        . "`field_mappings`='{$content_type->field_mappings}',\r\n"
+                        . "`router`='{$content_type->router}',\r\n"
+                        . "`content_history_options`='{$content_type->content_history_options}'\r\n"
+                        . "WHERE `type_alias`='{$content_type->type_alias}';\r\n";
+                if (!file_put_contents("{$dst_path}/admin/sql/updates/mysql/{$this->_component->start_version}.sql", $query,FILE_APPEND))
+                {
+                        $error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0013_CANNOT__DOUCMCHO', 'xxx'),'errorcode' => 'gen0013');
+                        $this->_progress->outputError($this->_token, $error);
+                        $this->_progress->completeProgress($this->_token);
+                        return false;
+                }
+            }
+            return true;
+        }
 }
 //[%%END_CUSTOM_CODE%%]
 ?>

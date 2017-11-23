@@ -36,7 +36,8 @@ class [%%com_architectcomp%%]InstallerScript
 {
     /**
      * method to install the component
-     * 
+#EACH $plugin
+UPDATE #__extensions SET enabled = 1 WHERE type = 'plugin' name = {$plugin};
      * @param	object	parent installer application
      *
      * @return void
@@ -214,9 +215,6 @@ class [%%com_architectcomp%%]InstallerScript
 				}  
 			}
 		}  
-		
-		// Populate the content types for UCM
-		$this->populateUCM();
 			
         // Closing HTML
 			ob_start();
@@ -255,7 +253,9 @@ class [%%com_architectcomp%%]InstallerScript
 
     /**
      * method to uninstall the component
-     *
+#EACH $plugin, $module, $compobject
+$installer->uninstall('plugin', $plg_id)
+$installer->uninstall('module', $mod_id)
      * @param	object	parent installer application
      *
      * @return void
@@ -367,6 +367,7 @@ class [%%com_architectcomp%%]InstallerScript
 					} 				
 				}
 			}  
+			JFolder::delete(JPATH_SITE.'/plugins/[%%architectcomp%%]'); 
 		}  
 		
 		// Uninstall modules
@@ -427,26 +428,6 @@ class [%%com_architectcomp%%]InstallerScript
 		}  
 		//  Ensure all folders are deleted
 		JFolder::delete(JPATH_SITE.'/images/[%%architectcomp%%]'); 
-		JFolder::delete(JPATH_SITE.'/plugins/[%%architectcomp%%]'); 
-
-		[%%FOREACH COMPONENT_OBJECT%%]
-		$db->setQuery(
-						'DELETE FROM '.$db->quoteName('#__content_types')
-						.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('[%%com_architectcomp%%].[%%compobject%%]')
-					 );
-
-		$db->execute(); 
-		[%%ENDFOR COMPONENT_OBJECT%%]
-		
-		[%%IF GENERATE_CATEGORIES%%]
-
-		$db->setQuery(
-						'DELETE FROM '.$db->quoteName('#__content_types')
-						.' WHERE '.$db->quoteName('type_alias').' = '.$db->quote('[%%com_architectcomp%%].category')
-					 );
-
-		$db->execute(); 
-		[%%ENDIF GENERATE_CATEGORIES%%]
 					
         // Closing HTML
 			ob_start();
@@ -479,7 +460,7 @@ class [%%com_architectcomp%%]InstallerScript
 
     /**
      * method to update the component
-     *
+UPDATE #__extensions SET enabled = 1 WHERE type = 'plugin' name = {$plugin};
      * @param	object	parent installer application
      *
      * @return void
@@ -839,7 +820,7 @@ class [%%com_architectcomp%%]InstallerScript
 	}
 	/**
 	 * sets parameter values in the component's row of the extension table
-	 * 
+UPDATE #__extensions SET params = '{$params_string}' WHERE type = 'component' AND name = '[%%com_architectcomp%%]'
      * @param	array	param array for the extension
 	 * 
 	 */
@@ -940,242 +921,13 @@ class [%%com_architectcomp%%]InstallerScript
         $db = JFactory::getDbo();       
     
 		[%%FOREACH COMPONENT_OBJECT%%]
-		$content_type = array();
-		$content_type['type_title'] = '[%%CompObject_name%%]';
-		$content_type['type_alias'] = '[%%com_architectcomp%%].[%%compobject%%]';
-		$content_type['table'] = '{"special":{"dbtable":"[%%architectcomp%%]_[%%compobjectplural%%]","key":"id","type":"[%%CompObjectPlural%%]","prefix":"[%%ArchitectComp%%]Table","config":"array()"},';
-		$content_type['table'] .= '"common":{"dbtable":"#__core_content","key":"ucm_id","type":"Corecontent","prefix":"JTable","config":"array()"}}';
-		$content_type['rules'] = '';
-		$content_type['field_mappings'] = '{"special":{},"common":{"core_content_item_id":"id",';
-											[%%IF INCLUDE_NAME%%]
-		$content_type['field_mappings'] .= '"core_title":"name",';
-											[%%ELSE INCLUDE_NAME%%]
-		$content_type['field_mappings'] .= '"core_title":"null",';
-											[%%ENDIF INCLUDE_NAME%%]
-											[%%IF INCLUDE_STATE%%]
-		$content_type['field_mappings'] .= '"core_state":"state",';
-											[%%ELSE INCLUDE_STATE%%]
-		$content_type['field_mappings'] .= '"core_state":"null",';
-											[%%ENDIF INCLUDE_STATE%%]
-											[%%IF INCLUDE_ALIAS%%]
-		$content_type['field_mappings'] .= '"core_alias":"alias",';
-											[%%ELSE INCLUDE_ALIAS%%]
-		$content_type['field_mappings'] .= '"core_alias":"null",';
-											[%%ENDIF INCLUDE_ALIAS%%]
-											[%%IF INCLUDE_CREATED%%]
-		$content_type['field_mappings'] .= '"core_created_time":"created",';
-											[%%ELSE INCLUDE_CREATED%%]
-		$content_type['field_mappings'] .= '"core_created_time":"null",';
-											[%%ENDIF INCLUDE_CREATED%%]
-											[%%IF INCLUDE_MODIFIED%%]
-		$content_type['field_mappings'] .= '"core_modified_time":"modified",';
-											[%%ELSE INCLUDE_MODIFIED%%]
-		$content_type['field_mappings'] .= '"core_modified_time":"null",';
-											[%%ENDIF INCLUDE_MODIFIED%%]
-											[%%IF INCLUDE_DESCRIPTION%%]
-		$content_type['field_mappings'] .= '"core_body":"description",';
-											[%%ELSE INCLUDE_DESCRIPTION%%]
-		$content_type['field_mappings'] .= '"core_body":"null",';
-											[%%ENDIF INCLUDE_DESCRIPTION%%]
-											[%%IF INCLUDE_HITS%%]
-		$content_type['field_mappings'] .= '"core_hits":"hits",';
-											[%%ELSE INCLUDE_HITS%%]
-		$content_type['field_mappings'] .= '"core_hits":"null",';
-											[%%ENDIF INCLUDE_HITS%%]
-											[%%IF INCLUDE_PUBLISHED_DATES%%]            
-		$content_type['field_mappings'] .= '"core_publish_up":"publish_up",';
-		$content_type['field_mappings'] .= '"core_publish_down":"publish_down",';
-											[%%ELSE INCLUDE_PUBLISHED_DATES%%]
-		$content_type['field_mappings'] .= '"core_publish_up":"null",';
-		$content_type['field_mappings'] .= '"core_publish_down":"null",';
-											[%%ENDIF INCLUDE_PUBLISHED_DATES%%]
-											[%%IF INCLUDE_ACCESS%%]
-		$content_type['field_mappings'] .= '"core_access":"access",';
-											[%%ELSE INCLUDE_ACCESS%%]            
-		$content_type['field_mappings'] .= '"core_access":"null",';
-											[%%ENDIF INCLUDE_ACCESS%%]            
-											[%%IF INCLUDE_PARAMS_RECORD%%]
-		$content_type['field_mappings'] .= '"core_params":"params",';
-											[%%ELSE INCLUDE_PARAMS_RECORD%%]
-		$content_type['field_mappings'] .= '"core_params":"null",';
-											[%%ENDIF INCLUDE_PARAMS_RECORD%%]
-											[%%IF INCLUDE_FEATURED%%]            
-		$content_type['field_mappings'] .= '"core_featured":"featured",';
-											[%%ELSE INCLUDE_FEATURED%%]
-		$content_type['field_mappings'] .= '"core_featured":"null",';
-											[%%ENDIF INCLUDE_FEATURED%%]            
-											[%%IF INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_metadata":"metadata",';
-											[%%ELSE INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_metadata":"null",';
-											[%%ENDIF INCLUDE_METADATA%%]
-											[%%IF INCLUDE_LANGUAGE%%]
-		$content_type['field_mappings'] .= '"core_language":"language",';
-											[%%ELSE INCLUDE_LANGUAGE%%]
-		$content_type['field_mappings'] .= '"core_language":"null",';
-											[%%ENDIF INCLUDE_LANGUAGE%%]
-											[%%IF INCLUDE_IMAGE%%]
-		$content_type['field_mappings'] .= '"core_images":"images",';
-											[%%ELSE INCLUDE_IMAGE%%]
-		$content_type['field_mappings'] .= '"core_images":"null",';
-											[%%ENDIF INCLUDE_IMAGE%%]
-											[%%IF INCLUDE_URLS%%]
-		$content_type['field_mappings'] .= '"core_urls":"urls",';
-											[%%ELSE INCLUDE_URLS%%]
-		$content_type['field_mappings'] .= '"core_urls":"null",';
-											[%%ENDIF INCLUDE_URLS%%]
-											[%%IF INCLUDE_VERSIONS%%]
-		$content_type['field_mappings'] .= '"core_version":"version",';
-											[%%ELSE INCLUDE_VERSIONS%%]
-		$content_type['field_mappings'] .= '"core_version":"null",';
-											[%%ENDIF INCLUDE_VERSIONS%%]
-											[%%IF INCLUDE_ORDERING%%]
-		$content_type['field_mappings'] .= '"core_ordering":"ordering",';
-											[%%ELSE INCLUDE_ORDERING%%]
-		$content_type['field_mappings'] .= '"core_ordering":"null",';
-											[%%ENDIF INCLUDE_ORDERING%%]
-											[%%IF INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_metakey":"metakey",';
-		$content_type['field_mappings'] .= '"core_metadesc":"metadesc",';
-											[%%ELSE INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_metakey":"null",';
-		$content_type['field_mappings'] .= '"core_metadesc":"null",';
-											[%%ENDIF INCLUDE_METADATA%%]
-											[%%IF GENERATE_CATEGORIES%%]
-		$content_type['field_mappings'] .= '"core_catid":"catid",';
-											[%%ELSE GENERATE_CATEGORIES%%]
-		$content_type['field_mappings'] .= '"core_catid":"null",';
-											[%%ENDIF GENERATE_CATEGORIES%%]
-											[%%IF INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_xreference":"xreference",';
-											[%%ELSE INCLUDE_METADATA%%]
-		$content_type['field_mappings'] .= '"core_xreference":"null",';
-											[%%ENDIF INCLUDE_METADATA%%]
-											[%%IF INCLUDE_ASSETACL_RECORD%%]
-		$content_type['field_mappings'] .= '"asset_id":"asset_id"';
-											[%%ELSE INCLUDE_ASSETACL_RECORD%%]
-		$content_type['field_mappings'] .= '"asset_id":"null"';
-											[%%ENDIF INCLUDE_ASSETACL_RECORD%%]
-		$content_type['field_mappings'] .= '}}';									
-		$content_type['router'] = '[%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route';
-
-		[%%IF INCLUDE_VERSIONS%%]
-		$content_type['content_history_options']['formFile'] = 'administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml';
-			[%%IF INCLUDE_ASSETACL%%]
-				[%%IF INCLUDE_ASSETACL_RECORD%%]
-		$content_type['content_history_options']['hideFields'][] = 'asset_id';
-				[%%ENDIF INCLUDE_ASSETACL_RECORD%%]
-			[%%ENDIF INCLUDE_ASSETACL%%]
-			[%%IF INCLUDE_CHECKOUT%%]
-		$content_type['content_history_options']['hideFields'][] = 'checked_out';
-                $content_type['content_history_options']['hideFields'][] = 'checked_out_time';
-			[%%ENDIF INCLUDE_CHECKOUT%%]		
-                $content_type['content_history_options']['hideFields'][] = 'version';
-			[%%IF INCLUDE_MODIFIED%%]
-		$content_type['content_history_options']['ignoreChanges'][] = 'modified_by';
-                $content_type['content_history_options']['ignoreChanges'][] = 'modified';
-			[%%ENDIF INCLUDE_MODIFIED%%]		
-			[%%IF INCLUDE_CHECKOUT%%]
-                $content_type['content_history_options']['ignoreChanges'][] = 'checked_out';
-                $content_type['content_history_options']['ignoreChanges'][] = 'checked_out_time';
-			[%%ENDIF INCLUDE_CHECKOUT%%]		
-			[%%IF INCLUDE_HITS%%]
-		$content_type['content_history_options']['ignoreChanges'][] = 'hits';
-			[%%ENDIF INCLUDE_HITS%%]		
-		$content_type['content_history_options']['ignoreChanges'][] = 'version';
-			[%%IF INCLUDE_PUBLISHED_DATES%%]
-		$content_type['content_history_options']['convertToInt'][] = 'publish_up';
-                $content_type['content_history_options']['convertToInt'][] = 'publish_down';
-			[%%ENDIF INCLUDE_PUBLISHED_DATES%%]		
-			[%%IF INCLUDE_FEATURED%%];
-		$content_type['content_history_options']['convertToInt'][] = 'featured';
-			[%%ENDIF INCLUDE_FEATURED%%]
-			[%%IF INCLUDE_ORDERING%%]
-		$content_type['content_history_options']['convertToInt'][] = 'ordering';
-			[%%ELSE INCLUDE_ORDERING%%]
-			[%%ENDIF INCLUDE_ORDERING%%]
-			[%%IF GENERATE_CATEGORIES%%]
-		$content_type['content_history_options']['displayLookup'][] =  array('sourceColumn'=>'catid','targetTable'=>'#__categories','targetColumn'=>'id','displayColumn'=>'name');
-			[%%ENDIF GENERATE_CATEGORIES%%]		
-			[%%IF INCLUDE_CREATED%%]
-		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'created_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name');
-			[%%ENDIF INCLUDE_CREATED%%]		
-			[%%IF INCLUDE_ACCESS%%]
-		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'access','targetTable'=>'#__viewlevels','targetColumn'=>'id','displayColumn'=>'title');
-			[%%ENDIF INCLUDE_ACCESS%%]		
-			[%%IF INCLUDE_MODIFIED%%]
-		$content_type['content_history_options']['displayLookup'][] = array('sourceColumn'=>'modified_by','targetTable'=>'#__users','targetColumn'=>'id','displayColumn'=>'name');
-			[%%ENDIF INCLUDE_MODIFIED%%]		
-		[%%ELSE INCLUDE_VERSIONS%%]
-		[%%ENDIF INCLUDE_VERSIONS%%]
-                
-		[%%FOREACH OBJECT_FIELDSET%%]
-			[%%FOREACH OBJECT_FIELD%%]
-                if('[%%FIELD_UCM_CHO%%]' != '')            
-                    $content_type['content_history_options'] = array_merge_recursive($content_type['content_history_options'], json_decode('[%%FIELD_UCM_CHO%%]', TRUE));
-			[%%ENDFOR OBJECT_FIELD%%]
-		[%%ENDFOR OBJECT_FIELDSET%%]  
-				
-                $content_type['content_history_options'] = json_encode($content_type['content_history_options']);
-		$db->setQuery('INSERT INTO '.$db->quoteName('#__content_types')
-						.' ('
-							.$db->quoteName('type_title').', '
-							.$db->quoteName('type_alias').', '
-							.$db->quoteName('table').', '
-							.$db->quoteName('rules').', '
-							.$db->quoteName('field_mappings').', '
-							.$db->quoteName('router').', '
-							.$db->quoteName('content_history_options')
-						.') VALUES '
-						.' ('
-							  .$db->quote($content_type['type_title']).', '
-							  .$db->quote($content_type['type_alias']).', '
-							  .$db->quote($content_type['table']).', '
-							  .$db->quote($content_type['rules']).', '
-							  .$db->quote($content_type['field_mappings']).', '
-							  .$db->quote($content_type['router']).', '
-							  .$db->quote($content_type['content_history_options'])
-						  .');'
-					  );
-
-		$db->execute(); 
+//			$db->setQuery('INSERT INTO #__content_types($data['content_types'][code_name]) VALUES();');
+//			$db->execute(); 
 		[%%ENDFOR COMPONENT_OBJECT%%]
 		
 		[%%IF GENERATE_CATEGORIES%%]
-		$content_type = array();
-		$content_type['type_title'] = '[%%ArchitectComp_name%%] Category';
-		$content_type['type_alias'] = '[%%com_architectcomp%%].category';
-		$content_type['table'] = '{"special":{"dbtable":"#__categories","key":"id","type":"Category","prefix":"JTable","config":"array()"},';
-		$content_type['table'] .= '"common":{"dbtable":"#__core_content","key":"ucm_id","type":"Corecontent","prefix":"JTable","config":"array()"}}';
-		$content_type['rules'] = '';
-		$content_type['field_mappings'] = '{"common":{"core_content_item_id":"id","core_title":"title","core_state":"published","core_alias":"alias",';
-		$content_type['field_mappings'] .= '"core_created_time":"created_time","core_modified_time":"modified_time","core_body":"description","core_hits":"hits",';
-		$content_type['field_mappings'] .= '"core_publish_up":"null","core_publish_down":"null","core_access":"access","core_params":"params","core_featured":"null",';
-		$content_type['field_mappings'] .= '"core_metadata":"metadata","core_language":"language","core_images":"null","core_urls":"null","core_version":"version",';
-		$content_type['field_mappings'] .= '"core_ordering":"null","core_metakey":"metakey","core_metadesc":"metadesc","core_catid":"parent_id","core_xreference":"null","asset_id":"asset_id"},';
-		$content_type['field_mappings'] .= '	"special":{"parent_id":"parent_id","lft":"lft","rgt":"rgt","level":"level","path":"path","extension":"extension","note":"note"}}';									
-		$content_type['router'] = '[%%ArchitectComp%%]HelperRoute::getCategoryRoute';
-
-		$db->setQuery('INSERT INTO '.$db->quoteName('#__content_types')
-						.' ('
-							.$db->quoteName('type_title').', '
-							.$db->quoteName('type_alias').', '
-							.$db->quoteName('table').', '
-							.$db->quoteName('rules').', '
-							.$db->quoteName('field_mappings').', '
-							.$db->quoteName('router')
-						.') VALUES '
-						.' ('
-							  .$db->quote($content_type['type_title']).', '
-							  .$db->quote($content_type['type_alias']).', '
-							  .$db->quote($content_type['table']).', '
-							  .$db->quote($content_type['rules']).', '
-							  .$db->quote($content_type['field_mappings']).', '
-							  .$db->quote($content_type['router'])
-						  .');'
-					  );
-
-		$db->execute(); 
+//			$db->setQuery('INSERT INTO #__content_types($data['content_types'][cat]) VALUES();');
+//			$db->execute(); 
 		[%%ENDIF GENERATE_CATEGORIES%%]  
 	}  
 }

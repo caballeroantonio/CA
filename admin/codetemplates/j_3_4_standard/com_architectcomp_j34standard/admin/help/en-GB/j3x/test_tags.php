@@ -23,14 +23,17 @@ architectcomp=[%%architectcomp%%]
 	
     COMPOBJECT=[%%COMPOBJECT%%]
     compobject=[%%compobject%%]
+    CompObject=[%%CompObject%%]
     
     compobject_name=[%%compobject_name%%]
+    CompObject_name=[%%CompObject_name%%]
     CompObject_short_name=[%%CompObject_short_name%%]
     Compobject_short_name=[%%Compobject_short_name%%]
     compobject_short_name=[%%compobject_short_name%%]
     
     COMPOBJECTPLURAL=[%%COMPOBJECTPLURAL%%]
     compobjectplural=[%%compobjectplural%%]
+    CompObjectPlural=[%%CompObjectPlural%%]
     compobject_plural_name=[%%compobject_plural_name%%]
     CompObject_plural_name=[%%CompObject_plural_name%%]
     compobject_short_plural_name=[%%compobject_short_plural_name%%]
