@@ -1,6 +1,6 @@
--- @version 			$Id:2017-09-17 20:14:05 caballeroantonio $
--- @name			Component Architect
--- @author			Component Architect
+-- @version 		$Id: install.componentarchitect_mysql.utf8.sql 577 2016-01-04 15:44:19Z BrianWade $
+-- @name			Component Architect (Release 1.2.0)
+-- @author			Component Architect (http://www.componentarchitect.com)
 -- @package			com_componentarchitect
 -- @subpackage		com_componentarchitect.admin
 -- @copyright		Copyright (c)2013 - 2016 Simply Open Source Ltd. (trading as Component Architect). All Rights Reserved
@@ -8,7 +8,7 @@
 --
 -- The following Component Architect header section must remain in any distribution of this file
 --
--- @CAversion		Id:install.architectcomp_mysql.utf8.sql 20170901 BrianWade & caballeroantonio $
+-- @CAversion		Id:install.architectcomp_mysql.utf8.sql 19 2012-01-12 16:33:49Z BrianWade $
 -- @CAauthor		Component Architect (www.componentarchitect.com)
 -- @CApackage		architectcomp
 -- @CAsubpackage	architectcomp.admin
@@ -22,21 +22,13 @@
 -- This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, without even the implied warranty of
 -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 -- --------------------------------------------------------
-
-/*
-# components use references with INT(10) UNSIGNED, so need change categories and users to user FK
-ALTER TABLE `jos_users` 
-CHANGE COLUMN `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ;
-ALTER TABLE `jos_categories` 
-CHANGE COLUMN `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ;
-*/
 --
 -- Table structure for table `#__componentarchitect_components`
 --
 
-DROP TABLE IF EXISTS `#__componentarchitect_components`;
+#DROP TABLE IF EXISTS `#__componentarchitect_components`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_components` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `author` VARCHAR(100) NOT NULL DEFAULT '',
@@ -52,33 +44,30 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_components` (
   `categories_icon_48px` VARCHAR(255) NOT NULL DEFAULT '',
   `joomla_parts` VARCHAR(1024) NOT NULL DEFAULT '',
   `joomla_features` VARCHAR(1024) NOT NULL DEFAULT '',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_ordering` (`ordering`),
-  CONSTRAINT `cac_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_componentobjects`
 --
 
-# DROP TABLE IF EXISTS `#__componentarchitect_componentobjects`;
+#DROP TABLE IF EXISTS `#__componentarchitect_componentobjects`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_componentobjects` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
-  `component_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `component_id` INT(10) NOT NULL DEFAULT '0',
   `readonly` TINYINT(1) NOT NULL DEFAULT '0',
   `plural_name` VARCHAR(50) NOT NULL DEFAULT '',
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
@@ -90,74 +79,66 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_componentobjects` (
   `icon_48px` VARCHAR(255) NOT NULL DEFAULT '',
   `joomla_parts` VARCHAR(1024) NOT NULL DEFAULT '',
   `joomla_features` VARCHAR(1024) NOT NULL DEFAULT '',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_component_id` (`component_id`),
   KEY `idx_ordering` (`ordering`),
-  CONSTRAINT `caco_componentid` FOREIGN KEY (`component_id`) REFERENCES `#__componentarchitect_components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `caco_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fieldsets`
 --
 
-# DROP TABLE IF EXISTS `#__componentarchitect_fieldsets`;
+#DROP TABLE IF EXISTS `#__componentarchitect_fieldsets`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldsets` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
-  `component_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `component_object_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `component_id` INT(10) NOT NULL DEFAULT '0',
+  `component_object_id` INT(10) NOT NULL DEFAULT '0',
   `predefined_fieldset` TINYINT(1) NOT NULL DEFAULT '0',
-  `state` TINYINT(1) NOT NULL DEFAULT '1',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
+  KEY `idx_component_id` (`component_id`),
+  KEY `idx_component_object_id` (`component_object_id`),
   KEY `idx_predefined_fieldset` (`predefined_fieldset`),
   KEY `idx_ordering` (`ordering`),
-  KEY `idx_component_id` (`component_id`,`component_object_id`),
-  CONSTRAINT `cafs_componentid` FOREIGN KEY (`component_id`) REFERENCES `#__componentarchitect_components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cafs_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fields`
 --
 
-# DROP TABLE IF EXISTS `#__componentarchitect_fields`;
+#DROP TABLE IF EXISTS `#__componentarchitect_fields`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
-  `component_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `component_object_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `fieldset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `component_id` INT(10) NOT NULL DEFAULT '0',
+  `component_object_id` INT(10) NOT NULL DEFAULT '0',
+  `fieldset_id` INT(10) NOT NULL DEFAULT '0',
   `predefined_field` TINYINT(1) NOT NULL DEFAULT '0',
-  `fieldtype_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `fieldtype_id` INT(10) NOT NULL DEFAULT '0',
   `required` TINYINT(1) NOT NULL DEFAULT '0',
   `filter` TINYINT(1) NOT NULL DEFAULT '0',
   `order` TINYINT(1) NOT NULL DEFAULT '0',
@@ -180,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `cols` VARCHAR(5) NOT NULL DEFAULT '',
   `rows` VARCHAR(5) NOT NULL DEFAULT '',
   `value_source` VARCHAR(40) NOT NULL DEFAULT '',
-  `option_values` MEDIUMTEXT NOT NULL,
+  `option_values` MEDIUMTEXT NOT NULL ,
   `multiple` TINYINT(1) NOT NULL DEFAULT '0',
   `format` VARCHAR(25) NOT NULL DEFAULT '',
   `first` VARCHAR(5) NOT NULL DEFAULT '',
@@ -190,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `hide_default` TINYINT(1) NOT NULL DEFAULT '0',
   `buttons` VARCHAR(100) NOT NULL DEFAULT '',
   `hide_buttons` VARCHAR(100) NOT NULL DEFAULT '',
-  `foreign_object_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `foreign_object_id` INT(10) NOT NULL DEFAULT '0',
   `cascade_object` TINYINT(1) NOT NULL DEFAULT '0',
   `field_filter` VARCHAR(15) NOT NULL DEFAULT '',
   `max_file_size` VARCHAR(10) NOT NULL DEFAULT '',
@@ -198,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `accept_file_types` VARCHAR(50) NOT NULL DEFAULT '',
   `directory` VARCHAR(255) NOT NULL DEFAULT '',
   `link` VARCHAR(255) NOT NULL DEFAULT '',
-  `sql_query` VARCHAR(1024) NOT NULL,
+  `sql_query` VARCHAR(1024) NOT NULL ,
   `sql_key_field` VARCHAR(50) NOT NULL DEFAULT '',
   `sql_value_field` VARCHAR(50) NOT NULL DEFAULT '',
   `translate` TINYINT(1) NOT NULL DEFAULT '0',
@@ -206,25 +187,20 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `stripext` TINYINT(1) NOT NULL DEFAULT '0',
   `preview` VARCHAR(15) NOT NULL DEFAULT '',
   `autocomplete` VARCHAR(15) NOT NULL DEFAULT '',
-  `onclick` VARCHAR(255) NOT NULL,
-  `onchange` VARCHAR(255) NOT NULL,
+  `onclick` VARCHAR(255) NOT NULL ,
+  `onchange` VARCHAR(255) NOT NULL ,
   `mysql_datatype` VARCHAR(15) NOT NULL DEFAULT '',
   `mysql_size` VARCHAR(5) NOT NULL DEFAULT '',
   `mysql_default` VARCHAR(50) NOT NULL DEFAULT '',
-  `state` TINYINT(1) NOT NULL DEFAULT '1',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_component_id` (`component_id`),
   KEY `idx_component_object_id` (`component_object_id`),
@@ -233,19 +209,16 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   KEY `idx_fieldtype_id` (`fieldtype_id`),
   KEY `idx_foreign_object_id` (`foreign_object_id`),
   KEY `idx_ordering` (`ordering`),
-  KEY `caf_fieldsetid_idx` (`fieldset_id`,`component_object_id`,`component_id`),
-  CONSTRAINT `caf_componentid` FOREIGN KEY (`component_id`) REFERENCES `#__componentarchitect_components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `caf_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `caf_fieldsetid` FOREIGN KEY (`fieldset_id`) REFERENCES `#__componentarchitect_fieldsets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `caf_objectid` FOREIGN KEY (`component_object_id`) REFERENCES `#__componentarchitect_componentobjects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fieldtypes`
 --
 
-# DROP TABLE IF EXISTS `#__componentarchitect_fieldtypes`;
+#DROP TABLE IF EXISTS `#__componentarchitect_fieldtypes`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldtypes` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
@@ -308,30 +281,26 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldtypes` (
   `mysql_size_default` VARCHAR(5) NOT NULL DEFAULT '',
   `mysql_default_default` VARCHAR(50) NOT NULL DEFAULT '',
   `catid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_catid` (`catid`),
   KEY `idx_ordering` (`ordering`),
-  CONSTRAINT `caft_catid` FOREIGN KEY (`catid`) REFERENCES `#__categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `caft_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_codetemplates`
 --
 
-# DROP TABLE IF EXISTS `#__componentarchitect_codetemplates`;
+#DROP TABLE IF EXISTS `#__componentarchitect_codetemplates`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_codetemplates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
@@ -349,34 +318,30 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_codetemplates` (
   `template_markup_prefix` VARCHAR(50) NOT NULL DEFAULT '',
   `template_markup_suffix` VARCHAR(50) NOT NULL DEFAULT '',
   `catid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `state` TINYINT(1) NOT NULL DEFAULT '0',
   `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',
+  `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` INT(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_catid` (`catid`),
   KEY `idx_predefined_code_template` (`predefined_code_template`),
   KEY `idx_ordering` (`ordering`),
-  CONSTRAINT `cact_catid` FOREIGN KEY (`catid`) REFERENCES `#__categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `cact_createdby` FOREIGN KEY (`created_by`) REFERENCES `#__users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- [%%START_CUSTOM_CODE%%]
 --
 -- Table structure for table `#__componentarchitect_sessiondata`
 --
-# DROP TABLE IF EXISTS `#__componentarchitect_sessiondata`;
+#DROP TABLE IF EXISTS `#__componentarchitect_sessiondata`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_sessiondata` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `context` VARCHAR(50) NOT NULL DEFAULT '',
   `key` VARCHAR(50) NOT NULL DEFAULT '',
   `data` MEDIUMTEXT,
@@ -385,12 +350,11 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_sessiondata` (
   `expires` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `context_key` (`context`,`key`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Insert basic values into `#__componentarchitect_fieldtypes` table
 --
-
-SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO `#__componentarchitect_fieldtypes` (`name`, `description`, `code_name`, `class`, `size`, `width`, `maxlength`, `height`, `cols`, `rows`, `value_source`, `option_values`, `multiple`, `format`, `first`, `last`, `step`, `hide_none`, `hide_default`, `buttons`, `hide_buttons`, `foreign_object_id`, `cascade_object`, `field_filter`, `max_file_size`, `exclude_files`, `accept_file_types`, `directory`, `link`, `sql_query`, `sql_key_field`, `sql_value_field`, `translate`, `client`, `stripext`, `preview`, `autocomplete`, `onclick`, `onchange`, `default_default`, `class_default`, `maxlength_default`, `size_default`, `allowed_input_default`, `format_default`, `php_variable_type`, `cols_default`, `rows_default`, `width_default`, `height_default`, `buttons_default`, `hide_buttons_default`, `validation_type_default`, `field_filter_default`, `max_file_size_default`, `exclude_files_default`, `directory_default`, `accept_file_types_default`, `mysql_datatype_default`, `mysql_size_default`, `mysql_default_default`, `catid`, `created`, `created_by`, `created_by_alias`, `modified`, `modified_by`, `checked_out`, `checked_out_time`, `ordering`) VALUES
 ('Text', '<p>This is the field type for a standard Joomla! Text field.</p>', 'text', 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '', 'inputbox', '255', '50', '', '', 'string', '', '', '', '', '', '', '', '', '', '', '', '', 'VARCHAR', '255', '''''', 10102, '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00', 1),
 ('Hidden', '<p>This is the field type for a standard Joomla! Hidden field. The attribute ''hidden'' and class of ''hidden'' is automatically used by Joomla! for a field of type ''hidden''</p>', 'hidden', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '', 'inputbox', '', '', '', '', 'string', '', '', '', '', '', '', '', '', '', '', '', '', 'VARCHAR', '255', '', 10102, '0000-00-00 00:00:00', 0, '', '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00', 1),
@@ -428,5 +392,4 @@ INSERT INTO `#__componentarchitect_fieldtypes` (`name`, `description`, `code_nam
 UPDATE `#__componentarchitect_fieldtypes`
 SET `validation_type_default` = 'numeric'
 WHERE `code_name` = 'modal';
-SET FOREIGN_KEY_CHECKS=1;
 -- [%%END_CUSTOM_CODE%%]

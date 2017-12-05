@@ -39,7 +39,11 @@ class ComponentArchitectGenerateHelper
 	protected $_component_path = '';
 	protected $_progress;
 	protected $_token = '';
-	protected $_name_regex = '/[^a-zA-Z0-9\s\\/\-_+&()]/';
+        /**
+         * $_name_regex genera una validación excesiva que elimina acentos y demás caracteres desables para los name|short_name|plural_name
+         * faltaría implementar validaciones para los code_name|plural_code_name|template_component_name|template_object_name
+         */
+	protected $_name_regex = '//';//'/[^a-zA-Z0-9\s\\/\-_+&()]/';
         protected $_latex_forbidden = array(
             '\r\n', '~', '^', '\\',
             '&', '%', '$', '#', '_', '{', '}',
@@ -570,7 +574,6 @@ generateComponent
 
 				
 				$child_component_object = $child_component_object_model->getItem($cascade_field->component_object_id);	
-//@debug codification//file_put_contents('getChildComponentObjects1.txt', var_export($child_component_object, TRUE), FILE_APPEND);
 						
 				if ($child_component_object === false) 
 				{
@@ -586,7 +589,6 @@ generateComponent
 				}
 				
 				$child_search_replace = $this->_getComponentObjectSearchPairs($template_object_name,$child_component_object, true);
-//@debug codification//file_put_contents('getChildComponentObjects2.txt', var_export($component_object, TRUE), FILE_APPEND);
 				
 				$child_component_object->search_replace = $child_search_replace;
 				
@@ -609,8 +611,6 @@ generateComponent
 	 */	
 	protected function _populateComponentObject(&$component_object, $default_object_id, $template_component_name, $template_object_name)		
 	{
-		
-//@debug codification//file_put_contents('populateComponentObject.txt', var_export($component_object, TRUE), FILE_APPEND);
 		// Double check that only limited punctuation is present in name as this may cause php code or sql problems
 		$component_object->name = preg_replace($this->_name_regex, '',$component_object->name);
 		
@@ -783,7 +783,6 @@ generateComponent
 		
 		
 		$component_object->search_replace = $this->_getComponentObjectSearchPairs($template_object_name,$component_object);
-//@debug codification//file_put_contents('_populateComponentObject1.txt', var_export($component_object, TRUE), FILE_APPEND);
 		
 		if ($this->_getFieldsets($component_object) === false)
 		{
@@ -2021,7 +2020,6 @@ generateComponent
 	{
 		$db		= JFactory::getDbo();
 
-//@debug codification//file_put_contents('getComponentObjectSearchPairs.txt', var_export($component_object, TRUE), FILE_APPEND);
 		$object_name = $component_object->name;	
 		$object_description = $component_object->description;
 		if(isset($component_object->intro))
@@ -2985,8 +2983,6 @@ generateComponent
                                         'displayColumn'=>'name',
                                     );
                                     $data['content_types'][$component_object->code_name]->content_history_options['displayLookup'][] = $displayLookup;
-//                            test
-//                            file_put_contents("{$dst_path}/borrame.txt", print_r($field,true),FILE_APPEND);
                         break;
                     }
                 }
