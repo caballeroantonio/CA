@@ -74,7 +74,7 @@
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 Estoy pensando en que se puede tropicalizar el consecutivo, dataIndex=consecutiv
@@ -84,7 +84,7 @@ o, columnText=Número de oficio
 \begin_layout Plain Layout
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -182,7 +182,7 @@ Query exportar observaciones CA
 \begin_layout Date
 Revisión [%%COMPONENTSTARTVERSION%%] del 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -201,7 +201,7 @@ today
 
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -286,7 +286,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -328,7 +328,7 @@ Install y seleccionar la ubicación del
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -367,7 +367,7 @@ Completar el proceso de instalación
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -411,7 +411,7 @@ Ingresar al portal de administración en {SITE}/administrator e identifíquese
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -452,7 +452,7 @@ Global Configuration\SpecialChar menuseparator
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -492,7 +492,7 @@ Colocar el puntero sobre cada campo para obtener descripciones mediante
 En la esquina superior derecha se encuentra un botón para obtener ayuda
  que despliega el presente menú en el capítulo correspondiente 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Itemize
 @ToDo implementar el botón HELP en cada vista y en las configuraciones
@@ -585,7 +585,7 @@ filename "config_lyx.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -610,7 +610,7 @@ caption{Lista de configuraciones}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -634,397 +634,6 @@ status open
 
 \begin_layout Standard
 [%%IF INCLUDE_VERSIONS%%]
-\end_layout
-
-\begin_layout Subsection
-Control de cambios
-\end_layout
-
-\begin_layout Standard
-El 20170720 la Comisión del Sistema de Control de Información y Registros
- solicitó 
-\begin_inset Quotes eld
-\end_inset
-
-
-\emph on
-Mostrar la bitácora de cambios que se realizan en los registros de los libros
-\emph default
-
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Se incorporó un control de versiones 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-llamado UCM (Unified Content Model )
-\end_layout
-
-\end_inset
-
- que se habilita para cada componente.
- 
-\end_layout
-
-\begin_layout Itemize
-La solución permite configurar el número máximo de versiones que se debe
- almacenar para cada registro, parametrizable de forma global para todas
- las interfaces así como de forma individual, con el valor a cero se almacenan
- todas las versiones.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_versioncontrol.jpg
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Configuraciones del control de versiones
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=_allowHistoryOnSite.png
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Permisos para que usuarios Registrados visualicen los cambios
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Al ingresar en el modo de edición de un registro aparece el botón 
-\begin_inset Quotes eld
-\end_inset
-
-Versions
-\begin_inset Quotes erd
-\end_inset
-
- y al presionarlo se visualiza el histórico del registro.
-\end_layout
-
-\begin_layout Itemize
-Los botones se ocultan con los cambios ad-hoc realizados en administrator
-\backslash
-components
-\backslash
-com_contenthistory
-\backslash
-views
-\backslash
-history
-\backslash
-tmpl
-\backslash
-modal.php
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=history&layout=modal&tmpl=component&item_id=1.jpg
-	lyxscale 40
-	width 80text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Histórico de un registro
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-En el registro se pueden realizar las siguientes acciones:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Restore
-\end_layout
-
-\begin_layout Itemize
-Preview
-\end_layout
-
-\begin_layout Itemize
-Compare
-\end_layout
-
-\begin_layout Itemize
-Keep On/Off
-\end_layout
-
-\begin_layout Itemize
-Delete
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-@ToDo Generar las etiquetas adecuadas para el preview del control de versiones
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=preview&layout=preview&tmpl=component&version_id=1.jpg
-	lyxscale 40
-	width 80text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Preview de un registro
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/DER_UCM.png
-	lyxscale 40
-	width 80text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Diagrama entidad relación
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-[%%ENDIF INCLUDE_VERSIONS%%]
-\end_layout
-
-\begin_layout Standard
-[%%FOREACH COMPONENT_OBJECT%%]
-\end_layout
-
-\begin_layout Subsection
-Configuración de [%%CompObject_name%%]
-\end_layout
-
-\begin_layout Standard
-[%%IF GENERATE_SITE%%]
-\end_layout
-
-\begin_layout Standard
-[%%IF INCLUDE_PARAMS_GLOBAL%%]
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobject_display.jpg
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Configuraciones del despliegue de [%%CompObject_name%%]
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobjectplural_list_display.jpg
-	lyxscale 30
-	width 80col%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-[%%ENDIF INCLUDE_PARAMS_GLOBAL%%]
-\end_layout
-
-\begin_layout Standard
-[%%ENDIF GENERATE_SITE%%]
-\end_layout
-
-\begin_layout Standard
-[%%ENDFOR COMPONENT_OBJECT%%]
 \end_layout
 
 \begin_layout Standard
@@ -1156,6 +765,397 @@ Configuración de permisos globales
 [%%ENDIF INCLUDE_ASSETACL%%]
 \end_layout
 
+\begin_layout Subsection
+Control de cambios
+\end_layout
+
+\begin_layout Standard
+El 20170720 la Comisión del Sistema de Control de Información y Registros
+ solicitó 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Mostrar la bitácora de cambios que se realizan en los registros de los libros
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se incorporó un control de versiones 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+llamado UCM (Unified Content Model )
+\end_layout
+
+\end_inset
+
+ que se habilita para cada componente.
+ 
+\end_layout
+
+\begin_layout Itemize
+La solución permite configurar el número máximo de versiones que se debe
+ almacenar para cada registro, parametrizable de forma global para todas
+ las interfaces así como de forma individual, con el valor a cero se almacenan
+ todas las versiones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_versioncontrol.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del control de versiones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=_allowHistoryOnSite.png
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Permisos para que usuarios Registrados visualicen los cambios
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Al ingresar en el modo de edición de un registro aparece el botón 
+\begin_inset Quotes eld
+\end_inset
+
+Versions
+\begin_inset Quotes erd
+\end_inset
+
+ y al presionarlo se visualiza el histórico del registro.
+\end_layout
+
+\begin_layout Itemize
+Los botones se ocultan con los cambios ad-hoc realizados en administrator
+\backslash
+components
+\backslash
+com_contenthistory
+\backslash
+views
+\backslash
+history
+\backslash
+tmpl
+\backslash
+modal.php
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=history&layout=modal&tmpl=component&item_id=1.jpg
+	lyxscale 40
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histórico de un registro
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+En el registro se pueden realizar las siguientes acciones:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Restore
+\end_layout
+
+\begin_layout Itemize
+Preview
+\end_layout
+
+\begin_layout Itemize
+Compare
+\end_layout
+
+\begin_layout Itemize
+Keep On/Off
+\end_layout
+
+\begin_layout Itemize
+Delete
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+@ToDo Generar las etiquetas adecuadas para el preview del control de versiones
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_contenthistory&view=preview&layout=preview&tmpl=component&version_id=1.jpg
+	lyxscale 40
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Preview de un registro
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/DER_UCM.png
+	lyxscale 40
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama entidad relación
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF INCLUDE_VERSIONS%%]
+\end_layout
+
+\begin_layout Standard
+[%%FOREACH COMPONENT_OBJECT%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%IF INCLUDE_PARAMS_GLOBAL%%]
+\end_layout
+
+\begin_layout Subsection
+Configuración de [%%CompObject_name%%]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobject_display.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del despliegue de [%%CompObject_name%%]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename D:/projects/my_joomla/com_componentarchitect/components_asset/lyx/administrator_option=com_config&view=component&component=com_architectcomp_compobjectplural_list_display.jpg
+	lyxscale 30
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Configuraciones del despliegue de [%%CompObject_name%%] en listas/Blog
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF INCLUDE_PARAMS_GLOBAL%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDIF GENERATE_SITE%%]
+\end_layout
+
+\begin_layout Standard
+[%%ENDFOR COMPONENT_OBJECT%%]
+\end_layout
+
 \begin_layout Section
 Modelo de datos (tablas)
 \begin_inset CommandInset label
@@ -1270,7 +1270,7 @@ filename "[%%compobject%%]_admin.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1295,7 +1295,7 @@ caption{Lista de campos}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1314,7 +1314,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1340,7 +1340,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1387,7 +1387,7 @@ Vista de categoría
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1520,7 +1520,7 @@ filename "[%%compobject%%]_user.tex"
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1545,7 +1545,7 @@ caption{Lista de campos en [%%Compobject_name%%]}
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1582,7 +1582,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1628,7 +1628,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1674,7 +1674,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1720,7 +1720,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&id=1"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1766,7 +1766,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]&layout=artic
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1812,7 +1812,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%compobject%%]form&layout=e
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1874,7 +1874,7 @@ target "SERVER?option=[%%com_architectcomp%%]&view=categories"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1920,11 +1920,11 @@ target "SERVER?option=[%%com_architectcomp%%]&view=category"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 @Bug Notice: Trying to get property of non-object in D:
@@ -1995,11 +1995,11 @@ target "SERVER?option=[%%com_architectcomp%%]&view=[%%ccompobjectplural%%]&layou
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 pidieron un preview de cada libro-grid, qué flojera.

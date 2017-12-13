@@ -911,23 +911,4 @@ UPDATE #__extensions SET params = '{$params_string}' WHERE type = 'component' AN
             $out = ob_get_clean();
         return $out;
     }
-    /**
-     * function to add entries for the component tables to the ucm content type table
-     *
-     * @return void
-     */   
-    private function populateUCM()
-    {
-        $db = JFactory::getDbo();       
-    
-		[%%FOREACH COMPONENT_OBJECT%%]
-//			$db->setQuery('INSERT INTO #__content_types($data['content_types'][code_name]) VALUES();');
-//			$db->execute(); 
-		[%%ENDFOR COMPONENT_OBJECT%%]
-		
-		[%%IF GENERATE_CATEGORIES%%]
-//			$db->setQuery('INSERT INTO #__content_types($data['content_types'][cat]) VALUES();');
-//			$db->execute(); 
-		[%%ENDIF GENERATE_CATEGORIES%%]  
-	}  
 }

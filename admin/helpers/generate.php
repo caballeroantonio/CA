@@ -1978,7 +1978,7 @@ generateComponent
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::strtolower(str_replace (" ", "",$template_component_name)).'_name'), 'replace' => JString::strtolower($component_name)));
 
 		// e.g. 'search' => '[%%Architectcomp_description%%]', 'replace' => 'Focus groups description'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description'), 'replace' => $component_description));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description'), 'replace' => $this->_prettifyIniText($component_description) ));
 
 		// e.g. 'search' => '[%%Architectcomp_description_ini%%]', 'replace' => 'Focus groups description'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst(JString::strtolower(str_replace (" ", "",$template_component_name))).'_description_ini'), 'replace' => $this->_prettifyIniText( $component_description)));

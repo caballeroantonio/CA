@@ -98,5 +98,5 @@ id & INT(10) & PK \tabularnewline\hline
 
 %each field
 [%%FOREACH OBJECT_FIELD%%]
-	[%%FIELD_CODE_NAME_LATEX%%] & [%%FIELD_DBTYPEANDSIZE%%] & [%%FIELD_DBCOMMENT_LATEX%%] \tabularnewline\hline 
+	[%%FIELD_CODE_NAME_LATEX%%] & [%%FIELD_DBTYPEANDSIZE%%] & [%%FIELD_NAME_LATEX%%]:[%%FIELD_DBCOMMENT_LATEX%%] \tabularnewline\hline 
 [%%ENDFOR OBJECT_FIELD%%]

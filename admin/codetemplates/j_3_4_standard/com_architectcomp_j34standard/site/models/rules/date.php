@@ -28,7 +28,9 @@
 defined('_JEXEC') or die;
  
 // import Joomla! formrule library
-jimport('joomla.form.formrule');
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\Form\FormRule;
+use Joomla\Registry\Registry;
  
 /**
  * Form Rule class for date
