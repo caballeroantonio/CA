@@ -1,0 +1,25 @@
+
+<form
+    addfieldpath="/administrator/components/com_jtscca/models/fields"
+    addrulepath="/administrator/components/com_jtscca/models/rules"
+	
+
+
+>
+    <fieldset
+
+        <field
+            name="id_expediente"
+            type="modal_expedientes"
+            label="COM_JTSCCA_LS01S_FIELD_ID_EXPEDIENTE_LABEL"
+            description="COM_JTSCCA_LS01S_FIELD_ID_EXPEDIENTE_DESC"
+            class="modal"
+			required="true"
+			default="0"
+    addfieldpath="/administrator/components/com_jtca/models/fields"
+    addformpath="/administrator/components/com_jtca/models/forms"
+        >
+        </field>  
+ 
+    </fieldset>
+</form>
