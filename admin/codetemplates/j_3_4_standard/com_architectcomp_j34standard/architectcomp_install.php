@@ -1,7 +1,7 @@
 <?php
 /**
  * @tempversion
- * @name			[%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%])
+ * @name			[%%ArchitectComp_name%%]
  * @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%])
  * @package			[%%com_architectcomp%%]
  * @subpackage		[%%com_architectcomp%%].install

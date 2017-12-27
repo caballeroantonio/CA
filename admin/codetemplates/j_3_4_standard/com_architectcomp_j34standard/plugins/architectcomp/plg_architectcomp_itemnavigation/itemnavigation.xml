@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- @tempversion -->
-<!-- @name			    [%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%]) -->
+<!-- @name			    [%%ArchitectComp_name%%] -->
 <!-- @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%]) -->
 <!-- @package			[%%com_architectcomp%%] -->
 <!-- @subpackage		[%%com_architectcomp%%].itemnavigation -->

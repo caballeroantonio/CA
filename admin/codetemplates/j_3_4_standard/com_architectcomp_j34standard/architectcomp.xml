@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- @tempversion -->
-<!-- @name			    [%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%]) -->
+<!-- @name			    [%%ArchitectComp_name%%] -->
 <!-- @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%]) -->
 <!-- @package			[%%com_architectcomp%%] -->
 <!-- @subpackage		[%%com_architectcomp%%].admin -->
@@ -38,9 +38,7 @@
     <authorEmail>[%%COMPONENTEMAIL%%]</authorEmail>
     <authorUrl>[%%COMPONENTWEBSITE%%]</authorUrl>
     <version>[%%COMPONENTSTARTVERSION%%]</version>
-    <description>
-        [%%Architectcomp_description%%]
-    </description>
+    <description>[%%COM_ARCHITECTCOMP%%]_XML_DESCRIPTION</description>
     [%%IF GENERATE_SITE%%]
     <files folder="site">
         <filename>[%%architectcomp%%].php</filename>

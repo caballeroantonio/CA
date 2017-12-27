@@ -3058,7 +3058,7 @@ generateComponent
             
             foreach ($data['content_types'] as $key => $content_type) {
                 $query = "--\r\n"
-                        . "-- Unified Content Model (UCM) Content History Options (CHO) Inserts to table `#__{$architectcomp}_$component_object->plural_code_name`\r\n"
+                        . "-- Unified Content Model (UCM) Content History Options (CHO) Inserts to table `#__{$architectcomp}_{$component_object->plural_code_name}`\r\n"
                         . "--\r\n"
                         . 'INSERT INTO `#__content_types` (`type_title`,`type_alias`,`table`,`rules`,`field_mappings`,`router`,`content_history_options`) VALUES'
                         . ' ('
@@ -3079,7 +3079,7 @@ generateComponent
                 }
                 
                 $query = "--\r\n"
-                        . "-- Unified Content Model (UCM) Content History Options (CHO) Updates to table `#__{$architectcomp}_$component_object->plural_code_name`\r\n"
+                        . "-- Unified Content Model (UCM) Content History Options (CHO) Updates to table `#__{$architectcomp}_{$component_object->plural_code_name}`\r\n"
                         . "--\r\n"
                         . "UPDATE `#__content_types` SET \r\n"
                         . "`type_title`='{$content_type->type_title}',\r\n"

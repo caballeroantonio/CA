@@ -1,7 +1,7 @@
 <?php
 /**
  * @tempversion
- * @name			[%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%])
+ * @name			[%%ArchitectComp_name%%]
  * @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%])
  * @package			[%%com_architectcomp%%]
  * @subpackage		[%%com_architectcomp%%].admin
@@ -178,7 +178,7 @@ $empty = $component->params->get('default_empty_field', '');
 				<time datetime="<?php echo JHtml::_('date', $this->item->publish_down, 'c'); ?>">
 					<?php echo JText::sprintf('[%%COM_ARCHITECTCOMP%%]_PUBLISH_DOWN_ON', JHtml::_('date',$this->item->publish_down, JText::_('DATE_FORMAT_LC3'))); ?>
 				</time
-			</dd>
+			></dd>
 		<?php endif; ?>
 		[%%ENDIF INCLUDE_PUBLISHED_DATES%%]
 		[%%IF INCLUDE_MODIFIED%%]

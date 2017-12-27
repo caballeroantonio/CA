@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- @tempversion -->
-<!-- @name			    [%%ArchitectComp_name%%] (Release [%%COMPONENTSTARTVERSION%%]) -->
+<!-- @name			    [%%ArchitectComp_name%%] -->
 <!-- @author			[%%COMPONENTAUTHOR%%] ([%%COMPONENTWEBSITE%%]) -->
 <!-- @package			[%%com_architectcomp%%] -->
 <!-- @subpackage		[%%com_architectcomp%%].admin -->
@@ -28,7 +28,7 @@
 <!-- See http://docs.joomla.org/Deploying_an_Update_Server for further details on using this update xml file -->
 <update>
     <name>[%%ArchitectComp_name%%]</name>
-    <description>[%%Architectcomp_description%%]</description>
+    <description>[%%COM_ARCHITECTCOMP%%]_XML_DESCRIPTION</description>
     <element>[%%com_architectcomp%%]</element>
     <type>component</type>
     <version>[%%COMPONENTSTARTVERSION%%]</version>
