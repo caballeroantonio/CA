@@ -40,7 +40,7 @@ CREATE TABLE `jtc_libros` (
   UNIQUE KEY `libros-clave` (`clave`),
   KEY `libros-tipoorgano_idx` (`id_tipoorgano`),
   KEY `libros-materia_idx` (`id_materia`)
-) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -340,7 +340,8 @@ INSERT INTO `jtc_libros` VALUES (1,NULL,NULL,'Libro de ejemplo','lejemplo','jt_l
 (297,2,5,'LIBRO DE CONTROL DE MULTAS','lsps10','jt_lsps10s','jt_vlsps10s','index.php?option=com_tsjdf_libros2&view=v4&layout=libro&clave=lsps10',1,10,1,NULL,0),
 (298,2,5,'LIBRO DE CONTROL DE FIANZA','lsps11','jt_lsps11s','jt_vlsps11s','index.php?option=com_tsjdf_libros2&view=v4&layout=libro&clave=lsps11',1,11,1,NULL,0),
 (299,2,5,'REGISTRO DE PROMOCIONES','lsps12','jt_lsps12s','jt_vlsps12s','index.php?option=com_tsjdf_libros2&view=v4&layout=libro&clave=lsps12',1,12,1,NULL,0),
-(300,2,5,'CONTROL DE FIRMAS DEL PROCESADO','lsps13','jt_lsps13s','jt_vlsps13s','index.php?option=com_tsjdf_libros2&view=v4&layout=lsps13',1,13,1,NULL,0);
+(300,2,5,'CONTROL DE FIRMAS DEL PROCESADO','lsps13','jt_lsps13s','jt_vlsps13s','index.php?option=com_tsjdf_libros2&view=v4&layout=lsps13',1,13,1,NULL,0),
+(301,2,5,'LIBRO DE OFICIOS','lsps14','jt_lsps14s','jt_vlsps14s','index.php?option=com_tsjdf_libros2&view=v4&layout=libro&clave=lsps14',1,14,1,NULL,1);
 /*!40000 ALTER TABLE `jtc_libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,7 +367,7 @@ CREATE TABLE `jt3_campos` (
   `comments` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `campo-dataIndex` (`clave`,`dataIndex`)
-) ENGINE=InnoDB AUTO_INCREMENT=2447 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2452 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2690,13 +2691,13 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2343,1,13,'lspe01','field2343','NO. DE AMPARO',NULL,'VARCHAR255',NULL,NULL,1,NULL),
 (2344,1,14,'lspe01','field2344','FECHA DE RESOLUCIÓN RECURRIDA VÍA AMPARO',NULL,'date',NULL,NULL,1,NULL),
 (2345,1,13,'expediente','delito','DELITO',NULL,'VARCHAR255',NULL,NULL,0,NULL),
-(2346,1,14,'expediente','pena','PENA DE PRISIÓN',NULL,'VARCHAR255',NULL,NULL,0,NULL),
+(2346,1,14,'expediente','pena','Pena total o medida privativa',NULL,'VARCHAR255',NULL,NULL,0,NULL),
 (2347,1,8,'lsc01','field2347','PONENCIA REVISORA',NULL,'ref2','29',NULL,1,NULL),
 (2348,1,10,'lsc01','field2348','PONENCIA REVISORA',NULL,'ref2','29',NULL,1,NULL),
 (2349,1,1,'lspe08','billete','No DE BILLETE',NULL,NULL,NULL,NULL,1,NULL),
 (2350,1,1,'lsps01','field2350','CLASIFICACIÓN',NULL,'ref2','30',NULL,1,NULL),
-(2351,1,2,'lsps01','field2351','JUZGADO DE PROCEDENCIA',NULL,'VARCHAR255',NULL,NULL,1,NULL),
-(2352,1,3,'lsps01','field2352','MAGISTRADO PONENTE',NULL,'VARCHAR255',NULL,NULL,1,NULL),
+(2351,1,2,'lsps01','field2351','JUZGADO DE PROCEDENCIA',NULL,'suggest','organos_jp','organo',1,NULL),
+(2352,1,3,'lsps01','field2352','MAGISTRADO PONENTE',NULL,'suggest','magistradop','u__name',1,NULL),
 (2353,1,4,'lsps01','field2353','SENTENCIA (SENTIDO)',NULL,'VARCHAR255',NULL,NULL,1,NULL),
 (2354,1,5,'lsps01','field2354','FECHA',NULL,'date',NULL,NULL,1,NULL),
 (2355,1,6,'lsps01','field2355','RESOLUTIVOS',NULL,'VARCHAR255',NULL,NULL,1,NULL),
@@ -2710,7 +2711,7 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2363,1,5,'lsps02','field2363','CON AUDIENCIA DE ALEGATOS ACLARATORIOS',NULL,'boolean',NULL,NULL,1,NULL),
 (2364,1,6,'lsps02','field2364','DOCUMENTACIÓN RECIBIDA',NULL,'VARCHAR255',NULL,NULL,1,NULL),
 (2365,1,7,'lsps02','field2365','CON DETENIDO',NULL,'boolean',NULL,NULL,1,NULL),
-(2366,1,8,'lsps02','field2366','MAGISTRADO UNITARIO',NULL,'VARCHAR255',NULL,NULL,1,NULL),
+(2366,1,8,'lsps02','field2366','MAGISTRADO UNITARIO',NULL,'suggest','magistradop','u__name',1,NULL),
 (2367,1,9,'lsps02','field2367','FECHA SENT. SEG. INST.',NULL,'date',NULL,NULL,1,NULL),
 (2368,1,10,'lsps02','field2368','RESOLUTIVOS',NULL,'VARCHAR255',NULL,NULL,1,NULL),
 (2369,1,11,'lsps02','field2369','OBSERVACIONES',NULL,'multiline',NULL,NULL,1,NULL),
@@ -2727,11 +2728,11 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2380,1,11,'lsps03','field2380','OBSERVACIONES',NULL,'multiline',NULL,NULL,1,NULL),
 (2381,1,1,'lsps04','field2381','DESTINATARIO',NULL,'VARCHAR255',NULL,NULL,1,NULL),
 (2382,1,2,'lsps04','field2382','FECHA DE ENTREGA',NULL,'date',NULL,NULL,1,NULL),
-(2383,1,3,'lsps04','field2383','NOMBRE DEL ACTUARIO',NULL,'VARCHAR255',NULL,NULL,1,NULL),
+(2383,1,3,'lsps04','field2383','NOMBRE DEL ACTUARIO',NULL,'person',NULL,'1',1,NULL),
 (2384,1,4,'lsps04','field2384','FECHA DEL AUTO POR DELIGENCIAR',NULL,'date',NULL,NULL,1,NULL),
 (2385,1,5,'lsps04','field2385','FECHA DE DILIGENCIA',NULL,'date',NULL,NULL,1,NULL),
 (2386,1,6,'lsps04','field2386','FECHA DE DEVOLUCIÓN',NULL,'date',NULL,NULL,1,NULL),
-(2387,1,7,'lsps04','field2387','NOMBRE  DE QUIEN RECIBE LA DEVOLUCIÓN',NULL,'person',NULL,NULL,1,NULL),
+(2387,1,7,'lsps04','field2387','NOMBRE  DE QUIEN RECIBE LA DEVOLUCIÓN',NULL,'person',NULL,'1',1,NULL),
 (2388,1,8,'lsps04','field2388','OBSERVACIONES',NULL,'multiline',NULL,NULL,1,NULL),
 (2389,1,1,'lsps05','field2389','NO. DE AMPARO',NULL,NULL,NULL,NULL,1,NULL),
 (2390,1,2,'lsps05','field2390','TIPO DE AMPARO',NULL,NULL,NULL,NULL,1,NULL),
@@ -2758,7 +2759,7 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2411,1,1,'lsps08','field2411','FECHA DE AUDIENCIA DE VISTA',NULL,'date',NULL,NULL,1,NULL),
 (2412,1,2,'lsps08','field2412','NO. DE FOJAS',NULL,NULL,NULL,NULL,1,NULL),
 (2413,1,3,'lsps08','field2413','FECHA DE TURNO AL PROYECTISTA',NULL,'date',NULL,NULL,1,NULL),
-(2414,1,4,'lsps08','field2414','NOMBRE DEL PROYECTISTA',NULL,'VARCHAR255',NULL,NULL,1,NULL),
+(2414,1,4,'lsps08','field2414','NOMBRE DEL PROYECTISTA',NULL,'person',NULL,'1',1,NULL),
 (2415,1,5,'lsps08','field2415','FECHA DE VENCIMIENTO DE SENTENCIA',NULL,'date',NULL,NULL,1,NULL),
 (2416,1,6,'lsps08','field2416','FECHA DE LA SENTENCIA',NULL,'date',NULL,NULL,1,NULL),
 (2417,1,7,'lsps08','field2417','SENTIDO DE LA RESOLUCIÓN',NULL,'VARCHAR255',NULL,NULL,1,NULL),
@@ -2773,7 +2774,7 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2426,1,1,'lsps10','field2426','MONTO DE LA MULTA',NULL,'currency',NULL,NULL,1,NULL),
 (2427,1,2,'lsps10','field2427','CONCEPTO DE LA MULTA',NULL,NULL,NULL,NULL,1,NULL),
 (2428,1,3,'lsps10','field2428','FECHA DE RESOLUCIÓN QUE LA DECRETA',NULL,'date',NULL,NULL,1,NULL),
-(2429,1,4,'lsps10','field2429','NOMBRE DE LA PERSONA A LA QUE SE LE IMPONE',NULL,'person',NULL,NULL,1,NULL),
+(2429,1,4,'lsps10','field2429','NOMBRE DE LA PERSONA A LA QUE SE LE IMPONE',NULL,'person',NULL,'1',1,NULL),
 (2430,1,5,'lsps10','field2430','NO.  DEL DOCUMENTO EN EL QUE SE COMUNICA LA SANCIÓN',NULL,NULL,NULL,NULL,1,NULL),
 (2431,1,7,'lsps10','field2431','FECHA EN LA QUE ES ENTREGADO',NULL,'date',NULL,NULL,1,NULL),
 (2432,1,8,'lsps10','field2432','OBSERVACIONES',NULL,'multiline',NULL,NULL,1,NULL),
@@ -2788,9 +2789,14 @@ INSERT INTO `jt3_campos` VALUES (1,0,16,'lejemplo','my_parent','personas1',NULL,
 (2441,1,1,'lsps12','field2441','FECHA Y HORA DE RECEPCIÓN',NULL,'datetime',NULL,NULL,1,NULL),
 (2442,1,2,'lsps12','field2442','PROMOVENTE',NULL,'person',NULL,NULL,1,NULL),
 (2443,1,3,'lsps12','field2443','ASUNTO',NULL,NULL,NULL,NULL,1,NULL),
-(2444,1,4,'lsps13','field2444','NOMBRE DEL INCULPADO',NULL,'person',NULL,NULL,1,NULL),
+(2444,1,4,'lsps13','field2444','NOMBRE DEL INCULPADO',NULL,'person',NULL,'1',1,NULL),
 (2445,1,5,'lsps13','field2445','FIRMA DEL PROCESADO',NULL,'Fexterna',NULL,NULL,1,NULL),
-(2446,1,6,'lsps10','field2446','FECHA DEL DOCUMENTO EN EL QUE SE COMUNICA LA SANCIÓN',NULL,'date',NULL,NULL,1,NULL);
+(2446,1,6,'lsps10','field2446','FECHA DEL DOCUMENTO EN EL QUE SE COMUNICA LA SANCIÓN',NULL,'date',NULL,NULL,1,NULL),
+(2447,1,1,'lsps14','field2447','FECHA DEL OFICIO',NULL,'date',NULL,NULL,1,NULL),
+(2448,1,2,'lsps14','field2448','DESTINATARIO',NULL,'VARCHAR255',NULL,NULL,1,NULL),
+(2449,1,3,'lsps14','field2449','ASUNTO',NULL,NULL,NULL,NULL,1,NULL),
+(2450,1,4,'lsps14','field2450','FECHA DE ENTREGA AL DESTINATARIO',NULL,'date',NULL,NULL,1,NULL),
+(2451,1,5,'lsps14','field2451','FECHA DE DEVOLUCIÓN AL JUZGADO',NULL,'date',NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `jt3_campos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
