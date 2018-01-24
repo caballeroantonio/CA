@@ -3,11 +3,11 @@
 ADMIN_SQL_UPDATES_MYSQL=admin/sql/updates/mysql
 
 # This program dump CA definitions
-mysqldump --no-defaults --host=localhost --user=root --password=4833 --protocol=tcp  --lock-tables=FALSE --port=3306 --comments=TRUE --dump-date=FALSE --default-character-set=utf8 --skip-triggers --no-data=FALSE --no-create-db --routines=FALSE --events=FALSE --force --compact=FALSE --databases jpruebas --tables jos_componentarchitect_codetemplates jos_componentarchitect_componentobjects jos_componentarchitect_components jos_componentarchitect_fields jos_componentarchitect_fieldsets jos_componentarchitect_fieldtypes jos_categories > $ADMIN_SQL_UPDATES_MYSQL/ca.sql
+mysqldump --defaults-file=~/my.ini --protocol=tcp  --lock-tables=FALSE --port=3306 --comments=TRUE --dump-date=FALSE --default-character-set=utf8 --skip-triggers --no-data=FALSE --no-create-db --routines=FALSE --events=FALSE --force --compact=FALSE --databases jpruebas --tables jos_componentarchitect_codetemplates jos_componentarchitect_componentobjects jos_componentarchitect_components jos_componentarchitect_fields jos_componentarchitect_fieldsets jos_componentarchitect_fieldtypes jos_categories > $ADMIN_SQL_UPDATES_MYSQL/ca.sql
 sed --in-place 's/),(/),\r\n(/g' $ADMIN_SQL_UPDATES_MYSQL/ca.sql
 
 # This program dump NO CA definitions
-mysqldump --no-defaults --host=localhost --user=root --password=4833 --protocol=tcp  --lock-tables=FALSE --port=3306 --comments=TRUE --dump-date=FALSE --default-character-set=utf8 --skip-triggers --no-data=FALSE --no-create-db --routines=FALSE --events=FALSE --force --compact=FALSE --databases gpcb --tables jtc_libros jt3_campos > $ADMIN_SQL_UPDATES_MYSQL/no_ca.sql
+mysqldump --defaults-file=~/my.ini --protocol=tcp  --lock-tables=FALSE --port=3306 --comments=TRUE --dump-date=FALSE --default-character-set=utf8 --skip-triggers --no-data=FALSE --no-create-db --routines=FALSE --events=FALSE --force --compact=FALSE --databases gpcb --tables jtc_libros jt3_campos > $ADMIN_SQL_UPDATES_MYSQL/no_ca.sql
 sed --in-place 's/),(/),\r\n(/g' $ADMIN_SQL_UPDATES_MYSQL/no_ca.sql
 
 ##después de editar properties y antes de compilar
