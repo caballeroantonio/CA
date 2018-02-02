@@ -2111,10 +2111,10 @@ generateComponent
 		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::strtolower(str_replace (" ", "",$template_object_name)).'_ordering'), 'replace' => $object_ordering));
 
 		// e.g. 'search' => '[%%COMPOBJECTPLURAL%%]', 'replace' => 'DISCUSSIONGROUPS'	
-		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtoupper($template_object_name)).'PLURAL'), 'replace' =>str_replace ("_", "", JString::strtoupper($object_plural_code_name))));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtoupper($template_object_name)).'PLURAL'), 'replace' =>JString::strtoupper($object_plural_code_name)));
 		
 		// e.g. 'search' => '[%%Compobjectplural%%]', 'replace' => 'Discussiongroups'	
-		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst( JString::strtolower(str_replace (" ", "",$template_object_name)).'plural')), 'replace' =>JString::ucfirst( JString::strtolower(str_replace ("_", "", $object_plural_code_name)))));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(JString::ucfirst( JString::strtolower(str_replace (" ", "",$template_object_name)).'plural')), 'replace' =>JString::ucfirst( JString::strtolower($object_plural_code_name))));
 		
 		// e.g. 'search' => '[%%CompObjectPlural%%]', 'replace' => 'DiscussionGroups'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "",JString::ucwords(JString::strtolower( $template_object_name)).'Plural')), 'replace' => str_replace (" ", "",JString::ucwords(JString::strtolower(str_replace ("_", " ",$object_plural_code_name))))));
@@ -2123,7 +2123,7 @@ generateComponent
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "",JString::ucwords(JString::strtolower( $template_object_name)).'plural')), 'replace' => str_replace ("_", "",JString::ucwords(JString::strtolower($object_plural_code_name)))));
 
 		// e.g. 'search' => '[%%compobjectplural%%]', 'replace' => 'discussiongroups'
-		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtolower($template_object_name)).'plural'), 'replace' =>str_replace ("_", "", JString::strtolower($object_plural_code_name))));
+		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtolower($template_object_name)).'plural'), 'replace' =>JString::strtolower($object_plural_code_name)));
 
 		// e.g. 'search' => '[%%COMPOBJECT%%]', 'replace' => 'DISCUSSIONGROUP'
 		array_push($search_replace_pairs,array('search' => $this->_markupText(str_replace (" ", "", JString::strtoupper($template_object_name))), 'replace' =>str_replace ("_", "", JString::strtoupper($object_code_name))));

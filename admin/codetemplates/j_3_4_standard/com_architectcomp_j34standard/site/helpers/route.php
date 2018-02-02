@@ -105,9 +105,11 @@ abstract class [%%ArchitectComp%%]HelperRoute
 	[%%ENDFOR COMPONENT_OBJECT%%]	
 	[%%IF GENERATE_CATEGORIES%%]
 		[%%IF INCLUDE_LANGUAGE%%]
-	public static function getCategoryRoute($cat_id, $keep_item_id = false, $language = 0)
+		//se está repitiendo
+	public static function getCategoryRoute_($cat_id, $keep_item_id = false, $language = 0)
 		[%%ELSE INCLUDE_LANGUAGE%%]
-	public static function getCategoryRoute($cat_id, $keep_item_id = false)
+		//se está repitiendo
+	public static function getCategoryRoute__($cat_id, $keep_item_id = false)
 		[%%ENDIF INCLUDE_LANGUAGE%%]
 	{
 		if ($cat_id instanceof JCategoryNode)

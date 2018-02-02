@@ -54,7 +54,7 @@
     </files>
     <languages folder="site/language">
 			<language tag="en-GB">en-GB/en-GB.[%%com_architectcomp%%].ini</language>
-			<language tag="en-GB">es-ES/es-ES.[%%com_architectcomp%%].ini</language>
+			<language tag="es-ES">es-ES/es-ES.[%%com_architectcomp%%].ini</language>
     </languages>
     [%%ENDIF GENERATE_SITE%%]
     <media destination="[%%com_architectcomp%%]" folder="media">
