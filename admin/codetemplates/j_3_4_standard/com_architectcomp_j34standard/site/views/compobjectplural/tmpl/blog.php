@@ -149,6 +149,7 @@ JHtml::_('formbehavior.chosen', 'select');
 				<?php echo $this->loadTemplate('links'); ?>
 			</div>
 		<?php endif; ?>
+<!--begin pagination-->
 		<?php if ($this->params->def('show_[%%compobject%%]_pagination', 2) == 1  OR ($this->params->get('show_[%%compobject%%]_pagination') == 2 AND $this->pagination->get('pages.total') > 1)) : ?>
 		<div class="pagination">
 
@@ -161,5 +162,6 @@ JHtml::_('formbehavior.chosen', 'select');
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
+<!--end pagination-->
 </div>
 

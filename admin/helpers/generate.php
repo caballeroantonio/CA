@@ -3089,7 +3089,7 @@ generateComponent
                         . "`router`='{$content_type->router}',\r\n"
                         . "`content_history_options`='{$content_type->content_history_options}'\r\n"
                         . "WHERE `type_alias`='{$content_type->type_alias}';\r\n";
-                if (!file_put_contents("{$dst_path}/admin/sql/updates/mysql/{$this->_component->start_version}.sql", $query,FILE_APPEND))
+                if (!file_put_contents("{$dst_path}/admin/sql/updates/mysql/{$this->_component->start_version}_cho.sql", $query,FILE_APPEND))
                 {
                         $error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0013_CANNOT__DOUCMCHO', 'xxx'),'errorcode' => 'gen0013');
                         $this->_progress->outputError($this->_token, $error);
