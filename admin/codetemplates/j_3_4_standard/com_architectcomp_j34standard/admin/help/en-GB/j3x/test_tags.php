@@ -112,7 +112,7 @@ architectcomp=[%%architectcomp%%]
     
         [%%FOREACH FILTER_FIELD%%]
 {1.3}
-        	{FILTER_FIELD}
+        	{FILTER_FIELD} [%%FIELD_CODE_NAME%%]
         [%%ENDFOR FILTER_FIELD%%]
 {-1.3}
     

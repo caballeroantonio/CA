@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]` (
 [%%ENDIF INCLUDE_FEATURED%%]     
 [%%ENDIF GENERATE_CATEGORIES%%]
 [%%FOREACH FILTER_FIELD%%]
-  KEY `idx_[%%FIELD_CODE_NAME%%]` (`[%%FIELD_CODE_NAME%%]`),
+  KEY `idx_[%%FIELD_CODE_NAME%%]` (`[%%FIELD_CODE_NAME%%]`) COMMENT 'FILTER_FIELD [%%FIELD_CODE_NAME%%]',
 [%%ENDFOR FILTER_FIELD%%]
 [%%IF INCLUDE_ORDERING%%]  
   KEY `idx_ordering` (`ordering`),
