@@ -1126,6 +1126,21 @@
                 <option value="0">JHIDE</option>
             </field>
             [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+            [%%IF GENERATE_PLUGINS_VOTE%%]
+            <field
+                name="show_[%%compobject%%]_share"
+                type="radio"
+                label="[%%COM_ARCHITECTCOMP%%]_SHOW_SHARE_LABEL"
+                description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_SHARE_DESC"
+				class="btn-group"
+			>
+                [%%IF INCLUDE_PARAMS_GLOBAL%%]
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                [%%ENDIF INCLUDE_PARAMS_GLOBAL%%]
+                <option	value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            [%%ENDIF GENERATE_PLUGINS_VOTE%%]
             [%%FOREACH OBJECT_FIELD%%]
                 [%%IF FIELD_NOT_HIDDEN%%]
             <field

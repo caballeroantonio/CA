@@ -149,6 +149,9 @@
         [%%IF GENERATE_PLUGINS_VOTE%%]
         <plugin folder="plugins/[%%architectcomp%%]" plugin="plg_[%%architectcomp%%]_vote" group="[%%architectcomp%%]" />
         [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <plugin folder="plugins/[%%architectcomp%%]" plugin="plg_[%%architectcomp%%]_emailit" group="[%%architectcomp%%]" />
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
     </plugins>
     [%%ENDIF GENERATE_PLUGINS%%]
     <!-- Runs on install/uninstall/update; -->
@@ -687,6 +690,19 @@
                     type="radio"
                     label="[%%COM_ARCHITECTCOMP%%]_SHOW_VOTE_LABEL"
                     description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_VOTE_DESC"
+                    class="btn-group btn-group-yesno"
+                    default="1"
+		        >
+                    <option	value="1">JSHOW</option>
+                    <option value="0">JHIDE</option>
+                </field>
+                [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+                [%%IF GENERATE_PLUGINS_VOTE%%]
+                <field
+                    name="show_[%%compobject%%]_share"
+                    type="radio"
+                    label="[%%COM_ARCHITECTCOMP%%]_SHOW_SHARE_LABEL"
+                    description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_SHARE_DESC"
                     class="btn-group btn-group-yesno"
                     default="1"
 		        >

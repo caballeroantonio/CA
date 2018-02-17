@@ -93,6 +93,13 @@
         <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.ini" />
         <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini" />
         [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/emailit" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
     [%%ENDIF GENERATE_PLUGINS%%]
         
     </target>
@@ -313,6 +320,23 @@
             <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote\language\es-ES\es-ES.plg_[%%architectcomp%%]_vote.sys.ini"'/>
         </exec>
         [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/emailit" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailit.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailit.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailit.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailit.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
     [%%ENDIF GENERATE_PLUGINS%%]
         
     </target>   
@@ -433,6 +457,15 @@
         <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.sys.ini"/>
         <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.ini"/>
         <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/emailit"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini"/>
         [%%ENDIF GENERATE_PLUGINS_VOTE%%]
     [%%ENDIF GENERATE_PLUGINS%%]
         
