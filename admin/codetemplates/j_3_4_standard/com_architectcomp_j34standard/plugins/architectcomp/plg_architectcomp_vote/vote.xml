@@ -41,6 +41,7 @@
 	<description>PLG_[%%ARCHITECTCOMP%%]_VOTE_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="vote">vote.php</filename>
+		<folder>tmpl</folder>
 	</files>
     <languages>
         <language tag="en-GB">language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.ini</language>

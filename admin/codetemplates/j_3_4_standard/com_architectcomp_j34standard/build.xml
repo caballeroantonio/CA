@@ -172,6 +172,7 @@
         [%%IF GENERATE_PLUGINS%%]
         [%%FOREACH COMPONENT_OBJECT%%]
             [%%IF GENERATE_PLUGINS%%]
+        <mkdir dir="${link_dir}/plugins/[%%architectcomp%%]/"/>
                 [%%IF GENERATE_PLUGINS_FINDER%%]
         <exec executable="cmd" >
             <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/finder" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder"'/>
