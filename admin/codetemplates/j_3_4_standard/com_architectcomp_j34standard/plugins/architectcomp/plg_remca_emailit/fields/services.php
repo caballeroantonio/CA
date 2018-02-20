@@ -15,22 +15,22 @@ class JFormFieldServices extends JFormField {
 	}
  
 	public function getInput() {
-			JLoader::import( 'joomla.version' );
-			$version = new JVersion();
-			if (version_compare( $version->RELEASE, '2.5', '<=')) {
-				if(JFactory::getApplication()->get('jquery') !== true) {
-					JHtml::script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js');
-					JFactory::getApplication()->set('jquery', true);
-				}
-				JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/script2.5.js');
-			} else {
-				JHtml::_('jquery.framework');
-				JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/script.js');
-			}	
-            JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/jquery-ui.min.js');
-            
-            JHtml::stylesheet(JURI::root().'plugins/[%%architectcomp%%]/emailit/css/jquery-ui.min.css');
-            JHtml::stylesheet(JURI::root().'plugins/[%%architectcomp%%]/emailit/css/style.css');
+//			JLoader::import( 'joomla.version' );
+//			$version = new JVersion();
+//			if (version_compare( $version->RELEASE, '2.5', '<=')) {
+//				if(JFactory::getApplication()->get('jquery') !== true) {
+//					JHtml::script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js');
+//					JFactory::getApplication()->set('jquery', true);
+//				}
+//				JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/script2.5.js');
+//			} else {
+//				JHtml::_('jquery.framework');
+//				JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/script.js');
+//			}	
+//            JHtml::script(JURI::root().'plugins/[%%architectcomp%%]/emailit/js/jquery-ui.min.js');
+//            
+//            JHtml::stylesheet(JURI::root().'plugins/[%%architectcomp%%]/emailit/css/jquery-ui.min.css');
+//            JHtml::stylesheet(JURI::root().'plugins/[%%architectcomp%%]/emailit/css/style.css');
             return '<div class="out-of-the-box">'.
                     '<ul id="social_services" class="large"></ul>'.
                     '<div class="services_buttons">'.

@@ -919,6 +919,23 @@
             <option value="0">JHIDE</option>
         </field>
                 [%%ENDIF INCLUDE_ORDERING%%]
+            [%%FOREACH OBJECT_FIELD%%] 
+                    [%%IF FIELD_NOT_REGISTRY%%]
+                            [%%IF FIELD_NOT_HIDDEN%%]
+            <field
+                name="list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
+                type="radio"
+                label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
+				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
+				class="btn-group"
+				default="1"
+			>
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+                            [%%ENDIF FIELD_NOT_HIDDEN%%]
+                    [%%ENDIF FIELD_NOT_REGISTRY%%]
+            [%%ENDFOR OBJECT_FIELD%%]
     </fieldset>
             [%%ENDIF INCLUDE_PARAMS_GLOBAL%%]
         [%%ENDIF GENERATE_SITE%%]

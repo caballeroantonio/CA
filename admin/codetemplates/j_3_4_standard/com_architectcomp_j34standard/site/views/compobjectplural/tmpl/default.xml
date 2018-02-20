@@ -332,7 +332,9 @@
                 <option value="0">JHIDE</option>
             </field>
             [%%ENDIF INCLUDE_ORDERING%%]
-            [%%FOREACH FILTER_FIELD%%]
+            [%%FOREACH OBJECT_FIELD%%] 
+                    [%%IF FIELD_NOT_REGISTRY%%]
+                            [%%IF FIELD_NOT_HIDDEN%%]
             <field
                 name="list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
                 type="radio"
@@ -346,7 +348,9 @@
                 <option value="1">JSHOW</option>
                 <option value="0">JHIDE</option>
             </field>
-            [%%ENDFOR FILTER_FIELD%%]
+                            [%%ENDIF FIELD_NOT_HIDDEN%%]
+                    [%%ENDIF FIELD_NOT_REGISTRY%%]
+            [%%ENDFOR OBJECT_FIELD%%]
         </fieldset>
         <fieldset
             name="[%%compobject%%]_layout_settings"

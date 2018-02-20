@@ -2949,7 +2949,8 @@ generateComponent
                 );
 
                 $data['content_types'][$component_object->code_name]->content_history_options = array(
-                    'formFile'=>"administrator/components/com_{$architectcomp}/models/forms/{$component_object->code_name}.xml",//'administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml',
+                    'formFile'=>"administrator/components/com_{$architectcomp}/models/forms/{$component_object->code_name}.xml",
+//                    'formFile'=>"administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml",//generado dinámicamente, no hay reemplazos [%%%%]
                     'hideFields'=>array('asset_id','checked_out','checked_out_time','version'),
                     'ignoreChanges'=>array('modified_by','modified','checked_out','checked_out_time','hits','version'),
                     'convertToInt'=>array('publish_up','publish_down','featured','ordering'),
@@ -2984,6 +2985,14 @@ generateComponent
                                     );
                                     $data['content_types'][$component_object->code_name]->content_history_options['displayLookup'][] = $displayLookup;
                         break;
+                        case 'combo_suggest':
+                            /**
+                             * no me han dado oportunidad de mejorar el widget suggest, 
+                             * como no estoy ocupando el id_fieldxxx lo escondo.
+                            */
+                            if(strpos ($field->code_name,'id_') === 0)
+                                $data['content_types'][$component_object->code_name]->content_history_options['hideFields'][] = $field->code_name;
+                            break;
                     }
                 }
                 
@@ -3089,7 +3098,7 @@ generateComponent
                         . "`router`='{$content_type->router}',\r\n"
                         . "`content_history_options`='{$content_type->content_history_options}'\r\n"
                         . "WHERE `type_alias`='{$content_type->type_alias}';\r\n";
-                if (!file_put_contents("{$dst_path}/admin/sql/updates/mysql/{$this->_component->start_version}_cho.sql", $query,FILE_APPEND))
+                if (!file_put_contents("{$dst_path}/admin/sql/updates/mysql/cho.sql", $query,FILE_APPEND))
                 {
                         $error = array('message' => JText::sprintf('COM_COMPONENTARCHITECT_GENERATE_ERROR_GEN0013_CANNOT__DOUCMCHO', 'xxx'),'errorcode' => 'gen0013');
                         $this->_progress->outputError($this->_token, $error);

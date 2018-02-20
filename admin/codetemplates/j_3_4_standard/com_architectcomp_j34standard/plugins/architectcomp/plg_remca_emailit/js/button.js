@@ -79,9 +79,9 @@ e_mailit.go = function () {
                     if (e_mailit.config.bookmarklet) {
                         e_mailit.menu.open(e_mailit.config.pageurl, e_mailit.config.pagetitle);
                     }
-                    initGA();
-                    if (typeof e_mailit.config.notrack === 'undefined' || e_mailit.config.notrack == false)
-                        emailit_jQ.getScript("//www.e-mailit.com/widget/menu3x/js/partners.js");
+//                    initGA();
+//                    if (typeof e_mailit.config.notrack === 'undefined' || e_mailit.config.notrack == false)
+//                        emailit_jQ.getScript("plugins/remca/emailit/js/partners.js");
                 });
             }
         };

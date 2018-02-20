@@ -167,8 +167,10 @@ $empty = $component->params->get('default_empty_field', '');
 						<?php echo JHtml::_('grid.sort', '[%%COM_ARCHITECTCOMP%%]_HEADING_HITS', 'a.hits', $list_dirn, $list_order); ?>
 						</th>
 					<?php endif; ?>
-					[%%ENDIF INCLUDE_HITS%%]			
-					[%%FOREACH FILTER_FIELD%%] 
+					[%%ENDIF INCLUDE_HITS%%]
+					[%%FOREACH OBJECT_FIELD%%] 
+						[%%IF FIELD_NOT_REGISTRY%%]
+							[%%IF FIELD_NOT_HIDDEN%%]
 					<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',0)) : ?>
 						<th class="list-[%%FIELD_CODE_NAME%%]" id="tableOrdering[%%FIELD_CODE_NAME%%]">
 								[%%IF FIELD_SORT%%]
@@ -182,7 +184,9 @@ $empty = $component->params->get('default_empty_field', '');
 								[%%ENDIF FIELD_SORT%%]	
 						</th>
 					<?php endif; ?>	
-					[%%ENDFOR FILTER_FIELD%%]
+                            [%%ENDIF FIELD_NOT_HIDDEN%%]
+                    [%%ENDIF FIELD_NOT_REGISTRY%%]
+            [%%ENDFOR OBJECT_FIELD%%]
 					[%%IF INCLUDE_ORDERING%%]
 					<?php if ($this->params->get('list_show_[%%compobject%%]_ordering',0)) : ?>
 						<th width="10%">
@@ -448,7 +452,6 @@ $empty = $component->params->get('default_empty_field', '');
 			<?php endforeach; ?>
 			</tbody>
 			</table>
-<!--begin pagination-->
 			<?php if (($this->params->def('show_[%%compobject%%]_pagination', 2) == 1  OR ($this->params->get('show_[%%compobject%%]_pagination') == 2)) AND ($this->pagination->get('pages.total') > 1)) : ?>
 			<div class="pagination">
 
@@ -461,7 +464,7 @@ $empty = $component->params->get('default_empty_field', '');
 				<?php echo $this->pagination->getPagesLinks(); ?>
 			</div>
 			<?php endif; ?>
-<!--end pagination-->
+
 			<div>
 				<!-- @TODO add hidden inputs -->
 				<input type="hidden" name="task" value="" />

@@ -152,11 +152,13 @@ class plg[%%ArchitectComp%%]Emailit extends JPlugin {
             $doc->addScriptDeclaration($outputValue);
         }
     }
+
+[%%FOREACH COMPONENT_OBJECT%%]
     /*
      * on[%%ArchitectComp%%]Prepare
      */
 
-    public function on[%%ArchitectComp%%]Prepare($context, &$article, &$params, $limitstart) {
+    public function on[%%CompObject%%]Prepare($context, &$row, &$params, $limitstart) {
         $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
         $menu = $app->getMenu();
@@ -165,47 +167,85 @@ class plg[%%ArchitectComp%%]Emailit extends JPlugin {
         
         $share = true;
         // If no text or no title
-		if (!isset($article->text) || !isset($article->title)){
-			$share = false;
-		}elseif ($this->arrParamValues["filter_art"] != "") {
+        if (!isset($row->description) || !isset($row->name)){
+            $share = false;
+        }elseif ($this->arrParamValues["filter_art"] != "") {
             $filter_artArray = explode(",", str_replace(" ", "", trim($this->arrParamValues["filter_art"]))); // array with excluded articles
-            if (in_array($article->id, $filter_artArray))
+            if (in_array($row->id, $filter_artArray))
                 $share = false;
         }elseif ($this->params->get('show_content', '1') != '1') {
             $share = false;
-        }elseif (strpos($article->text, '{no_emailit}') !== false) {
+        }elseif (strpos($row->description, '{no_emailit}') !== false) {
             $share = false;
-            $article->text = str_replace('{no_emailit}', '', $article->text);
+            $row->description = str_replace('{no_emailit}', '', $row->description);
         }elseif ($front_page && $this->params->get('show_frontpage', '1') != '1') {
             $share = false;
         }elseif ($app->input->get('view') == 'category' &&!$front_page && $this->params->get('show_categories', '1') != '1') {
             $share = false;
         }elseif ($this->params->get('filter_cat', 0) != 0) {
-            if (in_array($article->catid, $this->params->get('filter_cat', array()))) {
+            if (in_array($row->catid, $this->params->get('filter_cat', array()))) {
                 $share = false;
             }
         }
 
-        $url = $this->getArticleUrl($article);
-        $title = isset($article->title) ? $article->title : '';
+//like [%%compobject%%]icon->email
+		$uri	= JUri::getInstance();
+		$base	= $uri->toString(array('scheme', 'host', 'port'));
+		$app	= JFactory::getApplication();
+		
+		$layout = $app->input->getString('layout', 'default');
+
+		[%%IF GENERATE_CATEGORIES%%]		 
+			[%%IF INCLUDE_LANGUAGE%%]
+		$link	= $base.JRoute::_([%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route($row->slug,
+									$row->catid,
+									$row->language,
+									$layout,
+									$params->get('keep_[%%compobject%%]_itemid')) , false);
+			[%%ELSE INCLUDE_LANGUAGE%%]
+		$link	= $base.JRoute::_([%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route($row->slug,
+									$row->catid,
+									$layout,
+									$params->get('keep_[%%compobject%%]_itemid')) , false);
+			[%%ENDIF INCLUDE_LANGUAGE%%]
+		[%%ELSE GENERATE_CATEGORIES%%]
+			[%%IF INCLUDE_LANGUAGE%%]
+		$link	= $base.JRoute::_([%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route($row->slug,
+									$row->language,
+									$layout,
+									$params->get('keep_[%%compobject%%]_itemid')) , false);
+			[%%ELSE INCLUDE_LANGUAGE%%]
+		$link	= $base.JRoute::_([%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route($row->slug,
+									$layout,
+									$params->get('keep_[%%compobject%%]_itemid')) , false);
+			[%%ENDIF INCLUDE_LANGUAGE%%]	
+		[%%ENDIF GENERATE_CATEGORIES%%]		
+        
+        
+        $title = 
+[%%IF INCLUDE_NAME%%]
+                isset($row->name) ? $row->name : 
+[%%ENDIF INCLUDE_NAME%%]
+                '';
         if($share){
-            $outputValue = $this->emailit_createButton($this->arrParamValues, $url, $title);
+            $outputValue = $this->emailit_createButton($this->arrParamValues, $link, $title);
 
             //Positioning button according to the position chosen
-            if (isset($article->text)) {
+            if (isset($row->description)) {
                 if ("top" == $this->arrParamValues["position"]) {
-                    $article->text = $outputValue . $article->text;
+                    $row->description = $outputValue . $row->description;
                 } elseif ("bottom" == $this->arrParamValues["position"]) {
-                    $article->text = $article->text . $outputValue;
+                    $row->description = $row->description . $outputValue;
                 } else {
-                    $article->text = $outputValue . $article->text . $outputValue;
+                    $row->description = $outputValue . $row->description . $outputValue;
                 }
             }
         }
-        if(strpos($article->text, '{emailit}') !== false){
-            $article->text = str_replace('{emailit}', $this->emailit_createButton($this->arrParamValues, $url, $title), $article->text);
+        if(strpos($row->description, '{emailit}') !== false){
+            $row->description = str_replace('{emailit}', $this->emailit_createButton($this->arrParamValues, $link, $title), $row->description);
         }
     }
+[%%ENDFOR COMPONENT_OBJECT%%]
 
     private function emailit_createButton($emailit_options, $url = null, $title = null) {
 
@@ -296,32 +336,5 @@ class plg[%%ArchitectComp%%]Emailit extends JPlugin {
     private function setBaseURL() {
         $uri = JURI::getInstance();
         $this->baseURL = $uri->toString(array('scheme', 'host', 'port'));
-    }
-
-    private function getArticleUrl(&$article)
-    {
-            if (!is_null($article))
-            {
-                    if (isset($article->id) && isset($article->catid))
-                    {
-                            // If a K2 item
-                            if (class_exists('K2HelperRoute') && is_object($article->params) && $article->params->exists('k2Sef'))
-                            {
-                                    $url = JRoute::_(K2HelperRoute::getItemRoute($article->id, $article->catid));
-                            }
-                            // Otherwise, a standard Joomla article
-                            else
-                            {
-                                    require_once(JPATH_SITE . DS . 'components' . DS . 'com_[%%architectcomp%%]' . DS . 'helpers' . DS . 'route.php');
-                                    $url = JRoute::_([%%ArchitectComp%%]HelperRoute::getArticleRoute($article->id, $article->catid));
-                            }
-
-                            return JRoute::_($this->baseURL . $url, true, 0);
-                    }
-                    else
-                    {
-                            return null;
-                    }
-            }
     }
 }
