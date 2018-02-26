@@ -27,21 +27,18 @@
 <config>
 
     [%%IF INCLUDE_VERSIONS%%]
-    <fieldset
-        name="versioncontrol"
+    <fieldset name="versioncontrol"
         label="[%%COM_ARCHITECTCOMP%%]_FIELDSET_VERSION_CONTROL_LABEL"
 		description="[%%COM_ARCHITECTCOMP%%]_FIELDSET_VERSION_CONTROL_DESC"
 	>
-        <field
-			name="history_limit"
+        <field name="history_limit"
 			type="text"
 			label="JGLOBAL_HISTORY_LIMIT_OPTIONS_LABEL"
 			description="JGLOBAL_HISTORY_LIMIT_OPTIONS_DESC"
 			default="10"
 			filter="integer"
 		/>
-        <field
-			name="save_history"
+        <field name="save_history"
 			type="radio"
 			class="btn-group btn-group-yesno"
 			default="1"
@@ -53,8 +50,7 @@
         </field>		
         [%%FOREACH COMPONENT_OBJECT%%]
              [%%IF INCLUDE_VERSIONS%%]
-        <field
-			name="[%%compobject%%]_save_history"
+        <field name="[%%compobject%%]_save_history"
 			type="radio"
 			class="btn-group btn-group-yesno"
 			default="1"
@@ -71,13 +67,11 @@
     [%%FOREACH COMPONENT_OBJECT%%]
         [%%IF GENERATE_SITE%%]
             [%%IF INCLUDE_PARAMS_GLOBAL%%]
-    <fieldset
-        name="[%%compobject%%]_display"
+    <fieldset name="[%%compobject%%]_display"
 		label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CONFIG_SINGLE_ITEM_DISPLAY"
 		description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CONFIG_SINGLE_ITEM_DESC"
 	>
-        <field
-			name="[%%compobject%%]_layout"
+        <field name="[%%compobject%%]_layout"
 			type="componentlayout"
 			label="JGLOBAL_FIELD_LAYOUT_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_CHOOSE_LAYOUT_DESC"
@@ -86,13 +80,11 @@
 			view="[%%compobject%%]"
             default="_:default"
 		/>
-        <field
-            name="spacer0"
+        <field name="spacer0"
             type="spacer"
             hr="true"
 		/>
-        <field
-            name="show_[%%compobject%%]_icons"
+        <field name="show_[%%compobject%%]_icons"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_DESC"
@@ -103,8 +95,7 @@
             <option	value="1">[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_VALUE_ICONS</option>
             <option	value="-1">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_print_icon"
+        <field name="show_[%%compobject%%]_print_icon"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_PRINT_ICON_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_PRINT_ICON_DESC"
@@ -114,8 +105,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_email_icon"
+        <field name="show_[%%compobject%%]_email_icon"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_EMAIL_ICON_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_EMAIL_ICON_DESC"
@@ -125,8 +115,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="keep_[%%compobject%%]_itemid"
+        <field name="keep_[%%compobject%%]_itemid"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_KEEP_ITEMID_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_KEEP_ITEMID_DESC"
@@ -136,8 +125,7 @@
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_navigation"
+        <field name="show_[%%compobject%%]_navigation"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_NAVIGATION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_NAVIGATION_DESC"
@@ -148,8 +136,7 @@
             <option value="0">JHIDE</option>
         </field>
                 [%%IF GENERATE_CATEGORIES%%]
-        <field
-            name="show_[%%compobject%%]_category_breadcrumb"
+        <field name="show_[%%compobject%%]_category_breadcrumb"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_CATEGORY_BREADCRUMB_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_CATEGORY_BREADCRUMB_DESC"
@@ -159,8 +146,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="limit_category_[%%compobject%%]_navigation"
+        <field name="limit_category_[%%compobject%%]_navigation"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LIMIT_CATEGORY_NAVIGATION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIMIT_CATEGORY_NAVIGATION_DESC"
@@ -171,13 +157,11 @@
             <option	value="0">JNO</option>
         </field>
                 [%%ENDIF GENERATE_CATEGORIES%%]
-        <field
-            name="spacer1"
+        <field name="spacer1"
             type="spacer"
             hr="true"
 		/>
-        <field
-            name="show_[%%compobject%%]_readmore"
+        <field name="show_[%%compobject%%]_readmore"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_READMORE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_DESC"
@@ -187,16 +171,14 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="[%%compobject%%]_readmore_limit"
+        <field name="[%%compobject%%]_readmore_limit"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_READMORE_LIMIT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_LIMIT_DESC"
             default="100"
 		/>
                 [%%IF INCLUDE_NAME%%]
-        <field
-            name="show_[%%compobject%%]_readmore_name"
+        <field name="show_[%%compobject%%]_readmore_name"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_NAME_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_NAME_DESC"
@@ -208,8 +190,7 @@
         </field>
                 [%%ENDIF INCLUDE_NAME%%]
                 [%%IF INCLUDE_ACCESS%%]
-        <field
-            name="show_[%%compobject%%]_noauth"
+        <field name="show_[%%compobject%%]_noauth"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_UNAUTH_LINKS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_UNAUTH_LINKS_DESC"
@@ -220,14 +201,12 @@
             <option	value="0">JNO</option>
         </field>
         [%%ENDIF INCLUDE_ACCESS%%]
-        <field
-            name="spacer2"
+        <field name="spacer2"
             type="spacer"
             hr="true"
 		/>
                 [%%IF INCLUDE_NAME%%]
-        <field
-            name="show_[%%compobject%%]_name"
+        <field name="show_[%%compobject%%]_name"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_NAME_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_NAME_DESC"
@@ -237,8 +216,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="link_[%%compobject%%]_names"
+        <field name="link_[%%compobject%%]_names"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LINKED_NAMES_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LINKED_NAMES_DESC"
@@ -250,8 +228,7 @@
         </field>
                 [%%ENDIF INCLUDE_NAME%%]
                 [%%IF INCLUDE_INTRO%%]
-        <field
-            name="show_[%%compobject%%]_intro"
+        <field name="show_[%%compobject%%]_intro"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_INTRO_DESC"
@@ -263,8 +240,7 @@
         </field>
         [%%ENDIF INCLUDE_INTRO%%]
         [%%IF INCLUDE_IMAGE%%]
-        <field
-            name="show_[%%compobject%%]_image"
+        <field name="show_[%%compobject%%]_image"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_IMAGE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_IMAGE_DESC"
@@ -273,8 +249,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_image_float"
+        <field name="show_[%%compobject%%]_image_float"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_IMAGE_FLOAT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_IMAGE_FLOAT_DESC"
@@ -284,8 +259,7 @@
             <option value="right">[%%COM_ARCHITECTCOMP%%]_VALUE_FLOAT_RIGHT</option>
             <option value="left">[%%COM_ARCHITECTCOMP%%]_VALUE_FLOAT_LEFT</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_image_width"
+        <field name="show_[%%compobject%%]_image_width"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_IMAGE_WIDTH_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_IMAGE_WIDTH_DESC"
@@ -293,8 +267,7 @@
             size="5"
             default="100"
              />
-        <field
-            name="show_[%%compobject%%]_image_height"
+        <field name="show_[%%compobject%%]_image_height"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_IMAGE_HEIGHT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_IMAGE_HEIGHT_DESC"
@@ -302,8 +275,7 @@
             size="5"
         />
             [%%IF INCLUDE_INTRO%%]
-        <field
-            name="show_[%%compobject%%]_intro_image"
+        <field name="show_[%%compobject%%]_intro_image"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_IMAGE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_INTRO_IMAGE_DESC"
@@ -312,8 +284,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_intro_image_float"
+        <field name="show_[%%compobject%%]_intro_image_float"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_IMAGE_FLOAT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_IMAGE_FLOAT_DESC"
@@ -323,16 +294,14 @@
             <option value="right">[%%COM_ARCHITECTCOMP%%]_VALUE_FLOAT_RIGHT</option>
             <option value="left">[%%COM_ARCHITECTCOMP%%]_VALUE_FLOAT_LEFT</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_intro_image_width"
+        <field name="show_[%%compobject%%]_intro_image_width"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_IMAGE_WIDTH_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_INTRO_IMAGE_WIDTH_DESC"
             class="validate-numeric"
             size="5"
         />
-        <field
-            name="show_[%%compobject%%]_intro_image_height"
+        <field name="show_[%%compobject%%]_intro_image_height"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_INTRO_IMAGE_HEIGHT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_INTRO_IMAGE_HEIGHT_DESC"
@@ -342,8 +311,7 @@
             [%%ENDIF INCLUDE_INTRO%%]
         [%%ENDIF INCLUDE_IMAGE%%]
         [%%IF INCLUDE_URLS%%]
-        <field
-            name="show_[%%compobject%%]_urls"
+        <field name="show_[%%compobject%%]_urls"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_URLS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_URLS_DESC"
@@ -353,8 +321,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_urls_position"
+        <field name="show_[%%compobject%%]_urls_position"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_URLS_POSITION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_URLS_POSITION_DESC"
@@ -366,8 +333,7 @@
         </field>
         [%%ENDIF INCLUDE_URLS%%]
         [%%IF GENERATE_CATEGORIES%%]
-        <field
-            name="show_[%%compobject%%]_category"
+        <field name="show_[%%compobject%%]_category"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_CATEGORY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_CATEGORY_DESC"
@@ -377,8 +343,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="link_[%%compobject%%]_category"
+        <field name="link_[%%compobject%%]_category"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LINK_CATEGORY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LINK_CATEGORY_DESC"
@@ -388,8 +353,7 @@
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_parent_category"
+        <field name="show_[%%compobject%%]_parent_category"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_PARENT_CATEGORY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_PARENT_CATEGORY_DESC"
@@ -399,8 +363,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="link_[%%compobject%%]_parent_category"
+        <field name="link_[%%compobject%%]_parent_category"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LINK_PARENT_CATEGORY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LINK_PARENT_CATEGORY_DESC"
@@ -412,8 +375,7 @@
         </field>
         [%%ENDIF GENERATE_CATEGORIES%%]
         [%%IF INCLUDE_TAGS%%]
-        <field
-			name="show_[%%compobject%%]_tags"
+        <field name="show_[%%compobject%%]_tags"
 			type="radio"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_SHOW_TAGS_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_SHOW_TAGS_DESC"
@@ -425,8 +387,7 @@
         </field>
         [%%ENDIF INCLUDE_TAGS%%]
         [%%IF INCLUDE_CREATED%%]
-        <field
-            name="show_[%%compobject%%]_created_by"
+        <field name="show_[%%compobject%%]_created_by"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_CREATED_BY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_CREATED_BY_DESC"
@@ -436,8 +397,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="link_[%%compobject%%]_created_by"
+        <field name="link_[%%compobject%%]_created_by"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LINK_CREATED_BY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LINK_CREATED_BY_DESC"
@@ -447,8 +407,7 @@
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_created_by_alias"
+        <field name="show_[%%compobject%%]_created_by_alias"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_CREATED_BY_ALIAS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_CREATED_BY_ALIAS_DESC"
@@ -458,8 +417,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>        
-        <field
-            name="show_[%%compobject%%]_created"
+        <field name="show_[%%compobject%%]_created"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_CREATED_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_CREATED_DESC"
@@ -471,8 +429,7 @@
         </field>
                 [%%ENDIF INCLUDE_CREATED%%]
                 [%%IF INCLUDE_MODIFIED%%]
-        <field
-            name="show_[%%compobject%%]_modified"
+        <field name="show_[%%compobject%%]_modified"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_MODIFIED_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_MODIFIED_DESC"
@@ -484,8 +441,7 @@
         </field>
                 [%%ENDIF INCLUDE_MODIFIED%%]
                 [%%IF INCLUDE_PUBLISHED_DATES%%]
-        <field
-            name="show_[%%compobject%%]_publish_up"
+        <field name="show_[%%compobject%%]_publish_up"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_PUBLISH_UP_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_PUBLISH_UP_DESC"
@@ -495,8 +451,7 @@
             <option	value="1">JSHOW</option>
             <option	value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_publish_down"
+        <field name="show_[%%compobject%%]_publish_down"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_PUBLISH_DOWN_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_PUBLISH_DOWN_DESC"
@@ -508,8 +463,7 @@
         </field>
                 [%%ENDIF INCLUDE_PUBLISHED_DATES%%]
                 [%%IF INCLUDE_HITS%%]
-        <field
-            name="show_[%%compobject%%]_hits"
+        <field name="show_[%%compobject%%]_hits"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_HITS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_HITS_DESC"
@@ -520,8 +474,7 @@
             <option value="0">JHIDE</option>
         </field>
                 [%%ENDIF INCLUDE_HITS%%]
-        <field
-            name="show_[%%compobject%%]_admin"
+        <field name="show_[%%compobject%%]_admin"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_ADMIN_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_ADMIN_DESC"
@@ -532,8 +485,7 @@
             <option value="0">JHIDE</option>
         </field>
                 [%%IF GENERATE_PLUGINS_VOTE%%]
-        <field
-            name="show_[%%compobject%%]_vote"
+        <field name="show_[%%compobject%%]_vote"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_VOTE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_VOTE_DESC"
@@ -545,8 +497,7 @@
         </field>
                 [%%ENDIF GENERATE_PLUGINS_VOTE%%]
                 [%%IF GENERATE_PLUGINS_VOTE%%]
-        <field
-            name="show_[%%compobject%%]_share"
+        <field name="show_[%%compobject%%]_share"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_SHARE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_SHARE_DESC"
@@ -559,8 +510,7 @@
                 [%%ENDIF GENERATE_PLUGINS_VOTE%%]
                 [%%FOREACH OBJECT_FIELD%%]
                     [%%IF FIELD_NOT_HIDDEN%%]
-        <field
-            name="show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
+        <field name="show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -573,8 +523,7 @@
                     [%%ENDIF FIELD_NOT_HIDDEN%%]
                 [%%ENDFOR OBJECT_FIELD%%]
                 [%%FOREACH REGISTRY_FIELD%%]
-        <field
-            name="show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
+        <field name="show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -586,46 +535,40 @@
         </field>
                 [%%ENDFOR REGISTRY_FIELD%%]
     </fieldset>
-    <fieldset
-        name="[%%compobjectplural%%]_list_display"
+    <fieldset name="[%%compobjectplural%%]_list_display"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CONFIG_BLOG_LIST_LABEL"
         description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CONFIG_BLOG_LIST_DESC"
 	>
                 [%%IF GENERATE_SITE_LAYOUT_BLOG%%]
-        <field
-            name="[%%compobject%%]_num_leading"
+        <field name="[%%compobject%%]_num_leading"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_LEADING_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_LEADING_DESC"
             size="3"
             default=""
 		/>
-        <field
-            name="[%%compobject%%]_num_intro"
+        <field name="[%%compobject%%]_num_intro"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_INTRO_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_INTRO_DESC"
             size="3"
             default=""
 		/>
-        <field
-            name="[%%compobject%%]_num_columns"
+        <field name="[%%compobject%%]_num_columns"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_NUM_COLUMNS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_COLUMNS_DESC"
             size="3"
             default=""
 		/>
-        <field
-            name="[%%compobject%%]_num_links"
+        <field name="[%%compobject%%]_num_links"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_NUM_LINKS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_LINKS_DESC"
             size="3"
             default=""
 		/>
-        <field
-            name="[%%compobject%%]_multi_column_order"
+        <field name="[%%compobject%%]_multi_column_order"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_MULTI_COLUMN_ORDER_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_MULTI_COLUMN_ORDER_DESC"
@@ -637,8 +580,7 @@
         </field>
                 [%%ENDIF GENERATE_SITE_LAYOUT_BLOG%%]
                 [%%IF GENERATE_CATEGORIES%%]
-        <field
-            name="[%%compobject%%]_orderby_pri"
+        <field name="[%%compobject%%]_orderby_pri"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_CATEGORY_ORDER_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_CATEGORY_ORDER_DESC"
@@ -650,8 +592,7 @@
             <option value="ralpha">JGLOBAL_TITLE_REVERSE_ALPHABETICAL</option>
             <option value="order">JGLOBAL_CATEGORY_MANAGER_ORDER</option>
         </field>
-        <field
-            name="[%%compobject%%]_orderby_sec"
+        <field name="[%%compobject%%]_orderby_sec"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_CATEGORY_ORDER_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_CATEGORY_ORDER_DESC"
@@ -679,8 +620,7 @@
             <option value="ordering">[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDER</option>
                     [%%ENDIF INCLUDE_ORDERING%%]
         </field>
-        <field
-            name="[%%compobject%%]_order_date"
+        <field name="[%%compobject%%]_order_date"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_ORDERING_DATE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDERING_DATE_DESC"
@@ -697,8 +637,7 @@
                     [%%ENDIF INCLUDE_PUBLISHED_DATES%%]
         </field>
                 [%%ENDIF GENERATE_CATEGORIES%%]
-        <field
-            name="[%%compobject%%]_initial_sort"
+        <field name="[%%compobject%%]_initial_sort"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDER_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDER_DESC"
@@ -726,8 +665,7 @@
             <option value="ordering">[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDER</option>
                     [%%ENDIF INCLUDE_ORDERING%%]
         </field>
-        <field
-            name="[%%compobject%%]_initial_direction"
+        <field name="[%%compobject%%]_initial_direction"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_ORDER_DIRECTION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_ORDER_DIRECTION_DESC"
@@ -737,8 +675,7 @@
             <option value="DESC">[%%COM_ARCHITECTCOMP%%]_ORDER_DIRECTION_DESCENDING_LABEL</option>
             <option value="ASC">[%%COM_ARCHITECTCOMP%%]_ORDER_DIRECTION_ASCENDING_LABEL</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_filter_field"
+        <field name="show_[%%compobject%%]_filter_field"
             type="list"
             label="JGLOBAL_FILTER_FIELD_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FILTER_FIELD_DESC"
@@ -768,8 +705,7 @@
             <option value="hits">JGLOBAL_HITS</option>
             [%%ENDIF INCLUDE_HITS%%]
         </field>        
-        <field
-            name="show_[%%compobject%%]_headings"
+        <field name="show_[%%compobject%%]_headings"
             type="radio"
             label="JGLOBAL_SHOW_HEADINGS_LABEL"
             description="JGLOBAL_SHOW_HEADINGS_DESC"
@@ -779,8 +715,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_pagination"
+        <field name="show_[%%compobject%%]_pagination"
             type="radio"
             label="JGLOBAL_PAGINATION_LABEL"
             description="JGLOBAL_PAGINATION_DESC"
@@ -791,8 +726,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_pagination_results"
+        <field name="show_[%%compobject%%]_pagination_results"
             type="radio"
             label="JGLOBAL_PAGINATION_RESULTS_LABEL"
             description="JGLOBAL_PAGINATION_RESULTS_DESC"
@@ -802,8 +736,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_pagination_limit"
+        <field name="show_[%%compobject%%]_pagination_limit"
             type="radio"
 			label="[%%COM_ARCHITECTCOMP%%]_SHOW_PAGINATION_LIMIT_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_PAGINATION_LIMIT_DESC"
@@ -813,8 +746,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="[%%compobject%%]_num_per_page"
+        <field name="[%%compobject%%]_num_per_page"
             type="list"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_PER_PAGE_DESC"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NUM_PER_PAGE_LABEL"
@@ -831,8 +763,7 @@
             <option value="100">J100</option>
             <option value="0">JALL</option>
         </field>
-        <field
-            name="show_no_[%%compobjectplural%%]"
+        <field name="show_no_[%%compobjectplural%%]"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NO_ITEMS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_NO_ITEMS_DESC"
@@ -842,8 +773,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_[%%compobject%%]_add_link"
+        <field name="show_[%%compobject%%]_add_link"
             type="radio"
 			label="[%%COM_ARCHITECTCOMP%%]_SHOW_ADD_LINK_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_ADD_LINK_DESC"
@@ -853,8 +783,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="list_show_[%%compobject%%]_date"
+        <field name="list_show_[%%compobject%%]_date"
             type="radio"
 			label="[%%COM_ARCHITECTCOMP%%]_SHOW_DATE_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_DATE_DESC"
@@ -873,16 +802,14 @@
             [%%ENDIF INCLUDE_MODIFIED%%]
         </field>
 
-        <field
-            name="[%%compobject%%]_date_format"
+        <field name="[%%compobject%%]_date_format"
             type="text"
             label="JGLOBAL_DATE_FORMAT_LABEL"
             description="JGLOBAL_DATE_FORMAT_DESC"
             size="15"
 		/>
                 [%%IF INCLUDE_HITS%%]
-        <field
-            name="list_show_[%%compobject%%]_hits"
+        <field name="list_show_[%%compobject%%]_hits"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LIST_HITS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_HITS_DESC"
@@ -894,8 +821,7 @@
         </field>
                 [%%ENDIF INCLUDE_HITS%%]
                 [%%IF INCLUDE_CREATED%%]
-        <field
-            name="list_show_[%%compobject%%]_creator"
+        <field name="list_show_[%%compobject%%]_creator"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LIST_CREATED_BY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_CREATED_BY_DESC"
@@ -907,8 +833,7 @@
         </field>
                 [%%ENDIF INCLUDE_CREATED%%]
                 [%%IF INCLUDE_ORDERING%%]
-        <field
-            name="list_show_[%%compobject%%]_ordering"
+        <field name="list_show_[%%compobject%%]_ordering"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_LIST_ORDERING_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_ORDERING_DESC"
@@ -922,8 +847,7 @@
             [%%FOREACH OBJECT_FIELD%%] 
                     [%%IF FIELD_NOT_REGISTRY%%]
                             [%%IF FIELD_NOT_HIDDEN%%]
-            <field
-                name="list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
+            <field name="list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]"
                 type="radio"
                 label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_LIST_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -942,13 +866,11 @@
     [%%ENDFOR COMPONENT_OBJECT%%]
     [%%IF GENERATE_CATEGORIES%%]
         [%%IF GENERATE_SITE%%]
-    <fieldset
-        name="categories"
+    <fieldset name="categories"
 	    label="JCATEGORIES"
 	    description="[%%COM_ARCHITECTCOMP%%]_FIELD_CONFIG_CATEGORIES_DESC"
 	>
-        <field
-            name="show_base_description"
+        <field name="show_base_description"
             type="radio"
             label="JGLOBAL_FIELD_SHOW_BASE_DESCRIPTION_LABEL"
             description="JGLOBAL_FIELD_SHOW_BASE_DESCRIPTION_DESC"
@@ -958,8 +880,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_empty_categories"
+        <field name="show_empty_categories"
             type="radio"
             label="JGLOBAL_SHOW_EMPTY_CATEGORIES_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_EMPTY_CATEGORIES_DESC"
@@ -969,8 +890,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_subcategories_desc"
+        <field name="show_subcategories_desc"
             type="radio"
             label="JGLOBAL_SHOW_SUBCATEGORIES_DESCRIPTION_LABEL"
             description="JGLOBAL_SHOW_SUBCATEGORIES_DESCRIPTION_DESC"
@@ -980,8 +900,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_categories_max_level"
+        <field name="show_categories_max_level"
             type="list"
             label="JGLOBAL_MAXIMUM_CATEGORY_LEVELS_LABEL"
             description="JGLOBAL_MAXIMUM_CATEGORY_LEVELS_DESC"
@@ -995,8 +914,7 @@
             <option value="4">J4</option>
             <option value="5">J5</option>
         </field>
-        <field
-            name="show_categories_noauth"
+        <field name="show_categories_noauth"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_UNAUTH_LINKS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_CATEGORY_UNAUTH_LINKS_DESC"
@@ -1006,8 +924,7 @@
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>
-        <field
-            name="items_to_display"
+        <field name="items_to_display"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_CATEGORY_ITEMS_TO_DISPLAY_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_CATEGORY_ITEMS_TO_DISPLAY_DESC"
@@ -1023,8 +940,7 @@
                 [%%ENDIF GENERATE_CATEGORIES%%]
             [%%ENDFOR COMPONENT_OBJECT%%]
         </field>
-        <field
-            name="show_categories_num_items"
+        <field name="show_categories_num_items"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_NUMBER_CATEGORY_ITEMS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_NUMBER_CATEGORY_ITEMS_DESC"
@@ -1035,21 +951,17 @@
             <option value="0">JHIDE</option>
         </field>
     </fieldset>
-    <fieldset
-        name="Category"
+    <fieldset name="Category"
 		label="JCATEGORY"
 		description="[%%COM_ARCHITECTCOMP%%]_FIELD_CONFIG_CATEGORY_DESC"
 	>
-        <field
-            id="category_component"
-            name="category_component"
+        <field id="category_component" name="category_component"
             type="component"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_CATEGORY_COMPONENT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_CATEGORY_COMPONENT_DESC"
             extension="[%%com_architectcomp%%]"
         />
-        <field
-		    name="show_cat_title"
+        <field name="show_cat_title"
 		    type="radio"
 			label="JGLOBAL_SHOW_CATEGORY_TITLE"
             description="JGLOBAL_SHOW_CATEGORY_TITLE_DESC"
@@ -1059,8 +971,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-		    name="show_cat_description"
+        <field name="show_cat_description"
 		    type="radio"
             label="JGLOBAL_SHOW_CATEGORY_DESCRIPTION_LABEL"
 			description="JGLOBAL_SHOW_CATEGORY_DESCRIPTION_DESC"
@@ -1070,8 +981,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-		    name="show_cat_description_image"
+        <field name="show_cat_description_image"
 		    type="radio"
             label="JGLOBAL_SHOW_CATEGORY_IMAGE_LABEL"
 			description="JGLOBAL_SHOW_CATEGORY_IMAGE_DESC"
@@ -1081,8 +991,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_cat_subcat_heading"
+        <field name="show_cat_subcat_heading"
             type="radio"
  			label="JGLOBAL_SHOW_CATEGORY_HEADING_TITLE_TEXT_LABEL"
 			description="JGLOBAL_SHOW_CATEGORY_HEADING_TITLE_TEXT_DESC"
@@ -1091,8 +1000,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>        
-        <field
-            name="show_empty_cat"
+        <field name="show_empty_cat"
             type="radio"
 			label="JGLOBAL_SHOW_EMPTY_CATEGORIES_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_SHOW_EMPTY_CATEGORIES_DESC"
@@ -1102,8 +1010,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-		    name="show_subcat_desc"
+        <field name="show_subcat_desc"
 		    type="radio"
 			label="JGLOBAL_SHOW_SUBCATEGORIES_DESCRIPTION_LABEL"
             description="JGLOBAL_SHOW_SUBCATEGORIES_DESCRIPTION_DESC"
@@ -1113,8 +1020,7 @@
             <option value="1">JSHOW</option>
             <option value="0">JHIDE</option>
         </field>
-        <field
-            name="show_category_max_level"
+        <field name="show_category_max_level"
             type="list"
             label="JGLOBAL_MAXIMUM_CATEGORY_LEVELS_LABEL"
             description="JGLOBAL_MAXIMUM_CATEGORY_LEVELS_DESC"
@@ -1128,8 +1034,7 @@
             <option value="4">J4</option>
             <option value="5">J5</option>
         </field>
-        <field
-            name="show_cat_noauth"
+        <field name="show_cat_noauth"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_SHOW_UNAUTH_LINKS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_SHOW_CATEGORY_UNAUTH_LINKS_DESC"
@@ -1139,8 +1044,7 @@
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
         </field>
-        <field
-            name="show_cat_num_items"
+        <field name="show_cat_num_items"
             type="radio"
             label="[%%COM_ARCHITECTCOMP%%]_NUMBER_CATEGORY_ITEMS_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_NUMBER_CATEGORY_ITEMS_DESC"
@@ -1151,8 +1055,7 @@
             <option value="0">JHIDE</option>
         </field>
         [%%IF INCLUDE_TAGS%%]
-        <field
-            name="show_cat_tags"
+        <field name="show_cat_tags"
             type="radio"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_SHOW_CATEGORY_TAGS_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_FIELD_SHOW_CATEGORY_TAGS_DESC"
@@ -1167,13 +1070,11 @@
          [%%ENDIF GENERATE_SITE%%]
     [%%ENDIF GENERATE_CATEGORIES%%]
     [%%IF INCLUDE_ASSETACL%%]
-    <fieldset
-        name="global-permissions"
+    <fieldset name="global-permissions"
 		label="[%%COM_ARCHITECTCOMP%%]_PERMISSIONS_LABEL"
 		description="[%%COM_ARCHITECTCOMP%%]_PERMISSIONS_DESC"
 	>
-        <field
-			name="rules"
+        <field name="rules"
 			type="rules"
 			label="[%%COM_ARCHITECTCOMP%%]_PERMISSIONS_LABEL"
 			filter="rules"

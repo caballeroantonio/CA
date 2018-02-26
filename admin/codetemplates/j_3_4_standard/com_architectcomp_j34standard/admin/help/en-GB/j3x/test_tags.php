@@ -70,6 +70,10 @@ architectcomp=[%%architectcomp%%]
                 FIELD_FOREIGN_OBJECT_ACRONYM_UPPER=[%%FIELD_FOREIGN_OBJECT_ACRONYM_UPPER%%]
                 FIELD_FOREIGN_OBJECT_UPPER=[%%FIELD_FOREIGN_OBJECT_UPPER%%]
             [%%ENDIF FIELD_LINK%%]
+            
+				[%%IF FIELD_SORT%%]
+                {FIELD_SORT}
+				[%%ENDIF FIELD_SORT%%]						
 
             [%%FOREACH VALIDATE_FIELD%%]
             	{VALIDATE_FIELD}

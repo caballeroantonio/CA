@@ -1018,6 +1018,17 @@ generateComponent
 				{
 					$db_field_type .= '('.$db_field_size.')';
 				}
+				
+                    /**
+                     * para homologar y tener integridad referencial 
+                     * quiero todas las llaves primarias y foraneas como
+                     *  INT(10) UNSIGNED NOT NULL AUTO_INCREMENT
+                    */
+                                switch ($field->ft_fieldtype_code_name){
+                                    case 'modal':
+                                            $db_field_type .= ' UNSIGNED ';
+                                        break;
+                                }
 
 				if ($field->mysql_default != '')
 				{
@@ -2952,7 +2963,7 @@ generateComponent
                     'formFile'=>"administrator/components/com_{$architectcomp}/models/forms/{$component_object->code_name}.xml",
 //                    'formFile'=>"administrator/components/[%%com_architectcomp%%]/models/forms/[%%compobject%%].xml",//generado dinámicamente, no hay reemplazos [%%%%]
                     'hideFields'=>array('asset_id','checked_out','checked_out_time','version'),
-                    'ignoreChanges'=>array('modified_by','modified','checked_out','checked_out_time','hits','version'),
+                    'ignoreChanges'=>array('checked_out','checked_out_time','hits','version'),
                     'convertToInt'=>array('publish_up','publish_down','featured','ordering'),
                     'displayLookup'=>array(
                         array('sourceColumn'=>'catid','targetTable'=>'#__categories','targetColumn'=>'id','displayColumn'=>'name'),

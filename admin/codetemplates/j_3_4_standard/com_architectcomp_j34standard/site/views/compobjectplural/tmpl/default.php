@@ -108,7 +108,7 @@ $empty = $component->params->get('default_empty_field', '');
 				</select>
 				[%%ENDIF GENERATE_CATEGORIES%%]											
 				[%%FOREACH FILTER_FIELD%%]
-				<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',0)) : ?>
+				<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',1)) : ?>
 					<select name="filter_[%%FIELD_CODE_NAME%%]" onchange="this.form.submit()">
 							[%%IF FIELD_LINK%%]
 					<option value=""><?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SELECT_[%%FIELD_FOREIGN_OBJECT_ACRONYM_UPPER%%]_[%%FIELD_FOREIGN_OBJECT_UPPER%%]');?></option>
@@ -137,8 +137,9 @@ $empty = $component->params->get('default_empty_field', '');
 			<?php endif; ?>
 
 		<?php else : ?>
+		<div style="overflow-x:auto;">
 			<table class="table table-striped" id="[%%compobjectplural%%]">
-			<?php if ($this->params->get('show_[%%compobject%%]_headings')) :?>
+			<?php if ($this->params->get('show_[%%compobject%%]_headings',1)) :?>
 			<thead>
 				<tr>
 					<th width="1%" style="display:none;">
@@ -171,7 +172,7 @@ $empty = $component->params->get('default_empty_field', '');
 					[%%FOREACH OBJECT_FIELD%%] 
 						[%%IF FIELD_NOT_REGISTRY%%]
 							[%%IF FIELD_NOT_HIDDEN%%]
-					<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',0)) : ?>
+					<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',1)) : ?>
 						<th class="list-[%%FIELD_CODE_NAME%%]" id="tableOrdering[%%FIELD_CODE_NAME%%]">
 								[%%IF FIELD_SORT%%]
 									[%%IF FIELD_LINK%%]
@@ -194,15 +195,11 @@ $empty = $component->params->get('default_empty_field', '');
 						</th>
 					<?php endif; ?>	
 					[%%ENDIF INCLUDE_ORDERING%%]
-					[%%IF INCLUDE_ASSETACL%%]
 					<?php if ($show_actions) : ?>
-					[%%ENDIF INCLUDE_ASSETACL%%]								
 						<th width="12%" class="list-actions">
 							<?php echo JText::_('[%%COM_ARCHITECTCOMP%%]_HEADING_ACTIONS'); ?>						
 						</th> 					
-					[%%IF INCLUDE_ASSETACL%%]
 					<?php endif; ?>
-					[%%ENDIF INCLUDE_ASSETACL%%]									
 				</tr>
 			</thead>
 			<?php endif; ?>
@@ -322,7 +319,7 @@ $empty = $component->params->get('default_empty_field', '');
 									if ($this->params->get('link_[%%compobject%%]_created_by') == 1) :
 										$created_by = JHtml::_('link', JRoute::_('index.php?option=com_users&view=profile&id='.$item->created_by), $created_by, array('itemprop' => 'url')); 
 									endif;
-									if ($this->params->get('show_[%%compobject%%]_headings')) :
+									if ($this->params->get('show_[%%compobject%%]_headings',1)) :
 										echo $created_by;
 									else :
 										echo JText::sprintf('[%%COM_ARCHITECTCOMP%%]_CREATED_BY', $created_by);
@@ -344,7 +341,7 @@ $empty = $component->params->get('default_empty_field', '');
 									if ($this->params->get('link_[%%compobject%%]_created_by') == 1) :
 										$created_by = JHtml::_('link', JRoute::_('index.php?option=com_users&view=profile&id='.$item->created_by), $created_by); 
 									endif;
-									if ($this->params->get('show_[%%compobject%%]_headings')) :
+									if ($this->params->get('show_[%%compobject%%]_headings',1)) :
 										echo $created_by;
 									else :
 										echo JText::sprintf('[%%COM_ARCHITECTCOMP%%]_CREATED_BY', $created_by);
@@ -387,7 +384,7 @@ $empty = $component->params->get('default_empty_field', '');
 					[%%FOREACH OBJECT_FIELD%%] 
 						[%%IF FIELD_NOT_REGISTRY%%]
 							[%%IF FIELD_NOT_HIDDEN%%]
-					<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',0)) : ?>
+					<?php if ($this->params->get('list_show_[%%compobject%%]_[%%FIELD_CODE_NAME%%]',1)) : ?>
 						<td class="list-[%%FIELD_CODE_NAME%%]">
 							<?php 
 								[%%IF FIELD_LINK%%]
@@ -413,45 +410,50 @@ $empty = $component->params->get('default_empty_field', '');
 					<?php endif; ?>
 					
 					[%%ENDIF INCLUDE_ORDERING%%]					
-					[%%IF INCLUDE_ASSETACL%%]
 					<?php if ($show_actions) : ?>
-					[%%ENDIF INCLUDE_ASSETACL%%]						
 						<td class="list-actions">
-							[%%IF INCLUDE_ASSETACL%%]
-							<?php if ($can_edit OR $can_delete ) : ?>
-							[%%ENDIF INCLUDE_ASSETACL%%]						
-								<ul class="actions">
-									[%%IF INCLUDE_ASSETACL%%]
-									<?php if ($can_edit ) : ?>
-									[%%ENDIF INCLUDE_ASSETACL%%]
-										<li class="edit-icon">
-											<?php echo JHtml::_('[%%compobject%%]icon.edit',$item, $params); ?>
-										</li>
-									[%%IF INCLUDE_ASSETACL%%]
-									<?php endif; ?>					
-									<?php if ($can_delete) : ?>
-									[%%ENDIF INCLUDE_ASSETACL%%]
-										<li class="delete-icon">
-											<?php echo JHtml::_('[%%compobject%%]icon.delete',$item, $params); ?>
-										</li>
-									[%%IF INCLUDE_ASSETACL%%]
-									<?php endif; ?>					
-									[%%ENDIF INCLUDE_ASSETACL%%]							
-								</ul>
-							[%%IF INCLUDE_ASSETACL%%]
+                        	<div class="btn-group pull-right">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="icon-cog"></span> <span class="caret"></span> </a>
+                                <ul class="dropdown-menu">
+							<?php if ($params->get('show_[%%compobject%%]_print_icon')) : ?>
+								<li class="print-icon">
+										<?php echo JHtml::_('[%%compobject%%]icon.print_popup',  $item, $params); ?>
+								</li>
 							<?php endif; ?>
-							[%%ENDIF INCLUDE_ASSETACL%%]							
+
+							<?php if ($params->get('show_[%%compobject%%]_email_icon')) : ?>
+								<li class="email-icon">
+										<?php echo JHtml::_('[%%compobject%%]icon.email',  $item, $params); ?>
+								</li>
+							<?php endif; ?>
+							[%%IF INCLUDE_ASSETACL%%]
+								<?php if ($can_edit ) : ?>
+                                    <li class="edit-icon">
+                                        <?php echo JHtml::_('[%%compobject%%]icon.edit',$item, $params); ?>
+                                    </li>
+                                <?php endif; ?>					
+                                <?php if ($can_delete) : ?>
+                                    <li class="delete-icon">
+                                        <?php echo JHtml::_('[%%compobject%%]icon.delete',$item, $params); ?>
+                                    </li>
+                                <?php endif; ?>
+							[%%ENDIF INCLUDE_ASSETACL%%]
+							[%%IF INCLUDE_VERSIONS%%]
+							<?php if ($can_edit AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
+								<li class="version-icon">
+									<?php echo JHtml::_('[%%compobject%%]icon.versions',$item, $params); ?>
+								</li>	
+							<?php endif; ?>	
+							[%%ENDIF INCLUDE_VERSIONS%%]
+                                </ul>
+                            </div>
 						</td>															
-					[%%IF INCLUDE_ASSETACL%%]
 					<?php endif; ?>
-					[%%ENDIF INCLUDE_ASSETACL%%]				
-				[%%IF INCLUDE_ACCESS%%]
-				<?php endif; ?>
-				[%%ENDIF INCLUDE_ACCESS%%]
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 			</table>
+		</div>
 			<?php if (($this->params->def('show_[%%compobject%%]_pagination', 2) == 1  OR ($this->params->get('show_[%%compobject%%]_pagination') == 2)) AND ($this->pagination->get('pages.total') > 1)) : ?>
 			<div class="pagination">
 
@@ -488,3 +490,29 @@ $empty = $component->params->get('default_empty_field', '');
                 <?php echo '<button>export</button>'//JHtml::_('[%%compobject%%]icon.create', $this->params); ?>
 	</form>
 </div>
+
+<?php if ($can_edit AND $params->get('save_history') AND $params->get('[%%compobject%%]_save_history')) : ?>
+<script>
+jQuery(document).ready(function($) {
+   $('#collapsibleModal')
+   .on('hide.bs.modal', function () {
+        $(this).removeData('modal');
+   });
+});
+
+function show_collapsibleModal(item_id){
+	jQuery('#collapsibleModal').modal('show');
+	var modalBody = jQuery(document).find('.modal-body');
+	modalBody.find('iframe').remove();
+	modalBody.prepend('<iframe class="iframe" src="index.php?option=[%%com_architectcomp%%]&task=[%%compobject%%].showHistory&item_id='+item_id+'" name="titulo" height="450"></iframe>');
+	return;
+}
+</script>
+<div id="collapsibleModal" tabindex="-1" class="modal hide fade">
+	<div class="modal-header">
+			<button type="button" class="close novalidate" data-dismiss="modal">×</button>
+				<h3><?= JText::_('JTOOLBAR_VERSIONS'); ?></h3>
+	</div>
+	<div class="modal-body"></div>
+</div>
+<?php endif; ?>	

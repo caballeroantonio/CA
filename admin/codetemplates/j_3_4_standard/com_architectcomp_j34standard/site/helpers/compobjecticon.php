@@ -474,5 +474,31 @@ class JHTML[%%CompObject%%]Icon
 		}
 		return '<a href="#" onclick="window.print();return false;">'.$text.'</a>';
 	}
-
+        
+[%%IF INCLUDE_VERSIONS%%]
+	/**
+	 * Method to generate a link to versions an [%%compobject%%]
+	 *
+	 * @param   object		$[%%compobject%%]  The [%%compobject%%] information
+	 * @param   Registry	$params   The item parameters
+	 * @param   array		$attribs  Optional attributes for the link
+	 * @param   boolean		$legacy   True to use legacy images, false to use icomoon based graphic
+	 *
+	 * @return  string  The HTML markup for the popup link
+	 */
+	public static function versions($[%%compobject%%], $params, $attribs = array(), $legacy = false)
+	{
+            
+            if ($legacy)
+            {
+                    $text = JHtml::_('image', '[%%com_architectcomp%%]/versionsButton.png', JText::_('JTOOLBAR_VERSIONS'), null, true);
+            }
+            else
+            {
+                    $text = '<span class="icon-archive"></span>&#160;' . JText::_('JTOOLBAR_VERSIONS') . '&#160;';
+            }
+//            return "<a href=\"index.php?option=[%%com_architectcomp%%]&task=[%%compobject%%].showHistory&item_id={$[%%compobject%%]->id}\"  target=\"_blank\" onclick=\"window.open(this.href, this.target, 'width=800,height=600'); return false;\">{$text}</a>";
+			return "<a href=\"#\" onclick=\"show_collapsibleModal({$[%%compobject%%]->id});return false;\">{$text}</a>";
+	}
+[%%ENDIF INCLUDE_VERSIONS%%]
 }
