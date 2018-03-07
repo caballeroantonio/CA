@@ -10,4 +10,4 @@ sed --in-place 's/),(/),\r\n(/g' $ADMIN_SQL_UPDATES_MYSQL/ca.sql
 ## despues de compilar en CA
 TMP_BUILD="D:/www/htdocs/JPruebas/tmp/com_remca_j34standard"
 sed -i 's/#__remca_jusers/#__users/' $(find $TMP_BUILD -type f -not -name "*.png" | grep -v .git)
-sed -i 's/#__remca_/#__rem_/' $(find $TMP_BUILD -type f -not -name "*.png" | grep -v .git)
+#sed -i 's/#__remca_/#__rem_/' $(find $TMP_BUILD -type f -not -name "*.png" | grep -v .git)

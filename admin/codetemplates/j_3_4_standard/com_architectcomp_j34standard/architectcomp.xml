@@ -79,8 +79,8 @@
                 [%%ENDIF GENERATE_ADMIN%%]
             [%%ENDFOR COMPONENT_OBJECT%%]
             [%%IF GENERATE_CATEGORIES%%]
-            <menu link="option=com_categories&amp;extension=[%%com_architectcomp%%]" view="categories" img="../media/[%%com_architectcomp%%]/images/[%%architectcomp%%]-categories.png"
-                    alt="[%%ArchitectComp_name%%]/Categories">[%%COM_ARCHITECTCOMP%%]_CATEGORIES</menu>
+<!--            <menu link="option=com_categories&amp;extension=[%%com_architectcomp%%]" view="categories" img="../media/[%%com_architectcomp%%]/images/[%%architectcomp%%]-categories.png"
+                    alt="[%%ArchitectComp_name%%]/Categories">[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_CATEGORIES</menu>-->
             [%%ENDIF GENERATE_CATEGORIES%%]
         </submenu>
 

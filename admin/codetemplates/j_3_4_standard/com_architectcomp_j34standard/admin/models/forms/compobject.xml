@@ -29,11 +29,9 @@
     addrulepath="/administrator/components/[%%com_architectcomp%%]/models/rules"
 
 >
-    <fieldset
-        name="basic_details"
+    <fieldset name="basic_details"
     >
-        <field
-		    name="id"
+        <field name="id"
 		    type="text"
             label="JGLOBAL_FIELD_ID_LABEL"
             description ="JGLOBAL_FIELD_ID_DESC"
@@ -43,16 +41,14 @@
 		/>
         [%%IF INCLUDE_ASSETACL%%]
             [%%IF INCLUDE_ASSETACL_RECORD%%]
-        <field
-            name="asset_id"
+        <field name="asset_id"
             type="hidden"
             filter="unset"
         />
             [%%ENDIF INCLUDE_ASSETACL_RECORD%%]
         [%%ENDIF INCLUDE_ASSETACL%%]
         [%%IF INCLUDE_NAME%%]
-        <field
-		    name="name"
+        <field name="name"
 		    type="text"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_NAME_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_NAME_DESC"
@@ -60,8 +56,7 @@
 			required="true"
 		/>
             [%%IF INCLUDE_ALIAS%%]
-        <field
-		    name="alias"
+        <field name="alias"
 		    type="text"
 			label="JFIELD_ALIAS_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_FIELD_ALIAS_DESC"
@@ -70,8 +65,7 @@
             [%%ENDIF INCLUDE_ALIAS%%]
         [%%ENDIF INCLUDE_NAME%%]
         [%%IF INCLUDE_VERSIONS%%]
-        <field
-            name="version_note"
+        <field name="version_note"
             type="text"
             label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
 			description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
@@ -80,8 +74,7 @@
 		/>
         [%%ENDIF INCLUDE_VERSIONS%%]
         [%%IF INCLUDE_STATUS%%]
-        <field
-		    name="state"
+        <field name="state"
     		type="list"
 			label="JSTATUS"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_STATUS_DESC"
@@ -96,8 +89,7 @@
         </field>
         [%%ENDIF INCLUDE_STATUS%%]
         [%%IF GENERATE_CATEGORIES%%]
-        <field
-            name="catid"
+        <field name="catid"
             type="categoryedit"
 			label="JCATEGORY"
 			description="JFIELD_CATEGORY_DESC"
@@ -108,8 +100,7 @@
         </field>
         [%%ENDIF GENERATE_CATEGORIES%%]
         [%%IF INCLUDE_TAGS%%]
-        <field
-            name="tags"
+        <field name="tags"
             type="tag"
             label="JTAG"
             description="JTAG_DESC"
@@ -118,8 +109,7 @@
         </field>
         [%%ENDIF INCLUDE_TAGS%%]
         [%%IF INCLUDE_ACCESS%%]
-        <field
-            name="access"
+        <field name="access"
 			type="accesslevel"
 			label="JFIELD_ACCESS_LABEL"
 			description="JFIELD_ACCESS_DESC"
@@ -127,16 +117,14 @@
 			default="1"
 		/>
         [%%ENDIF INCLUDE_ACCESS%%]
-        <field
-            name="buttonspacer"
+        <field name="buttonspacer"
             type="spacer"
             label="JGLOBAL_ACTION_PERMISSIONS_LABEL"
             description="JGLOBAL_ACTION_PERMISSIONS_DESCRIPTION"
         />
 
         [%%IF INCLUDE_ORDERING%%]
-        <field
-            name="ordering"
+        <field name="ordering"
 			label="JFIELD_ORDERING_LABEL"
 			description="JFIELD_ORDERING_DESC"
 			type="[%%architectcomp%%]ordering"
@@ -168,8 +156,7 @@
         [%%ENDIF INCLUDE_DESCRIPTION%%]
         [%%IF INCLUDE_ASSETACL%%]
             [%%IF INCLUDE_ASSETACL_RECORD%%]
-        <field
-            name="rules"
+        <field name="rules"
             type="rules"
             label="JFIELD_RULES_LABEL"
      		translate_label="false"
@@ -181,8 +168,7 @@
             [%%ENDIF INCLUDE_ASSETACL_RECORD%%]
         [%%ENDIF INCLUDE_ASSETACL%%]
         [%%IF INCLUDE_FEATURED%%]
-        <field
-            name="featured"
+        <field name="featured"
 			type="radio"
 			label="JFEATURED"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_FEATURED_DESC"
@@ -194,8 +180,7 @@
         </field>
         [%%ENDIF INCLUDE_FEATURED%%]
         [%%IF INCLUDE_LANGUAGE%%]
-        <field
-            name="language"
+        <field name="language"
             type="contentlanguage"
             label="JFIELD_LANGUAGE_LABEL"
 		    description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_LANGUAGE_DESC"
@@ -205,8 +190,7 @@
         </field>
         [%%ENDIF INCLUDE_LANGUAGE%%]
         [%%IF INCLUDE_HITS%%]
-        <field
-            name="hits"
+        <field name="hits"
             type="text"
             label="JGLOBAL_HITS"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_HITS_DESC"
@@ -219,8 +203,7 @@
         [%%FOREACH OBJECT_FIELDSET%%]
         	[%%IF FIELDSET_BASIC_DETAILS%%]
         		[%%FOREACH OBJECT_FIELD%%]
-        <field
-            name="[%%FIELD_CODE_NAME%%]"
+        <field name="[%%FIELD_CODE_NAME%%]"
             type="[%%FIELD_TYPE%%]"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -233,25 +216,21 @@
         [%%ENDFOR OBJECT_FIELDSET%%]         
     </fieldset>
     [%%IF INCLUDE_IMAGE%%]
-    <fields
-        name="images"
+    <fields name="images"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_IMAGE_OPTIONS"
     >
-        <field
-            name="image_url"
+        <field name="image_url"
             type="media"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_IMAGE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_IMAGE_DESC"
         />
-        <field
-            name="image_alt_text"
+        <field name="image_alt_text"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_IMAGE_ALTTEXT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_IMAGE_ALTTEXT_DESC"
             size="20"
         />
-        <field
-            name="image_caption"
+        <field name="image_caption"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_IMAGE_CAPTION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_IMAGE_CAPTION_DESC"
@@ -260,10 +239,9 @@
             readonly="true"
             disabled="true"
             [%%ENDIF OBJECT_READONLY%%]
-        />        
+        />
         [%%IF INCLUDE_INTRO%%]
-        <field
-            name="intro_image_url"
+        <field name="intro_image_url"
             type="media"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_INTRO_IMAGE_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_INTRO_IMAGE_DESC"
@@ -274,8 +252,7 @@
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_IMAGE_ALTTEXT_DESC"
             size="20"
         />
-        <field
-            name="intro_image_caption"
+        <field name="intro_image_caption"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_INTRO_IMAGE_CAPTION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_INTRO_IMAGE_CAPTION_DESC"
@@ -289,12 +266,10 @@
     </fields>
     [%%ENDIF INCLUDE_IMAGE%%]
     [%%IF INCLUDE_URLS%%]
-    <fields
-        name="urls"
+    <fields name="urls"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_URLS_OPTIONS"
      >
-        <field
-            name="urla"
+        <field name="urla"
             type="url"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLA_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_DESC"
@@ -302,15 +277,13 @@
             filter="url"
 			relative="true"
        />
-        <field
-            name="urla_text"
+        <field name="urla_text"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLA_LINK_TEXT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_LINK_TEXT_DESC"
             size="20"
         />
-        <field
-            name="urla_target"
+        <field name="urla_target"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLA_TARGET_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_TARGET_DESC"
@@ -324,13 +297,11 @@
             <option value="2">JBROWSERTARGET_POPUP</option>
             <option value="3">JBROWSERTARGET_MODAL</option>
         </field>
-        <field
-            name="spacer3"
+        <field name="spacer3"
             type="spacer"
             hr="true"
 				/>
-        <field
-            name="urlb"
+        <field name="urlb"
             type="url"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLB_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_DESC"
@@ -338,15 +309,13 @@
             filter="url"
  			relative="true"
        />
-        <field
-            name="urlb_text"
+        <field name="urlb_text"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLB_LINK_TEXT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_LINK_TEXT_DESC"
             size="20"
         />
-        <field
-            name="urlb_target"
+        <field name="urlb_target"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLB_TARGET_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_TARGET_DESC"
@@ -360,13 +329,11 @@
             <option value="2">JBROWSERTARGET_POPUP</option>
             <option value="3">JBROWSERTARGET_MODAL</option>
         </field>
-        <field
-            name="spacer4"
+        <field name="spacer4"
             type="spacer"
             hr="true"
 				/>
-        <field
-            name="urlc"
+        <field name="urlc"
             type="url"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLC_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_DESC"
@@ -374,15 +341,13 @@
             filter="url"
  			relative="true"
        />
-        <field
-            name="urlc_text"
+        <field name="urlc_text"
             type="text"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLC_LINK_TEXT_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_LINK_TEXT_DESC"
             size="20"
         />
-        <field
-            name="urlc_target"
+        <field name="urlc_target"
             type="list"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_URLC_TARGET_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_FIELD_URL_TARGET_DESC"
@@ -400,14 +365,12 @@
     [%%ENDIF INCLUDE_URLS%%]
     [%%FOREACH OBJECT_FIELDSET%%]
         [%%IF FIELDSET_NOT_BASIC_DETAILS%%]
-    <fieldset
-        name="fieldset_[%%FIELDSET_CODE_NAME%%]"
+    <fieldset name="fieldset_[%%FIELDSET_CODE_NAME%%]"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_[%%FIELDSET_CODE_NAME_UPPER%%]_LABEL"
         description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_[%%FIELDSET_CODE_NAME_UPPER%%]_DESC"
     >
             [%%FOREACH OBJECT_FIELD%%]
-        <field
-            name="[%%FIELD_CODE_NAME%%]"
+        <field name="[%%FIELD_CODE_NAME%%]"
             type="[%%FIELD_TYPE%%]"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -420,18 +383,15 @@
         [%%ENDIF FIELDSET_NOT_BASIC_DETAILS%%]
     [%%ENDFOR OBJECT_FIELDSET%%]
     [%%FOREACH REGISTRY_FIELD%%]
-    <fields
-        name="[%%FIELD_CODE_NAME%%]"
+    <fields name="[%%FIELD_CODE_NAME%%]"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"        
     >
-    <fieldset
-        name="[%%FIELD_CODE_NAME%%]"
+    <fieldset name="[%%FIELD_CODE_NAME%%]"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
         description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
     >
         [%%FOREACH REGISTRY_ENTRY%%]
-        <field
-            name="[%%FIELD_CODE_NAME%%]"
+        <field name="[%%FIELD_CODE_NAME%%]"
             type="[%%FIELD_TYPE%%]"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_[%%FIELD_CODE_NAME_UPPER%%]_DESC"
@@ -443,13 +403,11 @@
     </fieldset>
     </fields>
     [%%ENDFOR REGISTRY_FIELD%%]
-    <fieldset
-        name="publishing"
+    <fieldset name="publishing"
 		label="[%%COM_ARCHITECTCOMP%%]_FIELDSET_PUBLISHING_LABEL"
     >
         [%%IF INCLUDE_PUBLISHED_DATES%%]
-        <field
-            name="publish_up"
+        <field name="publish_up"
             type="calendar"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_PUBLISH_UP_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_PUBLISH_UP_DESC"
@@ -457,8 +415,7 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-        <field
-            name="publish_down"
+        <field name="publish_down"
             type="calendar"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_PUBLISH_DOWN_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_PUBLISH_DOWN_DESC"
@@ -468,14 +425,12 @@
 		/>
         [%%ENDIF INCLUDE_PUBLISHED_DATES%%]
         [%%IF INCLUDE_CREATED%%]
-        <field
-            name="created_by"
+        <field name="created_by"
             type="user"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_CREATED_BY_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CREATED_BY_DESC"
 		/>
-        <field
-            name="created"
+        <field name="created"
             type="calendar"
             label="[%%COM_ARCHITECTCOMP%%]_FIELD_CREATED_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CREATED_DESC"
@@ -488,9 +443,7 @@
             [%%ENDIF OBJECT_READONLY%%]
 		/>
 		[%%IF INCLUDE_ALIAS%%]
-        <field
-			id="created_by_alias"
-			name="created_by_alias"
+        <field id="created_by_alias" name="created_by_alias"
 			type="text"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_CREATED_BY_ALIAS_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_CREATED_BY_ALIAS_DESC"
@@ -499,8 +452,7 @@
 		[%%ENDIF INCLUDE_ALIAS%%]
         [%%ENDIF INCLUDE_CREATED%%]
         [%%IF INCLUDE_MODIFIED%%]
-        <field
-            name="modified"
+        <field name="modified"
             type="calendar"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_MODIFIED_LABEL"
 			description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_MODIFIED_DESC"
@@ -510,8 +462,7 @@
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
-        <field
-            name="modified_by"
+        <field name="modified_by"
             type="user"
 		    label="[%%COM_ARCHITECTCOMP%%]_FIELD_MODIFIED_BY_LABEL"
 		    class="readonly"
@@ -520,8 +471,7 @@
 		/>
         [%%ENDIF INCLUDE_MODIFIED%%]
         [%%IF INCLUDE_VERSIONS%%]
-        <field
-            name="version"
+        <field name="version"
             type="text"
 			label="[%%COM_ARCHITECTCOMP%%]_FIELD_VERSION_LABEL"
             description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELD_VERSION_DESC"
@@ -532,41 +482,35 @@
 		/>
         [%%ENDIF INCLUDE_VERSIONS%%]
         [%%IF INCLUDE_CHECKOUT%%]
-        <field
-            name="checked_out"
+        <field name="checked_out"
 			type="hidden"
 			filter="unset"
 		/>
-        <field
-            name="checked_out_time"
+        <field name="checked_out_time"
 			type="hidden"
 			filter="unset"
 		 />
         [%%ENDIF INCLUDE_CHECKOUT%%]
     </fieldset>
     [%%IF INCLUDE_METADATA%%]
-    <fieldset
-        name="metadata"
+    <fieldset name="metadata"
         label="[%%COM_ARCHITECTCOMP%%]_FIELDSET_METADATA_LABEL"
     >
-        <field
-            name="metakey"
+        <field name="metakey"
             type="textarea"
             label="JFIELD_META_KEYWORDS_LABEL"
             description="JFIELD_META_KEYWORDS_DESC"
             rows="3"
             cols="35"
 		/>
-        <field
-            name="metadesc"
+        <field name="metadesc"
             type="textarea"
             label="JFIELD_META_DESCRIPTION_LABEL"
             description="JFIELD_META_DESCRIPTION_DESC"
             rows="3"
             cols="35"
 		 />
-        <field
-            name="robots"
+        <field name="robots"
             type="list"
             label="JFIELD_METADATA_ROBOTS_LABEL"
             description="JFIELD_METADATA_ROBOTS_DESC"
@@ -578,15 +522,13 @@
             <option value="index, nofollow">JGLOBAL_INDEX_NOFOLLOW</option>
             <option value="noindex, nofollow">JGLOBAL_NOINDEX_NOFOLLOW</option>
         </field>
-        <field
-            name="author"
+        <field name="author"
             type="text"
 			label="JAUTHOR"
 			description="JFIELD_METADATA_AUTHOR_DESC"
 			size="20"
 		/>
-        <field
-            name="xreference"
+        <field name="xreference"
             type="text"
             label="JFIELD_KEY_REFERENCE_LABEL"
             description="JFIELD_KEY_REFERENCE_DESC"
@@ -596,16 +538,13 @@
     [%%ENDIF INCLUDE_METADATA%%]
     [%%IF GENERATE_SITE%%]
         [%%IF INCLUDE_PARAMS_RECORD%%]
-    <fields
-        name="params"
+    <fields name="params"
         label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_PARAMS_OPTIONS"        
     >
-        <fieldset
-            name="basic"
+        <fieldset name="basic"
             label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_LAYOUT"
         >
-            <field
-				name="show_[%%compobject%%]_icons"
+            <field name="show_[%%compobject%%]_icons"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_DESC"
@@ -618,8 +557,7 @@
                 <option	value="1">[%%COM_ARCHITECTCOMP%%]_SHOW_ICONS_VALUE_ICONS</option>
                 <option	value="-1">JHIDE</option>
             </field>
-            <field
-				name="show_[%%compobject%%]_print_icon"
+            <field name="show_[%%compobject%%]_print_icon"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_SHOW_PRINT_ICON_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_SHOW_PRINT_ICON_DESC"
@@ -631,8 +569,7 @@
                 <option	value="0">JHIDE</option>
                 <option	value="1">JSHOW</option>
             </field>
-            <field
-				name="show_[%%compobject%%]_email_icon"
+            <field name="show_[%%compobject%%]_email_icon"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_SHOW_EMAIL_ICON_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_EMAIL_ICON_DESC"
@@ -644,8 +581,7 @@
                 <option	value="0">JHIDE</option>
                 <option	value="1">JSHOW</option>
             </field>
-            <field
-				name="[%%compobject%%]_info_block_position"
+            <field name="[%%compobject%%]_info_block_position"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_INFOBLOCK_POSITION_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_INFOBLOCK_POSITION_DESC"
@@ -658,8 +594,7 @@
                 <option value="0">[%%COM_ARCHITECTCOMP%%]_VALUE_ABOVE</option>
                 <option value="1">[%%COM_ARCHITECTCOMP%%]_VALUE_BELOW</option>
             </field>
-            <field
-                 name="show_[%%compobject%%]_navigation"
+            <field name="show_[%%compobject%%]_navigation"
 			     type="radio"
                  label="[%%COM_ARCHITECTCOMP%%]_SHOW_NAVIGATION_LABEL"
                  description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_NAVIGATION_DESC"
@@ -668,13 +603,11 @@
                 <option value="1">JSHOW</option>
                 <option value="0">JHIDE</option>
             </field>
-            <field
-				name="spacer4"
+            <field name="spacer4"
 				type="spacer"
 				hr="true"
 			/>
-            <field
-				name="show_[%%compobject%%]_readmore"
+            <field name="show_[%%compobject%%]_readmore"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_SHOW_READMORE_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_DESC"
@@ -687,8 +620,7 @@
                 <option value="0">JHIDE</option>
             </field>
             [%%IF INCLUDE_NAME%%]
-            <field
-				name="show_[%%compobject%%]_readmore_name"
+            <field name="show_[%%compobject%%]_readmore_name"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_NAME_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_READMORE_NAME_DESC"
@@ -716,8 +648,7 @@
 				size="25"
 			/>
             [%%IF INCLUDE_ACCESS%%]
-            <field
-				name="show_[%%compobject%%]_noauth"
+            <field name="show_[%%compobject%%]_noauth"
 				type="radio"
 				label="[%%COM_ARCHITECTCOMP%%]_SHOW_UNAUTH_LINKS_LABEL"
 				description="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_SHOW_UNAUTH_LINKS_DESC"
@@ -731,8 +662,7 @@
             </field>
             [%%ENDIF INCLUDE_ACCESS%%]
         </fieldset>
-        <fieldset
-            name="fields"
+        <fieldset name="fields"
 			label="[%%COM_ARCHITECTCOMP%%]_[%%COMPOBJECTPLURAL%%]_FIELDSET_FIELDS"
 		>
             [%%IF INCLUDE_NAME%%]
@@ -896,8 +826,7 @@
                 <option value="1">[%%COM_ARCHITECTCOMP%%]_VALUE_BELOW</option>
             </field>
             [%%ENDIF INCLUDE_URLS%%]
-            <field
-				name="spacer3"
+            <field name="spacer3"
 				type="spacer"
 				hr="true"
 			/>

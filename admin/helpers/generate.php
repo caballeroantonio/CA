@@ -29,7 +29,7 @@ class ComponentArchitectGenerateHelper
 	protected $_component = null;
 	protected $_code_template = null;	
 	protected $_code_templates_root = '';
-	protected $_component_objects = null;
+	protected $_component_objects = null;//no se puede loadObjectList($clave) por ListModel->getItems
 	protected $_search_replace_helper = null;	
 	protected $_fieldtypes = null;	
 	protected $_fieldtypes_index = array();
@@ -400,6 +400,7 @@ generateComponent
 		}
                 
                 $this->_doUcmCho($dst_path);
+                $this->_doConstraints($dst_path, $component_id);
 		
 		// Update Stage 3 progress as being complete if logging requested this will also create a log record
 		$step = JText::_('COM_COMPONENTARCHITECT_GENERATE_END_STAGE_3');
@@ -2892,7 +2893,73 @@ generateComponent
 		return  str_replace( $this->_latex_forbidden, $this->_latex_replacement, $text);
 	}
 	
-		/**
+        /**
+         * Generates mysql constraints ...
+         **/
+        protected function _doConstraints($dst_path, $component_id){
+            $db = JFactory::getDbo();
+            $query = <<<EOT
+SELECT 
+c.code_name 'c_code_name', co.plural_code_name 'co_plural_code_name', f.id 'f_id'
+, f.code_name 'f_code_name', fo.code_name 'fo_code_name', fo.plural_code_name 'fo_plural_code_name'
+FROM
+#__componentarchitect_components c
+LEFT JOIN #__componentarchitect_componentobjects co ON co.component_id = c.id
+LEFT JOIN #__componentarchitect_fieldsets fs ON fs.component_id = c.id AND fs.component_object_id = co.id
+LEFT JOIN #__componentarchitect_fields f ON f.component_id = c.id AND  f.component_object_id = co.id AND f.fieldset_id = fs.id 
+LEFT JOIN #__componentarchitect_fieldtypes t ON t.id = f.fieldtype_id
+LEFT JOIN #__componentarchitect_componentobjects fo ON f.foreign_object_id = fo.id
+WHERE 1
+AND c.id = {$component_id}
+AND co.state = 1
+AND fs.state = 1
+AND f.state = 1
+
+AND t.id = 13
+
+ORDER BY co.plural_code_name, f.code_name;
+EOT;
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+            $iref = '';
+				
+                foreach ($rows as $row){
+                    $iref = <<<EOT
+					
+ALTER TABLE `#__{$row->c_code_name}_{$row->co_plural_code_name}` ADD CONSTRAINT `fk{$row->f_id}_{$row->f_code_name}`
+FOREIGN KEY (`{$row->f_code_name}`) REFERENCES `#__{$row->c_code_name}_{$row->fo_plural_code_name}` (`id`)
+ON DELETE RESTRICT ON UPDATE CASCADE;
+					
+EOT;
+                    file_put_contents("{$dst_path}/admin/sql/install.{$row->c_code_name}_mysql_ir.utf8.sql", $iref,FILE_APPEND);
+                    foreach ($this->_component_objects as $component_object){
+                        $iref_keys = '`id`'; $iref_values = '0';
+                        if($row->fo_code_name == $component_object->code_name){
+                          if($component_object->joomla_features['include_name']){
+                              $iref_keys .= ', `name`';
+                              $iref_values .= ', "undefined"';
+                          }
+                          if($component_object->joomla_features['include_description']){
+                              $iref_keys .= ', `description`';
+                              $iref_values .= ', "undefined default option"';
+                          }
+                          if($component_object->joomla_features['include_ordering']){
+                              $iref_keys .= ', `ordering`';
+                              $iref_values .= ', 0';
+                          }
+                          if($component_object->joomla_features['include_status']){
+                              $iref_keys .= ', `state`';
+                              $iref_values .= ', 1';
+                          }
+                            $iref = "\nINSERT IGNORE INTO `#__{$row->c_code_name}_{$row->fo_plural_code_name}` ({$iref_keys}) VALUES ({$iref_values});\n";
+                            file_put_contents("{$dst_path}/admin/sql/install.{$row->c_code_name}_mysql_ir.utf8.sql", $iref,FILE_APPEND);
+                        }
+                    }
+                }
+        }
+        
+        
+        /**
          * Stage 4 - dump Unified Content Model (UCM) Content History Options (CHO)
          * no puedo sacarle provecho a los pares search_replace dentro de esta función por lo que
          * utilizaré las propiedades del objeto, que funcione aun cuando no coincidan las
