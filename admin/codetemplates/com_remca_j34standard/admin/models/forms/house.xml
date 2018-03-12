@@ -187,9 +187,9 @@
 	
 	
     </fields>
-    <fieldset name="fieldset_jos_rem_houses_fs"
-        label="COM_REMCA_HOUSES_FIELDSET_JOS_REM_HOUSES_FS_LABEL"
-        description="COM_REMCA_HOUSES_FIELDSET_JOS_REM_HOUSES_FS_DESC"
+    <fieldset name="fieldset_houses_fs"
+        label="COM_REMCA_HOUSES_FIELDSET_HOUSES_FS_LABEL"
+        description="COM_REMCA_HOUSES_FIELDSET_HOUSES_FS_DESC"
     >
 	
 <!--<field name="field-name" type="subform" multiple="true" max="2" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="false" component="com_remca" client="admin"
@@ -223,18 +223,18 @@ jform[field-name][field-name2][version_note]=
 			maxlength="255"
         >
         </field>  
-        <field name="id_municipality"
-            type="modal_municipalities"
-            label="COM_REMCA_HOUSES_FIELD_ID_MUNICIPALITY_LABEL"
-            description="COM_REMCA_HOUSES_FIELD_ID_MUNICIPALITY_DESC"
+        <field name="id_lmunicipality"
+            type="modal_lmunicipalities"
+            label="COM_REMCA_HOUSES_FIELD_ID_LMUNICIPALITY_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_ID_LMUNICIPALITY_DESC"
             class="modal"
 			default="'0'"
         >
         </field>  
-        <field name="id_state"
-            type="modal_states"
-            label="COM_REMCA_HOUSES_FIELD_ID_STATE_LABEL"
-            description="COM_REMCA_HOUSES_FIELD_ID_STATE_DESC"
+        <field name="id_lstate"
+            type="modal_lstates"
+            label="COM_REMCA_HOUSES_FIELD_ID_LSTATE_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_ID_LSTATE_DESC"
             class="modal"
 			default="'0'"
         >
@@ -412,6 +412,15 @@ jform[field-name][field-name2][version_note]=
             type="text"
             label="COM_REMCA_HOUSES_FIELD_CONTACTS_LABEL"
             description="COM_REMCA_HOUSES_FIELD_CONTACTS_DESC"
+            class="inputbox"
+			size="50"
+			maxlength="255"
+        >
+        </field>  
+        <field name="image_link"
+            type="text"
+            label="COM_REMCA_HOUSES_FIELD_IMAGE_LINK_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_IMAGE_LINK_DESC"
             class="inputbox"
 			size="50"
 			maxlength="255"
@@ -680,7 +689,7 @@ jform[field-name][field-name2][version_note]=
             label="COM_REMCA_HOUSES_FIELD_OWNER_ID_LABEL"
             description="COM_REMCA_HOUSES_FIELD_OWNER_ID_DESC"
             class="modal"
-			default="'0'"
+			default="0"
         >
         </field>  
         <field name="climate_value"

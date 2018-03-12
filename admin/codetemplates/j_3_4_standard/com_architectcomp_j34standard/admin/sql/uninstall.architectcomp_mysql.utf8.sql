@@ -25,6 +25,9 @@
 --
 -- Uninstall of `#__[%%architectcomp%%]` tables
 --
+
+SET FOREIGN_KEY_CHECKS=0;
+
 [%%FOREACH COMPONENT_OBJECT%%]
 DROP TABLE IF EXISTS `#__[%%architectcomp%%]_[%%compobjectplural%%]`;
 DELETE FROM `#__content_types` WHERE `type_alias` = '[%%com_architectcomp%%].[%%compobject%%]';
@@ -44,3 +47,5 @@ DELETE FROM `#__categories` WHERE `extension`='[%%com_architectcomp%%]';
 DELETE FROM `#__content_types` WHERE `type_alias` = '[%%com_architectcomp%%].category';
 DELETE FROM `#__menu` WHERE `title`='[%%COM_ARCHITECTCOMP%%]_CATEGORIES' AND `type`='component';
 #[ %%ENDIF GENERATE_CATEGORIES%%]
+
+SET FOREIGN_KEY_CHECKS=1;

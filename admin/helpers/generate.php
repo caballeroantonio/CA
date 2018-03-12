@@ -2897,6 +2897,7 @@ generateComponent
          * Generates mysql constraints ...
          **/
         protected function _doConstraints($dst_path, $component_id){
+            $architectcomp = str_replace ("_", "", str_replace (" ", "", JString::strtolower($this->_component->code_name)));
             $db = JFactory::getDbo();
             $query = <<<EOT
 SELECT 
@@ -2917,21 +2918,34 @@ AND f.state = 1
 
 AND t.id = 13
 
-ORDER BY co.plural_code_name, f.code_name;
+#ORDER BY co.plural_code_name, f.code_name
+
+UNION
+
+SELECT 
+c.code_name 'c_code_name', co.plural_code_name 'co_plural_code_name', f.id 'f_id'
+, f.code_name 'f_code_name', 'user' AS 'fo_code_name', 'users' AS 'fo_plural_code_name'
+FROM
+#__componentarchitect_components c
+LEFT JOIN #__componentarchitect_componentobjects co ON co.component_id = c.id
+LEFT JOIN #__componentarchitect_fieldsets fs ON fs.component_id = c.id AND fs.component_object_id = co.id
+LEFT JOIN #__componentarchitect_fields f ON f.component_id = c.id AND  f.component_object_id = co.id AND f.fieldset_id = fs.id 
+LEFT JOIN #__componentarchitect_fieldtypes t ON t.id = f.fieldtype_id
+WHERE 1
+AND c.id = {$component_id}
+AND co.state = 1
+AND fs.state = 1
+AND f.state = 1
+
+AND t.id = 19
+;
 EOT;
             $db->setQuery($query);
             $rows = $db->loadObjectList();
             $iref = '';
-				
+
+                file_put_contents("{$dst_path}/admin/sql/install.{$architectcomp}_mysql_ir.utf8.sql", "\nSET FOREIGN_KEY_CHECKS=0;\nSET SESSION sql_mode='NO_AUTO_VALUE_ON_ZERO';\n",FILE_APPEND);
                 foreach ($rows as $row){
-                    $iref = <<<EOT
-					
-ALTER TABLE `#__{$row->c_code_name}_{$row->co_plural_code_name}` ADD CONSTRAINT `fk{$row->f_id}_{$row->f_code_name}`
-FOREIGN KEY (`{$row->f_code_name}`) REFERENCES `#__{$row->c_code_name}_{$row->fo_plural_code_name}` (`id`)
-ON DELETE RESTRICT ON UPDATE CASCADE;
-					
-EOT;
-                    file_put_contents("{$dst_path}/admin/sql/install.{$row->c_code_name}_mysql_ir.utf8.sql", $iref,FILE_APPEND);
                     foreach ($this->_component_objects as $component_object){
                         $iref_keys = '`id`'; $iref_values = '0';
                         if($row->fo_code_name == $component_object->code_name){
@@ -2949,13 +2963,24 @@ EOT;
                           }
                           if($component_object->joomla_features['include_status']){
                               $iref_keys .= ', `state`';
-                              $iref_values .= ', 1';
+                              $iref_values .= ', 0';
                           }
                             $iref = "\nINSERT IGNORE INTO `#__{$row->c_code_name}_{$row->fo_plural_code_name}` ({$iref_keys}) VALUES ({$iref_values});\n";
                             file_put_contents("{$dst_path}/admin/sql/install.{$row->c_code_name}_mysql_ir.utf8.sql", $iref,FILE_APPEND);
                         }
                     }
                 }
+                foreach ($rows as $row){
+                    $iref = <<<EOT
+					
+ALTER TABLE `#__{$row->c_code_name}_{$row->co_plural_code_name}` ADD CONSTRAINT `fk{$row->f_id}_{$row->f_code_name}`
+FOREIGN KEY (`{$row->f_code_name}`) REFERENCES `#__{$row->c_code_name}_{$row->fo_plural_code_name}` (`id`)
+ON DELETE RESTRICT ON UPDATE CASCADE;
+					
+EOT;
+                    file_put_contents("{$dst_path}/admin/sql/install.{$row->c_code_name}_mysql_ir.utf8.sql", $iref,FILE_APPEND);
+                }
+                file_put_contents("{$dst_path}/admin/sql/install.{$architectcomp}_mysql_ir.utf8.sql", "\nSET FOREIGN_KEY_CHECKS=1;\nSET SESSION sql_mode='';\n",FILE_APPEND);
         }
         
         

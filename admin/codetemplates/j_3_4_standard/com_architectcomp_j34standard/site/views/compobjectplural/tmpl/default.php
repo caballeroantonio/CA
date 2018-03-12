@@ -85,6 +85,7 @@ $empty = $component->params->get('default_empty_field', '');
 	<?php endif; ?>
 
 	<?php
+		$can_edit = 0;$can_delete = 0;
 		$show_actions = false;
 		if ($this->params->get('show_[%%compobject%%]_icons',1) >= 0) :
 			foreach ($this->items as $i => $item) :

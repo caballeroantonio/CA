@@ -28,7 +28,7 @@
 
 #DROP TABLE IF EXISTS `#__componentarchitect_components`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_components` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `author` VARCHAR(100) NOT NULL DEFAULT '',
@@ -44,27 +44,30 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_components` (
   `categories_icon_48px` VARCHAR(255) NOT NULL DEFAULT '',
   `joomla_parts` VARCHAR(1024) NOT NULL DEFAULT '',
   `joomla_features` VARCHAR(1024) NOT NULL DEFAULT '',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_componentobjects`
 --
 
 #DROP TABLE IF EXISTS `#__componentarchitect_componentobjects`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_componentobjects` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `component_id` INT(10) NOT NULL DEFAULT '0',
@@ -79,43 +82,49 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_componentobjects` (
   `icon_48px` VARCHAR(255) NOT NULL DEFAULT '',
   `joomla_parts` VARCHAR(1024) NOT NULL DEFAULT '',
   `joomla_features` VARCHAR(1024) NOT NULL DEFAULT '',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_component_id` (`component_id`),
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fieldsets`
 --
 
 #DROP TABLE IF EXISTS `#__componentarchitect_fieldsets`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldsets` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
   `component_id` INT(10) NOT NULL DEFAULT '0',
   `component_object_id` INT(10) NOT NULL DEFAULT '0',
   `predefined_fieldset` TINYINT(1) NOT NULL DEFAULT '0',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_component_id` (`component_id`),
   KEY `idx_component_object_id` (`component_object_id`),
@@ -123,14 +132,14 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldsets` (
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fields`
 --
 
 #DROP TABLE IF EXISTS `#__componentarchitect_fields`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
@@ -192,15 +201,18 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   `mysql_datatype` VARCHAR(15) NOT NULL DEFAULT '',
   `mysql_size` VARCHAR(5) NOT NULL DEFAULT '',
   `mysql_default` VARCHAR(50) NOT NULL DEFAULT '',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_component_id` (`component_id`),
   KEY `idx_component_object_id` (`component_object_id`),
@@ -211,14 +223,14 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fields` (
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_fieldtypes`
 --
 
 #DROP TABLE IF EXISTS `#__componentarchitect_fieldtypes`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldtypes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `code_name` VARCHAR(50) NOT NULL DEFAULT '',
@@ -281,28 +293,31 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_fieldtypes` (
   `mysql_size_default` VARCHAR(5) NOT NULL DEFAULT '',
   `mysql_default_default` VARCHAR(50) NOT NULL DEFAULT '',
   `catid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_catid` (`catid`),
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `#__componentarchitect_codetemplates`
 --
 
 #DROP TABLE IF EXISTS `#__componentarchitect_codetemplates`;
 CREATE TABLE IF NOT EXISTS `#__componentarchitect_codetemplates` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `description` MEDIUMTEXT NOT NULL,
   `version` VARCHAR(15) NOT NULL DEFAULT '',
@@ -318,22 +333,25 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_codetemplates` (
   `template_markup_prefix` VARCHAR(50) NOT NULL DEFAULT '',
   `template_markup_suffix` VARCHAR(50) NOT NULL DEFAULT '',
   `catid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+  `state` TINYINT(1) NOT NULL DEFAULT '0',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'FK to user in #__users',
   `created_by_alias` VARCHAR(255) NOT NULL DEFAULT '',  
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+#  `version` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'progressive version counter',#bug: utilizan version VARCHAR para anotar la última version
   `ordering` INT(11) NOT NULL DEFAULT '0',
   KEY `idx_checkout` (`checked_out`),
+  KEY `idx_state` (`state`),
   KEY `idx_createdby` (`created_by`),
   KEY `idx_catid` (`catid`),
   KEY `idx_predefined_code_template` (`predefined_code_template`),
   KEY `idx_ordering` (`ordering`),
   PRIMARY KEY (`id`)
   
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- [%%START_CUSTOM_CODE%%]
 --
@@ -345,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `#__componentarchitect_sessiondata` (
   `context` VARCHAR(50) NOT NULL DEFAULT '',
   `key` VARCHAR(50) NOT NULL DEFAULT '',
   `data` MEDIUMTEXT,
-  `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expires` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),

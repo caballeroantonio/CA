@@ -2,7 +2,7 @@
 /**
  * @version 		$Id:$
  * @name			RealEstateManagerCA
- * @author			caballeroantonio (tx.com)
+ * @author			caballeroantonio (caballeroantonio.com)
  * @package			com_remca
  * @subpackage		com_remca.site
  * @copyright		
@@ -33,6 +33,9 @@ defined('_JEXEC') or die;
  */
 class RemcaHelper extends JHelperContent
 {
+        public static $doc;
+        public static $params;
+        public static $db;
 	/**
 	 * Constructor.
 	 *
@@ -41,7 +44,9 @@ class RemcaHelper extends JHelperContent
 	 */
 	public function __construct()
 	{
-		$GLOBALS['doc'] = $doc = JFactory::getDocument();
+            self::$doc = JFactory::getDocument();
+            self::$params = JComponentHelper::getParams('com_remca');
+            self::$db = JFactory::getDbo();
 	}
 
     static function showRentRequest(& $houses, & $currentcat, & $params, & $tabclass,
@@ -87,13 +92,13 @@ class RemcaHelper extends JHelperContent
     }
 
     static function displayHouses(&$rows, $currentcat, &$params, $tabclass, $catid, $categories, &$pageNav = null, $is_exist_sub_categories=false, $option, $layout = "default", $type = "alone_category") {
-        global $mosConfig_absolute_path, $Itemid;  
+        global  $Itemid;  
         $type = 'alone_category';
         require getLayoutPath::getLayoutPathCom('com_realestatemanager', $type, $layout);
     }    
 
     static function displaySearchHouses(&$rows, $currentcat, &$params, $tabclass, $catid, $categories, &$pageNav = null, $is_exist_sub_categories=false, $option, $layout = "default", $layoutsearch = "default") {
-        global $mosConfig_absolute_path, $Itemid; 
+        global  $Itemid; 
         $type = 'search_result';
 
         if($params->get('search_form_on_result_search_page_show')){
@@ -108,7 +113,7 @@ class RemcaHelper extends JHelperContent
      */
     static function displayHouse(& $house, & $tabclass, & $params, & $currentcat, & $rating,
      & $house_photos,$videos,$tracks, $id, $catid, $option, & $house_feature, & $currencys_price, $layout = "default") {
-        global $mosConfig_absolute_path;
+        
         $type = 'view_house';
         require getLayoutPath::getLayoutPathCom('com_realestatemanager', $type, $layout);
     }
@@ -119,13 +124,13 @@ class RemcaHelper extends JHelperContent
      * Display links to categories
      */
     static function showCategories(&$params, &$categories, &$catid, &$tabclass, &$currentcat, $layout) {
-        global $mosConfig_absolute_path;
+        
         $type = 'all_categories';
         require getLayoutPath::getLayoutPathCom('com_realestatemanager', $type, $layout);
     }
     //30.06.17
     static function showSearchButton() {
-        global $mosConfig_live_site;
+        
         ?>
         <form action="<?php
          echo sefRelToAbs("index.php?option=com_realestatemanager&amp;task=show_search_house"); ?>" method="post" name="search_button" enctype="multipart/form-data">
@@ -140,15 +145,15 @@ class RemcaHelper extends JHelperContent
     }
 
     static function showButtonMyHouses() {
-        global $mosConfig_live_site, $Itemid;
+        global $Itemid;
     }
 
     static function showOwnersButton() {
-        global $mosConfig_live_site, $Itemid;
+        global $Itemid;
     }
 
     static function showSearchHouses($params, $currentcat, $clist, $option, &$temp1, &$temp2, $layout = "default") {
-        global $mosConfig_absolute_path, $task;
+        global  $task;
         //$type = $task == "search" ? "show_search_result" : "show_search_house";
         if($params->get('showsearchhouselayout')){
           $layout = $params->get('showsearchhouselayout');
@@ -164,16 +169,16 @@ class RemcaHelper extends JHelperContent
 
     static function showTabs(&$params, &$userid, &$username, &$comprofiler, &$option) {
 
-        global $mosConfig_live_site, $doc;
-        $doc->addStyleSheet($mosConfig_live_site . '/components/com_realestatemanager/TABS/tabcontent.css');
-        $doc->addScript($mosConfig_live_site . '/components/com_realestatemanager/TABS/tabcontent.js');
+        
+        self::$doc->addStyleSheet('components/com_realestatemanager/TABS/tabcontent.css');
+        self::$doc->addScript('components/com_realestatemanager/TABS/tabcontent.js');
 
 
 ?>
 
          <?php 
         if(RemcaHelper::checkJavaScriptIncludedRE("jQuerREL-1.2.6.js") === false ) {
-        $doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
+        self::$doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
         } 
     ?>
         <script type="text/javascript">jQuerREL=jQuerREL.noConflict();</script>
@@ -248,22 +253,22 @@ class RemcaHelper extends JHelperContent
 
             static function showMyHouses(&$houses, &$params, &$pageNav, $option,& $clist, &$language, & $rentlist,
            & $publist, & $search, $search_list, $ownerlist, $layout = "default") {
-                global $mosConfig_absolute_path, $Itemid, $mosConfig_live_site;
+                global  $Itemid;
 
                 
 
-                //require($mosConfig_absolute_path.
+                //require(JPATH_SITE.
                 // "/components/com_realestatemanager/views/my_houses/tmpl/".$layout.".php");
                 $type = 'my_houses';
                 require getLayoutPath::getLayoutPathCom('com_realestatemanager', $type, $layout);
             }
 
            static function showRentHouses($option, $house1, $rows, & $userlist, $type) {
-                global $my, $mosConfig_live_site, $mainframe, $doc, $Itemid, $realestatemanager_configuration;
+                global $my,  $mainframe, $Itemid;
         ?>
         <?php 
         if(RemcaHelper::checkJavaScriptIncludedRE("jQuerREL-1.2.6.js") === false ) {
-        $doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
+        self::$doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
         } 
     ?>
         <script type="text/javascript">jQuerREL=jQuerREL.noConflict();</script>
@@ -272,15 +277,14 @@ class RemcaHelper extends JHelperContent
         <?php 
 
             if(RemcaHelper::checkJavaScriptIncludedRE("jQuerREL-ui.js") === false ) {
-            $doc->addScript(JURI::root(true) . '          echo $mosConfig_live_site; ?>/components/com_realestatemanager/includes/jQuerREL-ui.js');
+            self::$doc->addScript(JURI::root(true) . 'components/com_realestatemanager/includes/jQuerREL-ui.js');
             }
 
         ?>
 
       <?php
-        $doc->addScript($mosConfig_live_site . '/components/com_realestatemanager/includes/functions.js');
-        $doc->addStyleSheet($mosConfig_live_site .
-                 '/components/com_realestatemanager/includes/realestatemanager.css');
+        self::$doc->addScript('components/com_realestatemanager/includes/functions.js');
+        self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
         ?>
         <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
         <form action="index.php" method="get" name="adminForm" id="adminForm">
@@ -315,7 +319,7 @@ class RemcaHelper extends JHelperContent
                     }else{
                       jQuerREL.ajax({
                         type: "POST",
-                        url: "<?php echo $mosConfig_live_site;?>/index.php?option=com_realestatemanager&task=getUserData&userId="+jQuerREL(this).val()+"&format=raw",
+                        url: "index.php?option=com_realestatemanager&task=getUserData&userId="+jQuerREL(this).val()+"&format=raw",
                         success: function(user){
                           var user = jQuerREL.parseJSON(user);
                           jQuerREL('[name=user_name], [name=user_email]').attr('readonly','readonly');
@@ -341,7 +345,7 @@ class RemcaHelper extends JHelperContent
 
                         {
                             var today = new Date();
-                            var date = today.toLocaleFormat("<?php echo $realestatemanager_configuration['date_format'] ?>");
+                            var date = today.toLocaleFormat("<?php echo self::$params->get('date_format') ?>");
                             document.getElementById('rent_from').value = date;
                             document.getElementById('rent_until').value = date;
                         };
@@ -376,7 +380,7 @@ class RemcaHelper extends JHelperContent
 
                       function REMunavailableUntil(date) {
                           dmy = date.getFullYear() + "-" + ('0'+(date.getMonth() + 1)).slice(-2) + 
-                            "-" + ('0'+(date.getDate()-("<?php  if(!$realestatemanager_configuration['special_price']['show']) echo '1';?>"))).slice(-2);
+                            "-" + ('0'+(date.getDate()-("<?php  if(!self::$params->get('special_price_show')) echo '1';?>"))).slice(-2);
                           if (jQuerREL.inArray(dmy, unavailableDates) == -1) {
                               return [true, ""];
                           } else {
@@ -573,13 +577,13 @@ class RemcaHelper extends JHelperContent
 
 
  static function editRentHouses($option, $house1, $rows, $title_assoc, & $userlist, & $all_assosiate_rent, $type) {
-    global $my, $mosConfig_live_site, $mainframe, $Itemid, $realestatemanager_configuration;
-	$doc = JFactory::getDocument();
+    global $my,  $mainframe, $Itemid;
+	
 
     ?>
      <?php 
         if(RemcaHelper::checkJavaScriptIncludedRE("jQuerREL-1.2.6.js") === false ) {
-        $doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
+        self::$doc->addScript(JURI::root(true) . '/components/com_realestatemanager/lightbox/js/jQuerREL-1.2.6.js');
         } 
     ?>
     <script type="text/javascript">jQuerREL=jQuerREL.noConflict();</script>
@@ -589,7 +593,7 @@ class RemcaHelper extends JHelperContent
     <?php 
 
       if(RemcaHelper::checkJavaScriptIncludedRE("jQuerREL-ui.js") === false ) {
-        $doc->addScript(JURI::root(true) . '/components/com_realestatemanager/includes/jQuerREL-ui.js');
+        self::$doc->addScript(JURI::root(true) . '/components/com_realestatemanager/includes/jQuerREL-ui.js');
       }
 
 
@@ -600,8 +604,8 @@ class RemcaHelper extends JHelperContent
     <?php
 
 
-    $doc->addScript($mosConfig_live_site . '/components/com_realestatemanager/includes/functions.js');
-    $doc->addStyleSheet($mosConfig_live_site . '/components/com_realestatemanager/includes/realestatemanager.css');
+    self::$doc->addScript('components/com_realestatemanager/includes/functions.js');
+    self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
     ?>
 
  <!--///////////////////////////////calendar///////////////////////////////////////-->
@@ -658,7 +662,7 @@ class RemcaHelper extends JHelperContent
                     }else{
                       jQuerREL.ajax({
                         type: "POST",
-                        url: "<?php echo $mosConfig_live_site;?>/index.php?option=com_realestatemanager&task=getUserData&userId="+jQuerREL(this).val()+"&format=raw",
+                        url: "index.php?option=com_realestatemanager&task=getUserData&userId="+jQuerREL(this).val()+"&format=raw",
                         success: function(user){
                           var user = jQuerREL.parseJSON(user);
                           jQuerREL('[name=user_name], [name=user_email]').attr('readonly','readonly');
@@ -862,10 +866,10 @@ class RemcaHelper extends JHelperContent
 
 
     static function showRentHistory($option, $rows, $pageNav) {
-        global $my, $Itemid, $mosConfig_live_site, $mainframe, $doc;
+        global $my, $Itemid,  $mainframe;
         $session = JFactory::getSession();
         $arr = $session->get("array", "default");
-        $doc->addStyleSheet($mosConfig_live_site . '/components/com_realestatemanager/includes/realestatemanager.css');
+        self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
         ?>
         <form action="index.php" method="get" name="adminForm" id="adminForm">
             <table id="my_houses_history" class="table_64 basictable">
@@ -913,14 +917,12 @@ class RemcaHelper extends JHelperContent
     }
 
     static function showRequestRentHouses($option, $rent_requests, &$pageNav) {
-        global $my, $mosConfig_live_site, $mainframe, $Itemid;
-		$doc = JFactory::getDocument();
+        global $my,  $mainframe, $Itemid;
+		
         $session = JFactory::getSession();
         $arr = $session->get("array", "default");
-        $doc->addScript($mosConfig_live_site .
-         '/components/com_realestatemanager/includes/functions.js');
-        $doc->addStyleSheet($mosConfig_live_site .
-         '/components/com_realestatemanager/includes/realestatemanager.css');
+        self::$doc->addScript('components/com_realestatemanager/includes/functions.js');
+        self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
         ?>
         <form action="index.php" method="get" name="adminForm" id="adminForm">
             <table id="my_houses_rent" cellpadding="4" cellspacing="0"
@@ -1028,9 +1030,8 @@ class RemcaHelper extends JHelperContent
     }
 
  static function listCategories(&$params, $cat_all, $catid, $tabclass, $currentcat) {
-                global $Itemid, $mosConfig_live_site, $doc;
-                $doc->addStyleSheet($mosConfig_live_site .
-                 '/components/com_realestatemanager/includes/realestatemanager.css');
+                global $Itemid;
+                self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
                 ?>
         <?php positions_rem($params->get('allcategories04')); ?>
         <div class="basictable table_58">
@@ -1057,11 +1058,10 @@ class RemcaHelper extends JHelperContent
     /* function for show subcategory */
 
     static function showInsertSubCategory($id, $cat_all, $params, $tabclass, $Itemid, $deep) {
-        global $g_item_count, $realestatemanager_configuration, $mosConfig_live_site;
-        global $doc;
+        global $g_item_count;
+        
 
-        $doc->addStyleSheet($mosConfig_live_site .
-         '/components/com_realestatemanager/includes/realestatemanager.css');
+        self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
 
         $deep++;
         for ($i = 0; $i < count($cat_all); $i++) {
@@ -1107,7 +1107,7 @@ class RemcaHelper extends JHelperContent
                
                 </div>
                 <?php
-              if ($realestatemanager_configuration['subcategory']['show'])
+              if (self::$params->get('subcategory_show'))
                     HTML_realestatemanager::showInsertSubCategory($cat_all[$i]->id,
                      $cat_all, $params, $tabclass, $Itemid, $deep);
             }//end if ($id == $cat_all[$i]->parent_id)
@@ -1118,7 +1118,7 @@ class RemcaHelper extends JHelperContent
 
     static function listCategoriesBigImg(&$params, $cat_all, $catid, $tabclass, $currentcat)
     {
-        global $Itemid, $mosConfig_live_site;
+        global $Itemid;
         ?>
         <?php positions_rem($params->get('allcategories04')); ?>
         <div class="basictable_12 basictable">
@@ -1137,8 +1137,8 @@ class RemcaHelper extends JHelperContent
 
     static function showInsertSubCategoryBigImg($id, $cat_all, $params, $tabclass, $Itemid, $deep)
     {
-      global $g_item_count, $realestatemanager_configuration, $mosConfig_live_site;
-      $mosConfig_absolute_path = $GLOBALS['mosConfig_absolute_path'] = JPATH_SITE;
+      global $g_item_count;
+      
       $deep++;
       for ($i = 0; $i < count($cat_all); $i++) {
         if (($id == $cat_all[$i]->parent_id) && ($cat_all[$i]->display == 1))
@@ -1170,13 +1170,13 @@ class RemcaHelper extends JHelperContent
                 <a href="<?php echo sefRelToAbs($link);?>" class="category<?php
                   echo $params->get('pageclass_sfx'); ?> cat_img" style="text-decoration: none; " >
                   <?php
-                  if(!file_exists($mosConfig_absolute_path . '/components/com_realestatemanager/photos/folder.png'))
-                    copy ( $mosConfig_absolute_path."/components/com_realestatemanager/images/folder.png" ,
-                        $mosConfig_absolute_path . '/components/com_realestatemanager/photos/folder.png');
-                $file_name = rem_picture_thumbnail( 'folder.png',
-                  $realestatemanager_configuration['fotogallery']['high'],
-                  $realestatemanager_configuration['fotogallery']['width']);
-                $file=$mosConfig_live_site . '/components/com_realestatemanager/photos/'. $file_name;
+                  if(!file_exists(JPATH_SITE . '/components/com_realestatemanager/photos/folder.png'))
+                    copy ( JPATH_SITE."/components/com_realestatemanager/images/folder.png" ,
+                        JPATH_SITE . '/components/com_realestatemanager/photos/folder.png');
+                $file_name = self::rem_picture_thumbnail( 'folder.png',
+                  self::$params->get('fotogallery_high'),
+                  self::$params->get('fotogallery_width'));
+                $file='components/com_realestatemanager/photos/'. $file_name;
                 echo '<img alt="picture for subcategory" title="'.$cat_all[$i]->title.'" src="' .$file. '">';
                 ?>
             </a>
@@ -1203,12 +1203,11 @@ class RemcaHelper extends JHelperContent
 
     static function showRequestBuyingHouses($option, $buy_requests, $pageNav, $Itemid) {
 
-        global $my, $mosConfig_live_site, $mainframe, $doc;
+        global $my,  $mainframe;
         $session = JFactory::getSession();
         $arr = $session->get("array", "default");
-        $doc->addScript($mosConfig_live_site . '/components/com_realestatemanager/includes/functions.js');
-        $doc->addStyleSheet($mosConfig_live_site .
-         '/components/com_realestatemanager/includes/realestatemanager.css');
+        self::$doc->addScript('components/com_realestatemanager/includes/functions.js');
+        self::$doc->addStyleSheet('components/com_realestatemanager/includes/realestatemanager.css');
         ?>
         <form action="index.php" method="get" name="adminForm" id="adminForm">
 
@@ -1284,13 +1283,13 @@ class RemcaHelper extends JHelperContent
         <?php
     }
 
-
   static function add_google_map($params, &$rows) {
+    echo '<div id="map_canvas" class="re_map_canvas re_map_canvas_01"></div>';
     $layout = $params->get('house_layout', 'default');
-     global $realestatemanager_configuration, $mosConfig_live_site, $database, $Itemid;
-	 $doc = JFactory::getDocument();
-          $api_key = $realestatemanager_configuration['api_key'] ? "key=" . $realestatemanager_configuration['api_key'] : JFactory::getApplication()->enqueueMessage("<a target='_blank' href='//developers.google.com/maps/documentation/geocoding/get-api-key'>" . _REALESTATE_MANAGER_GOOGLEMAP_API_KEY_LINK_MESSAGE . "</a>", _REALESTATE_MANAGER_GOOGLEMAP_API_KEY_ERROR); 
-          $doc->addScript("//maps.googleapis.com/maps/api/js?$api_key"); ?>
+    global   $Itemid;
+	 
+          $gmaps_api_key = self::$params->get('gmaps_api_key') ? "key=" . self::$params->get('gmaps_api_key') : JFactory::getApplication()->enqueueMessage("<a target='_blank' href='//developers.google.com/maps/documentation/geocoding/get-api-key'>" . JText::_( '_REALESTATE_MANAGER_GOOGLEMAP_API_KEY_LINK_MESSAGE') . "</a>", JText::_( '_REALESTATE_MANAGER_GOOGLEMAP_API_KEY_ERROR')); 
+          self::$doc->addScript("//maps.googleapis.com/maps/api/js?$gmaps_api_key"); ?>
 
 
       <script type="text/javascript">
@@ -1306,7 +1305,7 @@ class RemcaHelper extends JHelperContent
               },
               mapTypeId: google.maps.MapTypeId.ROADMAP
           };
-          var imgCatalogPath = "<?php echo $mosConfig_live_site; ?>/components/com_realestatemanager/";
+          var imgCatalogPath = "components/com_realestatemanager/";
           var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
           var bounds = new google.maps.LatLngBounds ();
 
@@ -1329,11 +1328,6 @@ class RemcaHelper extends JHelperContent
                   $numPick = $newArr[$rows[$i]->property_type];
               }
           ?>
-      
-             
-  
-                  
-
               var srcForPic = "<?php echo $numPick; ?>";
               var image = '';
               if(srcForPic.length){
@@ -1350,7 +1344,7 @@ class RemcaHelper extends JHelperContent
                   position: new google.maps.LatLng(<?php echo $rows[$i]->hlatitude; ?>,
                    <?php echo $rows[$i]->hlongitude; ?>),
                   map: map,
-                  title: "<?php echo $database->Quote($rows[$i]->name); ?>"
+                  title: "<?php echo self::$db->Quote($rows[$i]->name); ?>"
               }));
 
               bounds.extend(new google.maps.LatLng(<?php echo $rows[$i]->hlatitude; ?>,
@@ -1376,17 +1370,17 @@ class RemcaHelper extends JHelperContent
 
                   if ($imageURL == '') $imageURL = _REALESTATE_MANAGER_NO_PICTURE_BIG;
 
-                  $watermark_path = ($realestatemanager_configuration['watermark']['show'] == 1) ? 'watermark/' : '';
-                  $watermark = ($realestatemanager_configuration['watermark']['show'] == 1) ? true : false;  
-                      $file_name = rem_picture_thumbnail($imageURL,
-                        $realestatemanager_configuration['fotogal']['width'],
-                        $realestatemanager_configuration['fotogal']['high'], $watermark);
+                  $watermark_path = (self::$params->get('watermark_show') == 1) ? 'watermark/' : '';
+                  $watermark = (self::$params->get('watermark_show') == 1) ? true : false;  
+                      $file_name = self::rem_picture_thumbnail($imageURL,
+                        self::$params->get('fotogal_width'),
+                        self::$params->get('fotogal_high'), $watermark);
                       
-                      $file = $mosConfig_live_site . '/components/com_realestatemanager/photos/' . $file_name;
+                      $file = 'components/com_realestatemanager/photos/' . $file_name;
                 ?>
                 var imgUrl =  "<?php echo $file; ?>";
                       
-                <?php if(!incorrect_price($rows[$i]->price)):?>
+                <?php if(!self::REMincorrect_price($rows[$i]->price)):?>
                   var price =  "<?php echo $rows[$i]->price; ?>";
                   var priceunit =  "<?php echo $rows[$i]->priceunit; ?>";
                 <?php else:?>
@@ -1408,7 +1402,7 @@ class RemcaHelper extends JHelperContent
               '</div>';
 
                    infowindow.setContent(contentStr);
-                   infowindow.setOptions( { maxWidth: <?php echo $realestatemanager_configuration['fotogal']['width'] ; ?> });
+                   infowindow.setOptions( { maxWidth: <?php echo self::$params->get('fotogal_width') ; ?> });
                    infowindow.open(map,marker[<?php echo $j; ?>]);
               });
 
@@ -1453,8 +1447,8 @@ class RemcaHelper extends JHelperContent
     //    }
     //
     //}
-//    if (!function_exists('incorrect_price')) {
-      function REMincorrect_price($price){
+//    if (!function_exists('self::REMincorrect_price')) {
+      private static function REMincorrect_price($price){
         if(preg_match('/\D/i',$price) == 1){
           return true;
         }else{
@@ -1465,15 +1459,15 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('CAT_Utils_categoryArray')) {
        function REMCAT_Utils_categoryArray() {
-            global $database;
+            
             // get a list of the menu items
             $query = "SELECT c.*, c.parent_id AS parent"
                     . "\n FROM #__rem_main_categories c"
                     . "\n WHERE section='com_realestatemanager'"
                     . "\n AND state <> -2"
                     . "\n ORDER BY ordering";
-            $database->setQuery($query);
-            $items = $database->loadObjectList();
+            self::$db->setQuery($query);
+            $items = self::$db->loadObjectList();
             // establish the hierarchy of the menu
             $children = array();
             // first pass - collect children
@@ -1716,13 +1710,12 @@ class RemcaHelper extends JHelperContent
 //    if (!function_exists('date_to_data_ms')){
       function REMdate_to_data_ms($data_string){             // 2014-01-25 covetr to date in ms
 
-          global $database;
-
+          
     //        $date = data_transform_rem($data_string);
 
     /*        $query = "SELECT UNIX_TIMESTAMP('$data_string')"; 
-          $database->setQuery($query);
-          $rent_ms = $database->loadResult(); 
+          self::$db->setQuery($query);
+          $rent_ms = self::$db->loadResult(); 
 
           return $rent_ms;*/
           if($data_string){
@@ -1880,16 +1873,16 @@ class RemcaHelper extends JHelperContent
                   // [1]: Recurse getting the usergroups
                   $id_group = array();
                   $q1 = "SELECT group_id FROM `#__user_usergroup_map` WHERE user_id={$uid}";
-                  $database->setQuery($q1);
-                  $rows1 = $database->loadObjectList();
+                  self::$db->setQuery($q1);
+                  $rows1 = self::$db->loadObjectList();
                   foreach ($rows1 as $v)
                       $id_group[] = $v->group_id;
                   for ($k = 0; $k < count($id_group); $k++) {
                       $q = "SELECT g2.id FROM `#__usergroups` g1 "
                        . " LEFT JOIN `#__usergroups` g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt "
                        . " WHERE g1.id={$id_group[$k]} ORDER BY g2.lft";
-                      $database->setQuery($q);
-                      $rows = $database->loadObjectList();
+                      self::$db->setQuery($q);
+                      $rows = self::$db->loadObjectList();
                       foreach ($rows as $r)
                           $usergroups[] = $r->id;
                   }
@@ -1897,8 +1890,8 @@ class RemcaHelper extends JHelperContent
               }
               // [2]: Non-Recurse getting usergroups
               $q = "SELECT * FROM #__user_usergroup_map WHERE user_id = {$uid}";
-              $database->setQuery($q);
-              $rows = $database->loadObjectList();
+              self::$db->setQuery($q);
+              $rows = self::$db->loadObjectList();
               foreach ($rows as $k => $v)
                   $usergroups[] = $rows[$k]->group_id;
               // If user is unregistered, Joomla contains it into standard group (Public by default).
@@ -1967,11 +1960,11 @@ class RemcaHelper extends JHelperContent
 //    }
 //    if (!function_exists('loadConstRem')) {
       function REMloadConstRem() {
-        global $database, $mosConfig_absolute_path;
+        
         $is_exception = false;
-        $database->setQuery("SELECT * FROM #__rem_languages");
-        $langs = $database->loadObjectList();
-        $component_path = JPath::clean($mosConfig_absolute_path . '/components/com_realestatemanager/lang/');
+        self::$db->setQuery("SELECT * FROM #__rem_languages");
+        $langs = self::$db->loadObjectList();
+        $component_path = JPath::clean(JPATH_SITE . '/components/com_realestatemanager/lang/');
         $component_constans = array();
         if (is_dir($component_path) && ($component_constans =
           JFolder::files($component_path, '^[^_]*\.php$', false, true))) {
@@ -1980,12 +1973,12 @@ class RemcaHelper extends JHelperContent
               $file_name = pathinfo($file);
               $file_name = $file_name['filename'];
               if ($file_name === 'constant') {
-                require($mosConfig_absolute_path . "/components/com_realestatemanager/lang/$file_name.php");
+                require(JPATH_SITE . "/components/com_realestatemanager/lang/$file_name.php");
                 foreach ( $constMas as $mas ) {
-                  $database->setQuery(
+                  self::$db->setQuery(
                     "INSERT IGNORE INTO #__rem_const (const, sys_type) VALUES ('".
                     $mas["const"]."','".$mas["value_const"]."')");
-                  $database->query();
+                  self::$db->query();
                 }
               }
             }                
@@ -1997,27 +1990,27 @@ class RemcaHelper extends JHelperContent
               $file_name = $file_name['filename'];
               $LangLocal = '';
               if ($file_name != 'constant') {
-                require($mosConfig_absolute_path . "/components/com_realestatemanager/lang/$file_name.php");
+                require(JPATH_SITE . "/components/com_realestatemanager/lang/$file_name.php");
                 try {
-                  $database->setQuery("INSERT IGNORE INTO #__rem_languages (lang_code,title) VALUES ('"
+                  self::$db->setQuery("INSERT IGNORE INTO #__rem_languages (lang_code,title) VALUES ('"
                             . $LangLocal['lang_code'] . "','" . $LangLocal['title'] . "')");
-                  $database->query();
-                  $database->setQuery("SELECT id FROM #__rem_languages " .
+                  self::$db->query();
+                  self::$db->setQuery("SELECT id FROM #__rem_languages " .
                      " WHERE lang_code = '" . $LangLocal['lang_code'] . "' AND title='".$LangLocal['title']."'");
-                  $idLang = $database->loadResult();
+                  $idLang = self::$db->loadResult();
                   foreach ($constLang as $item) { 
                     //if(!isset($item['value_const'])) var_dump($item);
-                    $database->setQuery("SELECT id FROM #__rem_const WHERE const = '" . $item['const'] . "'");
-                    $idConst = $database->loadResult();
+                    self::$db->setQuery("SELECT id FROM #__rem_const WHERE const = '" . $item['const'] . "'");
+                    $idConst = self::$db->loadResult();
                     if(!array_key_exists ( 'value_const'  , $item ) || !$idConst){
                          print_r($item['const']." not exist in file <b>'constant'</b> for this language:  <b>"
                        . $LangLocal['title']."</b>.");
                        $flag1 = false;
                     } else {
-                      $database->setQuery(
+                      self::$db->setQuery(
                        "INSERT IGNORE INTO #__rem_const_languages (fk_constid,fk_languagesid,value_const) "
-                       . " VALUES ($idConst, $idLang, " . $database->quote($item['value_const']) . ")");
-                      $database->query();
+                       . " VALUES ($idConst, $idLang, " . self::$db->quote($item['value_const']) . ")");
+                      self::$db->query();
                     }
                   }
                 } catch (Exception $e) {
@@ -2040,8 +2033,8 @@ class RemcaHelper extends JHelperContent
               $query .= "LEFT JOIN #__rem_languages AS l ON cl.fk_languagesid=l.id ";
               $query .= "LEFT JOIN #__rem_const AS c ON cl.fk_constid=c.id ";
               $query .= "WHERE l.lang_code = 'en-GB'";
-              $database->setQuery($query);
-              $langConst = $database->loadObjectList();
+              self::$db->setQuery($query);
+              $langConst = self::$db->loadObjectList();
               foreach ($langConst as $item) {
                 if(!defined($item->const)){
                   defined($item->const) or define($item->const, $item->value_const);
@@ -2051,7 +2044,7 @@ class RemcaHelper extends JHelperContent
         }
 
         //if some language file missing recover it
-        $component_path = JPath::clean($mosConfig_absolute_path . '/components/com_realestatemanager/lang/');
+        $component_path = JPath::clean(JPATH_SITE . '/components/com_realestatemanager/lang/');
         $component_constans = array();
         if (is_dir($component_path) && ($component_constans = JFolder::files($component_path, '^[^_]*\.php$', false, true))) {
           foreach ($component_constans as $i => $file) {
@@ -2059,7 +2052,7 @@ class RemcaHelper extends JHelperContent
             $file_name = pathinfo($file);
             $file_name = $file_name['filename'];
             if ($file_name != 'constant') {
-              require($mosConfig_absolute_path . "/components/com_realestatemanager/lang/$file_name.php");
+              require(JPATH_SITE . "/components/com_realestatemanager/lang/$file_name.php");
               //$fileMas[] = $LangLocal;
               $fileMas[] = $LangLocal['title']; 
             }
@@ -2067,17 +2060,17 @@ class RemcaHelper extends JHelperContent
         }
 
 
-        $database->setQuery("SELECT title FROM #__rem_languages");
+        self::$db->setQuery("SELECT title FROM #__rem_languages");
         if (version_compare(JVERSION, '3.0', 'lt')) {
-          $langs = $database->loadResultArray();
+          $langs = self::$db->loadResultArray();
         } else {
-          $langs = $database->loadColumn();
+          $langs = self::$db->loadColumn();
         }
         if (count($langs) > count($fileMas)) {
           $results = array_diff($langs, $fileMas);
           foreach ($results as $result) {
-            $database->setQuery("SELECT lang_code FROM #__rem_languages WHERE title = '$result'");
-            $lang_code = $database->loadResult();
+            self::$db->setQuery("SELECT lang_code FROM #__rem_languages WHERE title = '$result'");
+            $lang_code = self::$db->loadResult();
             $langfile = "<?php if( !defined( '_VALID_MOS' ) && !defined( '_JEXEC' ) ) "
              . "die( 'Direct Access to '.basename(__FILE__).' is not allowed.' );";
             $langfile .= "\n\n/**\n*\n* @package  RealestateManager\n"
@@ -2092,16 +2085,16 @@ class RemcaHelper extends JHelperContent
             $query .= "LEFT JOIN #__rem_const AS c ON cl.fk_constid=c.id ";
             $query .= "WHERE l.title = '$result'";
 
-            $database->setQuery($query);
-            $constlanguages = $database->loadObjectList();
+            self::$db->setQuery($query);
+            $constlanguages = self::$db->loadObjectList();
 
             foreach ($constlanguages as $constlanguage) {
                 $langfile .= "\$constLang[] = array('const'=>'" . $constlanguage->const
-                 . "', 'value_const'=>'" . $database->quote($constlanguage->value_const) . "');\n";
+                 . "', 'value_const'=>'" . self::$db->quote($constlanguage->value_const) . "');\n";
             }
 
             // Write out new initialization file
-            $fd = fopen($mosConfig_absolute_path . "/components/com_realestatemanager/lang/$result.php", "w")
+            $fd = fopen(JPATH_SITE . "/components/com_realestatemanager/lang/$result.php", "w")
              or die("Cannot create language file.");
             fwrite($fd, $langfile);
             fclose($fd);
@@ -2112,9 +2105,9 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('language_check')) {
       function REMlanguage_check($component_db_name = 'rem' ) {
-        global $database;          
-        $database->setQuery("SELECT * FROM #__".$component_db_name."_languages");
-        $langIds = $database->loadObjectList();
+                  
+        self::$db->setQuery("SELECT * FROM #__".$component_db_name."_languages");
+        $langIds = self::$db->loadObjectList();
 
         $flag2=true;
         print_r("<br /><b>These constants exit in file constants but not exist in Languages files:</b><br />");
@@ -2123,8 +2116,8 @@ class RemcaHelper extends JHelperContent
           $query .= " WHERE  NOT EXISTS ";
           $query .= " ( SELECT  l1.*  FROM #__".$component_db_name."_const_languages as l1 ";
           $query .= " WHERE lc.id = l1.`fk_constid` and l1.fk_languagesid = ".$langId->id.") ";
-          $database->setQuery($query);
-          $badLangConsts = $database->loadObjectList();
+          self::$db->setQuery($query);
+          $badLangConsts = self::$db->loadObjectList();
             if($badLangConsts){
               $flag2 = false;
               print_r("<br />Languages: ".$langId->title."<br />");
@@ -2139,20 +2132,19 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('remove_langs')) {
       function REMremove_langs($component_db_name = 'rem' ) {
-           global $database;
-
+           
 
           $query = " TRUNCATE TABLE #__".$component_db_name."_languages; ";
-          $database->setQuery($query);
-          $database->query();
+          self::$db->setQuery($query);
+          self::$db->query();
 
           $query = " TRUNCATE TABLE #__".$component_db_name."_const; ";
-          $database->setQuery($query);
-          $database->query();
+          self::$db->setQuery($query);
+          self::$db->query();
 
           $query = " TRUNCATE TABLE #__".$component_db_name."_const_languages ;";
-          $database->setQuery($query);
-          $database->query();
+          self::$db->setQuery($query);
+          self::$db->query();
 
       }
 //    }
@@ -2203,7 +2195,7 @@ class RemcaHelper extends JHelperContent
 //    }
 //if(!function_exists('protectInjection')){
     function REMprotectInjection($element, $def = '', $filter = "STRING", $bypass_get = false) {
-        global $database;
+        
         if (!$bypass_get) {
             $value = JFactory::getApplication()->input->get($element, $def, $filter);
             // $value = $element;
@@ -2236,18 +2228,18 @@ class RemcaHelper extends JHelperContent
 
         if (is_array($value)) {
             foreach ($value as $key => $item_value) {
-                $value[$key] = $database->quote($item_value);
+                $value[$key] = self::$db->quote($item_value);
             }
             return $value;
         }
 
-        return $database->quote($value);
+        return self::$db->quote($value);
     }
 
 //    }
 //    if(!function_exists('protectInjectionWithoutQuote')){
     function REMprotectInjectionWithoutQuote($element, $def = '', $filter = "STRING", $bypass_get = false) {
-        global $database;
+        
         if (!$bypass_get) {
             $value = JFactory::getApplication()->input->get($element, $def, $filter);
             // $value = $element;
@@ -2280,25 +2272,25 @@ class RemcaHelper extends JHelperContent
 
         if (is_array($value)) {
             foreach ($value as $key => $item_value) {
-                $value[$key] = $database->escape($item_value);
+                $value[$key] = self::$db->escape($item_value);
             }
             return $value;
         }
 
-        return $database->escape($value);
+        return self::$db->escape($value);
     }
 
 //    }
 //    if (!function_exists('getLayoutsRem')) {
 
           function REMgetLayoutsRem($components, $type) {
-              global $database;
+              
               $database = JFactory::getDBO();
               // get current template on frontend
               $template = '';
               $query = "SELECT template FROM #__template_styles WHERE client_id=0 AND home=1"; 
-              $database->setQuery($query);
-              $template = $database->loadResult();
+              self::$db->setQuery($query);
+              $template = self::$db->loadResult();
 
               // Build the template and base path for the layout
               $tPath = JPATH_SITE . '/templates/' . $template . '/html/' . $components . '/' . $type . '/';
@@ -2334,9 +2326,9 @@ class RemcaHelper extends JHelperContent
 
 //    if(!function_exists('transforDateFromPhpToJquery')){
       function REMtransforDateFromPhpToJquery(){
-        global $realestatemanager_configuration;
+        
         $DateToFormat = str_replace("d",'dd',(str_replace("m",'mm',(str_replace("Y",'yy',(
-          str_replace('%','',$realestatemanager_configuration['date_format'])))))));
+          str_replace('%','',self::$params->get('date_format'))))))));
         return $DateToFormat;
       }
 //    }
@@ -2346,14 +2338,14 @@ class RemcaHelper extends JHelperContent
 //    if (!function_exists('data_transform_rem')) {
 
       function REMdata_transform_rem($date, $date_format = "from") {
-          global $realestatemanager_configuration, $database;     
+          global  $database;     
 
           if (strstr($date, "00:00:00") OR strlen($date) < 11) {
-              $format = $realestatemanager_configuration['date_format'];
+              $format = self::$params->get('date_format');
               $formatForDateFormat = 'Y-m-d';
           } else {
-              $format = $realestatemanager_configuration['date_format']. " "
-                 . $realestatemanager_configuration['datetime_format'];
+              $format = self::$params->get('date_format'). " "
+                 . self::$params->get('datetime_format');
               $formatForDateFormat = 'Y-m-d H:i:s';
           }
 
@@ -2373,8 +2365,8 @@ class RemcaHelper extends JHelperContent
               }  
           }else{
               $query = "SELECT STR_TO_DATE('$date','$format')"; 
-              $database->setQuery($query);
-              $normaDat = $database->loadResult(); 
+              self::$db->setQuery($query);
+              $normaDat = self::$db->loadResult(); 
 
               if(strlen($normaDat) > 0){
                   $date = $normaDat;
@@ -2390,9 +2382,9 @@ class RemcaHelper extends JHelperContent
 //    if(!function_exists('checkRentDayNightREM')){
 
 
-      function REMcheckRentDayNightREM ($from, $until, $rent_from, $rent_until, $realestatemanager_configuration){
+      function REMcheckRentDayNightREM ($from, $until, $rent_from, $rent_until, $params){
 
-          if(isset($realestatemanager_configuration) && $realestatemanager_configuration['special_price']['show']){
+          if(1 && self::$params->get('special_price_show')){
 
               if (( $rent_from >= $from &&
                     $rent_from <= $until) || ($rent_from <= $from && 
@@ -2415,7 +2407,7 @@ class RemcaHelper extends JHelperContent
 //    }
 //    if(!function_exists('createRentTable')){
           function REMcreateRentTable($rentTerm, $massage, $typeMessage){
-              global $realestatemanager_configuration;
+              
                         if($typeMessage === 'error'){
                       echo '<div id ="message-here" style ="color: red; font-size: 18px;" >'.$massage.'</div>';
                   }else{
@@ -2438,7 +2430,7 @@ class RemcaHelper extends JHelperContent
 
                       for ($i = 0; $i < count($rentTerm); $i++) {  
                           $DateToFormat = str_replace("D",'d',(str_replace("M",'m',(str_replace('%','',
-                            $realestatemanager_configuration['date_format'])))));
+                            self::$params->get('date_format'))))));
                           $date_from = new DateTime($rentTerm[$i]->price_from);
                           $date_to = new DateTime($rentTerm[$i]->price_to);
 
@@ -2470,7 +2462,7 @@ class RemcaHelper extends JHelperContent
         $comment_price,$currency_spacial_price){
 
 
-          global $database, $realestatemanager_configuration;
+          
           $rent_from_transf = data_transform_rem($rent_from);
           $rent_until_transf = data_transform_rem($rent_until);
 
@@ -2481,8 +2473,8 @@ class RemcaHelper extends JHelperContent
           }
 
           $query = "SELECT * FROM #__rem_rent_sal where fk_houseid = " . $bid;
-          $database->setQuery($query);
-          $rentTerm = $database->loadObjectList();    
+          self::$db->setQuery($query);
+          $rentTerm = self::$db->loadObjectList();    
 
 
           if($special_price==''){
@@ -2501,7 +2493,7 @@ class RemcaHelper extends JHelperContent
 
           foreach ($rentTerm as $oneTerm){
               $returnMessage = checkRentDayNightREM (($oneTerm->price_from),($oneTerm->price_to),
-                 $rent_from_transf, $rent_until_transf, $realestatemanager_configuration);
+                 $rent_from_transf, $rent_until_transf, $this->params);
 
               if(strlen($returnMessage) > 0){
                   createRentTable($rentTerm, $returnMessage, 'error');
@@ -2513,12 +2505,12 @@ class RemcaHelper extends JHelperContent
               $rent_from_transf . "', '" . $rent_until_transf . "', '" .
                $special_price . "','" . $currency_spacial_price . "','" . 
                $comment_price . "')";             
-          $database->setQuery($sql);
-          $database->query(); 
+          self::$db->setQuery($sql);
+          self::$db->query(); 
 
           $query = "SELECT * FROM #__rem_rent_sal where fk_houseid = " . $bid;
-          $database->setQuery($query);
-          $rentTerm = $database->loadObjectList();
+          self::$db->setQuery($query);
+          $rentTerm = self::$db->loadObjectList();
 
           createRentTable($rentTerm, 'Add special price on data: from "'.
             $rent_from.'" to "'.$rent_until.'"','');
@@ -2527,31 +2519,31 @@ class RemcaHelper extends JHelperContent
 
 
 //    if(!function_exists('calculatePriceREM')){
-      function REMcalculatePriceREM ($hid,$rent_from,$rent_until,$realestatemanager_configuration,$database){      
+      function REMcalculatePriceREM ($hid,$rent_from,$rent_until, $params,$database){      
           $rent_from = data_transform_rem($rent_from);
           $rent_until = data_transform_rem($rent_until);
 
           if($rent_from >$rent_until){
               echo '0';exit;
           }
-          if($realestatemanager_configuration['special_price']['show']){
+          if(self::$params->get('special_price_show')){
               $query = "SELECT * FROM #__rem_rent_sal WHERE fk_houseid = ".$hid .
                   " AND (price_from <= ('" .$rent_until. "') AND price_to >= ('" .$rent_from. "'))";   
           }else{
               $query = "SELECT * FROM #__rem_rent_sal WHERE fk_houseid = ".$hid .
                   " AND (price_from < ('" .$rent_until. "') AND price_to > ('" .$rent_from. "'))";         
           }
-          $database->setQuery($query);
-          $data_for_price = $database->loadObjectList(); 
+          self::$db->setQuery($query);
+          $data_for_price = self::$db->loadObjectList(); 
 
           $zapros = "SELECT price, priceunit FROM #__rem_houses WHERE id=" . $hid . ";";
-          $database->setQuery($zapros);
-          $item_rem = $database->loadObjectList(); 
+          self::$db->setQuery($zapros);
+          $item_rem = self::$db->loadObjectList(); 
 
           $rent_from_ms = date_to_data_ms($rent_from); 
           $rent_to_ms = date_to_data_ms($rent_until);
 
-          if($realestatemanager_configuration['special_price']['show']){                      
+          if(self::$params->get('special_price_show')){                      
               $rent_to_ms = $rent_to_ms + (60*60*24);           
           }
 
@@ -2574,8 +2566,8 @@ class RemcaHelper extends JHelperContent
               for ($day = 0; $day < $count_day; $day++){ 
                   $currentday = ($array_day_between_to_from[$day]);
 
-                  if(isset($realestatemanager_configuration)
-                   && $realestatemanager_configuration['special_price']['show']){
+                  if(1
+                   && self::$params->get('special_price_show')){
                       if (($currentday >= $from) && ($currentday <= $to)){   
                           $count_day_spashal_price++;   
                           $count_spashal_price += $one_period->special_price;
@@ -2590,7 +2582,7 @@ class RemcaHelper extends JHelperContent
           }
 
 
-          if(!incorrect_price($item_rem[0]->price)){
+          if(!self::REMincorrect_price($item_rem[0]->price)){
             $count_day_not_sp_price = $count_day - $count_day_spashal_price;
             $sum_price_not_sp_price =  $count_day_not_sp_price * $item_rem[0]->price;
             $sum_price = $sum_price_not_sp_price + $count_spashal_price;
@@ -2614,7 +2606,7 @@ class RemcaHelper extends JHelperContent
 //    if(!function_exists('getCountHouseForSingleUserREM')){
 
 
-      function REMgetCountHouseForSingleUserREM($my,$database,$realestatemanager_configuration){
+      function REMgetCountHouseForSingleUserREM($my,$database,$params){
 
 
           $user_group = userGID_REM($my->id);         
@@ -2623,7 +2615,7 @@ class RemcaHelper extends JHelperContent
 
           foreach ($user_group_mas as $value) {            
               $count_house_for_single_group =
-               $realestatemanager_configuration['user_manager_rem'][$value]['count_homes'];
+               self::$params->get("user_manager_rem_{$value}_count_homes");
 
               if($count_house_for_single_group>$max_count_house){
                   $max_count_house = $count_house_for_single_group;
@@ -2631,9 +2623,9 @@ class RemcaHelper extends JHelperContent
           }
 
           $count_house_for_single_group = $max_count_house;  
-          $database->setQuery("SELECT COUNT('houseid') as `count_homes` " .
+          self::$db->setQuery("SELECT COUNT('houseid') as `count_homes` " .
            "FROM #__rem_houses WHERE owner_id= '" . $my->id. "'AND state='1'" );
-          $house_single_user = $database->loadObject();
+          $house_single_user = self::$db->loadObject();
           $count_house_single_user = $house_single_user->count_homes;
           $returnarray = array();
           $returnarray[0] = $count_house_single_user;
@@ -2708,8 +2700,8 @@ class RemcaHelper extends JHelperContent
               $assocStr = serialize($assocArray);
 
               $query = "select `associate_category` from #__rem_main_categories where `id` = ".$currentId."";
-              $database->setQuery($query);
-              $oldAssociate = $database->loadResult(); 
+              self::$db->setQuery($query);
+              $oldAssociate = self::$db->loadResult(); 
               $oldAssociateArray = unserialize($oldAssociate);
 
               if($oldAssociateArray){
@@ -2729,8 +2721,8 @@ class RemcaHelper extends JHelperContent
               if(count($idToChange) && !empty($idToChange)){  
                   $query = "UPDATE #__rem_main_categories SET `associate_category`='"
                     .$assocStr."' where `id` in (".$idToChange.")";
-                  $database->setQuery($query);
-                  $database->query();       
+                  self::$db->setQuery($query);
+                  self::$db->query();       
               }       
           }  
       }
@@ -2740,11 +2732,11 @@ class RemcaHelper extends JHelperContent
 
       function REMgetAssociateHousesLang($hoseIds){
 
-          global $database;   
+             
           $query = "select associate_house from #__rem_houses where id = ".$hoseIds.
             " and associate_house is not null";     
-          $database->setQuery($query);
-          $houseAssociateHouse = $database->loadResult();             
+          self::$db->setQuery($query);
+          $houseAssociateHouse = self::$db->loadResult();             
           if (!empty($houseAssociateHouse)){
               $houseLangIds = unserialize($houseAssociateHouse);
               return $houseLangIds;
@@ -2756,15 +2748,14 @@ class RemcaHelper extends JHelperContent
 
       function REMgetAssociateHouses($hoseIds){
 
-          global $database;
-
+          
           $one = array();
 
           $query = "select associate_house from #__rem_houses where id = ".$hoseIds.
             " and associate_house is not null";
 
-          $database->setQuery($query);
-          $houseAssociateHouse = $database->loadResult(); 
+          self::$db->setQuery($query);
+          $houseAssociateHouse = self::$db->loadResult(); 
 
 
           if (!empty($houseAssociateHouse)){
@@ -2786,8 +2777,7 @@ class RemcaHelper extends JHelperContent
 
       function REMgetAssociateDiff($assocArray1,$assocArray2){
 
-         global $database;
-
+         
          $diff_ids = array();
 
           $diff = array_diff($assocArray1,$assocArray2);                  
@@ -2807,11 +2797,11 @@ class RemcaHelper extends JHelperContent
 
 //    if(!function_exists('getAssociateOld')){
       function REMgetAssociateOld(){
-          global $database;
+          
           $id_check = JRequest::getVar('id', "");
             $query = "select `associate_house` from #__rem_houses where `id` = ".$id_check."";             
-            $database->setQuery($query);
-            $oldAssociate = $database->loadResult();           
+            self::$db->setQuery($query);
+            $oldAssociate = self::$db->loadResult();           
             $oldAssoc_func = unserialize($oldAssociate);
           return $oldAssoc_func;
       }   
@@ -2821,7 +2811,7 @@ class RemcaHelper extends JHelperContent
 
       function REMClearAssociateDiff(){
 
-        global $database;
+        
         $old_ids_assoc=array();
         $new_ids_assoc=array();
         $id_check = JRequest::getVar('id', ""); 
@@ -2855,8 +2845,8 @@ class RemcaHelper extends JHelperContent
                             $houseLangIds = serialize($assoc_lang);
                             $query = "UPDATE #__rem_houses SET `associate_house`='".$houseLangIds.
                               "' where `id` = ".$value."";
-                            $database->setQuery($query);
-                            $database->query();                        
+                            self::$db->setQuery($query);
+                            self::$db->query();                        
                           }
                         }
                       }                   
@@ -2881,8 +2871,8 @@ class RemcaHelper extends JHelperContent
                     $houseLangIds = serialize($assoc_lang);
                     $query = "UPDATE #__rem_houses SET `associate_house`='".$houseLangIds.
                       "' where `id` = ".$value2."";
-                    $database->setQuery($query);
-                    $database->query(); 
+                    self::$db->setQuery($query);
+                    self::$db->query(); 
                   }
                 }                   
               }
@@ -2899,8 +2889,8 @@ class RemcaHelper extends JHelperContent
         $userid = $my->id;
 
         $query = "SELECT lang_code FROM `#__languages` ";
-        $database->setQuery($query);
-        $allLanguages =  $database->loadColumn(); 
+        self::$db->setQuery($query);
+        $allLanguages =  self::$db->loadColumn(); 
         //bch
         if($call_from=='backend')
         {
@@ -2913,12 +2903,12 @@ class RemcaHelper extends JHelperContent
 
 
 
-        $database->setQuery($query);
-        $allhouse =  $database->loadObjectlist(); 
+        self::$db->setQuery($query);
+        $allhouse =  self::$db->loadObjectlist(); 
 
         $query = "select associate_house from #__rem_houses where id =".$house->id;
-        $database->setQuery($query);
-        $houseAssociateHouse =  $database->loadResult(); 
+        self::$db->setQuery($query);
+        $houseAssociateHouse =  self::$db->loadResult(); 
 
         if(!empty($houseAssociateHouse)){
             $houseAssociateHouse = unserialize($houseAssociateHouse);
@@ -3017,8 +3007,8 @@ class RemcaHelper extends JHelperContent
                 if(count($idToChange) && !empty($idToChange)){  
                   $query = "select * from #__rem_rent where `fk_houseid` in (".$idToChange.
                     ") and `rent_return` is NULL";
-                  $database->setQuery($query);
-                  $CheckAssociate = $database->loadObjectList(); 
+                  self::$db->setQuery($query);
+                  $CheckAssociate = self::$db->loadObjectList(); 
                   if(!empty($CheckAssociate))
                   {
                     echo "<script> alert('"._REALESTATE_MANAGER_MUST_RETURN_HOUSES_FROM_RENT
@@ -3027,12 +3017,12 @@ class RemcaHelper extends JHelperContent
                   }
                   $query = "UPDATE #__rem_houses SET `associate_house`='".$assocStr.
                     "' where `id` in (".$idToChange.")";
-                  $database->setQuery($query);
-                  $database->query();            
+                  self::$db->setQuery($query);
+                  self::$db->query();            
                 }else{
                   $query = "UPDATE #__rem_houses SET `associate_house`= null where `id` = ".$id_check."";
-                  $database->setQuery($query);
-                  $database->query();     
+                  self::$db->setQuery($query);
+                  self::$db->query();     
                 }
               }
             }
@@ -3043,12 +3033,12 @@ class RemcaHelper extends JHelperContent
 
 //    if(!function_exists('available_dates')){
       function REMavailable_dates($house_id){
-        global $database,$realestatemanager_configuration;
+        
         $date_NA = array();
         $query = "SELECT rent_from, rent_until FROM #__rem_rent WHERE fk_houseid='".$house_id.
           "' AND rent_return is null";
-        $database->setQuery($query);
-        $calenDate = $database->loadObjectList();
+        self::$db->setQuery($query);
+        $calenDate = self::$db->loadObjectList();
         // create a massiv of all dates when houses are in rent and then is used for 
         // make dates unavailable in calendar for rent 
         foreach($calenDate as $calenDate){     
@@ -3056,7 +3046,7 @@ class RemcaHelper extends JHelperContent
           $not_av_until = $calenDate->rent_until;
           $not_av_from_begin = new DateTime( $not_av_from);
           $not_av_until_end = new DateTime( $not_av_until);
-          if($realestatemanager_configuration['special_price']['show']){
+          if(self::$params->get('special_price_show')){
             $not_av_until_end = $not_av_until_end->modify( '+1 day' ); 
           }
           // else{
@@ -3075,7 +3065,7 @@ class RemcaHelper extends JHelperContent
     ////////////////////////////STORE video/track functions START\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //    if (!function_exists('storeTrack')) {
       function REMstoreTrack(&$house) {
-        global $realestatemanager_configuration, $mosConfig_absolute_path;
+        
         for ($i = 1;isset($_FILES['new_upload_track' . $i]) 
           || array_key_exists('new_upload_track_url' . $i, $_POST);$i++) {
             $track_name = '';
@@ -3083,7 +3073,7 @@ class RemcaHelper extends JHelperContent
               //storing e-Document
               $track = JRequest::getVar('new_upload_track' . $i, '', 'files');
               $ext = pathinfo($track['name'], PATHINFO_EXTENSION);
-              $allowed_exts = explode(",", $realestatemanager_configuration['allowed_exts_track']);
+              $allowed_exts = explode(",", self::$params->get('allowed_exts_track'));
               $ext = strtolower($ext);
               if (!in_array($ext, $allowed_exts)) {
                 echo "<script> alert(' File ext. not allowed to upload! - " . $ext .
@@ -3093,13 +3083,13 @@ class RemcaHelper extends JHelperContent
               $code = guid();
               $track_name = $code . '_' . filter($track['name']);
               if (intval($track['error']) > 0 && intval($track['error']) < 4) {
-                echo "<script> alert('" . _REALESTATE_MANAGER_LABEL_TRACK_UPLOAD_ERROR . " - " .
+                echo "<script> alert('" . JText::_( '_REALESTATE_MANAGER_LABEL_TRACK_UPLOAD_ERROR') . " - " .
                                      $track_name . "'); window.history.go(-1); </script>\n";
                 exit();
               } else if (intval($track['error']) != 4) {
-                $track_new = $mosConfig_absolute_path . $realestatemanager_configuration['tracks']['location'] . $track_name;
+                $track_new = JPATH_SITE . self::$params->get('tracks_location') . $track_name;
                 if (!move_uploaded_file($track['tmp_name'], $track_new)) {
-                  echo "<script> alert('" . _REALESTATE_MANAGER_LABEL_TRACK_UPLOAD_ERROR . " - " .
+                  echo "<script> alert('" . JText::_( '_REALESTATE_MANAGER_LABEL_TRACK_UPLOAD_ERROR') . " - " .
                                        $track_name . "'); window.history.go(-1); </script>\n";
                   exit();
                 }
@@ -3134,9 +3124,9 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('checkMimeType')) {
       function REMcheckMimeType($ext) {
-        global $database;
-        $database->setQuery("SELECT mime_type FROM #__rem_mime_types WHERE mime_ext=".$database->quote($ext));
-        $type = $database->loadResult();
+        
+        self::$db->setQuery("SELECT mime_type FROM #__rem_mime_types WHERE mime_ext=".self::$db->quote($ext));
+        $type = self::$db->loadResult();
         if(!$type)
           $type = 'unknown';
         return $type;
@@ -3167,7 +3157,7 @@ class RemcaHelper extends JHelperContent
 //    }
 //    jimport( 'joomla.filesystem.file' );
 //    if(!function_exists('rem_createImage')){
-        function REMrem_createImage($imgSrc, $imgDest, $width, $height, $crop = true) {
+        static function rem_createImage($imgSrc, $imgDest, $width, $height, $crop = true) {
            if (JFile::exists($imgDest)) {
                 $info = getimagesize($imgDest, $imageinfo);
                 if (($info[0] == $width) && ($info[1] == $height)) {
@@ -3185,7 +3175,7 @@ class RemcaHelper extends JHelperContent
 //    }
 //    if(!function_exists('rem_resize_img')){
         function REMrem_resize_img($imgSrc, $imgDest, $tmp_width, $tmp_height, $crop = true) {
-           global $mosConfig_absolute_path;
+           
 
             //some time return error
             $info = getimagesize($imgSrc, $imageinfo);
@@ -3194,10 +3184,10 @@ class RemcaHelper extends JHelperContent
             $ext = str_replace('image/', '', $info['mime']);
 
             if($sWidth == 0 || $tmp_width == 0 ) {
-              $logPath  = $mosConfig_absolute_path . "/administrator/components/com_realestatemanager/my_log.log";
+              $logPath  = JPATH_SITE . "/administrator/components/com_realestatemanager/my_log.log";
               file_put_contents($logPath, "  rem_resize_img zero ".$imgSrc."::".$sWidth ."::" . $tmp_width."\n",  FILE_APPEND );
 
-              $imgSrc = $mosConfig_absolute_path."/components/com_realestatemanager/photos/"."no-img_eng_big.gif";
+              $imgSrc = JPATH_SITE."/components/com_realestatemanager/photos/"."no-img_eng_big.gif";
               $info = getimagesize($imgSrc, $imageinfo);
               $sWidth = $info[0];
               $sHeight = $info[1];
@@ -3348,29 +3338,30 @@ class RemcaHelper extends JHelperContent
      * @param database A database connector object
      */
 //    if (!function_exists('rem_picture_thumbnail')) {
-      function rem_picture_thumbnail($file, $high_original, $width_original, $watermark = false) {
-          global $mosConfig_absolute_path, $realestatemanager_configuration;
+      static function rem_picture_thumbnail($file, $high_original, $width_original, $watermark = false) {
+          
           //min size in order to adding watermark
 
-          if(!file_exists($mosConfig_absolute_path . '/components/com_realestatemanager/photos/watermark')){
-            mkdir($mosConfig_absolute_path . '/components/com_realestatemanager/photos/watermark','755');
+          if(!file_exists(JPATH_SITE . '/components/com_realestatemanager/photos/watermark')){
+            mkdir(JPATH_SITE . '/components/com_realestatemanager/photos/watermark','755', true);
           }
 
-          $min_image_width = $realestatemanager_configuration['watermark']['min_width'];
-          $min_image_high = $realestatemanager_configuration['watermark']['min_height'];
+
+          $min_image_width = self::$params->get('watermark_min_width');
+          $min_image_high = self::$params->get('watermark_min_height');
 
           $watermark_path = ($watermark) ? 'watermark/' : '';
 
-          $params3 = $realestatemanager_configuration['thumb_param']['show'];
-          $uploaddir = $mosConfig_absolute_path . '/components/com_realestatemanager/photos/';
+          $params3 = self::$params->get('thumb_param_show');
+          $uploaddir = JPATH_SITE . '/components/com_realestatemanager/photos/';
 
           //file name and extention
-          if($file === '' || !file_exists($mosConfig_absolute_path .
+          if($file === '' || !file_exists(JPATH_SITE .
                '/components/com_realestatemanager/photos/' . $file)){  
             $file = 'no-img_eng_big.gif';
           }elseif($watermark){
-            if(!file_exists($mosConfig_absolute_path . '/components/com_realestatemanager/photos/watermark/' . $file)){
-              rem_createWaterMark($file, $realestatemanager_configuration['watermark']);
+            if(!file_exists(JPATH_SITE . '/components/com_realestatemanager/photos/watermark/' . $file)){
+              rem_createWaterMark($file, self::$params->get('watermark'));
             }
             if($high_original < $min_image_high || $width_original < $min_image_width){
               $watermark = false;
@@ -3387,11 +3378,11 @@ class RemcaHelper extends JHelperContent
           $index = '';
 
           // Setting the resize parameters
-          list($width, $height) = getimagesize($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file);
+          list($width, $height) = getimagesize(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file);
 
           $size = "_" . $high_original . "_" . $width_original;
 
-          if (file_exists($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type)) {
+          if (file_exists(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type)) {
               return $file_name . $size . $index . $file_type;
           } else {
               if ($width < $height) {
@@ -3418,7 +3409,7 @@ class RemcaHelper extends JHelperContent
            if($params3 == 1){ 
              $index = "_2_";
 
-             $CreateNewImage = rem_createImage($uploaddir.$file, $uploaddir.$file_name . $size . $index . $file_type, $high_original, $width_original);
+             $CreateNewImage = RemcaHelper::rem_createImage($uploaddir.$file, $uploaddir.$file_name . $size . $index . $file_type, $high_original, $width_original);
              return $file_name . $size . $index . $file_type;
            }
           // Creating the Canvas
@@ -3426,24 +3417,24 @@ class RemcaHelper extends JHelperContent
           $index = "_1_";
           switch (strtolower($file_type)) {
             case '.png':
-              $source = imagecreatefrompng($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file);
+              $source = imagecreatefrompng(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file);
               $file = imagecopyresampled($tn, $source, 0, 0, 0, 0, $w_, $h_, $width, $height);
-              imagepng($tn, $mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
+              imagepng($tn, JPATH_SITE . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
               break;
             case '.jpg':
-              $source = imagecreatefromjpeg($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file);
+              $source = imagecreatefromjpeg(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file);
               $file = imagecopyresampled($tn, $source, 0, 0, 0, 0, $w_, $h_, $width, $height);
-              imagejpeg($tn, $mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
+              imagejpeg($tn, JPATH_SITE . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
               break;
             case '.jpeg':
-              $source = imagecreatefromjpeg($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file);
+              $source = imagecreatefromjpeg(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file);
               $file = imagecopyresampled($tn, $source, 0, 0, 0, 0, $w_, $h_, $width, $height);
-              imagejpeg($tn, $mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
+              imagejpeg($tn, JPATH_SITE . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
               break;
             case '.gif':
-              $source = imagecreatefromgif($mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file);
+              $source = imagecreatefromgif(JPATH_SITE . '/components/com_realestatemanager/photos/' . $file);
               $file = imagecopyresampled($tn, $source, 0, 0, 0, 0, $w_, $h_, $width, $height);
-              imagegif($tn, $mosConfig_absolute_path . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
+              imagegif($tn, JPATH_SITE . '/components/com_realestatemanager/photos/' . $file_name . $size . $index . $file_type);
               break;
             default:
               echo 'not support';
@@ -3456,7 +3447,7 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('storeVideo')) {
       function REMstoreVideo(&$house) {
-        global $realestatemanager_configuration, $mosConfig_absolute_path;
+        
         for ($i = 1;isset($_FILES['new_upload_video' . $i]) 
           || array_key_exists('new_upload_video_url' . $i, $_POST) 
           || array_key_exists('new_upload_video_youtube_code' . $i, $_POST);$i++) {
@@ -3465,7 +3456,7 @@ class RemcaHelper extends JHelperContent
               //storing e-Document
               $video = JRequest::getVar('new_upload_video' . $i, '', 'files');
               $ext = pathinfo($video['name'], PATHINFO_EXTENSION);
-              $allowed_exts = explode(",", $realestatemanager_configuration['allowed_exts_video']);
+              $allowed_exts = explode(",", self::$params->get('allowed_exts_video'));
               $ext = strtolower($ext);
 
               if (!in_array($ext, $allowed_exts)) {
@@ -3484,13 +3475,13 @@ class RemcaHelper extends JHelperContent
               $code = guid();
               $video_name = $code . '_' . filter($video['name']);
               if (intval($video['error']) > 0 && intval($video['error']) < 4) {
-                echo "<script> alert('" . _REALESTATE_MANAGER_LABEL_VIDEO_UPLOAD_ERROR . " - " .
+                echo "<script> alert('" . JText::_( '_REALESTATE_MANAGER_LABEL_VIDEO_UPLOAD_ERROR') . " - " .
                                        $video_name . "'); window.history.go(-1); </script>\n";
                 exit();
               } else if (intval($video['error']) != 4) {
-                $video_new = $mosConfig_absolute_path . $realestatemanager_configuration['videos']['location']  . $video_name;
+                $video_new = JPATH_SITE . self::$params->get('videos_location') . $video_name;
                 if (!move_uploaded_file($video['tmp_name'], $video_new)) {
-                  echo "<script> alert('" . _REALESTATE_MANAGER_LABEL_VIDEO_UPLOAD_ERROR . " - " .
+                  echo "<script> alert('" . JText::_( '_REALESTATE_MANAGER_LABEL_VIDEO_UPLOAD_ERROR') . " - " .
                                        $video_name . "'); window.history.go(-1); </script>\n";
                   exit();
                 }
@@ -3518,11 +3509,11 @@ class RemcaHelper extends JHelperContent
 
 //    if (!function_exists('saveTracks')) {
         function REMsaveTracks($h_id, $src, $uploadTrackKind, $uploadTrackScrlang, $uploadTrackLabel) {
-            global $database,$realestatemanager_configuration, $mosConfig_absolute_path;
+            
             if ($src != "" && !strstr($src, "http")) {
               $query = "INSERT INTO #__rem_track_source (fk_house_id,src,kind,scrlang,label)".
                         "\n VALUE ($h_id,
-                                  '" . $realestatemanager_configuration['tracks']['location'].$src . "',
+                                  '" . self::$params->get('tracks_location').$src . "',
                                   '" . $uploadTrackKind . "',
                                   '" . $uploadTrackScrlang . "',
                                   '" . $uploadTrackLabel . "')";
@@ -3534,36 +3525,36 @@ class RemcaHelper extends JHelperContent
                                 '" . $uploadTrackScrlang . "',
                                 '" . $uploadTrackLabel . "')";
             }
-            $database->setQuery($query);
-            $database->query();
+            self::$db->setQuery($query);
+            self::$db->query();
         }
 //    }
 
 //    if (!function_exists('saveVideos')) {
       function REMsaveVideos($src, $h_id, $type) {
-        global $database,$realestatemanager_configuration, $mosConfig_absolute_path;
+        
         if ($src != "" && strstr($src, "http")) {
           $query = "INSERT INTO #__rem_video_source(fk_house_id, src, type)".
                                                       "\n VALUE($h_id,'" . $src . "', '" . $type . "')";
         }else{
           $query = "INSERT INTO #__rem_video_source(fk_house_id,src,type)".
                     "\n VALUE($h_id,
-                            '".$realestatemanager_configuration['videos']['location'].$src."',
+                            '".self::$params->get('videos_location').$src."',
                             '".$type."')";
         }
-        $database->setQuery($query);
-        $database->query();
+        self::$db->setQuery($query);
+        self::$db->query();
       }
 //    }
 
 //    if (!function_exists('saveYouTubeCode')) {
       function REMsaveYouTubeCode($youtube_code, $h_id) {
-        global $database;
-          $database->setQuery("SELECT id FROM #__rem_video_source 
+        
+          self::$db->setQuery("SELECT id FROM #__rem_video_source 
                                 WHERE youtube != '' 
                                 AND fk_house_id = $h_id");
-          $database->query();
-          $youtubeId = $database->LoadResult();
+          self::$db->query();
+          $youtubeId = self::$db->LoadResult();
         if ($youtube_code != '' && !empty($youtubeId)) {
           $query = "UPDATE #__rem_video_source".
                     "\n SET youtube = '" . $youtube_code . "'".
@@ -3572,8 +3563,8 @@ class RemcaHelper extends JHelperContent
           $query = "INSERT INTO #__rem_video_source (fk_house_id,youtube)". 
                     "\n VALUE($h_id,'" . $youtube_code . "')";
         }
-        $database->setQuery($query);
-        $database->query();
+        self::$db->setQuery($query);
+        self::$db->query();
       }
 //    }
 
@@ -3583,9 +3574,9 @@ class RemcaHelper extends JHelperContent
     ///////////////////////////DELETE video/track functions START\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //    if (!function_exists('deleteTracks')) {
       function REMdeleteTracks($h_id) {
-        global $database, $mosConfig_absolute_path, $mosConfig_live_site, $realestatemanager_configuration;
-        $database->setQuery("SELECT id FROM #__rem_track_source where fk_house_id = $h_id;");
-        $tdiles_id = $database->loadColumn();
+        
+        self::$db->setQuery("SELECT id FROM #__rem_track_source where fk_house_id = $h_id;");
+        $tdiles_id = self::$db->loadColumn();
         $deleteTr_id = array();
         foreach($tdiles_id as $key => $value) {
           if (isset($_POST['track_option_del' . $value])) {
@@ -3595,60 +3586,60 @@ class RemcaHelper extends JHelperContent
         if ($deleteTr_id) {
           $del_tid = implode(',', $deleteTr_id);
           $sql = "SELECT src FROM #__rem_track_source WHERE id IN (" .$del_tid . ")";
-          $database->setQuery($sql);
-          $tracks = $database->loadColumn();
+          self::$db->setQuery($sql);
+          $tracks = self::$db->loadColumn();
           if ($tracks) {
             foreach($tracks as $name) {
-              if (substr($name, 0, 4) != "http") unlink($mosConfig_absolute_path . $name);
+              if (substr($name, 0, 4) != "http") unlink(JPATH_SITE . $name);
             }
           }
           $sql = "DELETE FROM #__rem_track_source WHERE (id IN (" . $del_tid . ")) 
                   AND (fk_house_id = $h_id)";
-          $database->setQuery($sql);
-          $database->query();
+          self::$db->setQuery($sql);
+          self::$db->query();
         }
       }
 //    }
 
 //    if (!function_exists('deleteVideos')) {
       function REMdeleteVideos($h_id) {
-        global $database, $mosConfig_absolute_path, $mosConfig_live_site, $realestatemanager_configuration;
-        $database->setQuery("SELECT id FROM #__rem_video_source where fk_house_id = $h_id;");
-        $vdiles_id = $database->loadColumn();
+        
+        self::$db->setQuery("SELECT id FROM #__rem_video_source where fk_house_id = $h_id;");
+        $vdiles_id = self::$db->loadColumn();
         $deleteVid_id = array();
         foreach($vdiles_id as $key => $value) {
           if (isset($_POST['video_option_del' . $value])) {
             array_push($deleteVid_id, JRequest::getVar('video_option_del' . $value, '', 'post'));
           }
         }
-        $database->setQuery("SELECT id FROM #__rem_video_source where fk_house_id = $h_id AND youtube IS NOT NULL;");
-        $youtubeid = $database->loadResult();
+        self::$db->setQuery("SELECT id FROM #__rem_video_source where fk_house_id = $h_id AND youtube IS NOT NULL;");
+        $youtubeid = self::$db->loadResult();
         if (!empty($youtubeid)) {
           if (isset($_POST['youtube_option_del' . $youtubeid])) {
             $y_t_id = mosGetParam($_REQUEST, 'youtube_option_del' . $youtubeid, '');
             $sql = "DELETE FROM #__rem_video_source 
                     WHERE id = $y_t_id 
                     AND fk_house_id=$h_id";
-            $database->setQuery($sql);
-            $database->query();
+            self::$db->setQuery($sql);
+            self::$db->query();
           }
         }
         if ($deleteVid_id) {
           $del_id = implode(',', $deleteVid_id);
           $sql = "SELECT src FROM #__rem_video_source WHERE id IN (". $del_id . ")";
-          $database->setQuery($sql);
-          $videos = $database->loadColumn();
+          self::$db->setQuery($sql);
+          $videos = self::$db->loadColumn();
           if ($videos) {
             foreach($videos as $name) {
-              if (substr($name, 0, 4) != "http" && file_exists($mosConfig_absolute_path . $name)) 
-                unlink($mosConfig_absolute_path . $name);
+              if (substr($name, 0, 4) != "http" && file_exists(JPATH_SITE . $name)) 
+                unlink(JPATH_SITE . $name);
             }
           }
           $sql = "DELETE FROM #__rem_video_source 
                   WHERE (id IN (" . $del_id . ")) 
                   AND (fk_house_id=$h_id)";
-          $database->setQuery($sql);
-          $database->query();
+          self::$db->setQuery($sql);
+          self::$db->query();
         }
       }
 //    }
@@ -3696,7 +3687,7 @@ class RemcaHelper extends JHelperContent
 //    }
 
 //    if(!function_exists('getAvilableRM')){
-      function REMgetAvilableRM ($calenDate,$month,$year,$realestatemanager_configuration,$day){
+      function REMgetAvilableRM ($calenDate,$month,$year, $params,$day){
         global $flag3;
         if(strlen($month) == 1){
             $month = '0'.$month ;
@@ -3714,9 +3705,9 @@ class RemcaHelper extends JHelperContent
           $from=explode(' ',$oneTerm->rent_from);
           $until=explode(' ',$oneTerm->rent_until);
           if($cheackDataFrom >= $oneTerm->rent_until)continue;
-          $resultmsg = checkRentDayNightREM (($oneTerm->rent_from),($oneTerm->rent_until), $cheackDataFrom, $cheackDataTo, $realestatemanager_configuration);       
+          $resultmsg = checkRentDayNightREM (($oneTerm->rent_from),($oneTerm->rent_until), $cheackDataFrom, $cheackDataTo, $this->params);       
           if($cheackDataTo <= date('Y-m-d') && strlen($resultmsg) > 1){
-            if(!$realestatemanager_configuration['special_price']['show'] 
+            if(!self::$params->get('special_price_show') 
                 && ($cheackDataFrom == $until[0] || $cheackDataFrom == $from[0] )){
               if($flag3){
                 $flag3 = false;
@@ -3729,7 +3720,7 @@ class RemcaHelper extends JHelperContent
             return 'calendar_day_gone_not_avaible';
           } 
           if(strlen($resultmsg) > 1){
-            if(!$realestatemanager_configuration['special_price']['show'] 
+            if(!self::$params->get('special_price_show') 
               && ($cheackDataFrom == $until[0] || $cheackDataFrom == $from[0] )){
               if($flag3){
                 $flag3 = false;
@@ -3753,7 +3744,7 @@ class RemcaHelper extends JHelperContent
 //    }
 //    if(!function_exists('com_house_categoryTreeList')){
         function REMcom_house_categoryTreeList($id, $action, $is_new, &$options = array(), $catid='', $lang='') {
-            global $database;
+            
             if($lang){
                 $list = com_house_categoryArray($lang);
             } else {
@@ -3792,7 +3783,7 @@ class RemcaHelper extends JHelperContent
 
 //    if(!function_exists('com_house_categoryArray')){
         function REMcom_house_categoryArray($lang='') {
-            global $database, $my, $acl;
+            global $my, $acl;
             // get a list of the menu items
               $query = "SELECT c.*, c.parent_id AS parent, c.params AS access"
                     . "\n FROM #__rem_main_categories c"
@@ -3804,8 +3795,8 @@ class RemcaHelper extends JHelperContent
             } else {
                 $query .= " ORDER BY ordering";
             }
-            $database->setQuery($query);
-            $items = $database->loadObjectList();
+            self::$db->setQuery($query);
+            $items = self::$db->loadObjectList();
             foreach ($items as $r => $cat_item) {
                 if (!checkAccess_REM($cat_item->access, 'NORECURSE', userGID_REM($my->id), $acl)) {
                 //if have not access then remove item from search
@@ -3831,9 +3822,9 @@ class RemcaHelper extends JHelperContent
 //    if (!function_exists('checkJavaScriptIncludedRE')) {
       function checkJavaScriptIncludedRE($name) {
 
-          $doc = JFactory::getDocument();
+          
 
-          foreach($doc->_scripts as $script_path=>$value){
+          foreach(self::$doc->_scripts as $script_path=>$value){
             if(strpos( $script_path, $name ) !== false ) return true ;
           }
           return false;
@@ -3864,10 +3855,10 @@ class RemcaHelper extends JHelperContent
 //            }
 //com_realestatemanager_free_2018_01_10\site\realestatemanager.class.php
     function check() {
-        global $realestatemanager_configuration;
+        
         // check for existing houseid
 
-        if(!$realestatemanager_configuration['price']['string']){
+        if(!self::$params->get('price_string')){
             $this->price = floatval(preg_replace('/[\s,]/', '', $this->price));
         }
 
@@ -4380,11 +4371,9 @@ class RemcaHelper extends JHelperContent
 /*
 //lineas que han quedado fuera:
 
-    if (!isset($GLOBALS['realestatemanager_configuration'])) {
+    if (!1) {
       require_once (JPATH_ROOT . '/' . 'administrator' . '/' . 'components' . '/'
        . 'com_realestatemanager' . '/' . 'realestatemanager.class.conf.php' );
-      $GLOBALS['realestatemanager_configuration'] = 
-        isset($realestatemanager_configuration) ? $realestatemanager_configuration : null;
     }
 
 
