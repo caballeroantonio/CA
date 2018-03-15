@@ -191,8 +191,8 @@
 			type="radio"
 			class="btn-group btn-group-yesno"
 			default="1"
-			label="COM_REMCA_BUYING_REQUEST_FIELD_SAVE_HISTORY_LABEL"
-			description="COM_REMCA_BUYING_REQUEST_FIELD_SAVE_HISTORY_DESC"
+			label="COM_REMCA_BUYING_REQUESTS_FIELD_SAVE_HISTORY_LABEL"
+			description="COM_REMCA_BUYING_REQUESTS_FIELD_SAVE_HISTORY_DESC"
 			>
             <option	value="1">JYES</option>
             <option	value="0">JNO</option>
@@ -6815,13 +6815,13 @@
             </field>
     </fieldset>
     <fieldset name="buyingrequest_display"
-		label="COM_REMCA_BUYING_REQUEST_FIELD_CONFIG_SINGLE_ITEM_DISPLAY"
-		description="COM_REMCA_BUYING_REQUEST_FIELD_CONFIG_SINGLE_ITEM_DESC"
+		label="COM_REMCA_BUYING_REQUESTS_FIELD_CONFIG_SINGLE_ITEM_DISPLAY"
+		description="COM_REMCA_BUYING_REQUESTS_FIELD_CONFIG_SINGLE_ITEM_DESC"
 	>
         <field name="buyingrequest_layout"
 			type="componentlayout"
 			label="JGLOBAL_FIELD_LAYOUT_LABEL"
-			description="COM_REMCA_BUYING_REQUEST_CHOOSE_LAYOUT_DESC"
+			description="COM_REMCA_BUYING_REQUESTS_CHOOSE_LAYOUT_DESC"
 			menuitems="true"
 			extension="com_remca"
 			view="buyingrequest"
@@ -6855,7 +6855,7 @@
         <field name="show_buyingrequest_email_icon"
             type="radio"
             label="COM_REMCA_SHOW_EMAIL_ICON_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_EMAIL_ICON_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_EMAIL_ICON_DESC"
             class="btn-group btn-group-yesno"
             default="1"
 		>
@@ -6865,7 +6865,7 @@
         <field name="keep_buyingrequest_itemid"
             type="radio"
             label="COM_REMCA_KEEP_ITEMID_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_KEEP_ITEMID_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_KEEP_ITEMID_DESC"
             class="btn-group btn-group-yesno"
             default="1"
 		>
@@ -6875,7 +6875,7 @@
         <field name="show_buyingrequest_navigation"
             type="radio"
             label="COM_REMCA_SHOW_NAVIGATION_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_NAVIGATION_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_NAVIGATION_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6889,7 +6889,7 @@
         <field name="show_buyingrequest_readmore"
             type="radio"
             label="COM_REMCA_SHOW_READMORE_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_READMORE_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_READMORE_DESC"
             class="btn-group btn-group-yesno"
             default="1"
 		>
@@ -6899,7 +6899,7 @@
         <field name="buyingrequest_readmore_limit"
             type="text"
             label="COM_REMCA_SHOW_READMORE_LIMIT_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_READMORE_LIMIT_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_READMORE_LIMIT_DESC"
             default="100"
 		/>
         <field name="spacer2"
@@ -6909,7 +6909,7 @@
         <field name="show_buyingrequest_admin"
             type="radio"
             label="COM_REMCA_SHOW_ADMIN_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_ADMIN_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_ADMIN_DESC"
             class="btn-group btn-group-yesno"
             default="1"
 		>
@@ -6918,8 +6918,8 @@
         </field>
         <field name="show_buyingrequest_fk_houseid"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_FK_HOUSEID_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_FK_HOUSEID_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_FK_HOUSEID_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_FK_HOUSEID_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6928,8 +6928,8 @@
         </field>
         <field name="show_buyingrequest_fk_userid"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_FK_USERID_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_FK_USERID_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_FK_USERID_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_FK_USERID_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6938,8 +6938,8 @@
         </field>
         <field name="show_buyingrequest_buying_request"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_BUYING_REQUEST_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_BUYING_REQUEST_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_BUYING_REQUEST_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_BUYING_REQUEST_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6948,8 +6948,8 @@
         </field>
         <field name="show_buyingrequest_customer_name"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_NAME_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_NAME_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_NAME_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_NAME_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6958,8 +6958,8 @@
         </field>
         <field name="show_buyingrequest_customer_email"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_EMAIL_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_EMAIL_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_EMAIL_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_EMAIL_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6968,8 +6968,8 @@
         </field>
         <field name="show_buyingrequest_customer_phone"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_PHONE_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_PHONE_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_PHONE_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_PHONE_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6978,8 +6978,8 @@
         </field>
         <field name="show_buyingrequest_customer_comment"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_COMMENT_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_CUSTOMER_COMMENT_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_COMMENT_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_CUSTOMER_COMMENT_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6988,8 +6988,8 @@
         </field>
         <field name="show_buyingrequest_status"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_STATUS_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_SHOW_FIELD_STATUS_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_STATUS_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_SHOW_FIELD_STATUS_DESC"
             class="btn-group btn-group-yesno"
             default="1"
         >
@@ -6997,21 +6997,21 @@
             <option	value="0">JHIDE</option>
         </field>
     </fieldset>
-    <fieldset name="buying_request_list_display"
-        label="COM_REMCA_BUYING_REQUEST_FIELD_CONFIG_BLOG_LIST_LABEL"
-        description="COM_REMCA_BUYING_REQUEST_FIELD_CONFIG_BLOG_LIST_DESC"
+    <fieldset name="buying_requests_list_display"
+        label="COM_REMCA_BUYING_REQUESTS_FIELD_CONFIG_BLOG_LIST_LABEL"
+        description="COM_REMCA_BUYING_REQUESTS_FIELD_CONFIG_BLOG_LIST_DESC"
 	>
         <field name="buyingrequest_initial_sort"
             type="list"
-            label="COM_REMCA_BUYING_REQUEST_ORDER_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_ORDER_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_ORDER_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_ORDER_DESC"
 			class="chzn-color"
 		>
         </field>
         <field name="buyingrequest_initial_direction"
             type="radio"
             label="COM_REMCA_ORDER_DIRECTION_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_ORDER_DIRECTION_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_ORDER_DIRECTION_DESC"
 			class="btn-group"
             default="ASC"
 		>
@@ -7021,7 +7021,7 @@
         <field name="show_buyingrequest_filter_field"
             type="list"
             label="JGLOBAL_FILTER_FIELD_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_FILTER_FIELD_DESC"
+            description="COM_REMCA_BUYING_REQUESTS_FILTER_FIELD_DESC"
             class="chzn-color"
             default="hide"
    		>
@@ -7061,7 +7061,7 @@
         <field name="show_buyingrequest_pagination_limit"
             type="radio"
 			label="COM_REMCA_SHOW_PAGINATION_LIMIT_LABEL"
-			description="COM_REMCA_BUYING_REQUEST_SHOW_PAGINATION_LIMIT_DESC"
+			description="COM_REMCA_BUYING_REQUESTS_SHOW_PAGINATION_LIMIT_DESC"
             class="btn-group btn-group-yesno"
 			default="1"
 		>
@@ -7070,8 +7070,8 @@
         </field>
         <field name="buyingrequest_num_per_page"
             type="list"
-            description="COM_REMCA_BUYING_REQUEST_NUM_PER_PAGE_DESC"
-            label="COM_REMCA_BUYING_REQUEST_NUM_PER_PAGE_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_NUM_PER_PAGE_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_NUM_PER_PAGE_LABEL"
 			class="chzn-color"
             default="5"
         >
@@ -7085,10 +7085,10 @@
             <option value="100">J100</option>
             <option value="0">JALL</option>
         </field>
-        <field name="show_no_buying_request"
+        <field name="show_no_buying_requests"
             type="radio"
-            label="COM_REMCA_BUYING_REQUEST_NO_ITEMS_LABEL"
-            description="COM_REMCA_BUYING_REQUEST_NO_ITEMS_DESC"
+            label="COM_REMCA_BUYING_REQUESTS_NO_ITEMS_LABEL"
+            description="COM_REMCA_BUYING_REQUESTS_NO_ITEMS_DESC"
             class="btn-group btn-group-yesno"
             default="1"
 			>
@@ -7098,7 +7098,7 @@
         <field name="show_buyingrequest_add_link"
             type="radio"
 			label="COM_REMCA_SHOW_ADD_LINK_LABEL"
-			description="COM_REMCA_BUYING_REQUEST_SHOW_ADD_LINK_DESC"
+			description="COM_REMCA_BUYING_REQUESTS_SHOW_ADD_LINK_DESC"
             class="btn-group btn-group-yesno"
 			default="1"
 		>
@@ -7108,7 +7108,7 @@
         <field name="list_show_buyingrequest_date"
             type="radio"
 			label="COM_REMCA_SHOW_DATE_LABEL"
-			description="COM_REMCA_BUYING_REQUEST_SHOW_DATE_DESC"
+			description="COM_REMCA_BUYING_REQUESTS_SHOW_DATE_DESC"
 			class="btn-group"
             default="0"
 		>
@@ -7123,8 +7123,8 @@
 		/>
             <field name="list_show_buyingrequest_fk_houseid"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_FK_HOUSEID_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_FK_HOUSEID_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_FK_HOUSEID_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_FK_HOUSEID_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7133,8 +7133,8 @@
             </field>
             <field name="list_show_buyingrequest_fk_userid"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_FK_USERID_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_FK_USERID_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_FK_USERID_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_FK_USERID_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7143,8 +7143,8 @@
             </field>
             <field name="list_show_buyingrequest_buying_request"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_BUYING_REQUEST_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_BUYING_REQUEST_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_BUYING_REQUEST_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_BUYING_REQUEST_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7153,8 +7153,8 @@
             </field>
             <field name="list_show_buyingrequest_customer_name"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_NAME_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_NAME_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_NAME_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_NAME_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7163,8 +7163,8 @@
             </field>
             <field name="list_show_buyingrequest_customer_email"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_EMAIL_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_EMAIL_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_EMAIL_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_EMAIL_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7173,8 +7173,8 @@
             </field>
             <field name="list_show_buyingrequest_customer_phone"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_PHONE_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_PHONE_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_PHONE_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_PHONE_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7183,8 +7183,8 @@
             </field>
             <field name="list_show_buyingrequest_customer_comment"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_COMMENT_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_CUSTOMER_COMMENT_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_COMMENT_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_CUSTOMER_COMMENT_DESC"
 				class="btn-group"
 				default="1"
 			>
@@ -7193,8 +7193,8 @@
             </field>
             <field name="list_show_buyingrequest_status"
                 type="radio"
-                label="COM_REMCA_BUYING_REQUEST_LIST_STATUS_LABEL"
-				description="COM_REMCA_BUYING_REQUEST_LIST_STATUS_DESC"
+                label="COM_REMCA_BUYING_REQUESTS_LIST_STATUS_LABEL"
+				description="COM_REMCA_BUYING_REQUESTS_LIST_STATUS_DESC"
 				class="btn-group"
 				default="1"
 			>

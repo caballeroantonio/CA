@@ -141,7 +141,7 @@ function isValidEmail(str){
 
 <?php
     $house_id_fordate =  $this->item->id;
-    $date_NA = available_dates($house_id_fordate);    
+//    $date_NA = available_dates($house_id_fordate);    #luego lo reviso
 ?>
 
     var unavailableDates = Array();
@@ -181,7 +181,7 @@ function isValidEmail(str){
         jQuery( "#rent_from" ).datepicker(
         {
           minDate: "+0",
-          dateFormat: "<?php echo transforDateFromPhpToJquery();?>",
+          dateFormat: "<?php echo RemcaHelper::transforDateFromPhpToJquery();?>",
           beforeShowDay: unavailableFrom,
           onClose: function () {
               jQuery.ajax({ 
@@ -213,7 +213,7 @@ function isValidEmail(str){
         {
 
           minDate: "+0",
-          dateFormat: "<?php echo transforDateFromPhpToJquery();?>",
+          dateFormat: "<?php echo RemcaHelper::transforDateFromPhpToJquery();?>",
           beforeShowDay: unavailableUntil,
           onClose: function () {
               jQuery.ajax({ 
@@ -329,7 +329,7 @@ function isValidEmail(str){
 
     <?php
 
-     positions_rem($this->params->get('view01')); ?>
+     RemcaHelper::positions_rem($this->params->get('view01')); ?>
 
 <div class="REL-row">
 <div class="REL-collumn-xs-12 REL-collumn-sm-8 REL-collumn-md-9 REL-collumn-lg-9">
@@ -617,7 +617,7 @@ else {
 </div>
 <!--<form action="<?php //echo sefRelToAbs($form_action);
 ?>" method="post" name="house">-->
-        <?php positions_rem($this->params->get('view02')); ?>
+        <?php RemcaHelper::positions_rem($this->params->get('view02')); ?>
 
         <div id="rem_house_property">
                  <?php
@@ -863,7 +863,7 @@ if ($this->params->get('extra9') == 1 && $this->item->extra9 > 0) {
         ?>
     </ul>
 </div>
-                <?php positions_rem($this->params->get('view03')); ?>
+                <?php RemcaHelper::positions_rem($this->params->get('view03')); ?>
 
 <!--begin tabs-->
 <div id="tabs">
@@ -1084,7 +1084,7 @@ require_once('calendar.php')
 </div>
 
 <div class="REL-collumn-xs-12 REL-collumn-sm-4 REL-collumn-md-3 REL-collumn-lg-3">
-<?php  positions_rem($this->params->get('view05')); ?>
+<?php  RemcaHelper::positions_rem($this->params->get('view05')); ?>
 <?php    if ($this->params->get('show_owner_line') ==1 && $this->params->get('show_owner_line') ==1) {
                 ?>
    <div class="rem_house_contacts">
@@ -1367,7 +1367,7 @@ require_once('calendar.php')
 </div> <!-- end span3-->
 </div>
 
- <?php positions_rem($this->params->get('similaires')); ?>
+ <?php RemcaHelper::positions_rem($this->params->get('similaires')); ?>
  
 <div>
     <?php

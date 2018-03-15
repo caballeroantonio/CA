@@ -89,7 +89,7 @@ INSERT IGNORE INTO `#__rem_lstates` (`id`, `name`, `ordering`, `state`) VALUES (
 INSERT IGNORE INTO `#__rem_countries` (`id`, `name`, `ordering`, `state`) VALUES (0, "undefined", 0, 0);
 
 INSERT IGNORE INTO `#__rem_countries` (`id`, `name`, `ordering`, `state`) VALUES (0, "undefined", 0, 0);
-
+					
 --					
 -- CUSTOM CODE es necesario modificar ca.fields.mysql_size para que acepte INT UNSIGNED porque de otro modo no se pueden los constraints					
 --
@@ -98,7 +98,7 @@ ALTER TABLE `#__rem_buying_request` ADD CONSTRAINT `fk2919_fk_houseid`
 FOREIGN KEY (`fk_houseid`) REFERENCES `#__rem_houses` (`id`)
 ON DELETE RESTRICT ON UPDATE CASCADE;
 										
-ALTER TABLE `#__rem_buying_request` ADD CONSTRAINT `fk2920_fk_userid`
+ALTER TABLE `#__rem_buying_requests` ADD CONSTRAINT `fk2920_fk_userid`
 FOREIGN KEY (`fk_userid`) REFERENCES `#__users` (`id`)
 ON DELETE RESTRICT ON UPDATE CASCADE;
 										

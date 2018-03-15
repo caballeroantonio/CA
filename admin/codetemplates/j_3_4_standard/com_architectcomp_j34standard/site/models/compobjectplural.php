@@ -1276,20 +1276,38 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 
+		$group_filter = false;
+		
 		// Construct the query
-		$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id').' AS value, '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' AS text');
+		$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id').' AS value');
+		
+		if(!$group_filter)
+			$query->select($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' AS text');
+		else
+			$query->select('CONCAT('.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').', " (", count(*), ")")  AS text');
+			
 		$query->from($db->quoteName('#__[%%architectcomp%%]_[%%FIELD_FOREIGN_OBJECT_PLURAL%%]').' AS [%%FIELD_FOREIGN_OBJECT_ACRONYM%%]');
-		$query->join('INNER', $db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a ON '.$db->quoteName('a.[%%FIELD_CODE_NAME%%]').' = '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id'));
-		$query->where($db->quoteName('a.[%%FIELD_CODE_NAME%%]').' != 0 AND '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' != \'\'');
-		[%%IF INCLUDE_LANGUAGE%%]
-		// Filter by language
-		if ($this->getState('filter.language'))
-		{
-			$query->where($db->quoteName('a.language').' IN ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').')');
-		}
-		[%%ENDIF INCLUDE_LANGUAGE%%]	
-		$query->group($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id').', '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]'));
+		$query->where($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]').' != \'\'');
+		
+		#only if FO have state
+		$query->where('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].state = 1');
+									   
 		$query->order($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]'));
+
+		if($group_filter){
+			$query->where($db->quoteName('a.[%%FIELD_CODE_NAME%%]').' != 0');
+			[%%IF INCLUDE_LANGUAGE%%]
+			// Filter by language
+			if ($this->getState('filter.language'))
+			{
+				$query->where($db->quoteName('a.language').' IN ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').')');
+			}
+			[%%ENDIF INCLUDE_LANGUAGE%%]
+			$query->join('INNER', $db->quoteName('#__[%%architectcomp%%]_[%%compobjectplural%%]').' AS a ON '.$db->quoteName('a.[%%FIELD_CODE_NAME%%]').' = '.$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id'));
+			$query->group($db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].id').', '.
+				$db->quoteName('[%%FIELD_FOREIGN_OBJECT_ACRONYM%%].[%%FIELD_FOREIGN_OBJECT_LABEL_FIELD%%]'));
+		}
+
 
 		// Setup the query
 		$db->setQuery($query);
@@ -1312,7 +1330,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 	
         /*
          * Function that allows download database information
-         * @ToDo implementar generación de código
+         * @ToDo implementar generaciÃ³n de cÃ³digo
          */
         public function getListQuery4Export(){
             $this->getDbo()->setQuery($this->getListQuery(), $this->getStart(), $this->getState('list.limit'));
