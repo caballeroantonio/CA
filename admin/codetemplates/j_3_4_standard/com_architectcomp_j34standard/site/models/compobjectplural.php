@@ -505,7 +505,7 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 			$query->where("LOWER(CONCAT('(',replace(".$db->quoteName('a.[%%FIELD_CODE_NAME%%]').",',','),('),'),')) LIKE '%(".$[%%FIELD_CODE_NAME%%]."),%'");
 				[%%ELSE FIELD_MULTIPLE%%]
 			$[%%FIELD_CODE_NAME%%] = $db->escape(JString::strtolower($[%%FIELD_CODE_NAME%%]), true);			
-			$query->where('LOWER('.$db->quoteName('a.[%%FIELD_CODE_NAME%%]').') = ' . $db->quote($[%%FIELD_CODE_NAME%%]));
+			$query->where($db->quoteName('a.[%%FIELD_CODE_NAME%%]').' = ' . $db->quote($[%%FIELD_CODE_NAME%%]));
 				[%%ENDIF FIELD_MULTIPLE%%]			
 			[%%ENDIF FIELD_LINK%%]			
 		}	

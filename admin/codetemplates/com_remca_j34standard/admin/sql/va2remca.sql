@@ -1,38 +1,138 @@
-
 # Proceso para migrar datos de scraping vivanuncios a remca.houses
-
-
+CREATE TABLE `scrpng_vivanuncios` (
+  `idPropiedad` text,
+  `category_id` int(11) DEFAULT NULL,
+  `agent_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `type_popiedad` text,
+  `title` text,
+  `slug` text,
+  `body` text,
+  `image_name` text,
+  `image_ext` text,
+  `meta_keywords` text,
+  `meta_desc` text,
+  `status` int(11) DEFAULT NULL,
+  `create_date` text,
+  `updated_at` text,
+  `address` text,
+  `city` text,
+  `state` text,
+  `zip_propiedad` text,
+  `country` text,
+  `latitude` text,
+  `longitude` text,
+  `price` int(11) DEFAULT NULL,
+  `beds` int(11) DEFAULT NULL,
+  `services` text,
+  `characteristics` text,
+  `bath` int(11) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `features` text,
+  `is_delete` int(11) DEFAULT NULL,
+  `featured` int(11) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
+  `related` text,
+  `disponible` int(11) DEFAULT NULL,
+  `tipoLetra` text,
+  `tipoPublicado` text,
+  `url_pagina` text,
+  `url_vendedor` text,
+  `nombre_vendedor` text,
+  `id_anuncio` text,
+  `leyenda` text,
+  `sitio` text,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_remhouse` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_vahouse_idx_idx` (`id_remhouse`),
+  CONSTRAINT `fk_vahouse_idx` FOREIGN KEY (`id_remhouse`) REFERENCES `jos_rem_houses` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # almacena el ultimo rem_houses.id
 SELECT 
-@ordering:= AUTO_INCREMENT - 1 'AUTO_INCREMENT'
+@laih:= AUTO_INCREMENT - 1 'Last AI houses'
 FROM  INFORMATION_SCHEMA.TABLES t
 WHERE 1
 AND t.TABLE_SCHEMA = DATABASE()
 AND t.TABLE_NAME LIKE '%rem_houses';
 
-#integridad referencial rh.id = va.id_remhouse
-SET FOREIGN_KEY_CHECKS=0;
-UPDATE
-vivanuncios_items va
-LEFT JOIN jos_rem_houses rh ON rh.id = va.id_remhouse
-SET va.id_remhouse = @ordering := @ordering + 1
-WHERE 1
-AND rh.id IS NULL
-;
-SET FOREIGN_KEY_CHECKS=1;
+# condiciones iniciales, cargué la información del CSV
+SET @laih := 1; # Last AI houses - 1
+DELETE FROM jos_rem_houses WHERE id > @laih;
+SET @ordering := @laih;
 
-#insertar registros de va a rh
-INSERT INTO jos_rem_houses (`id`, `description`, `link`, `price`, `name`, `hcountry`, `hregion`, `hcity`, `hzipcode`, `hlocation`, `hlatitude`, `hlongitude`, `bathrooms`, `bedrooms`, `year`, `agent`, `image_link`)
-SELECT 
-va.id_remhouse, va.body, LEFT(va.url_pagina, 250) AS 'url_pagina', CAST(va.price AS SIGNED) AS 'price', LEFT(va.title, 200) AS 'title',
-LEFT(va.country, 50) AS 'country', LEFT(va.state, 50) AS 'state', LEFT(va.city, 50) AS 'city', LEFT(va.zip_propiedad, 50) AS 'zip_propiedad',
-LEFT(va.address, 100) AS 'address', LEFT(va.latitude, 20) AS 'latitude', LEFT(va.longitude, 20) AS 'longitude', va.bath, va.beds,
-LEFT(va.year, 4) AS 'year', LEFT(va.nombre_vendedor, 45) AS 'nombre_vendedor', LEFT(va.image_name, 200) AS 'image_name'
-FROM vivanuncios_items va
-LEFT JOIN jos_rem_houses rh ON rh.id = va.id_remhouse
+# copy empty records to houses
+INSERT INTO jos_rem_houses (id, description, images, state)
+SELECT @ordering := @ordering + 1 AS 'id', '' AS 'description', '' AS 'images', 1 AS state 
+FROM scrpng_vivanuncios va
+;
+
+# refer va.fk to h.pk empty records
+SET @ordering := @laih;
+UPDATE scrpng_vivanuncios
+SET id_remhouse = @ordering := @ordering + 1
+;
+
+# update all values
+UPDATE jos_rem_houses h
+LEFT JOIN scrpng_vivanuncios va ON va.id_remhouse = h.id
+SET 
+h.description = coalesce(va.body, ''),
+h.link = coalesce(va.url_pagina, ''),
+h.price = coalesce(va.price, 0.00),
+h.name = coalesce(va.title, ''),
+h.hcountry = coalesce(va.country, ''),
+h.hregion = coalesce(va.state, ''),
+h.hcity = coalesce(va.city, ''),
+h.hzipcode = coalesce(va.zip_propiedad, ''),
+h.hlocation = coalesce(va.address, ''),
+h.hlatitude = coalesce(va.latitude, ''),
+h.hlongitude = coalesce(va.longitude, ''),
+h.bathrooms = coalesce(va.bath, 0),
+h.bedrooms = coalesce(va.beds, 0),
+h.year = coalesce(va.year, ''),
+h.agent = LEFT(coalesce(va.nombre_vendedor, ''), 45),
+h.image_link = coalesce(va.image_name, '')
+# WHERE va.id BETWEEN 60000 AND 70000
+;
+
+/**
+* set country, mejorarlo quitando h.hcountry, h.hregion, h.hcity y agregando un va.id_country,
+* id_lstate, y realizando este preoceso antes de copiar registros.
+*/
+ 
+UPDATE
+scrpng_vivanuncios va
+INNER JOIN jos_rem_houses h ON h.id = va.id_remhouse
+INNER JOIN jos_rem_countries c ON c.name LIKE va.country AND c.state = 1
+SET h.id_country = c.id
+;
+
+UPDATE 
+scrpng_vivanuncios va 
+INNER JOIN jos_rem_houses h ON h.id = va.id_remhouse 
+INNER JOIN jos_rem_lstates l ON l.id_country = h.id_country 
+    AND l.friendly_name LIKE va.state 
+SET h.id_lstate = l.id
+
+UPDATE
+scrpng_vivanuncios va
+INNER JOIN jos_rem_houses h ON h.id = va.id_remhouse
+INNER JOIN jos_rem_lmunicipalities l ON l.id_country = h.id_country 
+    AND l.id_lstate = h.id_lstate
+    AND l.name LIKE va.city
+SET h.id_lmunicipality = l.id
 WHERE 1
-AND rh.id IS NULL;
+AND h.id_country
+AND h.id_lstate
+;
+
+-- 
+-- En revisión, lo de abajo no lo he aprobado de nuevo.
+-- 
+
+
 
 #insertar registros de rh a rc
 INSERT INTO jos_rem_categories (iditem, idcat)
@@ -47,96 +147,5 @@ AND rc.id IS NULL
 #agregar constantes faltantes
 UPDATE vivanuncios_items va
 INNER JOIN jos_rem_houses rh ON rh.id = va.id_remhouse
-SET rh.state = 1, rh.listing_type = 0, rh.priceunit = 'USD', rh.map_zoom = 14
-;
-
-
-
-
-
-# Actualizacion de id_country, id_state, id_municipality (vivanuncios -> houses)
-UPDATE
-/*
-SELECT 
-h.id, 
-
-va.country, 
-coalesce(c.id, 0), 
-c.name, 
-
-va.state, 
-coalesce(s.id, 0), 
-s.name, 
-
-va.city, 
-coalesce(m.id, 0), 
-m.name 
-
-FROM 
-*/
-jos_rem_houses h
-INNER JOIN vivanuncios_items va ON h.id = va.id_remhouse 
-LEFT JOIN jos_rem_countries c ON c.name = va.country and c.id not in (1002)
-LEFT JOIN jos_rem_states s ON s.id_country = c.id AND (s.name = va.state or s.state = va.state)
-LEFT JOIN jos_rem_municipalities m ON m.id_state = s.id AND m.name = va.city
-
-
-SET 
-h.id_country = coalesce(c.id, 0), 
-h.id_state = coalesce(s.id, 0), 
-h.id_municipality = coalesce(m.id, 0)
-
-;
-
-
-# Actualizacion de catid (vivanuncios -> houses) 
-UPDATE
-/*
-SELECT 
-count(h.id)
-
-, va.tipoLetra
-, coalesce(c.id, 0)
-, c.title
-
-FROM 
-*/
-vivanuncios_items va
-INNER JOIN jos_rem_houses h ON h.id = va.id_remhouse 
-LEFT JOIN jos_categories c ON c.title = va.tipoLetra
-
-
-SET 
-h.catid = coalesce(c.id, 0)
-
-;
-
-
-
-
-# jos_categories para remca
-INSERT INTO `jos_categories` (`asset_id`,`parent_id`,`lft`,`rgt`,`level`,`path`,`extension`,`title`,`alias`,`note`,`description`,`published`,`checked_out`,`checked_out_time`,`access`,`params`,`metadesc`,`metakey`,`metadata`,`created_user_id`,`created_time`,`modified_user_id`,`modified_time`,`hits`,`language`,`version`) VALUES
-(32,1,9,10,1,'uncategorised','com_remca','uncategorised','uncategorised','','',1,0,'0000-00-00 00:00:00',1,'{\"category_layout\":\"\",\"image\":\"\"}','','','{\"author\":\"\",\"robots\":\"\"}',42,'2011-01-01 00:00:01',0,'0000-00-00 00:00:00',0,'*',1)
-, (75,1,11,12,1,'desarrollo','com_remca','Desarrollo','desarrollo','','',1,0,'0000-00-00 00:00:00',1,'{\"category_layout\":\"\",\"image\":\"\",\"image_alt\":\"\"}','','','{\"author\":\"\",\"robots\":\"\"}',1,'2018-03-10 00:31:41',1,'2018-03-10 00:31:51',0,'*',1)
-, (76,1,13,14,1,'departamentos-en-venta','com_remca','Departamentos en Venta','departamentos-en-venta','','',1,0,'0000-00-00 00:00:00',1,'{\"category_layout\":\"\",\"image\":\"\",\"image_alt\":\"\"}','','','{\"author\":\"\",\"robots\":\"\"}',1,'2018-03-10 00:32:02',1,'2018-03-10 00:32:09',0,'*',1)
-, (77,1,15,16,1,'casas-en-venta','com_remca','Casas en Venta','casas-en-venta','','',1,0,'0000-00-00 00:00:00',1,'{\"category_layout\":\"\",\"image\":\"\",\"image_alt\":\"\"}','','','{\"author\":\"\",\"robots\":\"\"}',1,'2018-03-10 00:32:31',1,'2018-03-10 00:32:37',0,'*',1)
-;
-
-
-
-
-SELECT 
-	h.id
-    , h.name 'house'
-    , c.title 'category'
-    , ct.name 'contry'
-    , st.name 'state'
-    , mn.name 'municipality'
-FROM 
-	jos_rem_houses h
-INNER JOIN jos_categories c ON c.id = h.catid
-LEFT JOIN jos_rem_countries ct ON ct.id = h.id_country
-LEFT JOIN jos_rem_states st ON st.id_country = ct.id AND st.id = h.id_state
-LEFT JOIN jos_rem_municipalities mn ON mn.id_state = st.id AND mn.id = h.id_municipality
-
+SET rh.listing_type = 0
 ;
