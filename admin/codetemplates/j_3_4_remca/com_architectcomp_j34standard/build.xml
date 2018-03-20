@@ -1,0 +1,474 @@
+<project name="[%%architectcomp%%]" default="dist" basedir=".">
+    <property name="link_dir" description="vinculo simbolico de JPATH_BASE" value="D:/www/htdocs/JPruebas" /> 
+    
+    <target name="remove-package" description="Warning, delete directory follow symlinks. When uninstall Joomla extension or delete directory that has symlinks you loose your src code.">
+        <delete dir="${link_dir}/administrator/components/[%%com_architectcomp%%]" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].sys.ini" />
+        <delete dir="${link_dir}/components/[%%com_architectcomp%%]"  />
+        <delete file="${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini" />
+		<delete file="${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini" />
+        <delete dir="${link_dir}/media/[%%com_architectcomp%%]" />
+        
+
+    [%%IF GENERATE_MODULES%%]
+        <delete dir="${link_dir}/modules/mod_[%%architectcomp%%]" />
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].ini" />
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].sys.ini" />
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].ini" />
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].sys.ini" />
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_MODULES%%]
+        <delete dir="${link_dir}/modules/mod_[%%architectcomp%%]_[%%compobjectplural%%]" />
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini" />
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini" />
+            [%%ENDIF GENERATE_MODULES%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+    [%%ENDIF GENERATE_MODULES%%]
+        
+        [%%IF GENERATE_PLUGINS%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+                [%%IF GENERATE_PLUGINS_FINDER%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/finder" />
+        <delete dir="${link_dir}/plugins/finder/[%%compobjectplural%%]" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.sys.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].sys.ini" />
+                [%%ENDIF GENERATE_PLUGINS_FINDER%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+                [%%IF GENERATE_PLUGINS_SEARCH%%]
+        <delete dir="${link_dir}/plugins/search/[%%compobjectplural%%]" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].sys.ini" />
+                [%%ENDIF GENERATE_PLUGINS_SEARCH%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%IF GENERATE_PLUGINS_EMAILCLOAK%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/emailcloak" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_EMAILCLOAK%%]
+        [%%IF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/itemnavigation" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        [%%IF GENERATE_PLUGINS_LOADMODULE%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/loadmodule" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_LOADMODULE%%]
+        [%%IF GENERATE_PLUGINS_PAGEBREAK%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/pagebreak" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_PAGEBREAK%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/vote" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <delete dir="${link_dir}/plugins/[%%architectcomp%%]/emailit" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini" />
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini" />
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini" />
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+    [%%ENDIF GENERATE_PLUGINS%%]
+        
+    </target>
+
+    <target name="copy-symlinks-win" description="copy symlynks to joomla to test directy on development directory">
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/administrator/components/[%%com_architectcomp%%]" "${basedir}\admin"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/components/[%%com_architectcomp%%]" "${basedir}\site"'/>
+        </exec>
+        
+		<!--admin language-->
+		<exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].ini" "${basedir}\admin\language\en-GB\en-GB.[%%com_architectcomp%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].sys.ini" "${basedir}\admin\language\en-GB\en-GB.[%%com_architectcomp%%].sys.ini"'/>
+        </exec>
+        <mkdir dir="${link_dir}/administrator/language/es-ES/"/>
+		<exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].ini" "${basedir}\admin\language\es-ES\es-ES.[%%com_architectcomp%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].sys.ini" "${basedir}\admin\language\es-ES\es-ES.[%%com_architectcomp%%].sys.ini"'/>
+        </exec>
+		<!--site language-->
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini" "${basedir}\site\language\en-GB\en-GB.[%%com_architectcomp%%].ini"'/>
+        </exec>
+        <mkdir dir="${link_dir}/language/es-ES/"/>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini" "${basedir}\site\language\es-ES\es-ES.[%%com_architectcomp%%].ini"'/>
+        </exec>
+		
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/media/[%%com_architectcomp%%]" "${basedir}\media"'/>
+        </exec>
+
+    [%%IF GENERATE_MODULES%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/modules/mod_[%%architectcomp%%]" "${basedir}\modules\mod_[%%architectcomp%%]"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].ini" "${basedir}\modules\mod_[%%architectcomp%%]\language\en-GB\en-GB.mod_[%%architectcomp%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].sys.ini" "${basedir}\modules\mod_[%%architectcomp%%]\language\en-GB\en-GB.mod_[%%architectcomp%%].sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].ini" "${basedir}\modules\mod_[%%architectcomp%%]\language\es-ES\es-ES.mod_[%%architectcomp%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].sys.ini" "${basedir}\modules\mod_[%%architectcomp%%]\language\es-ES\es-ES.mod_[%%architectcomp%%].sys.ini"'/>
+        </exec>
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_MODULES%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/modules/mod_[%%architectcomp%%]_[%%compobjectplural%%]" "${basedir}\modules\mod_[%%architectcomp%%]_[%%compobjectplural%%]"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini" "${basedir}\modules\mod_[%%architectcomp%%]_[%%compobjectplural%%]\language\en-GB\en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini" "${basedir}\modules\mod_[%%architectcomp%%]_[%%compobjectplural%%]\language\en-GB\en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini" "${basedir}\modules\mod_[%%architectcomp%%]_[%%compobjectplural%%]\language\es-ES\es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini" "${basedir}\modules\mod_[%%architectcomp%%]_[%%compobjectplural%%]\language\es-ES\es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini"'/>
+        </exec>
+            [%%ENDIF GENERATE_MODULES%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+    [%%ENDIF GENERATE_MODULES%%]
+        
+        [%%IF GENERATE_PLUGINS%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+        <mkdir dir="${link_dir}/plugins/[%%architectcomp%%]/"/>
+                [%%IF GENERATE_PLUGINS_FINDER%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/finder" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/finder/[%%compobjectplural%%]" "${basedir}\plugins\finder\plg_finder_[%%compobjectplural%%]"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder\language\en-GB\en-GB.plg_[%%architectcomp%%]_finder.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder\language\en-GB\en-GB.plg_[%%architectcomp%%]_finder.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].ini" "${basedir}\plugins\finder\plg_finder_[%%compobjectplural%%]\language\en-GB\en-GB.plg_finder_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].sys.ini" "${basedir}\plugins\finder\plg_finder_[%%compobjectplural%%]\language\en-GB\en-GB.plg_finder_[%%compobjectplural%%].sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder\language\es-ES\es-ES.plg_[%%architectcomp%%]_finder.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_finder\language\es-ES\es-ES.plg_[%%architectcomp%%]_finder.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].ini" "${basedir}\plugins\finder\plg_finder_[%%compobjectplural%%]\language\es-ES\es-ES.plg_finder_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].sys.ini" "${basedir}\plugins\finder\plg_finder_[%%compobjectplural%%]\language\es-ES\es-ES.plg_finder_[%%compobjectplural%%].sys.ini"'/>
+        </exec>	
+                [%%ENDIF GENERATE_PLUGINS_FINDER%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+                [%%IF GENERATE_PLUGINS_SEARCH%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/search/[%%compobjectplural%%]" "${basedir}\plugins\search\plg_search_[%%compobjectplural%%]"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].ini" "${basedir}\plugins\search\plg_search_[%%compobjectplural%%]\language\en-GB\en-GB.plg_search_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].sys.ini" "${basedir}\plugins\search\plg_search_[%%compobjectplural%%]\language\en-GB\en-GB.plg_search_[%%compobjectplural%%].sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].ini" "${basedir}\plugins\search\plg_search_[%%compobjectplural%%]\language\es-ES\es-ES.plg_search_[%%compobjectplural%%].ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].sys.ini" "${basedir}\plugins\search\plg_search_[%%compobjectplural%%]\language\es-ES\es-ES.plg_search_[%%compobjectplural%%].sys.ini"'/>
+        </exec>
+                [%%ENDIF GENERATE_PLUGINS_SEARCH%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%IF GENERATE_PLUGINS_EMAILCLOAK%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/emailcloak" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailcloak"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailcloak\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailcloak.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailcloak\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailcloak.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailcloak\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailcloak.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailcloak\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailcloak.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_EMAILCLOAK%%]
+        [%%IF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/itemnavigation" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_itemnavigation"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_itemnavigation\language\en-GB\en-GB.plg_[%%architectcomp%%]_itemnavigation.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_itemnavigation\language\en-GB\en-GB.plg_[%%architectcomp%%]_itemnavigation.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_itemnavigation\language\es-ES\es-ES.plg_[%%architectcomp%%]_itemnavigation.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_itemnavigation\language\es-ES\es-ES.plg_[%%architectcomp%%]_itemnavigation.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        [%%IF GENERATE_PLUGINS_LOADMODULE%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/loadmodule" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_loadmodule"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_loadmodule\language\en-GB\en-GB.plg_[%%architectcomp%%]_loadmodule.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_loadmodule\language\en-GB\en-GB.plg_[%%architectcomp%%]_loadmodule.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_loadmodule\language\es-ES\es-ES.plg_[%%architectcomp%%]_loadmodule.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_loadmodule\language\es-ES\es-ES.plg_[%%architectcomp%%]_loadmodule.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_LOADMODULE%%]
+        [%%IF GENERATE_PLUGINS_PAGEBREAK%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/pagebreak" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_pagebreak"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_pagebreak\language\en-GB\en-GB.plg_[%%architectcomp%%]_pagebreak.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_pagebreak\language\en-GB\en-GB.plg_[%%architectcomp%%]_pagebreak.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_pagebreak\language\es-ES\es-ES.plg_[%%architectcomp%%]_pagebreak.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_pagebreak\language\es-ES\es-ES.plg_[%%architectcomp%%]_pagebreak.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_PAGEBREAK%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/vote" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote\language\en-GB\en-GB.plg_[%%architectcomp%%]_vote.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote\language\en-GB\en-GB.plg_[%%architectcomp%%]_vote.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote\language\es-ES\es-ES.plg_[%%architectcomp%%]_vote.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_vote\language\es-ES\es-ES.plg_[%%architectcomp%%]_vote.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c mklink /d "${link_dir}/plugins/[%%architectcomp%%]/emailit" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailit.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\en-GB\en-GB.plg_[%%architectcomp%%]_emailit.sys.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailit.ini"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c mklink "${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini" "${basedir}\plugins\[%%architectcomp%%]\plg_[%%architectcomp%%]_emailit\language\es-ES\es-ES.plg_[%%architectcomp%%]_emailit.sys.ini"'/>
+        </exec>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+    [%%ENDIF GENERATE_PLUGINS%%]
+        
+    </target>   
+     
+    <target name="remove-symlinks-win" description="remove test symlinks">
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/administrator/components/[%%com_architectcomp%%]"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.[%%com_architectcomp%%].sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.[%%com_architectcomp%%].sys.ini"/>
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/components/[%%com_architectcomp%%]"'/>
+        </exec>
+        <delete file="${link_dir}/language/en-GB/en-GB.[%%com_architectcomp%%].ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.[%%com_architectcomp%%].ini"/>
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/media/[%%com_architectcomp%%]"'/>
+        </exec>
+
+    [%%IF GENERATE_MODULES%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/modules/mod_[%%architectcomp%%]"'/>
+        </exec>
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].ini"/>
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%].sys.ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%].sys.ini"/>
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_MODULES%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/modules/mod_[%%architectcomp%%]_[%%compobjectplural%%]"'/>
+        </exec>
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/language/en-GB/en-GB.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/language/es-ES/es-ES.mod_[%%architectcomp%%]_[%%compobjectplural%%].sys.ini"/>
+            [%%ENDIF GENERATE_MODULES%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+    [%%ENDIF GENERATE_MODULES%%]
+        
+        [%%IF GENERATE_PLUGINS%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+                [%%IF GENERATE_PLUGINS_FINDER%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/finder"'/>
+        </exec>
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/finder/[%%compobjectplural%%]"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_finder.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_finder_[%%compobjectplural%%].sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_finder.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_finder_[%%compobjectplural%%].sys.ini"/>
+                [%%ENDIF GENERATE_PLUGINS_FINDER%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%FOREACH COMPONENT_OBJECT%%]
+            [%%IF GENERATE_PLUGINS%%]
+                [%%IF GENERATE_PLUGINS_SEARCH%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/search/[%%compobjectplural%%]"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_search_[%%compobjectplural%%].sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_search_[%%compobjectplural%%].sys.ini"/>
+                [%%ENDIF GENERATE_PLUGINS_SEARCH%%]
+            [%%ENDIF GENERATE_PLUGINS%%]
+        [%%ENDFOR COMPONENT_OBJECT%%]
+        [%%IF GENERATE_PLUGINS_EMAILCLOAK%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/emailcloak"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailcloak.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailcloak.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_EMAILCLOAK%%]
+        [%%IF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/itemnavigation"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_itemnavigation.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_itemnavigation.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_ITEMNAVIGATION%%]
+        [%%IF GENERATE_PLUGINS_LOADMODULE%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/loadmodule"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_loadmodule.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_loadmodule.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_LOADMODULE%%]
+        [%%IF GENERATE_PLUGINS_PAGEBREAK%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/pagebreak"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_pagebreak.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_pagebreak.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_PAGEBREAK%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/vote"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_vote.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_vote.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+        [%%IF GENERATE_PLUGINS_VOTE%%]
+        <exec executable="cmd" >
+            <arg value='/c rmdir "${link_dir}/plugins/[%%architectcomp%%]/emailit"'/>
+        </exec>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.ini"/>
+        <delete file="${link_dir}/administrator/language/en-GB/en-GB.plg_[%%architectcomp%%]_emailit.sys.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.ini"/>
+        <delete file="${link_dir}/administrator/language/es-ES/es-ES.plg_[%%architectcomp%%]_emailit.sys.ini"/>
+        [%%ENDIF GENERATE_PLUGINS_VOTE%%]
+    [%%ENDIF GENERATE_PLUGINS%%]
+        
+    </target>    
+
+</project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <fields name="images"
+        label="COM_REMCA_HOUSES_IMAGE_OPTIONS"
+    >
+        <field name="image_url"
+            type="media"
+            label="COM_REMCA_FIELD_IMAGE_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_IMAGE_DESC"
+        />
+        <field name="image_alt_text"
+            type="text"
+            label="COM_REMCA_FIELD_IMAGE_ALTTEXT_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_IMAGE_ALTTEXT_DESC"
+            size="20"
+        />
+        <field name="image_caption"
+            type="text"
+            label="COM_REMCA_FIELD_IMAGE_CAPTION_LABEL"
+            description="COM_REMCA_HOUSES_FIELD_IMAGE_CAPTION_DESC"
+            size="20"
+        />   
+		
+<!--<field name="field-name" type="subform" multiple="true" max="2" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="false" component="com_remca" client="admin"
+    formsource="administrator/components/com_remca/models/forms/photo.xml"
+    label="Subform Field" description="Subform Field Description" />
+        <message>
+{
+  "image_url": "images\/joomla_black.png",
+  "image_alt_text": "",
+  "image_caption": "",
+  "field-name": {
+    "field-name0": {
+      "id": "0",
+      "version_note": "",
+      "images": {
+        "image_url": "images\/joomla_black.png",
+        "image_alt_text": "",
+        "image_caption": ""
+      },
+      "fk_houseid": "",
+      "thumbnail_img": "",
+      "version": ""
+    },
+    "field-name1": {
+      "id": "0",
+      "version_note": "",
+      "images": {
+        "image_url": "images\/powered_by.png",
+        "image_alt_text": "",
+        "image_caption": ""
+      },
+      "fk_houseid": "",
+      "thumbnail_img": "",
+      "version": ""
+    }
+  }
+}
+		</message>-->
+	
+	
+    </fields>
+    <fieldset name="fieldset_houses_fs"
+        label="COM_REMCA_HOUSES_FIELDSET_HOUSES_FS_LABEL"
+        description="COM_REMCA_HOUSES_FIELDSET_HOUSES_FS_DESC"
+    >
+	
+<!--<field name="field-name" type="subform" multiple="true" max="2" layout="joomla.form.field.subform.repeatable-table" groupByFieldset="false" component="com_remca" client="admin"
+    formsource="administrator/components/com_remca/models/forms/photo.xml"
+    label="Subform Field" description="Subform Field Description" />
+        <message>
+jform[field-name][field-name1][fk_houseid]=
+jform[field-name][field-name1][id]=0
+jform[field-name][field-name1][images][image_alt_text]=
+jform[field-name][field-name1][images][image_caption]=
+jform[field-name][field-name1][images][image_url]=images/joomla_black.png
+jform[field-name][field-name1][thumbnail_img]=
+jform[field-name][field-name1][version]=
+jform[field-name][field-name1][version_note]=
+jform[field-name][field-name2][fk_houseid]=
+jform[field-name][field-name2][id]=0
+jform[field-name][field-name2][images][image_alt_text]=
+jform[field-name][field-name2][images][image_caption]=
+jform[field-name][field-name2][images][image_url]=images/powered_by.png
+jform[field-name][field-name2][thumbnail_img]=
+jform[field-name][field-name2][version]=
+jform[field-name][field-name2][version_note]=
+		</message>-->
+	
+    </fieldset>
+</form>
