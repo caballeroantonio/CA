@@ -139,7 +139,7 @@ $empty = $component->params->get('default_empty_field', '');
 
 		<?php else : ?>
 		<div style="overflow-x:auto;">
-			<table class="table table-striped" id="[%%compobjectplural%%]">
+			<table class="table table-striped" id="[%%compobjectplural%%]" style="margin-bottom: 200px;">
 			<?php if ($this->params->get('show_[%%compobject%%]_headings',1)) :?>
 			<thead>
 				<tr>

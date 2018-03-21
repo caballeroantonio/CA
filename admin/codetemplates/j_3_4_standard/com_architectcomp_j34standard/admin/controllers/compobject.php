@@ -212,5 +212,21 @@ class [%%ArchitectComp%%]Controller[%%CompObject%%] extends JControllerForm
 	protected function postSaveHook(JModelLegacy $model, $valid_data = array())
 	{
 		return;
-	}	
+	}
+
+[%%IF INCLUDE_VERSIONS%%]
+        /**
+         * Redirect to History view
+         * Jform->getInput('contenthistory') no es re-utilizable en vista plural
+         */
+        public function showHistory(){
+            $item_id = $this->input->getInt('item_id');
+            $model = $this->getModel();
+            $typeId = JTable::getInstance('Contenttype')->getTypeId($model->typeAlias);
+            $token = JSession::getFormToken();
+            
+            $this->setRedirect('index.php?option=com_contenthistory&view=history&layout=modal&tmpl=component'
+                    . "&item_id={$item_id}&type_id={$typeId}&type_alias={$model->typeAlias}&{$token}=1");
+        }
+[%%ENDIF INCLUDE_VERSIONS%%]
 }

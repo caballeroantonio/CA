@@ -988,7 +988,7 @@ generateComponent
 				$index = array_search($field->fieldtype_id,$this->_fieldtypes_index);
 				$type = JString::strtolower(JString::trim($this->_fieldtypes[$index]->code_name));
 				
-				$foreign_object = null;
+				$field->foreign_object = null;
 				
 				if ($field->mysql_datatype != '')
 				{
@@ -1105,7 +1105,7 @@ generateComponent
 				{
 					/* get the component object for the foreign object key */			
 					$foreignobjectmodel = JModelLegacy::getInstance('componentobject', 'ComponentArchitectModel', array('ignore_request' => true));
-					$foreign_object = $foreignobjectmodel->getItem((int)$field->foreign_object_id);
+					$field->foreign_object = $foreignobjectmodel->getItem((int)$field->foreign_object_id);
 				}
 
 				if ($field->required == '1')
@@ -1448,8 +1448,9 @@ generateComponent
 
 						$registry_entry_site_value = 'echo JString::trim($field_array[\''.$field->code_name.'_name\']);';
 						
-						if ($field->foreign_object_id > 0)
+						if ($field->foreign_object_id > 0 && $field->foreign_object->joomla_features['include_versions'] == '1')
 						{
+                                                    $parameters .= "\t\t\ttype_alias=\"com_{$this->_component->code_name}.{$field->foreign_object->code_name}\" \n";
 							$field_admin_linked_value = 'echo \'<a href="index.php?option='.$this->_markupText('com_architectcomp').'&task='.
 								$this->_markupText('FIELD_FOREIGN_OBJECT').'.edit&id=\'.$this->item->'.$field->code_name. '.\'">\''.
 								'.JString::trim($this->item->'.$this->_markupText('FIELD_FOREIGN_OBJECT_ACRONYM').'_'.
@@ -1489,7 +1490,7 @@ generateComponent
 							$registry_entry_site_linked_value = 'echo JString::trim($field_array[\''.$field->code_name.'_name\']);';
 						}
 						// Change the type so that modal directs to the correct modal view for the object
-						$type .= '_'.JString::strtolower(str_replace('_','',$foreign_object->plural_code_name));
+						$type .= '_'.JString::strtolower(str_replace('_','',$field->foreign_object->plural_code_name));
 
 						break;
 					case 'password':
@@ -1730,7 +1731,7 @@ generateComponent
 					{
 						$order_fields[] = $field;
 					}					
-					if (is_null($foreign_object) AND JString::substr($type, 0, 5) != 'modal')
+					if (is_null($field->foreign_object) AND JString::substr($type, 0, 5) != 'modal')
 					{					
 						array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FILTER_VALUE_ARRAY'), 'replace' => $this->_generateFilterValueArray($values_array, $field, $type)));
 						array_push($field->search_replace,array('search' => $this->_markupText('FIELD_CHILD_FILTER_VALUE_ARRAY'), 'replace' => $this->_generateFilterValueArray($values_array, $field, $type, 'child')));
@@ -1741,7 +1742,7 @@ generateComponent
 						array_push($field->search_replace,array('search' => $this->_markupText('FIELD_CHILD_FILTER_VALUE_ARRAY'), 'replace' => ''));
 					}											
 				}
-				if (!is_null($foreign_object) AND JString::substr($type, 0, 5) == 'modal')
+				if (!is_null($field->foreign_object) AND JString::substr($type, 0, 5) == 'modal')
 				{
 					$acronym = '';			
 					if (array_key_exists($field->code_name, $this->_acronyms))
@@ -1750,7 +1751,7 @@ generateComponent
 					}
 					else
 					{			
-						$word_array = explode(' ',$foreign_object->name);
+						$word_array = explode(' ',$field->foreign_object->name);
 
 						
 						foreach ($word_array as $word)
@@ -1778,18 +1779,18 @@ generateComponent
 
 					// Need to add some additional search and replace terms
 					
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT'), 'replace' => str_replace('_','',JString::strtolower($foreign_object->code_name))));
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_CODE_NAME'), 'replace' => JString::strtolower($foreign_object->code_name)));
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_UCWORDS'), 'replace' => str_replace(' ', '',JString::ucwords(JString::strtolower(str_replace('_',' ',$foreign_object->code_name))))));				
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT'), 'replace' => str_replace('_','',JString::strtolower($field->foreign_object->code_name))));
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_CODE_NAME'), 'replace' => JString::strtolower($field->foreign_object->code_name)));
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_UCWORDS'), 'replace' => str_replace(' ', '',JString::ucwords(JString::strtolower(str_replace('_',' ',$field->foreign_object->code_name))))));				
 
 					//Determine which field to use for the Foreign Objects name field
-					if ($foreign_object->joomla_features['include_name'] == '1')
+					if ($field->foreign_object->joomla_features['include_name'] == '1')
 					{			
 						array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_LABEL_FIELD'), 'replace' => 'name'));	
 					}
 					else
 					{
-						if ($foreign_object->joomla_features['include_name'] == '0')
+						if ($field->foreign_object->joomla_features['include_name'] == '0')
 						{
 							array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_LABEL_FIELD'), 'replace' => 'id'));	
 						}
@@ -1807,13 +1808,13 @@ generateComponent
 					}
 					
 					//Determine which field to use for the Foreign Objects ordering field
-					if ($foreign_object->joomla_features['include_ordering'] == '1')
+					if ($field->foreign_object->joomla_features['include_ordering'] == '1')
 					{			
 						array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_ORDERING_FIELD'), 'replace' => 'ordering'));	
 					}
 					else
 					{
-						if ($foreign_object->joomla_features['include_ordering'] == '0')
+						if ($field->foreign_object->joomla_features['include_ordering'] == '0')
 						{
 							array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_ORDERING_FIELD'), 'replace' => 'id'));	
 						}
@@ -1830,9 +1831,9 @@ generateComponent
 						}
 					}							
 					
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_PLURAL'), 'replace' => JString::strtolower(str_replace('_','',$foreign_object->plural_code_name))));
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_PLURAL_UCFIRST'), 'replace' => JString::ucfirst(JString::strtolower(str_replace('_','',$foreign_object->plural_code_name)))));				
-					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_UPPER'), 'replace' => JString::strtoupper($foreign_object->code_name)));
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_PLURAL'), 'replace' => JString::strtolower(str_replace('_','',$field->foreign_object->plural_code_name))));
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_PLURAL_UCFIRST'), 'replace' => JString::ucfirst(JString::strtolower(str_replace('_','',$field->foreign_object->plural_code_name)))));				
+					array_push($field->search_replace,array('search' => $this->_markupText('FIELD_FOREIGN_OBJECT_UPPER'), 'replace' => JString::strtoupper($field->foreign_object->code_name)));
 					
 					$link_fields[] = $field;
 				}
@@ -3095,6 +3096,15 @@ EOT;
                             */
                             if(strpos ($field->code_name,'id_') === 0)
                                 $data['content_types'][$component_object->code_name]->content_history_options['hideFields'][] = $field->code_name;
+                            break;
+                        case 'modal':
+                                    $displayLookup = array(
+                                        'sourceColumn'=>$field->code_name,
+                                        'targetTable'=> "#__{$architectcomp}_{$field->foreign_object->plural_code_name}",
+                                        'targetColumn'=>'id',
+                                        'displayColumn'=>'name',
+                                    );
+                                    $data['content_types'][$component_object->code_name]->content_history_options['displayLookup'][] = $displayLookup;
                             break;
                     }
                 }
