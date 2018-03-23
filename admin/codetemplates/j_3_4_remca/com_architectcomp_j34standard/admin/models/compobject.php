@@ -611,6 +611,12 @@ class [%%ArchitectComp%%]Model[%%CompObject%%] extends JModelAdmin
 				[%%ENDIF INCLUDE_ALIAS%%]
 			[%%ENDIF INCLUDE_NAME%%]			
 		[%%ENDIF INCLUDE_COPY%%]
+                
+		[%%FOREACH OBJECT_FIELD%%]
+		[%%IF FIELD_SUBFORM%%]
+		$data['[%%FIELD_CODE_NAME%%]'] = json_encode( array_values( $data['[%%FIELD_CODE_NAME%%]']));
+        [%%ENDIF FIELD_SUBFORM%%]
+		[%%ENDFOR OBJECT_FIELD%%]
 
 		if (parent::save($data))
 		{

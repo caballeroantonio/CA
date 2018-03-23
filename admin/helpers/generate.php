@@ -1450,7 +1450,7 @@ generateComponent
 						
 						if ($field->foreign_object_id > 0 && $field->foreign_object->joomla_features['include_versions'] == '1')
 						{
-                                                    $parameters .= "\t\t\ttype_alias=\"com_{$this->_component->code_name}.{$field->foreign_object->code_name}\" \n";
+							$parameters .= "\t\t\ttype_alias=\"com_{$this->_component->code_name}.{$field->foreign_object->code_name}\" \n";
 							$field_admin_linked_value = 'echo \'<a href="index.php?option='.$this->_markupText('com_architectcomp').'&task='.
 								$this->_markupText('FIELD_FOREIGN_OBJECT').'.edit&id=\'.$this->item->'.$field->code_name. '.\'">\''.
 								'.JString::trim($this->item->'.$this->_markupText('FIELD_FOREIGN_OBJECT_ACRONYM').'_'.
@@ -1569,7 +1569,12 @@ generateComponent
 						$field_site_value = 'echo $this->item->'.JString::trim($field->code_name).' != \'\' ? $this->item->'.JString::trim($field->code_name).'_title : $empty;';
 						$registry_entry_site_value = 'echo $field_array[\''.JString::trim($field->code_name).'\'] != \'\' ? $field_array[\''.JString::trim($field->code_name).'_title\'] : $empty;';
 
-						break;													
+						break;
+                                        case 'subform':
+                                            $parameters .= "\t\t\tlayout=\"joomla.form.field.subform.repeatable-table\" groupByFieldset=\"true\"\n";
+                                            $parameters .= "\t\t\tformsource=\"administrator/components/com_{$this->_component->code_name}/models/forms/{$field->foreign_object->code_name}.xml\" \n";
+                                            $parameters .= "\t\t\ttype_alias=\"com_{$this->_component->code_name}.{$field->foreign_object->code_name}\" \n";
+                                            break;
 					default:
 						break;			
 				}
@@ -3005,7 +3010,7 @@ EOT;
 		$data['content_types'][$component_object->code_name]->router = "{$architectcomp}HelperRoute::get{$component_object->code_name}Route";//'[%%ArchitectComp%%]HelperRoute::get[%%CompObject%%]Route';
                 $data['content_types'][$component_object->code_name]->table = array(
                     'special'=>array(
-                        'dbtable'=>"{$architectcomp}_{$component_object->plural_code_name}",//'[%%architectcomp%%]_[%%compobjectplural%%]',
+                        'dbtable'=>"#__{$architectcomp}_{$component_object->plural_code_name}",//'[%%architectcomp%%]_[%%compobjectplural%%]',
                         'key'=>'id',
                         'type'=>$component_object->plural_code_name,//[%%CompObjectPlural%%]
                         'prefix'=>"{$architectcomp}Table",//'[%%ArchitectComp%%]Table',

@@ -900,10 +900,12 @@ class [%%ArchitectComp%%]Model[%%CompObjectPlural%%] extends JModelList
 						[%%IF FIELD_NOT_CHECKBOXES%%]
 							[%%IF FIELD_NOT_SQL%%]
 								[%%IF FIELD_NOT_TAG%%]
+								[%%IF FIELD_NOT_SUBFORM%%]
 			if (isset($item->[%%FIELD_CODE_NAME%%]) AND $item->[%%FIELD_CODE_NAME%%] !='')
 			{
 				$item->[%%FIELD_CODE_NAME%%] =	explode(',',$item->[%%FIELD_CODE_NAME%%]);
 			}
+								[%%ENDIF FIELD_NOT_SUBFORM%%]
 								[%%ENDIF FIELD_NOT_TAG%%]
 							[%%ENDIF FIELD_NOT_SQL%%]
 						[%%ENDIF FIELD_NOT_CHECKBOXES%%]
